@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.godsky.findlove.user.model.dao.UserDao;
+import com.godsky.findlove.user.model.vo.Profile;
 import com.godsky.findlove.user.model.vo.User;
 
 @Service("userService")
@@ -11,6 +12,8 @@ public class UserServiceImpl implements UserService{
 	//dao 사용	
 	@Autowired
 	UserDao userDao;
+	User user;
+	Profile profile;
 	
 	@Override	
 	//로그인
