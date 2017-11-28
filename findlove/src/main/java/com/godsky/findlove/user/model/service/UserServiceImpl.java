@@ -8,10 +8,9 @@ import com.godsky.findlove.user.model.vo.User;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
-	
+	//dao 사용	
 	@Autowired
 	UserDao userDao;
-	User user;
 	
 	@Override	
 	//로그인
@@ -100,6 +99,6 @@ public class UserServiceImpl implements UserService{
 		return 0;
 		
 	}
-	
+
 
 }

@@ -29,6 +29,8 @@ public interface UserService {
 	int createUserProfile();
 
 	int createIdealProfile();
+
+	
 	
 	
 
