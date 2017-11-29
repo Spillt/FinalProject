@@ -17,6 +17,10 @@ spring-test/test-output/
 argfile*
 pom.xml
 activemq-data/
+<<<<<<< HEAD
+=======
+*/target/*
+>>>>>>> Chanho
 
 classes/
 /build

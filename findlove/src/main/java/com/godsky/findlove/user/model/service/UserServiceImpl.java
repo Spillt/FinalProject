@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	//비밀번호 정의
+	//비밀번호 확인
 	public int modifyPwd(){
 		return 0;
 		
@@ -101,7 +101,8 @@ public class UserServiceImpl implements UserService{
 	public int createIdealProfile(){
 		return 0;
 		
-	}
+	}	
+	
 
 
 }
