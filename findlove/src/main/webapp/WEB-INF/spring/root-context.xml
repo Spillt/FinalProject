@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+<<<<<<< HEAD
 <!-- DataSource 등록 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 	    <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
@@ -11,16 +12,7 @@
 	    <property name="username" value="final" />
 	    <property name="password" value="final" />
 	</bean>			
+=======
+>>>>>>> b07977144f877429dbcbb6f7b5294dad66bd1261
 		
-	<bean id="sqlSession"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
-	<property name="configLocation"
-		value="classpath:mybatis-config.xml">
-	</property>
-	<property name="dataSource" ref="dataSource"></property>
-	</bean>
-	
-	<bean class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="sqlSession"></constructor-arg>
-	</bean>
 </beans>
