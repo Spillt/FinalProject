@@ -4,7 +4,7 @@ import com.godsky.findlove.user.model.vo.User;
 
 public interface UserService {
 
-	User loginCheck();
+	User loginCheck(User vo);
 
 	boolean createUser();
 
