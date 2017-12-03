@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" automaticImage="JPEG" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+  <package id="1" language="java" name="com.godsky.findlove.main.profileboard" project="findlove" 
+    file="/findlove/src/main/java/com/godsky/findlove/main/profileboard" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="474" width="1071" x="53" y="135"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="2" language="java" name="com.godsky.findlove.main.profileboard.controller" project="findlove" 
+    file="/findlove/src/main/java/com/godsky/findlove/main/profileboard/controller" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="338" y="270"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="3" language="java" name="com.godsky.findlove.main.profileboard.model.service" project="findlove" 
+    file="/findlove/src/main/java/com/godsky/findlove/main/profileboard/model/service" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="343" y="472"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="4" language="java" name="com.godsky.findlove.main.profileboard.model.dao" project="findlove" 
+    file="/findlove/src/main/java/com/godsky/findlove/main/profileboard/model/dao" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="865" y="273"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="5" language="java" name="com.godsky.findlove.main.profileboard.model.vo" project="findlove" 
+    file="/findlove/src/main/java/com/godsky/findlove/main/profileboard/model/vo" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="856" y="471"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <dependency id="6">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="7">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="8">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
