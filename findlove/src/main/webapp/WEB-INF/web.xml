@@ -113,14 +113,4 @@
     <servlet-name>MyInfoUpdateServlet</servlet-name>
     <url-pattern>/MyInfoUpdateServlet</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>PollServicce</display-name>
-    <servlet-name>PollServicce</servlet-name>
-    <servlet-class>com.godsky.findlove.eventmain.poll.ans.model.service.PollServicce</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>PollServicce</servlet-name>
-    <url-pattern>/pollServicce</url-pattern>
-  </servlet-mapping>
 </web-app>
