@@ -1,4 +1,4 @@
-package com.godsky.findlove.notice.model.vo;
+package com.godsky.findlove.main.notice.model.vo;
 
 import java.sql.Date;
 
@@ -87,7 +87,7 @@ public class Notice {
 	@Override
 	public String toString() {
 		
-		return "NoticeId" + ", " + "NoticeTitle" + ", " + "NoticeContent" + ", " + "NoticeDt" + ", " + "NoticeFileOnm" + ", " + "NoticeFileRnm" + ", " + "NoticeReadCnt"; 
+		return NoticeNo + ", " + NoticeTitle + ", " + NoticeContent + ", " + NoticeDt + ", " + NoticeFileOnm + ", " + NoticeFileRnm + ", " + NoticeReadCnt; 
 	}
 	
 	

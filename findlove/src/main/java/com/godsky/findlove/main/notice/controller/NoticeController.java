@@ -1,23 +1,23 @@
-package com.godsky.findlove.notice.controller;
+package com.godsky.findlove.main.notice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.godsky.findlove.notice.model.service.NoticeService;
-import com.godsky.findlove.notice.model.vo.Notice;
+import com.godsky.findlove.main.notice.model.service.NoticeService;
+
 
 @Controller
 public class NoticeController {
 
 	@Autowired
-	private NoticeService noticeService;
+	private static NoticeService noticeService;
 
 	public NoticeController() {
 	}
 	//공지사항게시판
 	@RequestMapping(value = "notice.do")
-	public String notice() {
+	public static String notice() {
 		noticeService.loginCheck();
 		return "notice";
 	}

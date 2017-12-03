@@ -1,9 +1,9 @@
-package com.godsky.findlove.notice.model.service;
+package com.godsky.findlove.main.notice.model.service;
 
-import com.godsky.findlove.notice.model.vo.Notice;
+import com.godsky.findlove.main.notice.model.vo.Notice;
 
 public interface NoticeService {
-		Notice loginCheck();
+		String loginCheck();
 		String checkRankGb();
 		String updateNotice();
 		String insertNotice();

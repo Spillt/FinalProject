@@ -1,10 +1,11 @@
-package com.godsky.findlove.notice.model.dao;
+package com.godsky.findlove.main.notice.model.dao;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.godsky.findlove.notice.model.vo.Notice;
+import com.godsky.findlove.main.notice.model.vo.Notice;
+
 
 @Repository("NoticeDao")
 public class NoticeDao {

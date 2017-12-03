@@ -1,12 +1,11 @@
-package com.godsky.findlove.notice.model.service;
+package com.godsky.findlove.main.notice.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.godsky.findlove.notice.controller.NoticeController;
-import com.godsky.findlove.notice.model.dao.NoticeDao;
-import com.godsky.findlove.notice.model.vo.Notice;
-
+import com.godsky.findlove.main.notice.controller.NoticeController;
+import com.godsky.findlove.main.notice.model.dao.NoticeDao;
+import com.godsky.findlove.main.notice.model.vo.Notice;
 @Service("NoticeService")
 
 public class NoticeServiceImpl implements NoticeService{
@@ -15,7 +14,7 @@ public class NoticeServiceImpl implements NoticeService{
 	Notice Notice;
 	
 	@Override
-	public Notice loginCheck() {
+	public String loginCheck() {
 		// 로그인
 		NoticeDao.loginCheck();
 		return NoticeController.notice();
