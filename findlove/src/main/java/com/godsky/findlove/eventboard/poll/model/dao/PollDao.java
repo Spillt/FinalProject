@@ -1,4 +1,4 @@
-package com.godsky.findlove.eventmain.poll.model.dao;
+package com.godsky.findlove.eventboard.poll.model.dao;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.godsky.findlove.eventmain.poll.model.vo.Poll;
+import com.godsky.findlove.eventboard.poll.model.vo.Poll;
 
 @Repository("pollDao")
 public class PollDao {

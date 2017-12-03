@@ -1,4 +1,4 @@
-package com.godsky.findlove.eventmain.poll.model.service;
+package com.godsky.findlove.eventboard.poll.model.service;
 
 import java.util.List;
 

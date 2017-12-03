@@ -1,4 +1,4 @@
-package com.godsky.findlove.eventmain.attendance.model.vo;
+package com.godsky.findlove.eventboard.attendance.model.vo;
 
 import java.sql.Date;
 import java.util.List;

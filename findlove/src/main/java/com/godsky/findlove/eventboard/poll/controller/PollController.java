@@ -1,4 +1,4 @@
-package com.godsky.findlove.eventmain.poll.controller;
+package com.godsky.findlove.eventboard.poll.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.godsky.findlove.eventmain.poll.model.service.PollService;
+import com.godsky.findlove.eventboard.poll.model.service.PollService;
 
 /**
  * Handles requests for the application home page.

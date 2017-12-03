@@ -1,12 +1,12 @@
-package com.godsky.findlove.eventmain.poll.model.service;
+package com.godsky.findlove.eventboard.poll.model.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.godsky.findlove.eventmain.poll.model.dao.PollDao;
-import com.godsky.findlove.eventmain.poll.model.vo.Poll;
+import com.godsky.findlove.eventboard.poll.model.dao.PollDao;
+import com.godsky.findlove.eventboard.poll.model.vo.Poll;
 
 @Service("pollService")
 public class PollServiceImpl {

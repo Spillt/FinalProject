@@ -1,4 +1,4 @@
-package com.godsky.findlove.eventmain.attendance.model.service;
+package com.godsky.findlove.eventboard.attendance.model.service;
 
 import java.sql.Date;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.godsky.findlove.eventmain.attendance.model.dao.AttendanceDao;
-import com.godsky.findlove.eventmain.attendance.model.service.AttendanceService;
-import com.godsky.findlove.eventmain.attendance.model.vo.Attendance;
+import com.godsky.findlove.eventboard.attendance.model.dao.AttendanceDao;
+import com.godsky.findlove.eventboard.attendance.model.service.AttendanceService;
+import com.godsky.findlove.eventboard.attendance.model.vo.Attendance;
 
 @Service("attendanceService")
 public class AttendanceServiceImpl {

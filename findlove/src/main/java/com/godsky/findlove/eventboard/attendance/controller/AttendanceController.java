@@ -1,4 +1,4 @@
-package com.godsky.findlove.eventmain.attendance.controller;
+package com.godsky.findlove.eventboard.attendance.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.godsky.findlove.eventmain.attendance.model.service.AttendanceService;
+import com.godsky.findlove.eventboard.attendance.model.service.AttendanceService;
 
 /**
  * Handles requests for the application home page.

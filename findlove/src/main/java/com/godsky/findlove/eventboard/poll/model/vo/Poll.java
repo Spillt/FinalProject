@@ -1,4 +1,4 @@
-package com.godsky.findlove.eventmain.poll.model.vo;
+package com.godsky.findlove.eventboard.poll.model.vo;
 
 public class Poll {
 	
