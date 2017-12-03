@@ -49,7 +49,7 @@ public class UserMgmtController {
 	/* 신고 회원 관리 */
 	
 	// 신고 회원 리스트 조회
-	@RequestMapping(value="resportlist.do")
+	@RequestMapping(value="reportlist.do")
 	public String reportUserList(Model model) {
 		model.addAttribute("list", userMgmtService.getReportUserList());
 		return null;

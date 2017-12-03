@@ -17,35 +17,35 @@ public class FaqMgmtController {
 	public FaqMgmtController() {}
 	
 	// faq 조회
-	@RequestMapping(value="faqlist")
+	@RequestMapping(value="faqlist.do")
 	public String faqList(Model model) {
 		model.addAttribute("list", faqMgmtService.getFaqList());
 		return null;
 	}
 	
 	// faq 상세 및 선택
-	@RequestMapping(value="faqdetail")
+	@RequestMapping(value="faqdetail.do")
 	public String faqDetail(int no, Model model) {
 		model.addAttribute("faq", faqMgmtService.getFaq(no));
 		return null;
 	}
 	
 	// faq 등록
-	@RequestMapping(value="insertfaq")
+	@RequestMapping(value="insertfaq.do")
 	public String insertFaq(Model model) {
 		int result = faqMgmtService.insertFaq();
 		return null;
 	}
 	
 	// faq 수정
-	@RequestMapping(value="updatefaq")
+	@RequestMapping(value="updatefaq.do")
 	public String updateFaq(Faq faq, Model model) {
 		int result = faqMgmtService.updateFaq(faq);
 		return null;
 	}
 	
 	// faq 삭제
-	@RequestMapping(value="deletefaq")
+	@RequestMapping(value="deletefaq.do")
 	public String deleteFaq(int no, Model model) {
 		int result = faqMgmtService.deleteFaq(no);
 		return null;

@@ -17,28 +17,28 @@ public class InqMgmtController {
 	public InqMgmtController() {}
 	
 	// 일대일 문의 목록 전체 보기
-	@RequestMapping(value="inqlist")
+	@RequestMapping(value="inqlist.do")
 	public String inqList(Model model) {
 		model.addAttribute("list", inqMgmtService.getInqList());
 		return null;
 	}
 	
 	// 일대일 문의 답변 대기글 보기
-	@RequestMapping(value="inqwaitlist")
+	@RequestMapping(value="inqwaitlist.do")
 	public String inqWaitList(Model model) {
 		model.addAttribute("list", inqMgmtService.getInqWaitList());
 		return null;
 	}
 	
 	// 일대일 문의 상세 보기
-	@RequestMapping(value="inqdetail")
+	@RequestMapping(value="inqdetail.do")
 	public String inqDetail(int no, Model model) {
 		model.addAttribute("inq", inqMgmtService.getInq(no));
 		return null;
 	}
 	
 	// 일대일 문의 답변하기
-	@RequestMapping(value="inqanswer")
+	@RequestMapping(value="inqanswer.do")
 	public String inqAnswer(Inq inq, Model model) {
 		int result = inqMgmtService.inqAnswer(inq);
 		return null;

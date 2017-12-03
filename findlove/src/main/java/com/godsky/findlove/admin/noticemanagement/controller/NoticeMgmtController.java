@@ -17,35 +17,35 @@ public class NoticeMgmtController {
 	public NoticeMgmtController() {}
 	
 	// 공지사항 조회
-	@RequestMapping(value="noticelist")
+	@RequestMapping(value="noticelist.do")
 	public String noticeList(Model model) {
 		model.addAttribute("list", noticeMgmtService.getNoticeList());
 		return null;
 	}
 	
 	// 공지사항 상세 및 선택
-	@RequestMapping(value="noticedetail")
+	@RequestMapping(value="noticedetail.do")
 	public String noticeDetail(int no, Model model) {
 		model.addAttribute("notice", noticeMgmtService.getNotice(no));
 		return null;
 	}
 	
 	// 공지사항 등록
-	@RequestMapping(value="insertnotice")
+	@RequestMapping(value="insertnotice.do")
 	public String insertNotice(Model model) {
 		int result = noticeMgmtService.insertNotice();
 		return null;
 	}
 	
 	// 공지사항 수정
-	@RequestMapping(value="updatenotice")
+	@RequestMapping(value="updatenotice.do")
 	public String updateNotice(Notice notice, Model model) {
 		int result = noticeMgmtService.updateNotice(notice);
 		return null;
 	}
 	
 	// 공지사항 삭제
-	@RequestMapping(value="deletenotice")
+	@RequestMapping(value="deletenotice.do")
 	public String deleteNotice(int no, Model model) {
 		int result = noticeMgmtService.deleteNotice(no);
 		return null;
