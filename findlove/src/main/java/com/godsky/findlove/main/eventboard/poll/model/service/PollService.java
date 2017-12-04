@@ -1,23 +1,14 @@
 package com.godsky.findlove.main.eventboard.poll.model.service;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class PollService {
-	
-	void insertPollInfo() {}
+import com.godsky.findlove.main.eventboard.poll.model.vo.Poll;
 
-	List deletePollInfo(){
-		return null;
-		}
-	
-	List selectPollDetail(){
-		return null;		
-	}
-	
-	List selectPollList(){
-		return null;		
-	}
-	
-	void updatePoll(){}
+public interface PollService {
+
+	ArrayList<Poll> getPollList();
+	ArrayList<Poll> getPollWaitList();
+	Poll getPoll(int no);
+	int pollAnswer(Poll poll);
 
 }

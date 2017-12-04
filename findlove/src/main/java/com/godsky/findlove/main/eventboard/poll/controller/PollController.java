@@ -1,53 +1,47 @@
 package com.godsky.findlove.main.eventboard.poll.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.godsky.findlove.main.eventboard.poll.model.service.PollService;
+import com.godsky.findlove.main.eventboard.poll.model.vo.Poll;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class PollController {
 	
 	@Autowired
 	private PollService pollService;
 	
-	public PollController(){}
+	public PollController() {}
 	
-	
-	@RequestMapping(value = "pollDetail.do")
-	public String pollDdetail(){
-		return null;		
-	}
-	
-		
-	@RequestMapping(value = "pollList.do")
-	public String pollList(){
-		return null ;
-	}
-	
-	
-	@RequestMapping(value = "updatePoll.do")
-	public String updateMyInfo(){
+	// 일대일 문의 목록 전체 보기
+	@RequestMapping(value="polllist.do")
+	public String pollList(Model model) {
+		model.addAttribute("list", pollService.getPollList());
 		return null;
 	}
 	
+	// 일대일 문의 답변 대기글 보기
+	@RequestMapping(value="pollwaitlist.do")
+	public String pollWaitList(Model model) {
+		model.addAttribute("list", pollService.getPollWaitList());
+		return null;
+	}
 	
+	// 일대일 문의 상세 보기
+	@RequestMapping(value="polldetail.do")
+	public String pollDetail(int no, Model model) {
+		model.addAttribute("poll", pollService.getPoll(no));
+		return null;
+	}
 	
-	
-		
-	
+	// 일대일 문의 답변하기
+	@RequestMapping(value="pollanswer.do")
+	public String pollAnswer(Poll poll, Model model) {
+		int result = pollService.pollAnswer(poll);
+		return null;
+	}
 
-	
 }

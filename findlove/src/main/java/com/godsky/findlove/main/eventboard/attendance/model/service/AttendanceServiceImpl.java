@@ -1,38 +1,38 @@
 package com.godsky.findlove.main.eventboard.attendance.model.service;
 
-import java.sql.Date;
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.godsky.findlove.main.eventboard.attendance.model.dao.AttendanceDao;
-import com.godsky.findlove.main.eventboard.attendance.model.service.AttendanceService;
 import com.godsky.findlove.main.eventboard.attendance.model.vo.Attendance;
 
-@Service("attendanceService")
-public class AttendanceServiceImpl {
-	//dao 사용	
+@Service("AttendanceService")
+public class AttendanceServiceImpl implements AttendanceService {
+
 	@Autowired
 	AttendanceDao attendanceDao;
-	AttendanceService attendanceService;
-	private String userId; 
-	private Date attendanceDT;
-	
-	
-	public Integer Count() {
-		return null; 
-		
-	}
-	
-	public String Check(){
-		return userId;
-	}
-	
-	public List<Attendance> checkList(){
-		return null;
-	}
-	
 
+	@Override
+	public ArrayList<Attendance> getAttendanceList() {
+		return AttendanceDao.getAttendanceList();
+	}
 
+	@Override
+	public ArrayList<Attendance> getAttendanceWaitList() {
+		return attendanceDao.getAttendanceWaitList();
+	}
+
+	@Override
+	public Attendance getAttendance(int no) {
+		return attendanceDao.getAttendance(no);
+	}
+
+	@Override
+	public int attendanceAnswer(Attendance attendance) {
+		return attendanceDao.attendanceAnswer(attendance);
+	}
+	
+	
 }

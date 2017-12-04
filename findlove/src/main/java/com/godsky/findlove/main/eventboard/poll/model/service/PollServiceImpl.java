@@ -1,6 +1,6 @@
 package com.godsky.findlove.main.eventboard.poll.model.service;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,34 +9,30 @@ import com.godsky.findlove.main.eventboard.poll.model.dao.PollDao;
 import com.godsky.findlove.main.eventboard.poll.model.vo.Poll;
 
 @Service("pollService")
-public class PollServiceImpl {
+public class PollServiceImpl implements PollService {
 
-	// Dao사용
+	@Autowired
 	PollDao pollDao;
-	PollService pollsevice;
 
-	// 질문 생성
-	public void insertPollInfo() {
-		return;
+	@Override
+	public ArrayList<Poll> getPollList() {
+		return PollDao.getPollList();
 	}
 
-	// 질문 삭제
-	public List deletePollInfo() {
-		return null;
+	@Override
+	public ArrayList<Poll> getPollWaitList() {
+		return pollDao.getPollWaitList();
 	}
 
-	// 질문 찾기
-	public List selectPollDetail() {
-		return null;
+	@Override
+	public Poll getPoll(int no) {
+		return pollDao.getPoll(no);
 	}
 
-	// 질문목록
-	public List selectPollList() {
-		return null;
+	@Override
+	public int pollAnswer(Poll poll) {
+		return pollDao.pollAnswer(poll);
 	}
-
-	// 질문업데이트
-	public void updatePoll() {
-
-	}
+	
+	
 }

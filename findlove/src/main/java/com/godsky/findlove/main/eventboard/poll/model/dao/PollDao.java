@@ -1,6 +1,6 @@
 package com.godsky.findlove.main.eventboard.poll.model.dao;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,29 +10,23 @@ import com.godsky.findlove.main.eventboard.poll.model.vo.Poll;
 
 @Repository("pollDao")
 public class PollDao {
+	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
 
-	public void deletePollInfo() {
-		return;
-	}
-
-	public void insertPollInfo() {
-		return;
-
-	}
-
-	public List selectPollDetail() {
+	public static ArrayList<Poll> getPollList() {
 		return null;
 	}
 
-	public List selectPollList() {
+	public ArrayList<Poll> getPollWaitList() {
 		return null;
 	}
 
-	public void updatePoll() {
-
+	public Poll getPoll(int no) {
+		return null;
 	}
 
+	public int pollAnswer(Poll poll) {
+		return 0;
+	}
 }
