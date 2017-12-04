@@ -30,7 +30,7 @@ public class MsgchatboardController {
 	}
 	
 	//프로필 상세 페이지 이동
-	@RequestMapping(value = "detail.do")
+	@RequestMapping(value = "profiledetail.do")
 	public String selectProfile(){
 		return null;		
 	}
