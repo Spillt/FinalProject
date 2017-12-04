@@ -1,20 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%-- <%@ page session="false" %> --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Home</title>
-
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-<link rel="stylesheet" type="text/css" href="/findlove/resources/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/findlove/resources/css/agency.min.css">
+	<meta charset="UTF-8">
+	<title>연애의발견</title>
 </head>
 <body id="page-top">
 	<%-- <h1>home.jsp</h1>
@@ -29,36 +21,7 @@
 	<p>${user.userName } 님 환영합니다.</p>
 </c:if> --%>
 
-
-
-	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
-		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="#page-top">Find love</a>
-			<button class="navbar-toggler navbar-toggler-right" type="button"
-				data-toggle="collapse" data-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false"
-				aria-label="Toggle navigation">
-				Menu <i class="fa fa-bars"></i>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav text-uppercase ml-auto">
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#services">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#portfolio">매칭 게시판</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#about">프로필 게시판</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#team">자유 게시판</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#contact">이벤트 게시판</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#contact">Q&A</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+<c:import url="./header.jsp" />
 
 	<!-- Header -->
 	<header class="masthead">
@@ -482,37 +445,8 @@
 			</div>
 		</div>
 	</section>
-
-	<!-- Footer -->
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4">
-					<span class="copyright">Copyright &copy; Your Website 2017</span>
-				</div>
-				<div class="col-md-4">
-					<ul class="list-inline social-buttons">
-						<li class="list-inline-item"><a href="#"> <i
-								class="fa fa-twitter"></i>
-						</a></li>
-						<li class="list-inline-item"><a href="#"> <i
-								class="fa fa-facebook"></i>
-						</a></li>
-						<li class="list-inline-item"><a href="#"> <i
-								class="fa fa-linkedin"></i>
-						</a></li>
-					</ul>
-				</div>
-				<div class="col-md-4">
-					<ul class="list-inline quicklinks">
-						<li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-						<li class="list-inline-item"><a href="#">Terms of Use</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</footer>
-
+	<c:import url="./footer.jsp" />
+	
 	<!-- Portfolio Modals -->
 
 	<!-- Modal 1 -->
