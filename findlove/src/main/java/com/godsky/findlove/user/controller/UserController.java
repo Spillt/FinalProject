@@ -3,6 +3,7 @@ package com.godsky.findlove.user.controller;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+import javax.validation.Valid;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.validation.BindingResult;
 
 import com.godsky.findlove.user.model.service.UserService;
 import com.godsky.findlove.user.model.vo.User;
@@ -25,6 +27,8 @@ import com.godsky.findlove.user.model.vo.User;
 @Controller
 @RequestMapping("/user/*")
 public class UserController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService userService;
@@ -65,9 +69,10 @@ public class UserController {
 	
 	//회원가입
 	@RequestMapping(value = "signUp.do", method=RequestMethod.GET)
-	public String singUp(){
+	public String signUp(){
 		return "user/signUp";		
-	}
+	}	
+	
 	
 	//내정보	
 	@RequestMapping(value = "myInfo.do")
