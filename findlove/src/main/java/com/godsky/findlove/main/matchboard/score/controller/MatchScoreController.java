@@ -16,17 +16,17 @@ public class MatchScoreController {
 	public MatchScoreController(){}
 	
 	
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="insertscore.do", method=RequestMethod.POST)
 	public MatchScore insertScore(MatchScore score){
 		return null;
 	}
 	
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="selectmatching.do", method=RequestMethod.POST)
 	public MatchScore selectMatching(MatchScore score){
 		return null;
 	}
 	
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="allselect.do", method=RequestMethod.POST)
 	public MatchScore allSelect(User user){
 		return null;
 	}

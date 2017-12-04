@@ -16,27 +16,27 @@ public class MatchQnAController {
 	public MatchQnAController(){}
 	
 	
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="selectuserlist.do", method=RequestMethod.POST)
 	public MatchQnA selectUserList(User User){
 		return null;
 	}
 	
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="insertmatchqna.do", method=RequestMethod.POST)
 	public MatchQnA insertMatchQnA(MatchQnA QnA){
 		return null;
 	}
 	
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="updatematchqna.do", method=RequestMethod.POST)
 	public MatchQnA updateMatchQnA(MatchQnA QnA){
 		return null;
 	}
 	
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="deletmatchqna.do", method=RequestMethod.POST)
 	public MatchQnA deletMatchQnA(MatchQnA QnA){
 		return null;
 	}
 	
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="selectmatchqna.do", method=RequestMethod.POST)
 	public MatchQnA selectMatchQnA(MatchQnA QnA){
 		return null;
 	}
