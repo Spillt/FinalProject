@@ -51,6 +51,7 @@ public class UserController {
 			mav.setViewName("home");
 			mav.addObject("msg","success");
 		}else{
+			//로그인 실패
 			mav.setViewName("user/login");
 			mav.addObject("msg", "fail");
 		}

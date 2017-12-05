@@ -7,7 +7,7 @@
 <meta name="Keywords" content="회원가입" />
 <meta name="Description" content="회원가입" />
 <link rel="stylesheet" href="../resources/css/screen.css" type="text/css" media="screen" />
-<title>회원가입</title>
+<title>SignUp</title>
 <script type="text/javascript">
 //<![CDATA[
     function check() {
