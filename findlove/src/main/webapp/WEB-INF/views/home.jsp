@@ -21,7 +21,7 @@
 	<p>${user.userName } 님 환영합니다.</p>
 </c:if> --%>
 
-<c:import url="./header.jsp" />
+<c:import url="./include/header.jsp" />
 
 	<!-- Header -->
 	<header class="masthead">
@@ -445,7 +445,7 @@
 			</div>
 		</div>
 	</section>
-	<c:import url="./footer.jsp" />
+	<c:import url="./include/footer.jsp" />
 	
 	<!-- Portfolio Modals -->
 
