@@ -1,9 +1,5 @@
 package com.godsky.findlove.admin.inqmanagement.model.vo;
 
-<<<<<<< HEAD
-public class Inq {
-
-=======
 import java.sql.Date;
 
 public class Inq {
@@ -104,5 +100,4 @@ public class Inq {
 	}
 	
 	
->>>>>>> Chanwoo
 }

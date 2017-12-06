@@ -1,7 +1,5 @@
 package com.godsky.findlove.user.model.service;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +7,7 @@ import com.godsky.findlove.user.model.dao.UserDao;
 import com.godsky.findlove.user.model.vo.Profile;
 import com.godsky.findlove.user.model.vo.User;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService{
 	//dao 사용	
 	@Autowired
@@ -18,47 +16,15 @@ public class UserServiceImpl implements UserService{
 	Profile profile;
 	
 	@Override	
-<<<<<<< HEAD
-	//로그인 체크
-=======
-	//01_1 로그인 체크
->>>>>>> Chanwoo
-	public boolean loginCheck(User vo, HttpSession session){
-		boolean result = userDao.loginCheck(vo);
-		if(result){
-			session.setAttribute("userId", user.getUserId());
-			session.setAttribute("userName", user.getUserPwd());
-		}
-		
-		return result;		
+	//로그인
+	public User loginCheck(User vo){
+		return userDao.selectUser(vo);		
 	}
 	
 	@Override
-<<<<<<< HEAD
-	//로그인 정보
-=======
-	//01_2 로그인 정보
->>>>>>> Chanwoo
-	public User viewUser(User vo){
-		return userDao.viewUser(vo);
-	}
-	
-	@Override
-<<<<<<< HEAD
-	//로그 아웃
-=======
-	//01_03 로그 아웃
->>>>>>> Chanwoo
-	public void logout(HttpSession session){
-		session.invalidate();
-	}
-	
-	
-	@Override
-	//회원가입
-	public int insert(User vo){
-		return 0;
-				
+	//회원생성
+	public boolean createUser(){
+		return false;		
 	}
 	
 	@Override

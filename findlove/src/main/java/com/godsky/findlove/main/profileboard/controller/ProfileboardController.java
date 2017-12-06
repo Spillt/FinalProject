@@ -24,11 +24,7 @@ public class ProfileboardController {
 	}
 	
 	//프로필 상세 페이지 이동
-<<<<<<< HEAD
-	@RequestMapping(value = "profiledetail.do")
-=======
 	@RequestMapping(value = "detail.do")
->>>>>>> master
 	public String selectProfile() {
 		return null;
 	}

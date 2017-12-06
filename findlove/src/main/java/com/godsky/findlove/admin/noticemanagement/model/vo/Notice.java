@@ -1,9 +1,5 @@
 package com.godsky.findlove.admin.noticemanagement.model.vo;
 
-<<<<<<< HEAD
-public class Notice {
-
-=======
 import java.sql.Date;
 
 public class Notice {
@@ -94,5 +90,4 @@ public class Notice {
 	}
 	
 	
->>>>>>> Chanwoo
 }

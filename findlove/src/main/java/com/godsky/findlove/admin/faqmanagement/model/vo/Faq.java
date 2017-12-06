@@ -1,9 +1,5 @@
 package com.godsky.findlove.admin.faqmanagement.model.vo;
 
-<<<<<<< HEAD
-public class Faq {
-
-=======
 import java.sql.Date;
 
 public class Faq {
@@ -104,5 +100,4 @@ public class Faq {
 	}
 	
 	
->>>>>>> Chanwoo
 }
