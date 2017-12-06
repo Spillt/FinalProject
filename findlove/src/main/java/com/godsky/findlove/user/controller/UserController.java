@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+<<<<<<< HEAD
+=======
+import org.springframework.validation.BindingResult;
+>>>>>>> Chanwoo
 
 import com.godsky.findlove.user.model.service.UserService;
 import com.godsky.findlove.user.model.vo.User;
@@ -25,6 +29,8 @@ import com.godsky.findlove.user.model.vo.User;
 @Controller
 @RequestMapping("/user/*")
 public class UserController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService userService;
@@ -47,6 +53,10 @@ public class UserController {
 			mav.setViewName("home");
 			mav.addObject("msg","success");
 		}else{
+<<<<<<< HEAD
+=======
+			//로그인 실패
+>>>>>>> Chanwoo
 			mav.setViewName("user/login");
 			mav.addObject("msg", "fail");
 		}
@@ -65,9 +75,16 @@ public class UserController {
 	
 	//회원가입
 	@RequestMapping(value = "signUp.do", method=RequestMethod.GET)
+<<<<<<< HEAD
 	public String singUp(){
 		return "user/signUp";		
 	}
+=======
+	public String signUp(){
+		return "user/signUp";		
+	}	
+	
+>>>>>>> Chanwoo
 	
 	//내정보	
 	@RequestMapping(value = "myInfo.do")

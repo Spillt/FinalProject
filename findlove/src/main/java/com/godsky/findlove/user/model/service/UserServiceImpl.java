@@ -9,7 +9,7 @@ import com.godsky.findlove.user.model.dao.UserDao;
 import com.godsky.findlove.user.model.vo.Profile;
 import com.godsky.findlove.user.model.vo.User;
 
-@Service("userService")
+@Service
 public class UserServiceImpl implements UserService{
 	//dao 사용	
 	@Autowired
@@ -18,7 +18,11 @@ public class UserServiceImpl implements UserService{
 	Profile profile;
 	
 	@Override	
+<<<<<<< HEAD
 	//로그인 체크
+=======
+	//01_1 로그인 체크
+>>>>>>> Chanwoo
 	public boolean loginCheck(User vo, HttpSession session){
 		boolean result = userDao.loginCheck(vo);
 		if(result){
@@ -30,13 +34,21 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
+<<<<<<< HEAD
 	//로그인 정보
+=======
+	//01_2 로그인 정보
+>>>>>>> Chanwoo
 	public User viewUser(User vo){
 		return userDao.viewUser(vo);
 	}
 	
 	@Override
+<<<<<<< HEAD
 	//로그 아웃
+=======
+	//01_03 로그 아웃
+>>>>>>> Chanwoo
 	public void logout(HttpSession session){
 		session.invalidate();
 	}
