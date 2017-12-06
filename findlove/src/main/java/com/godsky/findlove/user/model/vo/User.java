@@ -2,13 +2,10 @@ package com.godsky.findlove.user.model.vo;
 
 import java.sql.Date;
 
-
-
-
 public class User {
 	
-	private String userId;
-	private String userPwd;
+	private String userId; 
+	private String userPwd; 
 	private String userName;
 	private String userNickName;
 	private char userState;

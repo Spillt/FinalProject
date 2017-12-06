@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
-<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
-<mapper namespace="member">
-    
-    <select id="loginCheck" resultType="String">
-        SELECT user_name AS userName FROM tb_user
-        WHERE user_id = #{userId} AND user_pwd = #{userPwd}
-    </select>
-    
-    <select id="viewMember" resultType="com.example.spring02.model.member.dto.MemberVO">
-        SELECT 
-            user_name AS userName,
-            user_id AS userId,
-            user_email AS userEmail,
-            user_regdate AS userRegdate
-        FROM tb_user
-        WHERE user_id = #{userId} AND user_pwd = #{userPwd}
-    </select>
- 
+<mapper namespace="user">
+
+	<resultMap id="resultUser" type="User">
+		<id property="userId" column="User_ID"/>
+		<result property="userPwd" column="User_PWD"/>
+		<result property="userName" column="User_NM"/>
+		<result property="userNickName" column="User_NickNM"/>
+		<result property="userState" column="User_ST"/>
+		<result property="email" column="Email"/>
+		<result property="phone" column="Phone"/>
+		<result property="pointCNT" column="Point_CNT"/>
+		<result property="konpeitoCNT" column="Konpeito_CNT"/>
+		<result property="rankGB" column="Rank_GB"/>
+		<result property="gradeAVG" column="Grade_AVG"/>
+		<result property="enrollDT" column="Enroll_DT"/>
+		<result property="lastestAccessDT" column="Latest_Access_DT"/>
+		<result property="deleteDT" column="Delete_DT"/>
+	</resultMap>
+	
+	<select id="selectUser" parameterType="User" resultType="User" resultMap="resultUser">
+		<![CDATA[
+			SELECT * FROM TB_USER WHERE User_ID = #{userId}
+		]]>
+	</select>
 </mapper>
