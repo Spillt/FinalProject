@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.godsky.findlove.user.model.service.UserService;
+import com.godsky.findlove.user.model.vo.User;
 
 /**
  * Handles requests for the application home page.
@@ -27,8 +30,9 @@ public class UserController {
 	
 	//로그인
 	@RequestMapping(value = "login.do")
-	public String loginMethod(){
-		return "user/myinfo";		
+	public String loginMethod(User user, HttpSession session){
+		session.setAttribute("user", userService.loginCheck(user));
+		return "home";		
 	}
 	
 	//로그아웃

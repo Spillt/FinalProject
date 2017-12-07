@@ -11,8 +11,8 @@ public class UserDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public User selectUser(){
-		return null;
+	public User selectUser(User vo){
+		return sqlSession.selectOne("user.selectUser", vo);
 		}
 	
 	public boolean creatUser(){

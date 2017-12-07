@@ -17,8 +17,8 @@ public class UserServiceImpl implements UserService{
 	
 	@Override	
 	//로그인
-	public User loginCheck(){
-		return userDao.selectUser();		
+	public User loginCheck(User vo){
+		return userDao.selectUser(vo);		
 	}
 	
 	@Override

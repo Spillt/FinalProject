@@ -36,7 +36,7 @@ public class HomeController {
 		return "home";
 	}
 	@RequestMapping(value = "notice.do", method = RequestMethod.GET)
-	public String Notice(Locale locale, Model model) {
+	public String notice(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -48,6 +48,5 @@ public class HomeController {
 		
 		return "notice";
 	}
-	
 	
 }
