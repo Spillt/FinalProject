@@ -284,10 +284,10 @@
             </div>
             <hr class="horiz-divide">
             <div class="i-a-group">
-               <i class="material-icons">group_add</i><a href="#">회원가입</a>
+               <i class="material-icons">group_add</i><a href="/findlove/user/SignUp">회원가입</a>
             </div>
             <div class="i-a-group">
-               <i class="material-icons">search</i><a href="#">아이디/비밀번호 찾기</a>
+               <i class="material-icons">search</i><a href="/findlove/user/FindIdPwd">아이디/비밀번호 찾기</a>
             </div>
             <hr class="horiz-divide">
          </div>

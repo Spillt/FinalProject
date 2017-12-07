@@ -43,8 +43,8 @@ public class UserController {
 	
 	//회원생성
 	@RequestMapping(value = "signup.do")
-	public String singUp(){
-		return null;		
+	public String signUp(){
+		return "signup";		
 	}
 	
 	//내정보	

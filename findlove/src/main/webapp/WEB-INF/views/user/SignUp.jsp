@@ -9,13 +9,13 @@
 <link rel="stylesheet" href="../resources/css/screen.css" type="text/css" media="screen" />
 <title>SignUp</title>
 <script type="text/javascript">
-//<![CDATA[
+/* //<![CDATA[
     function check() {
         var form = document.getElementById("signUpForm");
         //TODO 유효성 검사
         return true;
     }
-//]]>
+//]]> */
 </script>          
 </head>
 <body>
@@ -32,21 +32,20 @@
 <form id="signUpForm" action="signUp" method="post" onsubmit="return check()">
 <table>
 <tr>
-    <td style="width: 200px;">이름(Full Name)</td>
+    <td style="width: 200px;">이름</td>
     <td style="width: 390px"><input type="text" name="name" style="width: 99%;" /></td>
 </tr>
 <tr>
-    <td>비밀번호(Password)</td>
+    <td style="width: 200px;">닉네임</td>
+    <td style="width: 390px"><input type="text" name="nickname" style="width: 99%;" /></td>
+</tr>
+<tr>
+    <td>비밀번호</td>
     <td><input type="password" name="passwd" style="width: 99%;" /></td>
 </tr>
 <tr>
-    <td colspan="2" style="text-align: center;font-weight: bold;">
-    Email이 아이디로 사용됩니다. 따라서 비밀번호는 Email 계정 비밀번호와 같게 하지 마세요.
-    </td>
-</tr>
-<tr>
-    <td>비밀번호 확인(Confirm)</td>
-    <td><input type="password" name="confirm" style="width: 99%;" /></td>
+    <td>비밀번호 확인</td>
+    <td><input type="password" name="passwdconfirm" style="width: 99%;" /></td>
 </tr>
 <tr>
     <td>Email</td>
@@ -54,7 +53,7 @@
 </tr>
 <tr>
     <td>휴대폰</td>
-    <td><input type="text" name="mobile" style="width: 99%;" /></td>
+    <td><input type="text" name="phone" style="width: 99%;" /></td>
 </tr>
 </table>
 <div style="text-align: center;padding-bottom: 15px;">
