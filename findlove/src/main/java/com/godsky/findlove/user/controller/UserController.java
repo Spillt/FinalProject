@@ -40,6 +40,11 @@ public class UserController {
 	public String logoutMethod(){
 		return "home";
 	}
+	//회원가입 페이지
+	@RequestMapping(value = "signupview.do")
+	public String signUpView(){
+		return "user/signup";		
+	}
 	
 	//회원생성
 	@RequestMapping(value = "signup.do")
@@ -67,16 +72,10 @@ public class UserController {
 		
 	}
 	
-	//아이디찾기
-	@RequestMapping(value = "findId.do")
-	public String findId(){
-		return null;		
-	}
-	
-	//비밀번호 찾기
-	@RequestMapping(value = "findPwd.do")
-	public String finePwd(){
-		return null;
+	//아이디, 비밀번호 찾기
+	@RequestMapping(value = "findidpwd.do")
+	public String findIdPwd(){
+		return "user/findidpwd";		
 	}
 	
 		
