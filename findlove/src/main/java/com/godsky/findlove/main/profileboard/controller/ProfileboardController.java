@@ -1,8 +1,13 @@
 package com.godsky.findlove.main.profileboard.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.godsky.findlove.main.profileboard.model.service.ProfileboardService;
 
@@ -11,16 +16,20 @@ import com.godsky.findlove.main.profileboard.model.service.ProfileboardService;
  */
 @Controller
 public class ProfileboardController {
-	
-	@Autowired
-	private ProfileboardService profileboardService;
-	
 	public ProfileboardController() {}
 	
+	@Resource(name="profileboardService")
+	private ProfileboardService profileboardService;
+	
 	//해당 페이지용 프로필 페이지 이동
-	@RequestMapping(value = "profilelist.do")
-	public String selectList(){
-		return null;		
+	@RequestMapping(value = "/profileboard/profileList.do")
+	public ModelAndView openProfileList(Map<String, Object> commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("main/profileboard/profileboardList");
+		
+		List<Map<String,Object>> list = profileboardService.selectProfileList(commandMap);
+    	mv.addObject("list", list);
+    	
+		return mv;		
 	}
 	
 	//프로필 상세 페이지 이동

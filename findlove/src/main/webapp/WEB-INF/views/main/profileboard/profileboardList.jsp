@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%-- <%@ page session="false" %> --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -56,7 +57,7 @@
 	<p>${user.userName } 님 환영합니다.</p>
 </c:if> --%>
 
-<c:import url="./include/header.jsp" />
+<c:import url="../../include/header.jsp" />
 
 	<!-- Header -->
 	<header class="masthead">
@@ -84,81 +85,38 @@
 	<section class="bg-light" id="portfolio">
 		<div class="container">
 			<div class="row">
-			<div class="col-md-7 pannel">
+			<div class="col-md-30 pannel">
 				<div class="row panel-title">
-					<div class="col-lg-12 text-center">
-						<h5 class="section-heading">이 주의 TOP3</h5>
+					<div class="col-lg-20 text-center">
+						<h5 class="section-heading">프로필게시판</h5>
 					</div>
 				</div>
 				<div class="row panel-body">
-					<div class="col-md-4 portfolio-item">
-						<div class="portfolio-item-inner">
-							<a class="portfolio-link" data-toggle="modal"
-								href="#portfolioModal1">
-								<div class="portfolio-hover">
-									<div class="portfolio-hover-content">
-										<i class="fa fa-plus fa-3x"></i>
+					<c:choose>
+						<c:when test="${ fn:length(list) > 0}">
+							<c:forEach items="${ list }" var="profile">
+								<div class="col-md-3 portfolio-item">
+									<div class="portfolio-item-inner">
+										<a class="portfolio-link" data-toggle="modal"
+											href="#portfolioModal1">
+											<div class="portfolio-hover">
+												<div class="portfolio-hover-content">
+													<i class="fa fa-plus fa-3x"></i>
+												</div>
+											</div> <img class="img-fluid" src="/findlove/resources/img/team/1.jpg"
+											alt="">
+										</a>
+										<div class="portfolio-caption">
+											<h4>${ profile.USER_ID }</h4>
+											<h6>${ profile.GENDER }, ${ profile.AGE }세, ${ profile.AREA }</h6>
+											<span><i class="material-icons star">star_half</i></span>
+											<span><i class="material-icons heart">favorite_border</i></span>
+										</div>
 									</div>
-								</div> <img class="img-fluid" src="/findlove/resources/img/team/1.jpg"
-								alt="">
-							</a>
-							<div class="portfolio-caption">
-								<h4>Nick Name</h4>
-								<span><i class="material-icons star">star_half</i></span>
-								<span><i class="material-icons heart">favorite_border</i></span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 portfolio-item">
-						<div class="portfolio-item-inner">
-							<a class="portfolio-link" data-toggle="modal"
-								href="#portfolioModal2">
-								<div class="portfolio-hover">
-									<div class="portfolio-hover-content">
-										<i class="fa fa-plus fa-3x"></i>
-									</div>
-								</div> <img class="img-fluid" src="/findlove/resources/img/team/2.jpg"
-								alt="">
-							</a>
-							<div class="portfolio-caption">
-								<h4>Nick Name</h4>
-								<span><i class="material-icons star">star_half</i></span>
-								<span><i class="material-icons heart">favorite_border</i></span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 portfolio-item">
-						<div class="portfolio-item-inner">
-							<a class="portfolio-link" data-toggle="modal"
-								href="#portfolioModal3">
-								<div class="portfolio-hover">
-									<div class="portfolio-hover-content">
-										<i class="fa fa-plus fa-3x"></i>
-									</div>
-								</div> <img class="img-fluid" src="/findlove/resources/img/team/3.jpg"
-								alt="">
-							</a>
-							<div class="portfolio-caption">
-								<h4>Nick Name</h4>
-								<span><i class="material-icons star">star_half</i></span>
-								<span><i class="material-icons heart">favorite_border</i></span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 pannel">
-				<div class="row panel-title">
-					<div class="col-lg-12 text-center">
-						<h5 class="section-heading">최근 매칭된 사용자</h5>
-					</div>
-				</div>
-				<div class="row panel-body">
-					<div class="col-lg-12 text-center">
-						<h5 class="section-heading">Name ♡ Name</h5>
-						<h5 class="section-heading">Name ♡ Name</h5>
-						<h5 class="section-heading">Name ♡ Name</h5>
-					</div>
+								</div>
+							</c:forEach>
+						</c:when>
+					</c:choose>
 				</div>
 			</div>
 			</div>
@@ -194,7 +152,7 @@
 		</div>
 	</section>
 	<hr>
-	<c:import url="./include/footer.jsp" />
+	<c:import url="../../include/footer.jsp" /> 
 	
 
 

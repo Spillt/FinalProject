@@ -5,16 +5,6 @@ import com.godsky.findlove.user.model.vo.Profile;
 
 public interface ProfileboardService {
 	
-	int getListCount();
-	
-	ArrayList<Profile> selectList();
-	
-	ArrayList<Profile> selectSearch();
-	
-	Profile selectProfile();
-	
-	int reportProfile();
-	
-	int sendMessage();
+	List<Map<String, Object>> selectProfileList(Map<String, Object> map) throws Exception;
 	
 }
