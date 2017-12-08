@@ -19,8 +19,8 @@ public class AttendanceController {
 	// 일대일 문의 목록 전체 보기
 	@RequestMapping(value="attendancelist.do")
 	public String attendanceList(Model model) {
-		model.addAttribute("list", attendanceService.getAttendanceList());
-		return null;
+		/*model.addAttribute("list", attendanceService.getAttendanceList());*/
+		return "main/eventboard/attendance/attendancelist";
 	}
 	
 	// 일대일 문의 답변 대기글 보기
