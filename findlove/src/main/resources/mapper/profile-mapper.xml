@@ -4,7 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="profile">
      
-    <select id="selectProfileList" resultType="com.godsky.findlove.main.profileboard.model.vo.Profileboard">
+    <select id="selectProfileList" resultType="Profileboard">
         <![CDATA[
             SELECT 
             USER_ID,
@@ -18,10 +18,11 @@
 			LEFT JOIN TB_PROFILE USING (USER_ID)
 			LEFT JOIN TB_PROFILE_PICTURE USING (USER_ID)
 			WHERE USER_ID != 'admin'
+			AND THUMNAIL_FL = '1'
         ]]>
     </select>
     
-    <select id="selectProfileDetail" resultType="com.godsky.findlove.main.profileboard.model.vo.Profileboard">
+    <select id="selectProfileDetail" resultType="Profileboard">
         <![CDATA[
             SELECT * FROM TB_USER 
 			LEFT JOIN TB_PROFILE USING(USER_ID)

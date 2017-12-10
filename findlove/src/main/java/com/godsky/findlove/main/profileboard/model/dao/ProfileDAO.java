@@ -18,7 +18,7 @@ public class ProfileDAO {
 		return sqlSession.selectList("profile.selectProfileList");
 	}
 
-	public Profileboard selectProfileDetail(int user_nicknm) {
+	public Profileboard selectProfileDetail(String user_nicknm) {
 		return sqlSession.selectOne("profile.selectProfileDetail", user_nicknm);
 	}
 

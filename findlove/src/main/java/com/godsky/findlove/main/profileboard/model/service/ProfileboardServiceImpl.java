@@ -20,7 +20,7 @@ public class ProfileboardServiceImpl implements ProfileboardService{
 	}
 
 	@Override
-	public Profileboard selectProfileDetail(int user_nicknm) throws Exception {
+	public Profileboard selectProfileDetail(String user_nicknm) throws Exception {
 		return profileDAO.selectProfileDetail(user_nicknm);
 	}
 	

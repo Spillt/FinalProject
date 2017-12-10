@@ -9,6 +9,6 @@ public interface ProfileboardService {
 	public List<Profileboard> selectProfileList() throws Exception;
 
 	//게시글 상세보기
-	public Profileboard selectProfileDetail(int user_nicknm) throws Exception;
+	public Profileboard selectProfileDetail(String user_nicknm) throws Exception;;
 		
 }

@@ -39,10 +39,12 @@ public class ProfileboardController {
 	
 	//프로필 상세 페이지 이동
 	@RequestMapping(value = "/profileboard/openProfileDetail.do", method = RequestMethod.GET)
-	public ModelAndView openBoardDetail(@RequestParam int user_nicknm) throws Exception {
+	public ModelAndView openBoardDetail(@RequestParam String user_nicknm) throws Exception {
+		Profileboard list = profileboardService.selectProfileDetail(user_nicknm);
 		
-		ModelAndView mv = new ModelAndView("main/profileboard/profileboardList");
-		mv.addObject("list", profileboardService.selectProfileDetail(user_nicknm));
+		ModelAndView mv = new ModelAndView("main/profileboard/profileboardDetail");
+		mv.addObject("list", list);
+		System.out.println(list);
 		
 		return mv;
 	}
