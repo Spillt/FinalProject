@@ -289,6 +289,9 @@
             <div class="i-a-group">
                <i class="material-icons">search</i><a href="findidpwd.do">아이디/비밀번호 찾기</a>
             </div>
+            <div class="i-a-group">
+               <i class="material-icons">search</i><a href="myinfo.do">내정보보기</a>
+            </div>
             <hr class="horiz-divide">
          </div>
    </nav>

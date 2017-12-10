@@ -53,9 +53,9 @@ public class UserController {
 	}
 	
 	//내정보	
-	@RequestMapping(value = "myInfo.do")
+	@RequestMapping(value = "myinfo.do")
 	public String selectMyInfo(){
-		return null ;
+		return "user/myinfo" ;
 	}
 	
 	//내정보 업데이트
