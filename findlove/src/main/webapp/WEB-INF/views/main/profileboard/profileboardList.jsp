@@ -103,12 +103,12 @@
 												<div class="portfolio-hover-content">
 													<i class="fa fa-plus fa-3x"></i>
 												</div>
-											</div> <img class="img-fluid" src="/findlove/resources/img/team/1.jpg"
-											alt="">
+											</div> <a href="/findlove/profileboard/openProfileDetail.do?user_nicknm=${ profile.user_NickNM }"><img class="img-fluid" src="/findlove/resources/img/team/1.jpg"
+											alt=""></a>
 										</a>
 										<div class="portfolio-caption">
-											<h4>${ profile.USER_ID }</h4>
-											<h6>${ profile.GENDER }, ${ profile.AGE }세, ${ profile.AREA }</h6>
+											<h4>${ profile.user_NickNM }(${ profile.gender })</h4>
+											<h6>${ profile.age }세, ${ profile.area }</h6>
 											<span><i class="material-icons star">star_half</i></span>
 											<span><i class="material-icons heart">favorite_border</i></span>
 										</div>

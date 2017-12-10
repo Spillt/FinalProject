@@ -5,7 +5,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.godsky.findlove.user.model.vo.User" alias="User" />
-				
 	</typeAliases>
 	
 	<!-- 사용할 매퍼 파일 등록 : 필수 -->

@@ -3,14 +3,23 @@ package com.godsky.findlove.main.profileboard.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.godsky.findlove.common.dao.AbstractDAO;
+
+import com.godsky.findlove.main.profileboard.model.vo.Profileboard;
 
 @Repository("profileDAO")
-public class ProfileDAO extends AbstractDAO{
+public class ProfileDAO {
+	@Autowired
+	private SqlSessionTemplate sqlSession;
 
-	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectProfileList(Map<String, Object> map) {
-		return (List<Map<String, Object>>)selectList("profile.selectProfileList", map);
+	public List<Profileboard> selectProfileList() {
+		return sqlSession.selectList("profile.selectProfileList");
 	}
+
+	public Profileboard selectProfileDetail(int user_nicknm) {
+		return sqlSession.selectOne("profile.selectProfileDetail", user_nicknm);
+	}
+
 }
