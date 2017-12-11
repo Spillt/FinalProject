@@ -31,4 +31,12 @@
 		<beans:property name="order" value="0"></beans:property>
 	</beans:bean>
 	
+	<!-- Multipart를 받기 위한 리졸버 추가 --> 
+	<beans:bean id="multipartResolver" 
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</beans:bean>
+
+	
+	
+	
 </beans:beans>

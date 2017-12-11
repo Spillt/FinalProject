@@ -62,7 +62,7 @@
 
 <body>
 
-<div class="testbox">
+<div class="testbox"> 
   <h1>Registration</h1>
 
   <form action="signup" name="signup" method="post">
@@ -97,4 +97,6 @@
 </div>
 
 </body>
+     
+  </body>
 </html>
