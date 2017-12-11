@@ -95,10 +95,10 @@
 				</div>
 				<!-- /.col-lg-8 -->
 				<div class="col-lg-4">
-					<h1>${list.user_NickNM }</h1>
+					<h1>${ list.user_NickNM }</h1>
 					<span><img src="/findlove/resources/img/starGrade/starGrade${ list.grade_AVG }.png" width=160, height=40></span>
 					<p>This is a template that is great for small businesses </p>
-					<a class="btn btn-primary btn-lg" href="#">Call to Action!</a>
+					<a class="btn btn-primary btn-lg" href="#">Send Message</a>
 				</div>
 				<!-- /.col-md-4 -->
 			</div>
@@ -107,19 +107,31 @@
 			<!-- Call to Action Well -->
 			<div class="card text-white bg-secondary my-4 text-center">
 				<div class="card-body">
-					<p class="text-white m-0">${list.user_NickNM }님의 간단한 프로필 입니다
+					<p class="text-white m-0">${ list.user_NickNM }님의 간단한 프로필 입니다
 				</div>
 			</div>
 
 			<!-- Content Row -->
 			<div class="row">
-				<div class="col-md-4 mb-4">
-					<div class="card h-100">
+				<div class="col-md-6 mb-6">
+					<div class="card h-80">
 						<div class="card-body">
 							<h2 class="card-title">Card One</h2>
-							<p class="card-text">Lorem ipsum dolor sit amet, consectetur
+							<!-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur
 								adipisicing elit. Rem magni quas ex numquam, maxime minus quam
-								molestias corporis quod, ea minima accusamus.</p>
+								molestias corporis quod, ea minima accusamus.</p> -->
+								<table class="table">
+									<tr><th>나이</th></tr>
+									<tr><td>${ list.age }</td></tr>
+									<tr><th>키/몸무게</th></tr>
+									<tr><td>${ list.height }cm / ${ list.weight }</td></tr>
+									<tr><th>지역</th></tr>
+									<tr><td>${ list.area }</td></tr>
+									<tr><th>학력</th></tr>
+									<tr><td>${ list.achievement }</td></tr>
+									<tr><th>취미</th></tr>
+									<tr><td>${ list.hobby }</td></tr>
+								</table>
 						</div>
 						<div class="card-footer">
 							<a href="#" class="btn btn-primary">More Info</a>
@@ -127,14 +139,26 @@
 					</div>
 				</div>
 				<!-- /.col-md-4 -->
-				<div class="col-md-4 mb-4">
-					<div class="card h-100">
+				<div class="col-md-6 mb-6">
+					<div class="card h-80">
 						<div class="card-body">
 							<h2 class="card-title">Card Two</h2>
-							<p class="card-text">Lorem ipsum dolor sit amet, consectetur
+							<!-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur
 								adipisicing elit. Quod tenetur ex natus at dolorem enim!
 								Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id
-								dolore voluptates quos eligendi labore.</p>
+								dolore voluptates quos eligendi labore.</p> -->
+								<table class="table">
+									<tr><th>혈액형</th></tr>
+									<tr><td>${ list.blood_Type }</td></tr>
+									<tr><th>흡연여부</th></tr>
+									<tr><td>${ list.smoking }</td></tr>
+									<tr><th>음주여부</th></tr>
+									<tr><td>${ list.drinking }</td></tr>
+									<tr><th>종교</th></tr>
+									<tr><td>${ list.religion }</td></tr>
+									<tr><th>스타일</th></tr>
+									<tr><td>${ list.style }</td></tr>
+								</table>
 						</div>
 						<div class="card-footer">
 							<a href="#" class="btn btn-primary">More Info</a>
@@ -142,7 +166,7 @@
 					</div>
 				</div>
 				<!-- /.col-md-4 -->
-				<div class="col-md-4 mb-4">
+				<!-- <div class="col-md-4 mb-4">
 					<div class="card h-100">
 						<div class="card-body">
 							<h2 class="card-title">Card Three</h2>
@@ -154,7 +178,7 @@
 							<a href="#" class="btn btn-primary">More Info</a>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<!-- /.col-md-4 -->
 
 			</div>

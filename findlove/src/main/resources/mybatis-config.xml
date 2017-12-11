@@ -13,6 +13,8 @@
 	<mappers>
 		<mapper resource="mapper/user-mapper.xml" />	
 		<mapper resource="mapper/profile-mapper.xml" />	
+	 	<mapper resource="mapper/message-mapper.xml" /> 
+	 	<mapper resource="mapper/point-mapper.xml" /> 
 	</mappers>
 </configuration>
 

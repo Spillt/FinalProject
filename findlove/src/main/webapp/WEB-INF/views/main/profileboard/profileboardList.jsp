@@ -115,7 +115,7 @@
 											<h4>${ profile.user_NickNM }(${ profile.gender })</h4>
 											<h6>${ profile.age }세, ${ profile.area }</h6>
 											<!-- <span><i class="material-icons star">star_half</i></span> -->
-											<span><img src="/findlove/resources/img/starGrade/starGrade${ profile.grade_AVG }.png" width=90, height=30></span> 
+											<span><img src="/findlove/resources/img/starGrade/starGrade${ profile.grade_AVG }.png" width=120, height=30></span> 
 											<!-- <span><i class="material-icons heart">favorite_border</i></span> -->
 										</div>
 									</div>

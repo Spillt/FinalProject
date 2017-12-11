@@ -10,12 +10,21 @@
             SELECT 
             ROWNUM,
             USER_ID,
-            PICTURE_NM,
             USER_NICKNM,
             GRADE_AVG,
+            PICTURE_NM,
             GENDER,
             AGE,
-            AREA
+            HEIGHT,
+            WEIGHT,
+            AREA,
+            HOBBY,
+            ACHIEVEMENT,
+            BLOOD_TYPE,
+            SMOKING,
+            DRINKING,
+            RELIGION,
+            STYLE
             FROM TB_USER 
 			LEFT JOIN TB_PROFILE USING (USER_ID)
 			LEFT JOIN TB_PROFILE_PICTURE USING (USER_ID)
@@ -53,6 +62,7 @@
 			LEFT JOIN TB_PROFILE USING(USER_ID)
 			LEFT JOIN TB_PROFILE_PICTURE USING (USER_ID)
 			WHERE USER_NICKNM = #{USER_NICKNM}
+			AND THUMNAIL_FL = '0'
         ]]>
     </select>
    
