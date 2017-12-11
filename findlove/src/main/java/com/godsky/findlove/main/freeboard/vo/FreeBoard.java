@@ -1,4 +1,4 @@
-package com.godsky.findlove.freeBoard.vo;
+package com.godsky.findlove.main.freeboard.vo;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.godsky.findlove.common.dao;
+package com.godsky.findlove.main.common.dao;
 
 import java.util.List;
 

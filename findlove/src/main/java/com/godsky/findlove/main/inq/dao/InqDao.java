@@ -1,11 +1,11 @@
-package com.godsky.findlove.inq.dao;
+package com.godsky.findlove.main.inq.dao;
 
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import com.godsky.findlove.common.dao.AbstractDAO;
+import com.godsky.findlove.main.common.dao.AbstractDAO;
 
 @Repository("InqDao")
 public class InqDao extends AbstractDAO{

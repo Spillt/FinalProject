@@ -1,4 +1,4 @@
-package com.godsky.findlove.inq.vo;
+package com.godsky.findlove.main.inq.vo;
 
 import java.util.Date;
 
@@ -96,7 +96,7 @@ public class Inq {
 	
 	@Override
 	public String toString(){
-		return this.inqno + ", " + this.inqTitle + ", " + this.inqContent + ", " + this.inqDate + ", " + this.inqOriginalFilename + ", " +
+		return this.inqNo + ", " + this.inqTitle + ", " + this.inqContent + ", " + this.inqDate + ", " + this.inqOriginalFilename + ", " +
 				this.inqRenameFilename + ", " + this.inqWriter + ", " + this.inqReciver;
 	}
 

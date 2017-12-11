@@ -1,4 +1,4 @@
-package com.godsky.findlove.common.util;
+package com.godsky.findlove.main.common.util;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.godsky.findlove.freeBoard.service;
+package com.godsky.findlove.main.freeboard.service;
 
 import java.util.List;
 import java.util.Map;
@@ -17,11 +17,11 @@ public interface FreeBoardService {
 	void deleteFreeBoard(Map<String, Object> map) throws Exception;
 	
 	// 댓글 목록
-    public ReplyList<FreeBoard> list(Integer bno);
+    /*public ReplyList<FreeBoard> list(Integer bno);
     // 댓글 입력
     public void Replycreate(FreeBoard vo);
     // 댓글 수정
     public void Replyupdate(FreeBoard vo);
     // 댓글 삭제
-    public void Replydelete(Integer rno);
+    public void Replydelete(Integer rno);*/
 }

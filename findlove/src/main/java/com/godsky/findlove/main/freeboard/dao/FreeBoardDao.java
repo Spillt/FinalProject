@@ -1,21 +1,21 @@
-package com.godsky.findlove.freeBoard.dao;
+package com.godsky.findlove.main.freeboard.dao;
 
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import com.godsky.findlove.common.dao.AbstractDAO;
+import com.godsky.findlove.main.common.dao.AbstractDAO;
 
 @Repository("FreeBoardDao")
 public class FreeBoardDao extends AbstractDAO{
 	
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception{
+	public List<Map<String, Object>> selectFreeBoardList(Map<String, Object> map) throws Exception{
 		return (List<Map<String, Object>>)selectList("FreeBoard.selectBoardList", map);
 	}
 
-	public void insertBoard(Map<String, Object> map) throws Exception{
+	public void insertFreeBoard(Map<String, Object> map) throws Exception{
 		insert("FreeBoard.insertBoard", map);
 	}
 
@@ -24,7 +24,7 @@ public class FreeBoardDao extends AbstractDAO{
 	}
 
 	@SuppressWarnings("unchecked")
-	public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception{
+	public Map<String, Object> selectFreeBoardDetail(Map<String, Object> map) throws Exception{
 		return (Map<String, Object>) selectOne("FreeBoard.selectFreeBoardDetail", map);
 	}
 
@@ -54,12 +54,12 @@ public class FreeBoardDao extends AbstractDAO{
 	}
 	
 	// 댓글 목록
-    public ReplyList<FreeBoard> Replylist(Integer bno);
+    /*public ReplyList<FreeBoard> Replylist(Integer bno);
     // 댓글 입력
     public void Replycreate(FreeBoard vo);
     // 댓글 수정
     public void Replyupdate(FreeBoard vo);
     // 댓글 삭제
-    public void Replydelete(Integer rno);
+    public void Replydelete(Integer rno);*/
 
 }

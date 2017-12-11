@@ -1,4 +1,4 @@
-package com.godsky.findlove.inq.service;
+package com.godsky.findlove.main.inq.service;
 
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.godsky.findlove.faq.vo;
+package com.godsky.findlove.main.faq.vo;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.godsky.findlove.faq.service;
+package com.godsky.findlove.main.faq.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface FaqService {
 	
-	List<Map<String, Object>> selectInqList(Map<String, Object> map) throws Exception;
+	List<Map<String, Object>> selectFaqList(Map<String, Object> map) throws Exception;
 
-	void insertInq(Map<String, Object> map, HttpServletRequest request) throws Exception;
+	void insertFaq(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
-	Map<String, Object> selectInqDetail(Map<String, Object> map) throws Exception;
+	Map<String, Object> selectFaqDetail(Map<String, Object> map) throws Exception;
 
-	void deleteInq(Map<String, Object> map) throws Exception;
+	void deleteFaq(Map<String, Object> map) throws Exception;
 
 }

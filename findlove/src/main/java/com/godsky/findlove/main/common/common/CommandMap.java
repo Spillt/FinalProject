@@ -1,4 +1,4 @@
-package com.godsky.findlove.common.common;
+package com.godsky.findlove.main.common.common;
  
 import java.util.HashMap;
 import java.util.Map;

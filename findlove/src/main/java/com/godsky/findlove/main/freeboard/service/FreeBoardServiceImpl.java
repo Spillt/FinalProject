@@ -1,4 +1,4 @@
-package com.godsky.findlove.freeBoard.service;
+package com.godsky.findlove.main.freeboard.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,8 +11,8 @@ import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import com.godsky.findlove.common.util.*;
-import com.godsky.findlove.freeBoard.dao.FreeBoardDao;
+import com.godsky.findlove.main.common.util.*;
+import com.godsky.findlove.main.freeboard.dao.FreeBoardDao;
 
 @Service("FreeBoardService")
 public class FreeBoardServiceImpl implements FreeBoardService{
@@ -44,8 +44,8 @@ Logger log = Logger.getLogger(this.getClass());
 	public Map<String, Object> selectFreeBoardDetail(Map<String, Object> map) throws Exception {
 		FreeBoardDao.updateHitCnt(map);
 		Map<String, Object> resultMap = new HashMap<String,Object>();
-		Map<String, Object> tempMap = FreeBoardDao.selectFreeBoardDetail(map);
-		resultMap.put("map", tempMap);
+		//Map<String, Object> tempMap = FreeBoardDao.selectFreeBoardDetail(map);
+		//resultMap.put("map", tempMap);
 		
 		List<Map<String,Object>> list = FreeBoardDao.selectFileList(map);
 		resultMap.put("list", list);
@@ -58,9 +58,9 @@ Logger log = Logger.getLogger(this.getClass());
 		FreeBoardDao.updateFreeBoard(map);
 		
 		FreeBoardDao.deleteFileList(map);
-		List<Map<String,Object>> list = fileUtils.parseUpdateFileInfo(map, request);
+		//List<Map<String,Object>> list = fileUtils.parseUpdateFileInfo(map, request);
 		Map<String,Object> tempMap = null;
-		for(int i=0, size=list.size(); i<size; i++){
+		/*for(int i=0, size=list.size(); i<size; i++){
 			tempMap = list.get(i);
 			if(tempMap.get("IS_NEW").equals("Y")){
 				FreeBoardDao.insertFile(tempMap);
@@ -68,7 +68,7 @@ Logger log = Logger.getLogger(this.getClass());
 			else{
 				FreeBoardDao.updateFile(tempMap);
 			}
-		}
+		}*/
 	}
 
 	@Override
@@ -77,7 +77,7 @@ Logger log = Logger.getLogger(this.getClass());
 	}
 	
 	// 댓글 목록
-    @Override
+    /*@Override
     public ReplyList<FreeBoard> list(Integer bno) {
         return FreeBoardDao.Replylist(bno);
     }
@@ -97,6 +97,6 @@ Logger log = Logger.getLogger(this.getClass());
     public void Replydelete(Integer rno) {
         // TODO Auto-generated method stub
  
-    }
+    }*/
 
 }
