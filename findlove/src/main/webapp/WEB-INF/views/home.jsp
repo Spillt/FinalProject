@@ -193,7 +193,6 @@
 			</div>
 		</div>
 	</section>
-	<hr>
 	<c:import url="./include/footer.jsp" />
 
 </body>

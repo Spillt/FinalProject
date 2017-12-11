@@ -272,7 +272,7 @@
 	            <form class="form-container">
 	               <input type="text" class="form-control" placeholder="아이디">
 	               <input type="password" class="form-control" placeholder="패스워드">
-	               <button id="loginbtn" class="form-control btn">로그인</button>
+	               <button id="loginbtn" type="button" class="form-control btn">로그인</button>
 	               <br>
 	               <label class="form-check-label">
 	               <input type="checkbox" class="form-check-input">아이디 저장</label>
@@ -300,7 +300,7 @@
 	            <hr class="horiz-divide">
 	            
          		<div class="i-a-group">
-	               <i class="material-icons">supervisor_account</i><a href="#">회원관리</a>
+	               <i class="material-icons">supervisor_account</i><a href="userlist.do">회원관리</a>
 	            </div>
 	            <div class="i-a-group">
 	               <i class="material-icons">assignment</i><a href="#">게시판관리</a>

@@ -22,7 +22,7 @@ public class UserMgmtController {
 	@RequestMapping(value="userlist.do")
 	public String userList(Model model) {
 		model.addAttribute("list", userMgmtService.getUserList());
-		return null;
+		return "admin/userlist";
 	}
 	// 회원 상세 조회
 	@RequestMapping(value="userdeatil.do")
