@@ -7,9 +7,17 @@
 <meta charset="UTF-8">
 <title>PollList</title>
 <style>
-   header.subhead {height:56px}@media ( min-width :992px) {header.subhead {height:103px}}
- 
-   .event {
+header.subhead {
+	height: 56px
+}
+
+@media ( min-width :992px) {
+	header.subhead {
+		height: 103px
+	}
+}
+
+.event {
 	float: left;
 	width: 100%;
 	padding-right: 20px;
@@ -31,18 +39,26 @@
 	font-color: white;
 	display: inline-block;
 	padding-right: 10px;
-} 
-   
+}
+
+.poll {
+	float: left;
+	width: 100%;
+	padding-right: 20px;
+	padding-left: 25px;
+	padding-top: 10px;
+	margin: 0 auto;
+	text-align: center;
+}
 </style>
 </head>
 <body>
-설문조사
-   <c:import url="../../../include/header.jsp" />
-   <header class="subhead">
-   </header>
-	
-	
-	
+	설문조사
+	<c:import url="../../../include/header.jsp" />
+	<header class="subhead"> </header>
+
+
+	<hr>
 
 	<div class="event">
 		<ul>
@@ -52,16 +68,29 @@
 				href="polllist.do">설문조사</a></li>
 		</ul>
 	</div>
-	<div class="poll">
-	
-	
-	
+	<hr>
+	<div class="poll" id="polltitle">
+		<table align="center">
+			<tr >
+				<td width="60%">설문내용</td>
+				<td width="20%">설문기간</td>
+				<td width="10%">시작하기</td>
+				<td width="10%">결과보기</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td><a href="polldetail.do" class="btn btn-primary">시작하기</a></td>
+				<td><a href="polldetail.do" class="btn btn-primary">결과보기</a></td>
+			</tr>
+		</table>  
+
 	</div>
-	
+
 	<script type="text/javascript">
-      $(function(){
-         $('#mainNav').css('background-color', '#faadad');
-      });
-   </script>
+		$(function() {
+			$('#mainNav').css('background-color', '#faadad');
+		});
+	</script>
 </body>
 </html>

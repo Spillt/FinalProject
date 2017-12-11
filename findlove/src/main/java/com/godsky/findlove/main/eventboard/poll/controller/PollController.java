@@ -21,7 +21,12 @@ public class PollController {
 	public String pollList(Model model) {
 		return "main/eventboard/poll/polllist";
 	}
-	
+	// 일대일 문의 상세 보기
+		@RequestMapping(value="polldetail.do")
+		public String pollDetail(Model model) {
+			return "main/eventboard/poll/polldetail";
+		}
+		
 	// 일대일 문의 답변 대기글 보기
 	@RequestMapping(value="pollwaitlist.do")
 	public String pollWaitList(Model model) {
@@ -29,12 +34,7 @@ public class PollController {
 		return null;
 	}
 	
-	// 일대일 문의 상세 보기
-	@RequestMapping(value="polldetail.do")
-	public String pollDetail(int no, Model model) {
-		model.addAttribute("poll", pollService.getPoll(no));
-		return null;
-	}
+	
 	
 	// 일대일 문의 답변하기
 	@RequestMapping(value="pollanswer.do")

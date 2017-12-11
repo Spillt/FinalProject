@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>attendanceList</title>
+<title>PollDetail</title>
 <style>
    header.subhead {height:56px}@media ( min-width :992px) {header.subhead {height:103px}}
   
@@ -36,7 +36,7 @@
 </style>
 </head>
 <body>
-출석체크
+
    <c:import url="../../../include/header.jsp" />
    <header class="subhead">
    </header>
@@ -52,7 +52,7 @@
 				href="polllist.do">설문조사</a></li>
 		</ul>
 	</div>
-	<div class="attendance">
+	<div class="polldetail">
 	
 	
 	
