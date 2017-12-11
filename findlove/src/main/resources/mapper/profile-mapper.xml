@@ -5,8 +5,10 @@
 <mapper namespace="profile">
      
     <select id="selectProfileList" resultType="Profileboard">
+    	<include refid="pagingHeader"></include>
         <![CDATA[
             SELECT 
+            ROWNUM,
             USER_ID,
             PICTURE_NM,
             USER_NICKNM,
@@ -18,8 +20,31 @@
 			LEFT JOIN TB_PROFILE USING (USER_ID)
 			LEFT JOIN TB_PROFILE_PICTURE USING (USER_ID)
 			WHERE USER_ID != 'admin'
-			AND THUMNAIL_FL = '1'
+			AND THUMNAIL_FL = '0'
         ]]>
+        <include refid="search"></include>
+        <include refid="pagingFooter"></include>
+    </select>
+    
+    <sql id="search">
+			AND USER_NICKNM like '%'||#{keyword}||'%'
+	</sql>
+
+	<sql id="pagingHeader">
+   SELECT * FROM (
+        SELECT ROWNUM AS rn, A.* FROM (
+	</sql>
+
+	<sql id="pagingFooter">
+        ) A
+    ) WHERE rn BETWEEN #{start} AND #{end}
+	</sql>
+
+    <select id="countProfile" resultType="int">
+    	<![CDATA[
+    	SELECT COUNT(*) FROM TB_USER
+    	WHERE USER_NICKNM like '%'||#{keyword}||'%'
+    	 ]]>
     </select>
     
     <select id="selectProfileDetail" resultType="Profileboard">

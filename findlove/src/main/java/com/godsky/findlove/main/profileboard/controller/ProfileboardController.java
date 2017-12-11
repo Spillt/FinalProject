@@ -1,5 +1,6 @@
 package com.godsky.findlove.main.profileboard.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.godsky.findlove.main.profileboard.model.service.ProfileboardService;
+import com.godsky.findlove.main.profileboard.model.vo.ProfilePager;
 import com.godsky.findlove.main.profileboard.model.vo.Profileboard;
 
 /**
@@ -27,12 +29,29 @@ public class ProfileboardController {
 	
 	//해당 페이지용 프로필 페이지 이동
 	@RequestMapping(value = "/profileboard/openProfileList.do")
-	public ModelAndView openProfileList() throws Exception{
-		List<Profileboard> list = profileboardService.selectProfileList();
+	public ModelAndView openProfileList(@RequestParam(defaultValue="") String keyword,
+            							@RequestParam(defaultValue="1") int curPage) throws Exception{
 		
+		int count = profileboardService.countProfileList(keyword);
+		
+		ProfilePager profilePager = new ProfilePager(count, curPage);
+	    int start = profilePager.getPageBegin();
+	    int end = profilePager.getPageEnd();
+		
+		List<Profileboard> list = profileboardService.selectProfileList(start, end, keyword);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("count", count);
+		map.put("keyword", keyword);
+	    map.put("profilePager", profilePager);
+	
 		ModelAndView mv = new ModelAndView("main/profileboard/profileboardList");
-		mv.addObject("list", list);
+		mv.addObject("map", map);
 		System.out.println(list);
+		System.out.println(count);
+		System.out.println(keyword);
+		System.out.println(profilePager);
 		
 		return mv;		
 	}

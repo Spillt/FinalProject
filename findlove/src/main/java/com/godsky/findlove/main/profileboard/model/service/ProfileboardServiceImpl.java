@@ -15,8 +15,13 @@ public class ProfileboardServiceImpl implements ProfileboardService{
     private ProfileDAO profileDAO;
 
 	@Override
-	public List<Profileboard> selectProfileList() throws Exception {
-		return profileDAO.selectProfileList();
+	public int countProfileList(String keyword) throws Exception {
+		return profileDAO.countProfileList(keyword);
+	}
+	
+	@Override
+	public List<Profileboard> selectProfileList(int start, int end, String keyword) throws Exception {
+		return profileDAO.selectProfileList(start, end, keyword);
 	}
 
 	@Override
