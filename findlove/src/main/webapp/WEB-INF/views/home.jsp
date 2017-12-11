@@ -200,15 +200,7 @@
 
 	
 
-<script type="text/javascript" src="/findlove/resources/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="/findlove/resources/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="/findlove/resources/js/contact_me.js"></script>
-<script type="text/javascript" src="/findlove/resources/js/jqBootstrapValidation.js"></script>
-<script type="text/javascript" src="/findlove/resources/js/jquery.easing.min.js"></script>
-<script type="text/javascript" src="/findlove/resources/js/agency.min.js"></script>
-<script type="text/javascript">
 
-</script>
 </body>
 
 </html>

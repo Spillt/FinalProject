@@ -19,8 +19,7 @@ public class PollController {
 	// 일대일 문의 목록 전체 보기
 	@RequestMapping(value="polllist.do")
 	public String pollList(Model model) {
-		model.addAttribute("list", pollService.getPollList());
-		return null;
+		return "main/eventboard/poll/polllist";
 	}
 	
 	// 일대일 문의 답변 대기글 보기

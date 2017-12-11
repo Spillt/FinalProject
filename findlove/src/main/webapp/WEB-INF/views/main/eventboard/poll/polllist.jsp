@@ -8,7 +8,7 @@
 <title>PollList</title>
 <style>
    header.subhead {height:56px}@media ( min-width :992px) {header.subhead {height:103px}}
-  
+ 
    .event {
 	float: left;
 	width: 100%;
@@ -36,7 +36,7 @@
 </style>
 </head>
 <body>
-출석체크
+설문조사
    <c:import url="../../../include/header.jsp" />
    <header class="subhead">
    </header>
@@ -52,7 +52,7 @@
 				href="polllist.do">설문조사</a></li>
 		</ul>
 	</div>
-	<div class="attendance">
+	<div class="poll">
 	
 	
 	
