@@ -6,7 +6,7 @@
      
     <update id="updatePoint">
         UPDATE TB_USER SET POINT_CNT = POINT_CNT - #{POINT_CNT} 
-        WHERE senderId = #{senderId}
+        WHERE SENDER_ID = #{SENDER_ID}
     </update>
    
 </mapper>

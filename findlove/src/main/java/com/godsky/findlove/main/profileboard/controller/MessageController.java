@@ -1,17 +1,17 @@
 package com.godsky.findlove.main.profileboard.controller;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.godsky.findlove.main.msgchatboard.model.vo.Message;
 import com.godsky.findlove.main.profileboard.model.service.MessageService;
+import com.godsky.findlove.main.profileboard.model.vo.Message;
 
 /**
  * Handles requests for the application home page.
@@ -24,17 +24,17 @@ public class MessageController {
 	@Resource(name="messageService")
 	private MessageService messageService;
 	
-	@RequestMapping(value = "/messages/addMessage.do", method = RequestMethod.POST)
-	public ResponseEntity<String> addMessage(@RequestBody Message message){
-		ResponseEntity<String> entity = null;
+	/*ajax로 실행될 메소드*/
+	@RequestMapping("/message/sendMessage.do")
+	public void sendMessage(ModelAndView mv, HttpServletResponse response, @RequestParam("sender")String sender, @RequestParam("reciever")String reciever, @RequestParam("message")String content) {
+		Message message = new Message(sender, reciever, content);
+		int result = messageService.sendMessage(message);
 		
-        try {
-        	messageService.addMessage(message);
-            entity = new ResponseEntity<String>("success", HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        return entity;
+		try {
+	        response.getWriter().print(result);
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    } 
 	}
+	
 }

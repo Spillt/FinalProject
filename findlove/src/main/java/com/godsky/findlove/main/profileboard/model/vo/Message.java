@@ -13,6 +13,13 @@ public class Message {
 	
 	public Message() {}
 	
+	public Message(String senderId, String receiverId, String messageContent) {
+		super();
+		this.senderId = senderId;
+		this.receiverId = receiverId;
+		this.messageContent = messageContent;
+	}
+
 	public Message(int messageNo, String senderId, String receiverId, String messageContent, Date sendDT, String readFL,
 			String acceptST) {
 		super();

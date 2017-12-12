@@ -128,7 +128,7 @@
 			</div>
 		</div>
 		<div class="container">
-		<table align="center">
+		<%-- <table align="center">
 			<tr>
 				<td colspan="5">
 					<!-- **처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력--> <c:if
@@ -159,9 +159,24 @@
 					</c:if>
 				</td>
 			</tr>
-		</table>
+		</table> --%>
 		</div>
 	</section>
+
+	<nav>
+		<ul class="pagination">
+			<li><a href="#" aria-label="Previous"> <span
+					aria-hidden="true">&laquo;</span>
+			</a></li>
+			<li><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+			<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+			</a></li>
+		</ul>
+	</nav>
 
 	<!-- Clients -->
 	<section class="py-5">

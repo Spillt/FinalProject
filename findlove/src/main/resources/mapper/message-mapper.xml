@@ -3,10 +3,9 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="message">
-     
-    <insert id="create">
-        INSERT INTO TB_MESSAGE (MESSAGE_NO, SENDER_ID, RECEIVER_ID, MESSAGE_CONTENT, SEND_DT, READ_FL, ACCEPT_ST) 
-        VALUES (message_seq.NEXTVAL, #{sender}, #{receiver}, #{message_content}, DEFAULT, DEFAULT, DEFAULT )
-    </insert>
    
+      <insert id="sendMessage" parameterType="Message">
+        <![CDATA[INSERT INTO TB_MESSAGE(MESSAGE_NO, SENDER_ID, RECEIVER_ID, MESSAGE_CONTENT) VALUES (MESSAGE_SEQ.NEXTVAL, #{senderId}, #{receiverId}, #{messageContent})]]>
+   	 </insert>
+   	 
 </mapper>

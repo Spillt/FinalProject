@@ -4,9 +4,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.godsky.findlove.main.msgchatboard.model.vo.Message;
 import com.godsky.findlove.main.profileboard.model.dao.MessageDAO;
 import com.godsky.findlove.main.profileboard.model.dao.PointDAO;
+import com.godsky.findlove.main.profileboard.model.vo.Message;
 
 @Service("messageService")
 public class MessageServiceImpl implements MessageService{
@@ -16,12 +16,9 @@ public class MessageServiceImpl implements MessageService{
 	
 	@Resource(name="pointDAO")
     private PointDAO pointDAO;
-	
-	@Override
-	public void addMessage(Message message) {
 
-		messageDAO.create(message);
-		pointDAO.update(message.getSenderId(), 10);
-      
+	@Override
+	public int sendMessage(Message message) {
+		return messageDAO.sendMessage(message);
 	}
 }
