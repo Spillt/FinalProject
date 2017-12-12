@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>연애의발견</title>
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+
 <style type="text/css">
 .portfolio-item-inner {
 	line-height: 1.42857143;
@@ -81,7 +83,7 @@
 
 
 	<!-- Portfolio Grid -->
-	<c:set var="p" value="${profile}"></c:set>
+	<c:set var="p" value="${ profile }"></c:set>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
@@ -113,6 +115,10 @@
 					<button type="button" class="btn btn-primary" data-toggle="modal"
 						data-target="#exampleModal" data-whatever="@mdo">Send
 						Message</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+					  	data-target="#exampleModal2" data-whatever="@mdo" aria-label="Left Align">
+						<span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> 신고하기
+					</button>
 				</div>
 				<!-- /.col-md-4 -->
 			</div>
@@ -289,12 +295,48 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<button type="button" class="btn btn-primary"
-						onclick="sendMessage('user77','${p.user_id}')">Send
+						<%-- onclick="sendMessage('user77','${p.user_id}', '${sessionScope.Use_Point_CNT}')">10 포인트 차감</button> --%>
+						onclick="sendMessage('user88','${p.user_id}', '50')">10 포인트 차감</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- model -->
+	<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="exampleModalLabel">New message</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="recipient-name" class="control-label">신고대상자:</label> <input
+								type="text" class="form-control" id="recipient-name"
+								value=${ p.user_NickNM } readonly>
+						</div>
+						<div class="form-group">
+							<label for="message-text2" class="control-label">신고사유:</label>
+							<textarea class="form-control" id="message-text2"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary"
+						onclick="sendMessage('user88','${ p.user_id }')">Send
 						message</button>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<script type="text/javascript">
 		$('#exampleModal').on('show.bs.modal', function(event) {
 			var button = $(event.relatedTarget) // Button that triggered the modal
@@ -306,11 +348,54 @@
 			modal.find('.modal-body input').val(recipient)
 		})
 
+		function sendMessage(sender, reciever, point) {
+			if(point > 9) {
+				var modal = $('#exampleModal');
+				var message = $('#message-text').val();
+				$.ajax({
+					url : '/findlove/message/sendMessage.do',
+					type : 'post',
+					data : {
+						"sender" : sender,
+						"reciever" : reciever,
+						"message" : message
+					},
+					success : function(data) {
+						if (data == 1) {
+							alert("메시지 보내기 성공!");
+							modal.modal('hide');
+						} else {
+							alert("메시지 보내기 실패");
+							modal.modal('hide');
+						}
+						$('#message-text').val('');
+					},
+					error : function(data) {
+						alert("메시지보내기 오류");
+						modal.modal('hide');
+					}
+				})
+			}else{
+				alert('포인트가 부족합니다.');
+			}
+		}
+	</script>
+	<!-- <script type="text/javascript">
+		$('#exampleModal2').on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget) // Button that triggered the modal
+			var recipient = button.data('whatever') // Extract info from data-* attributes
+			// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+			// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+			var modal = $(this)
+			modal.find('.modal-title').text('New message to ' + recipient)
+			modal.find('.modal-body input').val(recipient)
+		})
+
 		function sendMessage(sender, reciever) {
-			var modal = $('#exampleModal');
-			var message = $('#message-text').val();
+			var modal = $('#exampleModal2');
+			var message = $('#message-text2').val();
 			$.ajax({
-				url : '/findlove/message/sendMessage.do',
+				url : '/findlove/report/sendReport.do',
 				type : 'post',
 				data : {
 					"sender" : sender,
@@ -325,7 +410,7 @@
 						alert("메시지 보내기 실패");
 						modal.modal('hide');
 					}
-					$('#message-text').val('');
+					$('#message-text2').val('');
 				},
 				error : function(data) {
 					alert("메시지보내기 오류");
@@ -333,13 +418,9 @@
 				}
 			})
 		}
-	</script>
+	</script> -->
 	<hr>
 	<c:import url="../../include/footer.jsp" />
-
-
-
-
 
 	<script type="text/javascript"
 		src="/findlove/resources/js/jquery-3.2.1.min.js"></script>
@@ -353,9 +434,7 @@
 		src="/findlove/resources/js/jquery.easing.min.js"></script>
 	<script type="text/javascript"
 		src="/findlove/resources/js/agency.min.js"></script>
-	<script type="text/javascript">
 		
-	</script>
 </body>
 
 </html>

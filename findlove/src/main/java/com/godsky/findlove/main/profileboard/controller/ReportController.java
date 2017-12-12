@@ -8,29 +8,29 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import org.springframework.web.servlet.ModelAndView;
 
-import com.godsky.findlove.main.profileboard.model.service.MessageService;
+import com.godsky.findlove.main.profileboard.model.service.ReportService;
 import com.godsky.findlove.main.profileboard.model.vo.Message;
+import com.godsky.findlove.main.profileboard.model.vo.Report;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-public class MessageController {
+public class ReportController {
 
-	public MessageController() {}
+	public ReportController() {}
 	
-	@Resource(name="messageService")
-	private MessageService messageService;
+	@Resource(name="reportService")
+	private ReportService reportService;
 	
 	/*ajax로 실행될 메소드*/
-	@RequestMapping("/message/sendMessage.do")
-	public void sendMessage(ModelAndView mv, HttpServletResponse response, @RequestParam("sender")String sender, @RequestParam("reciever")String reciever, @RequestParam("message")String content) {
-		Message message = new Message(sender, reciever, content);
-		System.out.println(message);
-		int result = messageService.sendMessage(message);
+	@RequestMapping("/report/sendReport.do")
+	public void sendReport(ModelAndView mv, HttpServletResponse response, @RequestParam("sender")String sender, @RequestParam("reciever")String reciever, @RequestParam("message")String content) {
+		Report report = new Report(sender, reciever, content);
+		System.out.println(report);
+		int result = reportService.sendReport(report);
 		
 		try {
 	        response.getWriter().print(result);
@@ -38,5 +38,4 @@ public class MessageController {
 	        e.printStackTrace();
 	    } 
 	}
-	
 }
