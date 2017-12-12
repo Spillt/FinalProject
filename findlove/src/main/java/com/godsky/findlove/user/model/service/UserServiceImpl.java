@@ -1,5 +1,7 @@
 package com.godsky.findlove.user.model.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +18,33 @@ public class UserServiceImpl implements UserService{
 	Profile profile;
 	
 	@Override	
-	//로그인
-	public User loginCheck(User vo){
-		return userDao.selectUser(vo);		
+	//로그인 체크
+	public boolean loginCheck(User vo, HttpSession session){
+		boolean result = userDao.loginCheck(vo);
+		if(result){
+			User vo2 = viewMember(vo);
+			//세션 변수 등록
+			session.setAttribute("userId", vo2.getUserId());
+			session.setAttribute("userName", vo2.getUserName());
+		}
+		
+		return result;
+		
+	}
+	
+	@Override
+	//로그인 정보
+	public User viewMember(User vo){
+		return UserDao.viewMember(vo);
+	}
+	
+	@Override
+	//로그 아웃
+	public void logout(HttpSession session){
+		//세션 개별 변수 삭제
+		// session.removeAttrbute("userId");
+		//세션 정보 초기화
+		session.invalidate();
 	}
 	
 	@Override

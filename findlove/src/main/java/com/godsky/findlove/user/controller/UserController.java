@@ -2,13 +2,17 @@ package com.godsky.findlove.user.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.godsky.findlove.user.model.service.UserService;
 import com.godsky.findlove.user.model.vo.User;
@@ -19,22 +23,40 @@ import com.godsky.findlove.user.model.vo.User;
 @Controller
 public class UserController {
 	
+	//로깅 변수
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	
 	@Autowired
 	private UserService userService;
 	
 	public UserController(){}
 	
-	//로그인
-	@RequestMapping(value = "login.do")
-	public String loginMethod(User user, HttpSession session){
-		session.setAttribute("user", userService.loginCheck(user));
-		return "home";		
+	//로그인 
+	@RequestMapping(value = "logincheck.do")
+	public ModelAndView loginCheck(@ModelAttribute User vo, HttpSession session){
+		boolean result = userService.loginCheck(vo, session);
+		ModelAndView mav = new ModelAndView();
+		if(result == true){
+			mav.setViewName("home.do");
+			mav.addObject("msg", "success");
+		}else{
+			mav.setViewName("home.do");
+			mav.addObject("msg", "failure");
+		}
+		return mav;
+		
+		
 	}
 	
 	//로그아웃
 	@RequestMapping(value = "logout.do")
-	public String logoutMethod(){
-		return "home";
+	public ModelAndView logout(HttpSession session){
+		userService.logout(session);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("home.do");
+		mav.addObject("msg", "logout");
+		return mav;
+		
 	}
 	//회원가입 페이지
 	@RequestMapping(value = "signupview.do")

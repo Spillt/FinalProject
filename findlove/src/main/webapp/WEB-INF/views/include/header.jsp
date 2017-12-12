@@ -268,10 +268,10 @@
             <img src="/findlove/resources/img/logos/logo.png" class="logo">
             <div class="nav-text">로그인하세요</div>
             <hr class="horiz-divide">
-            <form class="form-container">
-               <input type="text" class="form-control" placeholder="아이디">
-               <input type="password" class="form-control" placeholder="패스워드">
-               <button class="form-control btn">로그인</button>
+            <form class="form-container" name="form1" method="post">
+               <input type="text" id="userId" class="form-control" placeholder="아이디">
+               <input type="password" id="userPwd" class="form-control" placeholder="패스워드">
+               <button class="form-control btn login-btn" type="button">로그인</button>
                <label class="form-check-label"><input type="checkbox" class="form-check-input">아이디 저장</label>
             </form>
             <div class="btn-toolbar">
@@ -296,6 +296,12 @@
          </div>
    </nav>
    <a id="go-to-top" class="js-scroll-trigger" href="#page-top"><i class="material-icons">expand_less</i></a>
+   <script type="text/javascript" src="/findlove/resources/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/findlove/resources/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/findlove/resources/js/contact_me.js"></script>
+<script type="text/javascript" src="/findlove/resources/js/jqBootstrapValidation.js"></script>
+<script type="text/javascript" src="/findlove/resources/js/jquery.easing.min.js"></script>
+<script type="text/javascript" src="/findlove/resources/js/agency.min.js"></script>
 	<script>
 	window.onscroll = function() {scrollFunction()};
 		function openNav() {
@@ -312,6 +318,26 @@
 		        document.getElementById("go-to-top").style.display = "none";
 		    }
 		}
+	</script>
+	<script>
+		$(".login-btn").on('click', function() {
+			var userId = $("#userId").val();
+			var userPwd = $("#userPwd").val();
+			if(userId == ""){
+				alert("아이디를 입력하세요.");
+				$("#userId").focus(); //입력포커스
+				return;
+			}
+			/* if(!userPwd.value){
+				alert("비밀번호를 입력하세요");
+				$("#userPwd").focus();
+				return;
+			} */
+			document.form1.action="logincheck.do" //데이터 전송
+			document.form1.submit(); // 제출 
+		});
+
+		
 	</script>
 </body>
 </html>

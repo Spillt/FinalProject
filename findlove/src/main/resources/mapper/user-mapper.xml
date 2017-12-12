@@ -21,9 +21,18 @@
 		<result property="deleteDT" column="Delete_DT"/>
 	</resultMap>
 	
-	<select id="selectUser" parameterType="User" resultType="User" resultMap="resultUser">
-		<![CDATA[
-			SELECT * FROM TB_USER WHERE User_ID = #{userId}
-		]]>
+	<select id="loginCheck" resultType="String">
+	SELECT User_NM AS userName From tb_user
+	WHERE User_ID = #{userId} AND User_PWD = #{userPwd}	
+	</select>
+	
+	<select id="viewMember" resultType="com.godsky.findlove.user.model.vo.User">
+	SELECT
+		User_NM AS userName,
+		User_ID AS userId,
+		Email AS email,
+		Latest_Access_DT AS lastestAccessDT
+	FROM tb_user
+	WHERE User_ID = #{userId} AND User_PWD = #{userPwd}	
 	</select>
 </mapper>
