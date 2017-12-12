@@ -1,11 +1,16 @@
 package com.godsky.findlove.user.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.godsky.findlove.user.model.dao.UserDao;
 import com.godsky.findlove.user.model.service.UserService;
 import com.godsky.findlove.user.model.vo.User;
+
+import oracle.jdbc.driver.ClassRef.Locale;
 
 /**
  * Handles requests for the application home page.
@@ -28,6 +36,7 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	private UserDao userDao;
 	
 	public UserController(){}
 	
@@ -49,12 +58,39 @@ public class UserController {
 		
 	}
 	
+	/*public void loginCheck(Locale locale, Model model, User vo, 
+			HttpSession session, HttpServletResponse response) throws IOException{
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		if(vo.getUserId() != null && !vo.getUserId().equals("")
+				&& vo.getUserPwd() != null && !vo.getUserPwd().equals("")){
+			
+			if(userDao.loginCheck(vo)){
+				session.setAttribute("login", 0);//로그인 성공시 세션
+				
+				session.setAttribute("userId", vo.getUserId());
+				
+				out.println("<script>location.href='/'</script>");
+				out.flush();
+				out.close();
+				
+			}
+			if(userDao.loginCheck(vo) == false){
+				out.println("<script>alert('로그인 정보를 확인하세요!'); history.go(-1);</script>");
+				out.flush();
+				out.close();
+			}
+			
+		}
+	}*/
+	
 	//로그아웃
 	@RequestMapping(value = "logout.do")
 	public ModelAndView logout(HttpSession session){
 		userService.logout(session);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("home.do");
+		mav.setViewName("home");
 		mav.addObject("msg", "logout");
 		return mav;
 		

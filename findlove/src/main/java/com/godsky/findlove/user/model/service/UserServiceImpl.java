@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService{
 			User vo2 = viewMember(vo);
 			//세션 변수 등록
 			session.setAttribute("userId", vo2.getUserId());
-			session.setAttribute("userName", vo2.getUserName());
+			session.setAttribute("userName", vo2.getUserName());		
 		}
 		
 		return result;
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService{
 	//로그 아웃
 	public void logout(HttpSession session){
 		//세션 개별 변수 삭제
-		// session.removeAttrbute("userId");
+		//session.removeAttrbute("userId");
 		//세션 정보 초기화
 		session.invalidate();
 	}

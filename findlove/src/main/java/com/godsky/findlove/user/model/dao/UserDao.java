@@ -18,10 +18,23 @@ public class UserDao {
 	//로그인 체크
 	public boolean loginCheck(User vo){
 		System.out.println(vo);
-		String name = sqlSession.selectOne("user.loginCheck", vo);
+		String name = sqlSession.selectOne("user.loginCheck", vo);		
 		System.out.println("name : " + name);
 		return (name == null)? false : true;
 		}
+	
+	/*public boolean loginCheck(User vo){
+		int count = Integer.parseInt(sqlSession.selectOne("loginCheck", vo).toString()),
+				totalCount = sqlSession.selectOne("totalAccount");
+		
+		if(totalCount >0){
+			if(count > 0){
+				return true;
+			}else
+				return false;
+		}
+		return false;
+	}*/
 	
 	//로그인 정보
 	public User viewMember(User vo){

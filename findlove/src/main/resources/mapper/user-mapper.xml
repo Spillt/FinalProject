@@ -22,11 +22,16 @@
 	</resultMap>
 	
 	<select id="loginCheck" resultType="String">
+	<!-- <select id="loginCheck" resultType="integer"> -->
 	<![CDATA[
-	SELECT User_NM AS userName From tb_user
+	SELECT User_ID AS userId From tb_user
 	WHERE User_ID = #{userId} AND User_PWD = #{userPwd}	
 	]]>
 	</select>
+	
+	<!-- <select id="totalAccount" resultType="integer">
+		SELECT Count(*) from tb_user
+	</select> -->
 	
 	<select id="viewMember" resultType="com.godsky.findlove.user.model.vo.User">
 	SELECT
