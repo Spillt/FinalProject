@@ -11,10 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.godsky.findlove.user.model.service.UserService;
 import com.godsky.findlove.user.model.vo.User;
@@ -23,7 +21,6 @@ import com.godsky.findlove.user.model.vo.User;
  * Handles requests for the application home page.
  */
 @Controller
-@RequestMapping("/user/*")
 public class UserController {
 	
 	@Autowired
@@ -31,42 +28,23 @@ public class UserController {
 	
 	public UserController(){}
 	
-	//로그인 화면
+	//로그인
 	@RequestMapping(value = "login.do")
-	public String loginMethod(){
-		return "user/login";		
-	}
-	
-	//로그인 처리
-	@RequestMapping(value = "loginCheck.do")
-	public ModelAndView loginCheck(@ModelAttribute User vo, HttpSession session){
-		boolean result = userService.loginCheck(vo, session);
-		ModelAndView mav = new ModelAndView();
-		if(result == true){
-			//로그인 성공
-			mav.setViewName("home");
-			mav.addObject("msg","success");
-		}else{
-			mav.setViewName("user/login");
-			mav.addObject("msg", "fail");
-		}
-		return mav;
+	public String loginMethod(User user, HttpSession session){
+		session.setAttribute("user", userService.loginCheck(user));
+		return "home";		
 	}
 	
 	//로그아웃
 	@RequestMapping(value = "logout.do")
-	public ModelAndView logout(HttpSession session){
-		userService.logout(session);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("user/login");
-		mav.addObject("msg", "logout");
-		return mav;
+	public String logoutMethod(){
+		return "home";
 	}
 	
-	//회원가입
-	@RequestMapping(value = "signUp.do", method=RequestMethod.GET)
+	//회원생성
+	@RequestMapping(value = "signup.do")
 	public String singUp(){
-		return "user/signUp";		
+		return null;		
 	}
 	
 	//내정보	
