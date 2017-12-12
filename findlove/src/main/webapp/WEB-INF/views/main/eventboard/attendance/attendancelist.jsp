@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>attendanceList</title>
+<link rel="stylesheet" type="text/css"
+   href="/findlove/resources/css/calendar.css">
 <style>
    header.subhead {height:56px}@media ( min-width :992px) {header.subhead {height:103px}}
   
@@ -53,11 +55,11 @@
 		</ul>
 	</div>
 	<div class="attendance">
-	
-	
-	
+	  
 	</div>
 	
+	
+	<script type="text/javascript" src="/findlove/resources/js/calendar.js"></script>
 	<script type="text/javascript">
       $(function(){
          $('#mainNav').css('background-color', '#faadad');

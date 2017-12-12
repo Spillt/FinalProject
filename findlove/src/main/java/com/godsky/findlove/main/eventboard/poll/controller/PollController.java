@@ -16,27 +16,24 @@ public class PollController {
 	
 	public PollController() {}
 	
-	// 일대일 문의 목록 전체 보기
+	//  목록 전체 보기
 	@RequestMapping(value="polllist.do")
 	public String pollList(Model model) {
 		return "main/eventboard/poll/polllist";
 	}
-	// 일대일 문의 상세 보기
+	//  상세 보기
 		@RequestMapping(value="polldetail.do")
 		public String pollDetail(Model model) {
 			return "main/eventboard/poll/polldetail";
 		}
 		
-	// 일대일 문의 답변 대기글 보기
-	@RequestMapping(value="pollwaitlist.do")
-	public String pollWaitList(Model model) {
-		model.addAttribute("list", pollService.getPollWaitList());
-		return null;
+	//  결과보기
+	@RequestMapping(value="pollresult.do")
+	public String pollResult(Model model) {
+		return "main/eventboard/poll/pollresult";
 	}
-	
-	
-	
-	// 일대일 문의 답변하기
+		
+	// 답변하기
 	@RequestMapping(value="pollanswer.do")
 	public String pollAnswer(Poll poll, Model model) {
 		int result = pollService.pollAnswer(poll);

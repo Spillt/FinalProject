@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PollDetail</title>
+<title>PollResult</title>
+<link rel="stylesheet" type="text/css"
+   href="/findlove/resources/css/chart.css">
 <style>
 header.subhead {
 	height: 56px
@@ -70,7 +72,7 @@ table, tr, td {
 }
 
 table {
-	width: 400px;
+	width: 800px;
 	height: 200px;
 	margin-left: auto;
 	margin-right: auto;
@@ -80,7 +82,7 @@ table {
 th, td {
 	border: 1px solid #444444;
 	padding: 10px;
-	text-align: center;
+	text-align: left;
 }
 
 tr:nth-child(2n), td:nth-child(2n) {
@@ -121,38 +123,32 @@ tr:nth-child(2n), td:nth-child(2n) {
 			<tr>
 				<td>답변</td>
 				<td>
-					<div>
-						<input type="radio" name="chk_info" value="1">ㅇㅇ
 					</div>
-					<div>
-						<input type="radio" name="chk_info" value="2">이상한말
-					</div>
-					<div>
-						<input type="radio" name="chk_info" value="3">멀까
-					</div>
+	<div id="population_chart" data-sort="false" data-width="400" class="jChart chart-lg" >
+	
+	<div class="define-chart-row" data-color="#008DD3" title="ㅇㅇ">10</div>
+	<div class="define-chart-row" data-color="#0074AA" title="이상한말">50</div>
+	<div class="define-chart-row" data-color="#005882" title="멀까">30</div>
+	
+</div>
 				</td>
 			</tr>
 		</table>
 
-
-
-
-
-
 		<ul>
 			<li class="nav-item"><a class="nav-link js-scroll-trigger"
 				href="polllist.do">이전으로</a></li>
-			<li class="nav-item"><a class="nav-link js-scroll-trigger"
-				href="polllist.do">설문완료</a></li>
-
 		</ul>
 
 
-	</div>
-
+	
+	
+	<script type="text/javascript" src="/findlove/resources/js/jchart.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			$('#mainNav').css('background-color', '#faadad');
+			$("#population_chart").jChart({x_label:"Population"});
+			$("#colors_chart").jChart();
 		});
 	</script>
 </body>

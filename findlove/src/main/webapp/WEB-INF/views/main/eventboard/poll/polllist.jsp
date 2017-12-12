@@ -70,7 +70,7 @@ header.subhead {
 	</div>
 	<hr>
 	<div class="poll" id="polltitle">
-		<table align="center">
+		<table align="center" border="1">
 			<tr >
 				<td width="60%">설문내용</td>
 				<td width="20%">설문기간</td>
@@ -78,10 +78,10 @@ header.subhead {
 				<td width="10%">결과보기</td>
 			</tr>
 			<tr>
-				<td></td>
-				<td></td>
+				<td >남자/여자가 싫어하는 말은?</td>
+				<td>2017.12.12 ~ 2017.12.30</td>
 				<td><a href="polldetail.do" class="btn btn-primary">시작하기</a></td>
-				<td><a href="polldetail.do" class="btn btn-primary">결과보기</a></td>
+				<td><a href="pollresult.do" class="btn btn-primary">결과보기</a></td>
 			</tr>
 		</table>  
 
