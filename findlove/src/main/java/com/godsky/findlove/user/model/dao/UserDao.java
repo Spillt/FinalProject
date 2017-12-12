@@ -13,16 +13,18 @@ import com.godsky.findlove.user.model.vo.User;
 public class UserDao {
 	
 	@Autowired
-	private static SqlSession sqlSession;
+	private SqlSession sqlSession;
 	
 	//로그인 체크
 	public boolean loginCheck(User vo){
-		String name = sqlSession.selectOne("user.loginCheck",vo);
-		return(name == null)? false : true;
+		System.out.println(vo);
+		String name = sqlSession.selectOne("user.loginCheck", vo);
+		System.out.println("name : " + name);
+		return (name == null)? false : true;
 		}
 	
 	//로그인 정보
-	public static User viewMember(User vo){
+	public User viewMember(User vo){
 		return sqlSession.selectOne("user.viewMember", vo);
 	}
 	

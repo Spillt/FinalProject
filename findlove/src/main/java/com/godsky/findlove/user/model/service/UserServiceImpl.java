@@ -1,21 +1,19 @@
 package com.godsky.findlove.user.model.service;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.godsky.findlove.user.model.dao.UserDao;
-import com.godsky.findlove.user.model.vo.Profile;
 import com.godsky.findlove.user.model.vo.User;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
 	//dao 사용	
-	@Autowired
-	UserDao userDao;
-	User user;
-	Profile profile;
+	@Resource(name ="userDao")
+	private UserDao userDao;
+	
 	
 	@Override	
 	//로그인 체크
@@ -32,11 +30,11 @@ public class UserServiceImpl implements UserService{
 		
 	}
 	
-	@Override
+/*	@Override
 	//로그인 정보
 	public User viewMember(User vo){
 		return UserDao.viewMember(vo);
-	}
+	}*/
 	
 	@Override
 	//로그 아웃
@@ -127,8 +125,11 @@ public class UserServiceImpl implements UserService{
 	public int createIdealProfile(){
 		return 0;
 		
-	}	
-	
+	}
 
+	@Override
+	public User viewMember(User vo) {
+		return userDao.viewMember(vo);
+	}
 
 }

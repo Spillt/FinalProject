@@ -269,8 +269,8 @@
             <div class="nav-text">로그인하세요</div>
             <hr class="horiz-divide">
             <form class="form-container" name="form1" method="post">
-               <input type="text" id="userId" class="form-control" placeholder="아이디">
-               <input type="password" id="userPwd" class="form-control" placeholder="패스워드">
+               <input type="text" id="userId" name="userId" class="form-control" placeholder="아이디">
+               <input type="password" id="userPwd" name="userPwd" class="form-control" placeholder="패스워드">
                <button class="form-control btn login-btn" type="button">로그인</button>
                <label class="form-check-label"><input type="checkbox" class="form-check-input">아이디 저장</label>
             </form>

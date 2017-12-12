@@ -37,11 +37,12 @@ public class UserController {
 		boolean result = userService.loginCheck(vo, session);
 		ModelAndView mav = new ModelAndView();
 		if(result == true){
-			mav.setViewName("home.do");
+			mav.setViewName("home");
 			mav.addObject("msg", "success");
+			System.out.println("세션추가됨");
 		}else{
-			mav.setViewName("home.do");
-			mav.addObject("msg", "failure");
+			mav.setViewName("home");
+			mav.addObject("msg", "failure");			
 		}
 		return mav;
 		
