@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="matchScore">
+
+	<resultMap id="resultMatch" type="MatchScore">
+		<result property="userId" column="user_id" />
+		<result property="receiveId" column="receive_id" />
+		<result property="sendId" column="send_id" />
+		<result property="score" column="GRADE" />
+	</resultMap> 
+	
+	<select id="getListCount" resultType="int">
+		select count(*) from TB_PROFILE WHERE TARGET_GB = '0'; 
+	</select>
+	<select id="selectList" parameterType="java.util.Map" resultType="list" resultMap="resultMatchScore">
+		   <![CDATA[
+      		select * from(
+			select rownum rnum, nic,GENDER,AGE,STYLE,avg,pt from(
+			select  tb_user.USER_NICKNM nic,GENDER,AGE,STYLE,tb_user.GRADE_AVG avg,PICTURE_NM pt
+	        from TB_PROFILE
+	        join TB_PROFILE_PICTURE using (user_id)
+    	    join tb_user using (user_id)
+        	order by avg,tb_user.ENROLL_DT))
+			where rnum >= #{startRow} and rnum <= #{endRow} and user_id != #{userId)
+			order by rnum;
+             ]]>
+   </select>
+   
+   
+</mapper>
