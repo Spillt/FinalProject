@@ -132,4 +132,9 @@ public class UserServiceImpl implements UserService{
 		return userDao.viewMember(vo);
 	}
 
+	@Override
+	public int idCheck(String userId) {
+		return userDao.idCheck(userId);
+	}
+
 }

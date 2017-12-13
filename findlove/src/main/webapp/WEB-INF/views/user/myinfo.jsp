@@ -41,10 +41,7 @@
 		</form>
 		
 
-		<!-- <label id="icon" for="name"><i class="icon-user"></i></label>
-  <input type="id" name="id" id="id" placeholder="Id" required/>
-  <a class="confirmbutton" onclick="checkId()" width="60px;" style="
-    width: 60px;">confirm</a> -->
+	 
 		<hr>
 
 		<table class="type07">
@@ -78,23 +75,7 @@
 			</tbody>
 
 		</table>
-		<!--  
-  <label id="icon" for="name"><i class="icon-shield"></i></label>
-  <input type="password" name="pwd1" id="pwd1" placeholder="Password" required/>
-  
-  <label id="icon" for="name"><i class="icon-shield"></i></label>
-  <input type="password" name="pwd2" id="pwd2" placeholder="Password Confirm" required/>
-  
-  <label id="icon" for="name"><i class="icon-user"></i></label>
-  <input type="text" name="name" id="name" placeholder="Name" required/>
-  
-  <label id="icon" for="name"><i class="icon-user"></i></label>
-  <input type="text" name="nickname" id="nickname" placeholder="NickName" required/>
-  
-  <label id="icon" for="name"><i class="icon-envelope "></i></label>
-  <input type="text" name="email" id="email" placeholder="Email" required/>
-  <hr>
-     -->
+	
 
 
 		<a class="button" onclick="checkfield()">Register</a> <a

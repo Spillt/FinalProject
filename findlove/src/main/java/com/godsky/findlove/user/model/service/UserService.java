@@ -39,6 +39,8 @@ public interface UserService {
 
 	int createIdealProfile();
 
+	public int idCheck(String userId);
+
 
 	
 	

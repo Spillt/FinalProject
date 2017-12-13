@@ -42,4 +42,11 @@
 	FROM tb_user
 	WHERE User_ID = #{userId} AND User_PWD = #{userPwd}	
 	</select>
+	
+	<select id="idCheck" resultType="Integer">
+	SELECT
+		count(*)
+	FROM tb_user
+	WHERE User_ID = #{userId}	
+	</select>
 </mapper>

@@ -3,6 +3,7 @@ package com.godsky.findlove.user.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -95,17 +97,22 @@ public class UserController {
 		return mav;
 		
 	}
+	
+	//중복체크
+	@RequestMapping(value = "idCheck.do")
+	public int idCheck(@RequestParam String userId) {
+		System.out.println(userId);
+		int result = userService.idCheck(userId);
+		return result;
+			
+	}
+		
 	//회원가입 페이지
 	@RequestMapping(value = "signupview.do")
 	public String signUpView(){
 		return "user/signup";		
 	}
-	
-	//회원생성
-	@RequestMapping(value = "signup.do")
-	public String signUp(){
-		return "signup";		
-	}
+		
 	
 	//내정보	
 	@RequestMapping(value = "myinfo.do")
@@ -127,11 +134,12 @@ public class UserController {
 		
 	}
 	
-	//아이디, 비밀번호 찾기
+	//아이디, 비밀번호 페이지 이동
 	@RequestMapping(value = "findidpwd.do")
 	public String findIdPwd(){
 		return "user/findidpwd";		
 	}
+	
 	
 
 

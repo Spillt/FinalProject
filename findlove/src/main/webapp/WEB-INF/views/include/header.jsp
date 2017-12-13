@@ -393,22 +393,47 @@
 			}
 		}
 	</script>
-	<script>
+	<script>	
 		$(".login-btn").on('click', function() {
 			var userId = $("#userId").val();
 			var userPwd = $("#userPwd").val();
+			var param = "userId" + "=" + userId + "&" + "userPwd" + "=" + userPwd;
 			if (userId == "") {
 				alert("아이디를 입력하세요.");
 				$("#userId").focus(); //입력포커스
 				return false;
 			}
+			/* $.ajax({
+				url : "/login.do",
+				type : "GET",
+				data : param,
+				cache : false,
+				async : false,
+				dataType : "text",
+				
+				success : function(response){
+					if(response != '1'){
+						alert("아이디 또는 비밀번호가 틀립니다. 확인하여주세요.")
+						return false;						
+					}
+					alert(check);
+					
+				},
+				error : function(request, status, error){
+					if(request.status != '0'){
+						alert("code : " + request.status + "\r\nmessage : "
+								+ request.reponseText + "\r\nerror : " + error);
+
+					}
+				}	 */		
+			
 			/* if(!userPwd.value){
 				alert("비밀번호를 입력하세요");
 				$("#userPwd").focus();
 				return false;
 			} */
 			document.form1.action = "logincheck.do" //데이터 전송
-			document.form1.submit(); // 제출 
+			document.form1.submit(); // 제출
 		});
 	</script>
 </body>

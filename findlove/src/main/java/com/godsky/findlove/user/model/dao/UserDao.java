@@ -91,4 +91,8 @@ public class UserDao {
 		
 	}
 
+	public int idCheck(String userId) {
+		return sqlSession.selectOne("user.idCheck", userId);
+	}
+
 }
