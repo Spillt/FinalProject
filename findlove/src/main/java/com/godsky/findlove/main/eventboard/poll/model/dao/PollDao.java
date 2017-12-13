@@ -18,10 +18,11 @@ public class PollDao {
 		return null;
 	}
 
-	public ArrayList<Poll> getPollWaitList() {
+	public Poll getPolldetail() {
+		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	public Poll getPoll(int no) {
 		return null;
 	}
@@ -29,4 +30,5 @@ public class PollDao {
 	public int pollAnswer(Poll poll) {
 		return 0;
 	}
+
 }

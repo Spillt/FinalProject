@@ -20,8 +20,8 @@ public class PollServiceImpl implements PollService {
 	}
 
 	@Override
-	public ArrayList<Poll> getPollWaitList() {
-		return pollDao.getPollWaitList();
+	public Poll getPolldetail() {
+		return pollDao.getPolldetail();
 	}
 
 	@Override

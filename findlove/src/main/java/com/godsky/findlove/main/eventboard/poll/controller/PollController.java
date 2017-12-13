@@ -1,9 +1,14 @@
 package com.godsky.findlove.main.eventboard.poll.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.godsky.findlove.main.eventboard.poll.model.service.PollService;
 import com.godsky.findlove.main.eventboard.poll.model.vo.Poll;
@@ -19,7 +24,15 @@ public class PollController {
 	//  목록 전체 보기
 	@RequestMapping(value="polllist.do")
 	public String pollList(Model model) {
-		return "main/eventboard/poll/polllist";
+		
+		/* List<Poll> list = PollService.getPollList();
+	      
+	      Map<String, Object> map = new HashMap<String, Object>();
+	   
+	      ModelAndView mv = new ModelAndView("main/eventboard/poll/polllist");
+	      mv.addObject("map", map);*/
+	      
+	      return "main/eventboard/poll/polllist";
 	}
 	//  상세 보기
 		@RequestMapping(value="polldetail.do")

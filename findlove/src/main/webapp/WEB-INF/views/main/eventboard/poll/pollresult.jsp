@@ -18,7 +18,9 @@ header.subhead {
 		height: 103px
 	}
 }
-
+body{
+background:url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-Abstract-Blurred-Background-Of-92820527.jpg);
+}
 .event {
 	float: left;
 	width: 100%;

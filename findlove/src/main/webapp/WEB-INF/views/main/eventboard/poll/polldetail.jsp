@@ -16,7 +16,9 @@ header.subhead {
 		height: 103px
 	}
 }
-
+body{
+background:url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-Abstract-Blurred-Background-Of-92820527.jpg);
+}
 .event {
 	float: left;
 	width: 100%;
@@ -112,7 +114,7 @@ tr:nth-child(2n), td:nth-child(2n) {
 		<table>
 			<tr>
 				<td>설문내용</td>
-				<td>남자/여자가 싫어하는 말은?</td>
+				<td><$></td>
 			</tr>
 			<tr>
 				<td>기간</td>
