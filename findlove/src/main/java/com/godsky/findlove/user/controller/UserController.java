@@ -113,14 +113,15 @@ public class UserController {
 		return "user/signup";		
 	}
 	
+	
 	//회원가입 처리
 	@RequestMapping(value = "signup.do", method=RequestMethod.POST)
-	public String signUpview(User user) throws Exception{
+	public String signUp(User user) throws Exception{
 		System.out.println(user);
 		userService.insert(user);
 		return "user/signup";
 	}
-		
+
 	
 	//내정보	
 	@RequestMapping(value = "myinfo.do")

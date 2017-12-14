@@ -44,6 +44,12 @@ public interface UserService {
 	int createIdealProfile();
 
 	public int idCheck(String userId);
+	
+	//회원 계정 찾기
+	public User findAccount(String email);
+	
+	//회원 정보 업데이트
+	public void updateInfo(String userId, String string, String password);
 
 
 	

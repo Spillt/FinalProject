@@ -42,9 +42,12 @@ public class UserDao {
 	}
 	
 	//로그아웃
-	public void logout(HttpSession session){
-		
-	}
+	public void logout(HttpSession session){}
+	
+	/*//회원가입 처리
+	public interface UserMapper{
+		public int insert(User user);
+	}*/
 	
 	public boolean creatUser(){
 		return false;

@@ -17,28 +17,41 @@
 </head>
 <body>
 	<div class="testbox">
-		<form action="signup" name="signup" method="post">
+		<form action="findId.do" name="findId" method="post">
 			<h3>아이디 찾기</h3>
 			<label id="icon" for="name"><i class="icon-user"></i></label> <input
-				type="text" name="name" id="name" placeholder="Name" required /> <label
+				type="text" name="userName" id="name" placeholder="Name" required /> <label
 				id="icon" for="name"><i class="icon-envelope "></i></label> <input
 				type="text" name="email" id="email" placeholder="Email" required />
 
-			<a class="button" onclick="">Submit</a>
+			<a class="button" onclick="submitfindId()">Submit</a>
 		</form>
 
 		<br>
 		<hr>
-		<form>
+		<form action="findPwd.do" name="findPwd" method="post">
 			<h3>비밀번호 찾기</h3>
 			<label id="icon" for="name"><i class="icon-user"></i></label> <input
-				type="text" name="id" id="id" placeholder="ID" required /> <label
+				type="text" name="userId" id="id" placeholder="ID" required /> <label
 				id="icon" for="name"><i class="icon-envelope "></i></label> <input
 				type="text" name="email" id="email" placeholder="Email" required />
 
-			<a class="button" onclick="">Submit</a>
+			<a class="button" onclick="submitfindPwd()">Submit</a>
 
 		</form>
 	</div>
+	<script>
+	function submitfindId(){
+		alert("귀하의 메일로 아이디를 발송하였습니다.")
+		findId.submit();		
+	}
+	</script>
+	<script>
+	function submitfindPwd(){
+		alert("귀하의 메일로 임시비밀번호를 발급하였습니다. \n확인하여 주세요.")
+		findPwd.submit();
+	}
+
+	</script>
 </body>
 </html>

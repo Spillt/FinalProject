@@ -7,18 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.godsky.findlove.user.model.dao.UserDao;
-import com.godsky.findlove.user.model.dao.UserMapper;
 import com.godsky.findlove.user.model.vo.User;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
 	//dao 사용	
 	@Resource(name ="userDao")
-	private UserDao userDao;
-	
-	@Autowired
-	private UserMapper userMapper;
-	
+	private UserDao userDao;	
 		
 	@Override	
 	//로그인 체크
@@ -150,7 +145,24 @@ public class UserServiceImpl implements UserService{
 	@Override
 	//회원가입
 	public int insert(User user) {
-		return userMapper.insert(user);		
+		// TODO Auto-generated method stub
+		return 0;
 	}
+
+	@Override
+	//회원 계정 찾기
+	public User findAccount(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	//회원 정보 업데이트
+	public void updateInfo(String userId, String string, String password) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }
