@@ -23,5 +23,10 @@
     <servlet-name>appServlet</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
+  <!-- 아무 동작 없을때 세션 만료시간 : 30분 -->
+  <session-config>
+  	<session-timeout>30</session-timeout>
+  </session-config>
 
 </web-app>

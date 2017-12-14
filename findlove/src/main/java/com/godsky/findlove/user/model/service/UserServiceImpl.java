@@ -3,9 +3,11 @@ package com.godsky.findlove.user.model.service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.godsky.findlove.user.model.dao.UserDao;
+import com.godsky.findlove.user.model.dao.UserMapper;
 import com.godsky.findlove.user.model.vo.User;
 
 @Service("userService")
@@ -14,7 +16,10 @@ public class UserServiceImpl implements UserService{
 	@Resource(name ="userDao")
 	private UserDao userDao;
 	
+	@Autowired
+	private UserMapper userMapper;
 	
+		
 	@Override	
 	//로그인 체크
 	public boolean loginCheck(User vo, HttpSession session){
@@ -23,7 +28,10 @@ public class UserServiceImpl implements UserService{
 			User vo2 = viewMember(vo);
 			//세션 변수 등록
 			session.setAttribute("userId", vo2.getUserId());
-			session.setAttribute("userName", vo2.getUserName());		
+			session.setAttribute("userName", vo2.getUserName());
+			session.setAttribute("userPwd", vo2.getUserPwd());
+			session.setAttribute("userNickName", vo2.getUserNickName());
+			session.setAttribute("konpeitoCNT", vo2.getKonpeitoCNT());
 		}
 		
 		return result;
@@ -128,13 +136,21 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
+	//멤버 정보 보기
 	public User viewMember(User vo) {
 		return userDao.viewMember(vo);
 	}
 
 	@Override
+	//아이디 중복 체크
 	public int idCheck(String userId) {
 		return userDao.idCheck(userId);
+	}
+
+	@Override
+	//회원가입
+	public int insert(User user) {
+		return userMapper.insert(user);		
 	}
 
 }

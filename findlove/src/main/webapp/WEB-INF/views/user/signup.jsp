@@ -77,7 +77,6 @@
 		}
 		form.submit();
 		alert("회원가입이 완료되었습니다.\n아이디와 비밀번호로 로그인 하시기 바랍니다.");
-		location.href="home.do";
 	}	
 	
 	</script>
@@ -89,26 +88,26 @@
 <div class="testbox"> 
   <h1>Registration</h1>
 
-  <form action="home" name="signup" method="post">
+  <form action="signup.do" name="signup" method="post">
  
   <label id="icon" for="name"><i class="icon-user"></i></label>
-  <input type="id" name="id" id="id" placeholder="ID" required/>
+  <input type="id" name="userId" id="id" placeholder="ID" required/>
   <a class="confirmbutton" onclick="idCheck()" width="60px;" style="
     width: 60px;">confirm</a>
   <!-- <button id="id" name="id" onclick="idCheck()"></button> -->
   <hr>
   
   <label id="icon" for="name"><i class="icon-shield"></i></label>
-  <input type="password" name="pwd1" id="pwd1" placeholder="Password" required/>
+  <input type="password" name="userPwd" id="pwd1" placeholder="Password" required/>
   
   <label id="icon" for="name"><i class="icon-shield"></i></label>
   <input type="password" name="pwd2" id="pwd2" placeholder="Password Confirm" required/>
   
   <label id="icon" for="name"><i class="icon-user"></i></label>
-  <input type="text" name="name" id="name" placeholder="Name" required/>
+  <input type="text" name="userName" id="name" placeholder="Name" required/>
   
   <label id="icon" for="name"><i class="icon-user"></i></label>
-  <input type="text" name="nickname" id="nickname" placeholder="NickName" required/>
+  <input type="text" name="userNickName" id="nickname" placeholder="NickName" required/>
   
   <label id="icon" for="name"><i class="icon-envelope "></i></label>
   <input type="text" name="email" id="email" placeholder="Email" required/>

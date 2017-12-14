@@ -348,7 +348,7 @@
 					</c:when>
 					<c:otherwise>						
 						<div class="i-a-group">
-							<i class="material-icons">group_add</i><a href="signupview.do">회원가입</a>
+							<i class="material-icons">group_add</i><a href="signup.do">회원가입</a>
 						</div>
 						<div class="i-a-group">
 							<i class="material-icons">search</i><a href="findidpwd.do">아이디/비밀번호

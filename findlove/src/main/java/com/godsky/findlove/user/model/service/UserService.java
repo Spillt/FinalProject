@@ -15,6 +15,10 @@ public interface UserService {
 	//회원 로그아웃
 	public void logout(HttpSession session);
 	
+	//회원 가입
+	public int insert(User user);
+	
+	
 	boolean createUser();
 
 	int checkEmail();

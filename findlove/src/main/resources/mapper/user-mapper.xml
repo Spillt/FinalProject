@@ -21,13 +21,22 @@
 		<result property="deleteDT" column="Delete_DT"/>
 	</resultMap>
 	
+	<insert id ="insert" parameterType = "User">
+		INSERT INTO user VALUE (#{userId}, #{userPwd}, #{userName}, #{userNickName}, #{email})
+	</insert>
+	
+	
 	<select id="loginCheck" resultType="String">
 	<!-- <select id="loginCheck" resultType="integer"> -->
 	<![CDATA[
-	SELECT User_ID AS userId From tb_user
+	SELECT 
+	User_ID AS userId,
+	User_NickNM AS userNickName	
+	From tb_user
 	WHERE User_ID = #{userId} AND User_PWD = #{userPwd}	
 	]]>
 	</select>
+	
 	
 	<!-- <select id="totalAccount" resultType="integer">
 		SELECT Count(*) from tb_user
@@ -49,4 +58,5 @@
 	FROM tb_user
 	WHERE User_ID = #{userId}	
 	</select>
+	
 </mapper>
