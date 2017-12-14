@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="message">
+   
+      <insert id="sendMessage" parameterType="Message">
+        <![CDATA[INSERT INTO TB_MESSAGE(MESSAGE_NO, SENDER_ID, RECEIVER_ID, MESSAGE_CONTENT) VALUES (MESSAGE_SEQ.NEXTVAL, #{senderId}, #{receiverId}, #{messageContent})]]>
+   	 </insert>
+   	 
+</mapper>

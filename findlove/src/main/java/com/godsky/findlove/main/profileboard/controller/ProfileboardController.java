@@ -1,10 +1,20 @@
 package com.godsky.findlove.main.profileboard.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.godsky.findlove.main.profileboard.model.service.ProfileboardService;
+import com.godsky.findlove.main.profileboard.model.vo.ProfilePager;
+import com.godsky.findlove.main.profileboard.model.vo.Profileboard;
 
 /**
  * Handles requests for the application home page.
@@ -12,21 +22,50 @@ import com.godsky.findlove.main.profileboard.model.service.ProfileboardService;
 @Controller
 public class ProfileboardController {
 	
-	@Autowired
-	private ProfileboardService profileboardService;
-	
 	public ProfileboardController() {}
 	
+	@Resource(name="profileboardService")
+	private ProfileboardService profileboardService;
+	
 	//해당 페이지용 프로필 페이지 이동
-	@RequestMapping(value = "profilelist.do")
-	public String selectList(){
-		return null;		
+	@RequestMapping(value = "/profileboard/openProfileList.do")
+	public ModelAndView openProfileList(@RequestParam(defaultValue="") String keyword,
+            							@RequestParam(defaultValue="1") int curPage) throws Exception{
+		
+		int count = profileboardService.countProfileList(keyword);
+		
+		ProfilePager profilePager = new ProfilePager(count, curPage);
+	    int start = profilePager.getPageBegin();
+	    int end = profilePager.getPageEnd();
+		
+		List<Profileboard> list = profileboardService.selectProfileList(start, end, keyword);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("count", count);
+		map.put("keyword", keyword);
+	    map.put("profilePager", profilePager);
+	
+		ModelAndView mv = new ModelAndView("main/profileboard/profileboardList");
+		mv.addObject("map", map);
+		System.out.println(list);
+		System.out.println(count);
+		System.out.println(keyword);
+		System.out.println(profilePager);
+		
+		return mv;		
 	}
 	
 	//프로필 상세 페이지 이동
-	@RequestMapping(value = "detail.do")
-	public String selectProfile() {
-		return null;
+	@RequestMapping(value = "/profileboard/openProfileDetail.do", method = RequestMethod.GET)
+	public ModelAndView openBoardDetail(@RequestParam String user_nicknm) throws Exception {
+		Profileboard profile = profileboardService.selectProfileDetail(user_nicknm);
+		
+		ModelAndView mv = new ModelAndView("main/profileboard/profileboardDetail");
+		mv.addObject("profile", profile);
+		System.out.println(profile);
+		
+		return mv;
 	}
 
 }
