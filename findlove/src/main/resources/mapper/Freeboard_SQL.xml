@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="freeboard">
+
+	<select id="selectFreeboardList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT Free_NO, Free_Title, Free_Read_CNT, Free_DT 
+			FROM TB_FREE 
+			ORDER BY Free_NO DESC
+		]]>
+	</select>
+
+</mapper>
