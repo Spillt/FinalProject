@@ -64,7 +64,7 @@ var defaults = {
 	monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
 	monthNamesShort: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
 	dayNames: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-	dayNamesShort: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+	dayNamesShort: ['일','월','화','수','목','금','토'],
 	buttonText: {
 		prev: "<span class='fc-text-arrow'>‹</span>",
 		next: "<span class='fc-text-arrow'>›</span>",
@@ -1834,7 +1834,7 @@ function smartProperty(obj, name) { // get a camel-cased/namespaced property of 
 
 //이부분이 문제에요!!!!!
 function htmlEscape(s) {
-	return "출석체크";
+	return s;
 }
 
 

@@ -3,7 +3,6 @@
  * Docs & License: http://arshaw.com/fullcalendar/
  * (c) 2013 Adam Shaw
  */
- @import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
 td.fc-day {
 
 background:#FFF !important;
@@ -19,7 +18,7 @@ td.fc-today {
 
 .fc-first th{
 	font-family: 'Roboto', sans-serif;
-    background:#9675ce !important;
+    background:#faadad !important;
 	color:#FFF;
 	font-size:14px !important;
 	font-weight:500 !important;
@@ -27,7 +26,7 @@ td.fc-today {
 	}
 .fc-event-inner {
 	font-family: 'Roboto', sans-serif;
-    background: #03a9f3!important;
+    background: #faadad!important;
     color: #FFF!important;
     font-size: 12px!important;
     font-weight: 500!important;
@@ -97,11 +96,11 @@ html .fc,
 }
 	span.fc-button {
     font-family: 'Roboto', sans-serif;
-    border-color: #9675ce;
-	color: #9675ce;
+    border-color: #faadad;
+	color: #faadad;
 }
 .fc-state-down, .fc-state-active {
-    background-color: #9675ce !important;
+    background-color: #faadad !important;
 	color: #FFF !important;
 }
 .fc .fc-header-space {
@@ -162,7 +161,7 @@ html .fc,
 
     /* <th>, usually */
 .fc-widget-content {  /* <td>, usually */
-	border: 1px solid #e5e5e5;
+	border: 1px solid #ff80c0;
 	}
 .fc-widget-header{
     border-bottom: 1px solid #EEE; 
@@ -172,14 +171,14 @@ html .fc,
 }
 
 .fc-state-highlight > div > div.fc-day-number{
-    background-color: #ff3b30;
+    background-color: #faadad;
     color: #FFFFFF;
     border-radius: 50%;
     margin: 4px;
 }
 	
 .fc-cell-overlay { /* semi-transparent rectangle while dragging */
-	background: #bce8f1;
+	background: #ff80c0;
 	opacity: .3;
 	filter: alpha(opacity=30); /* for IE */
 	}
@@ -661,7 +660,7 @@ table.fc-border-separate {
 	}
 	
 thead tr.fc-first{
-    background-color: #f7f7f7;
+    background-color: #faadad;
 }
 table.fc-header{
     background-color: #FFFFFF;
@@ -682,13 +681,13 @@ table.fc-header{
 }
 
 .fc-week .fc-day:hover .fc-day-number{
-    background-color: #B8B8B8;
+    background-color: #faadad;
     border-radius: 50%;
     color: #FFFFFF;
     transition: background-color 0.2s;
 }
 .fc-week .fc-day.fc-state-highlight:hover .fc-day-number{
-    background-color:  #ff3b30;
+    background-color:  #faadad;
 }
 .fc-button-today{
     border: 1px solid rgba(255,255,255,.0);

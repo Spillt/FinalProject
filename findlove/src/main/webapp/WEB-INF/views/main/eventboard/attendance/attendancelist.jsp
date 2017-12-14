@@ -171,10 +171,11 @@ box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
   		var calendar =  $('#calendar').fullCalendar({
   			header: {
   				left: 'title',
+  				center: 'month',
   				right: 'prev,next today'
   			},
   			editable: true,
-  			firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
+  			firstDay: 0, //  1(Monday) this can be changed to 0(Sunday) for the USA system
   			selectable: true,
   			defaultView: 'month',
   			
@@ -190,6 +191,8 @@ box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
                   week: "MMMM yyyy", // September 2009
                   day: 'MMMM yyyy'                  // Tuesday, Sep 8, 2009
               },
+              
+              
   			allDaySlot: false,
   			selectHelper: true,
   			select: function(start, end, allDay) {
@@ -232,52 +235,17 @@ box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
   				
   			},
   			
-  			events: [
-  				{
-  					title: 'All Day Event',
-  					start: new Date(y, m, 1)
-  				},
+  			/* events: [
+  				
   				{
   					id: 999,
-  					title: 'Repeating Event',
+  					title: '출석체크',
   					start: new Date(y, m, d-3, 16, 0),
   					allDay: false,
   					className: 'info'
-  				},
-  				{
-  					id: 999,
-  					title: 'Repeating Event',
-  					start: new Date(y, m, d+4, 16, 0),
-  					allDay: false,
-  					className: 'info'
-  				},
-  				{
-  					title: 'Meeting',
-  					start: new Date(y, m, d, 10, 30),
-  					allDay: false,
-  					className: 'important'
-  				},
-  				{
-  					title: 'Lunch',
-  					start: new Date(y, m, d, 12, 0),
-  					end: new Date(y, m, d, 14, 0),
-  					allDay: false,
-  					className: 'important'
-  				},
-  				{
-  					title: 'Birthday Party',
-  					start: new Date(y, m, d+1, 19, 0),
-  					end: new Date(y, m, d+1, 22, 30),
-  					allDay: false,
-  				},
-  				{
-  					title: 'Click for Google',
-  					start: new Date(y, m, 28),
-  					end: new Date(y, m, 29),
-  					url: 'http://google.com/',
-  					className: 'success'
   				}
-  			],			
+  				
+  			], */			
   		});
   		
   		
