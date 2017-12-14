@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+	<resultMap id="resultUser" type="User">
+		<id property="userId" column="User_ID"/>
+		<result property="userPwd" column="User_PWD"/>
+		<result property="userName" column="User_NM"/>
+		<result property="userNickName" column="User_NickNM"/>
+		<result property="userState" column="User_ST"/>
+		<result property="email" column="Email"/>
+		<result property="phone" column="Phone"/>
+		<result property="pointCNT" column="Point_CNT"/>
+		<result property="konpeitoCNT" column="Konpeito_CNT"/>
+		<result property="rankGB" column="Rank_GB"/>
+		<result property="gradeAVG" column="Grade_AVG"/>
+		<result property="enrollDT" column="Enroll_DT"/>
+		<result property="lastestAccessDT" column="Latest_Access_DT"/>
+		<result property="deleteDT" column="Delete_DT"/>
+	</resultMap>
+	
+	<select id="loginCheck" resultType="String">
+	<!-- <select id="loginCheck" resultType="integer"> -->
+	<![CDATA[
+	SELECT User_ID AS userId From tb_user
+	WHERE User_ID = #{userId} AND User_PWD = #{userPwd}	
+	]]>
+	</select>
+	
+	<!-- <select id="totalAccount" resultType="integer">
+		SELECT Count(*) from tb_user
+	</select> -->
+	
+	<select id="viewMember" resultType="com.godsky.findlove.user.model.vo.User">
+	SELECT
+		User_NM AS userName,
+		User_ID AS userId,
+		Email AS email,
+		Latest_Access_DT AS lastestAccessDT
+	FROM tb_user
+	WHERE User_ID = #{userId} AND User_PWD = #{userPwd}	
+	</select>
+	
+	<select id="idCheck" resultType="Integer">
+	SELECT
+		count(*)
+	FROM tb_user
+	WHERE User_ID = #{userId}	
+	</select>
+</mapper>

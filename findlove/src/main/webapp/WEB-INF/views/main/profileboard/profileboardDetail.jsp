@@ -273,7 +273,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="exampleModalLabel">New message</h4>
+					<h4 class="modal-title" id="exampleModalLabel">호감 메세지 보내기</h4>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -296,7 +296,7 @@
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<button type="button" class="btn btn-primary"
 						<%-- onclick="sendMessage('user77','${p.user_id}', '${sessionScope.Use_Point_CNT}')">10 포인트 차감</button> --%>
-						onclick="sendMessage('user88','${p.user_id}', '50')">10 포인트 차감</button>
+						onclick="sendMessage('user11','${p.user_id}', '30')">10 별사탕 차감</button>
 				</div>
 			</div>
 		</div>
@@ -330,7 +330,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<button type="button" class="btn btn-primary"
-						onclick="sendMessage('user88','${ p.user_id }')">Send
+						onclick="sendReport('user11','${ p.user_id }')">Send
 						message</button>
 				</div>
 			</div>
@@ -380,7 +380,7 @@
 			}
 		}
 	</script>
-	<!-- <script type="text/javascript">
+	<script type="text/javascript">
 		$('#exampleModal2').on('show.bs.modal', function(event) {
 			var button = $(event.relatedTarget) // Button that triggered the modal
 			var recipient = button.data('whatever') // Extract info from data-* attributes
@@ -391,7 +391,7 @@
 			modal.find('.modal-body input').val(recipient)
 		})
 
-		function sendMessage(sender, reciever) {
+		function sendReport(sender, reciever) {
 			var modal = $('#exampleModal2');
 			var message = $('#message-text2').val();
 			$.ajax({
@@ -418,7 +418,7 @@
 				}
 			})
 		}
-	</script> -->
+	</script> 
 	<hr>
 	<c:import url="../../include/footer.jsp" />
 

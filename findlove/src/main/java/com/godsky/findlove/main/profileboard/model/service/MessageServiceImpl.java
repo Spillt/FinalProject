@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.godsky.findlove.main.profileboard.model.dao.KonpeitoDAO;
 import com.godsky.findlove.main.profileboard.model.dao.MessageDAO;
-import com.godsky.findlove.main.profileboard.model.dao.PointDAO;
 import com.godsky.findlove.main.profileboard.model.vo.Message;
 
 @Service("messageService")

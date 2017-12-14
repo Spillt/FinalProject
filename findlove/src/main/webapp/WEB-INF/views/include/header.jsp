@@ -290,7 +290,8 @@
                <i class="material-icons">search</i><a href="#">아이디/비밀번호 찾기</a>
             </div>
             <div class="i-a-group">
-               <i class="material-icons">search</i><a href="/findlove/">나의 매칭보기</a>
+               <%-- <i class="material-icons">search</i><a href="/findlove/mymatchboard/openMatchList.do?user_id=${ sessionScope.userId }">나의 매칭보기</a> --%>
+               <i class="material-icons">search</i><a href="/findlove/mymatchboard/openSendMessageList.do?senderId=user11">나의 매칭보기</a>
             </div>
             <hr class="horiz-divide">
          </div>

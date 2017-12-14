@@ -83,7 +83,9 @@
 	</div>
 
 	<section class="bg-light" id="portfolio">
-	<h1>프로필게시판</h1>
+	<br>
+	<h1 align="center">프로필게시판</h1>
+	<br>
 		<div class="container">
 			<div class="row">
 			<div class="col-md-30 pannel">
