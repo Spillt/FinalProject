@@ -22,7 +22,7 @@ public class UserMgmtController {
 	@RequestMapping(value="userlist.do")
 	public String userList(Model model) {
 		model.addAttribute("list", userMgmtService.getUserList());
-		return "admin/userlist";
+		return "admin/user/userlist";
 	}
 	// 회원 상세 조회
 	@RequestMapping(value="userdeatil.do")
@@ -34,10 +34,10 @@ public class UserMgmtController {
 	/* 가입 요청 승인 관리 */
 	
 	// 가입 요청 회원 리스트 조회
-	@RequestMapping(value="signuplist.do")
+	@RequestMapping(value="registerlist.do")
 	public String signupUserList(Model model) {
 		model.addAttribute("list", userMgmtService.getSignupUserList());
-		return null;
+		return "admin/user/registerlist";
 	}
 	// 가입 요청 승인,거부 처리
 	@RequestMapping(value="signupadmit.do")
@@ -49,10 +49,10 @@ public class UserMgmtController {
 	/* 신고 회원 관리 */
 	
 	// 신고 회원 리스트 조회
-	@RequestMapping(value="reportlist.do")
+	@RequestMapping(value="reporterlist.do")
 	public String reportUserList(Model model) {
 		model.addAttribute("list", userMgmtService.getReportUserList());
-		return null;
+		return "admin/user/reporterlist";
 	}
 	// 신고 회원 정지,보류 처리
 	@RequestMapping(value="suspenduser.do")

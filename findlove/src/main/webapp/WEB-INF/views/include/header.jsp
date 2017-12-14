@@ -306,7 +306,7 @@
 	               <i class="material-icons">assignment</i><a href="#">게시판관리</a>
 	            </div>
 	             <div class="i-a-group">
-	               <i class="material-icons">show_chart</i><a href="#">통계관리</a>
+	               <i class="material-icons">show_chart</i><a href="statisticlist.do">통계관리</a>
 	            </div>
 	             <hr class="horiz-divide">
 	            <div class="form-container">
