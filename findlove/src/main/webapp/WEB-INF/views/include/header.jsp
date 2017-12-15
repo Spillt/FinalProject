@@ -236,7 +236,7 @@
 <body>
    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
       <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Find love</a>
+      <a class="navbar-brand js-scroll-trigger" href="home.do">Find love</a>
       <div id="container2">
          <span id="menu-btn" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarResponsive"><i class="material-icons">menu</i><i class="fa fa-bars"></i></span>
          <span id="account-sm" onclick="openNav()"><i class="material-icons md-36">account_circle</i></span>

@@ -7,51 +7,18 @@
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
 <style>
-header.subhead {
-	height: 56px
-}
-
-@media ( min-width :992px) {
-	header.subhead {
-		height: 103px
-	}
-}
-
-button.tab-btn {
-	padding: 20px !important;
-	margin: 5px !important;
-	background-color: #faadad;
-	border: 0
-}
 
 th {
 	color: #faadad
 }
-
-button.tab-btn.selected {
-	background-color: #f77070;
-}
-
-.material-icons.icons-detail {
-	color: #faadad;
-}
 </style>
+
 </head>
 <body id="page-top">
 	<c:import url="../../include/header.jsp" />
+	<c:import url="./subheader.jsp" />
 	<div class="container">
-		<header class="subhead"> </header>
-
-		<div class="tab">
-			<h1>관리자 페이지</h1>
-			<div class="text-center">
-				<button onclick="window.location.href='userlist.do'" class="tab-btn">전체 회원 관리</button>
-				<button onclick="window.location.href='registerlist.do'" class="tab-btn">가입 승인 관리</button>
-				<button onclick="window.location.href='reporterlist.do'" class="tab-btn selected">신고 회원 관리</button>
-			</div>
-			<hr>
-		</div>
-
+		
 		<div class="tab-content">
 			<table class="table table-striped">
 				<thead>
@@ -100,6 +67,7 @@ button.tab-btn.selected {
 	<script type="text/javascript">
 		$(function() {
 			$('#mainNav').css('background-color', '#faadad');
+			$('.card:last').addClass('selected');
 		});
 
 	</script>
