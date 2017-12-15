@@ -15,11 +15,13 @@ import com.godsky.findlove.main.common.common.CommandMap;
 public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver{
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
+		//supportsParameter : Resolver 가 적용 가능한지 검사하는 역할
 		return CommandMap.class.isAssignableFrom(parameter.getParameterType());
 	}
 
 	@Override
 	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+		//resolveArgument : 파라미터와 기타 정보를 꺼내서 객체에 담아 객체를 반환
 		CommandMap commandMap = new CommandMap();
 		
 		HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();

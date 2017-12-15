@@ -1,7 +1,9 @@
 package com.godsky.findlove.main.freeboard.controller;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 
@@ -10,24 +12,40 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.godsky.findlove.main.common.common.CommandMap;
 import com.godsky.findlove.main.freeboard.service.FreeboardService;
 
 @Controller
 public class FreeboardController {
 	Logger log = Logger.getLogger(this.getClass());
-	
-	@Resource(name="FreeboardService")
+
+	@Resource(name = "FreeboardService")
 	private FreeboardService FreeboardService;
-	
-	@RequestMapping(value="openFreeboardList.do")
-	public ModelAndView openFreeboardList(Map<String, Object> commandMap) throws Exception{
+
+	@RequestMapping(value = "openFreeboardList.do")
+	public ModelAndView openFreeboardList(Map<String, Object> commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/freeboard/freeboardList");
-		
+
 		List<Map<String, Object>> list = FreeboardService.selectFreeboardList(commandMap);
-		System.out.println(list);
+		// System.out.println(list); //출력확인
 		mv.addObject("list", list);
-		
+
 		return mv;
 	}
 
+	//CustomMapArgumentResolver 등록 확인
+	/*@RequestMapping(value = "testMapArgumentResolver.do")
+	public ModelAndView testMapArgumentResolver(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("");
+
+		if (commandMap.isEmpty() == false) {
+			Iterator<Entry<String, Object>> iterator = commandMap.getMap().entrySet().iterator();
+			Entry<String, Object> entry = null;
+			while (iterator.hasNext()) {
+				entry = iterator.next();
+				log.debug("key : " + entry.getKey() + ", value : " + entry.getValue());
+			}
+		}
+		return mv;
+	}*/
 }
