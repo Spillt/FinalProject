@@ -20,4 +20,8 @@ public class KonpeitoDAO {
 	     return sqlSession.update("konpeito.updateKonpeito", map);
 	}
 
+	public int checkpoint(String senderId) {
+		return sqlSession.selectOne("konpeito.checkpoint", senderId);
+	}
+
 }

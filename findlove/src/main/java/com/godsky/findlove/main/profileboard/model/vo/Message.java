@@ -12,7 +12,7 @@ public class Message {
 	private String acceptST;
 	
 	public Message() {}
-
+	
 	public Message(String senderId, String receiverId, String messageContent) {
 		super();
 		this.senderId = senderId;

@@ -8,12 +8,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>연애의발견</title>
-	
-	<!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/shop-item.css" rel="stylesheet">
     
 	<style type="text/css">
 		.portfolio-item-inner {
@@ -50,6 +44,7 @@
 			margin-bottom: 20px;
 		}
 	</style>
+	
 </head>
 <body id="page-top">
 	<%-- <h1>home.jsp</h1>
@@ -77,10 +72,7 @@
 		</div>
 	</header>
 
-	
-
 	<!-- Portfolio Grid -->
-
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
@@ -102,10 +94,10 @@
           <br>
           <!-- <h1 class="my-4">Shop Name</h1> -->
           <div class="list-group">
+            <a href="#" class="list-group-item active">내가 호감을 보낸 이성</a>
+            <a href="#" class="list-group-item">나에게 호감을 보낸 이성</a>
             <a href="#" class="list-group-item">내가 높은 평점을 준 이성</a>
             <a href="#" class="list-group-item">나에게 높은 평점을 준 이성</a>
-            <a href="#" class="list-group-item">내가 호감을 보낸 이성</a>
-            <a href="#" class="list-group-item">나에게 호감을 보낸 이성</a>
           </div>
         </div>
         <!-- /.col-lg-3 -->
@@ -128,25 +120,8 @@
             <div class="card-header">
               	내가 호감을 보낸 이성
             </div>
-            <div class="card-body">
-               <table class="table table-bordered">
-               	<tr>
-					<th>닉네임</th>
-					<th>내용</th>
-				</tr>
-               </table>
-               
+            <div class="card-body"> 
                <table id="tableData" class="table table-bordered">
-               		<c:choose>
-						<c:when test="${ fn:length(map.list) > 0}">
-							<c:forEach items="${ map.list }" var="s">
-								<tr>
-									<td><a href="">${ s.senderId }</a></td>
-									<td><a href="">${ s.messageContent }</a></td>
-								</tr>	 
-							</c:forEach>
-						</c:when>
-					</c:choose>			
 			   </table>
               <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
               <small class="text-muted">Posted by Anonymous on 3/1/17</small>
@@ -202,22 +177,58 @@
 	
 	<c:import url="../../include/footer.jsp" /> 
 
-<script type="text/javascript" src="/findlove/resources/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="/findlove/resources/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="/findlove/resources/js/contact_me.js"></script>
-<script type="text/javascript" src="/findlove/resources/js/jqBootstrapValidation.js"></script>
-<script type="text/javascript" src="/findlove/resources/js/jquery.easing.min.js"></script>
-<script type="text/javascript" src="/findlove/resources/js/agency.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-<script type="text/javascript" src="/findlove/resources/js/paging.js"></script>
+
 
 <script type="text/javascript">
-      
-        $(document).ready(function() {
-              $('#tableData').paging({limit:5});
-          });
+        var sender="${sessionScope.userId}";
+        
+        $.ajax({
+            url:"openSendMessageList.do",
+            type: "post",
+            dataType: "json",
+            data : {"userId":sender},
+            success : function(data){
+               
+               var jsonStr = JSON.stringify(data);
+                                             
+               var json = JSON.parse(jsonStr);
+               
+               // 리스트 처리
+               var values='<tr>'
+					+'<th>받은사람</th>'
+					+'<th>내용</th>'
+					+'<th>보낸 날짜</th>'
+					+'<th>수락 여부</th>'
+					+'</tr>';
+               for (var i in json.sendList){
+            	   values+='<tr>'
+            	   +'<td><a href="">'+json.sendList[i].receiverId+'</a></td>'
+            	   +'<td><a href="javascript:OpenMessagePopup();">'+json.sendList[i].messageContent+'</a></td>'
+            	   +'<td>'+json.sendList[i].sendDT+'</a></td>'
+            	   +'<td>'+json.sendList[i].acceptST+'</a></td>'
+					+'</tr>';
+					}
+         
+               $('#tableData').html(values);
+        
+            },
+            error : function(request, status, errorData){
+                  alert("error code : " + request.status + "\n"
+                        + "message : " + request.responseText + "\n"
+                        + "error : " + errorData);
+                  }
+            });   
 </script>
+<script type="text/javascript">
+
+function OpenMessagePopup(){
+
+	window.open('http://www.naver.com', 'window팝업', 'width=300, height=300, menubar=no, status=no, toolbar=no');
+
+}
+
+</script>
+
 </body>
 
 </html>

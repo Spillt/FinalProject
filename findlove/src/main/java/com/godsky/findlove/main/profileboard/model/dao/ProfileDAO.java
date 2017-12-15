@@ -12,7 +12,6 @@ import com.godsky.findlove.main.profileboard.model.vo.Profileboard;
 
 @Repository("profileDAO")
 public class ProfileDAO {
-	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	

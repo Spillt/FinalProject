@@ -28,7 +28,7 @@ public class ProfileboardController {
 	private ProfileboardService profileboardService;
 	
 	//해당 페이지용 프로필 페이지 이동
-	@RequestMapping(value = "/profileboard/openProfileList.do")
+	@RequestMapping(value = "/openProfileList.do")
 	public ModelAndView openProfileList(@RequestParam(defaultValue="") String keyword,
             							@RequestParam(defaultValue="1") int curPage) throws Exception{
 		
@@ -57,7 +57,7 @@ public class ProfileboardController {
 	}
 	
 	//프로필 상세 페이지 이동
-	@RequestMapping(value = "/profileboard/openProfileDetail.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/openProfileDetail.do", method = RequestMethod.GET)
 	public ModelAndView openBoardDetail(@RequestParam String user_nicknm) throws Exception {
 		Profileboard profile = profileboardService.selectProfileDetail(user_nicknm);
 		

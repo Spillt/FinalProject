@@ -6,13 +6,18 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.json.simple.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.godsky.findlove.main.mymatchboard.model.service.MymatchboardService;
 import com.godsky.findlove.main.profileboard.model.vo.Message;
+
+import net.sf.json.JSONObject;
 /**
  * Handles requests for the application home page.
  */
@@ -24,33 +29,42 @@ public class MymatchboardController {
 	@Resource(name="mymatchboardService")
 	private MymatchboardService mymatchboardService;
 	
-	@RequestMapping(value = "/mymatchboard/openSendMessageList.do")
-	public ModelAndView openSendMessageList(@RequestParam String senderId) throws Exception {
-		
-		System.out.println(senderId);
-		List<Message> list = mymatchboardService.selectSendMessage(senderId);
-		System.out.println(list);
-		
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list", list);
-		
+	@RequestMapping(value = "/openSendMessageList.do", method=RequestMethod.GET)
+	public ModelAndView openSendMessagePage() throws Exception {
+			
 		ModelAndView mv = new ModelAndView("main/mymatchboard/sendMessageList");
-		mv.addObject("map", map);
-		System.out.println(list);
+		return mv;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/openSendMessageList.do", method=RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView openSendMessageList(@RequestParam("userId") String senderId) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Message> list = mymatchboardService.selectSendMessage(senderId);
+		System.out.println(senderId);
+		JSONArray sendList = new JSONArray();
+		for(Message message: list) {
+			JSONObject jMessage = new JSONObject();
+			jMessage.put("messageNo", message.getMessageNo());
+			jMessage.put("receiverId", message.getReceiverId());
+			jMessage.put("messageContent", message.getMessageContent());
+			jMessage.put("sendDT", message.getSendDT().toString());
+			jMessage.put("readFL", message.getReadFL());
+			jMessage.put("acceptST", message.getAcceptST());
+			
+			sendList.add(jMessage);
+		}
+				map.put("sendList", sendList);
+		ModelAndView mv = new ModelAndView("jsonView");
+		mv.addAllObjects(map);
 		
 		return mv;
 	}
 	
-	/*@RequestMapping(value = "/mymatchboard/openReceiverMessageList.do")
-	public ModelAndView openReceiverMessageList(@RequestParam String user_id) throws Exception {
-		List<Message> receiverMessage = mymatchboardService.selectReceiverMessage(user_id);
+	@RequestMapping(value = "/openMessageDetail.do", method=RequestMethod.GET)
+	public void openMessageDetail() throws Exception {
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("receiverMessage", receiverMessage);
-		System.out.println(receiverMessage);
-		
-		ModelAndView mv = new ModelAndView("main/mymatchboard/receiverMessageList");
-		return mv;
-	}*/
+	}
+	
 }
