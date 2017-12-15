@@ -291,8 +291,8 @@
 		<span id="account-lg" onclick="openNav()" class="pull-left"><i
 			class="material-icons md-36">account_circle</i></span> 
 		<c:choose>
-			<c:when test ="${sessionScope.userId ne null }">
-			<span id="account-lg-txt" onclick="openNav()"><a>${sessionScope.userId}</a></span>
+			<c:when test ="${sessionScope.user_id ne null }">
+			<span id="account-lg-txt" onclick="openNav()"><a>${sessionScope.user_id}</a></span>
 			</c:when>
 			<c:otherwise>
 		<span id="account-lg-txt" onclick="openNav()"><a>로그인</a></span>
@@ -304,8 +304,8 @@
 				class="material-icons">close</i></a> <img
 				src="/findlove/resources/img/logos/logo.png" class="logo">
 			<c:choose>
-				<c:when test ="${sessionScope.userId ne null }">
-				<div class="nav-text">${sessionScope.userId } 님</div>
+				<c:when test ="${sessionScope.user_id ne null }">
+				<div class="nav-text">${sessionScope.user_id } 님</div>
 				<hr class="horiz-divide">
 				<!-- <form class="form-container" name="form1" method="post">
 				<input type="text" id="userId" name="userId" class="form-control"
@@ -319,9 +319,9 @@
 				<div class="nav-text">로그인하세요</div>
 				<hr class="horiz-divide">
 				<form class="form-container" name="form1" method="post">
-				<input type="text" id="userId" name="userId" class="form-control"
-					placeholder="아이디"> <input type="password" id="userPwd"
-					name="userPwd" class="form-control" placeholder="패스워드">
+				<input type="text" id="user_id" name="user_id" class="form-control"
+					placeholder="아이디"> <input type="password" id="user_pwd"
+					name="user_pwd" class="form-control" placeholder="패스워드">
 				<button class="form-control btn login-btn" type="button">로그인</button>
 				<label class="form-check-label"><input type="checkbox"
 					class="form-check-input">아이디 저장</label>
@@ -338,7 +338,7 @@
 			</c:choose>
 				<hr class="horiz-divide">
 				<c:choose>
-					<c:when test="${sessionScope.userId ne null }">
+					<c:when test="${sessionScope.user_id ne null }">
 						<div class="i-a-group">
 							<i class="material-icons">search</i><a href="myinfo.do">내정보보기</a>
 						</div>
@@ -395,12 +395,12 @@
 	</script>
 	<script>	
 		$(".login-btn").on('click', function() {
-			var userId = $("#userId").val();
-			var userPwd = $("#userPwd").val();
-			var param = "userId" + "=" + userId + "&" + "userPwd" + "=" + userPwd;
+			var userId = $("#user_id").val();
+			var userPwd = $("#user_pwd").val();
+			var param = "user_id" + "=" + user_id + "&" + "user_pwd" + "=" + user_pwd;
 			if (userId == "") {
 				alert("아이디를 입력하세요.");
-				$("#userId").focus(); //입력포커스
+				$("#user_id").focus(); //입력포커스
 				return false;
 			}
 			/* $.ajax({

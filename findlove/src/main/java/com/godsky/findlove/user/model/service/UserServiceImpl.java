@@ -22,11 +22,10 @@ public class UserServiceImpl implements UserService{
 		if(result){
 			User vo2 = viewMember(vo);
 			//세션 변수 등록
-			session.setAttribute("userId", vo2.getUserId());
-			session.setAttribute("userName", vo2.getUserName());
-			session.setAttribute("userPwd", vo2.getUserPwd());
-			session.setAttribute("userNickName", vo2.getUserNickName());
-			session.setAttribute("konpeitoCNT", vo2.getKonpeitoCNT());
+			session.setAttribute("user_id", vo2.getUser_id());
+			session.setAttribute("user_nm", vo2.getUser_nm());
+			session.setAttribute("user_nicknm", vo2.getUser_nicknm());
+			session.setAttribute("konpeito_cnt",vo2.getKonpeito_cnt() );
 		}
 		
 		return result;
@@ -47,60 +46,7 @@ public class UserServiceImpl implements UserService{
 		//세션 정보 초기화
 		session.invalidate();
 	}
-	
-	@Override
-	//회원생성
-	public boolean createUser(){
-		return false;		
-	}
-	
-	@Override
-	//이메일 체크
-	public int checkEmail(){
-		return 0;
-		
-	}
-	
-	@Override
-	//이름 체크
-	public int checkName(){
-		return 0;
-		
-	}
-	
-	@Override
-	//닉네임 체크
-	public int checkNickName(){
-		return 0;
-	}
-	
-	@Override
-	//비밀번호 체크
-	public int checkPwd(){
-		return 0;
-		
-	}
-	
-	@Override
-	//임시 비밀번호 발급
-	public String sendNewPwd(){
-		return null;
-		
-	}
-	
-	@Override
-	//비밀번호 랜덤생성
-	public String randomCreatePwd(){
-		return null;
-		
-	}
-	
-	@Override
-	//비밀번호 확인
-	public int modifyPwd(){
-		return 0;
-		
-	}
+
 	
 	@Override
 	//회원 상태 변경
@@ -108,13 +54,7 @@ public class UserServiceImpl implements UserService{
 		return 0;
 		
 	}
-	
-	@Override
-	//회원 정보 업데이트
-	public int updateUserInfo(){
-		return 0;
-		
-	}
+
 	
 	@Override
 	//유저 프로필 생성

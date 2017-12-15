@@ -32,6 +32,7 @@
 	<![CDATA[
 	SELECT 
 	User_ID AS user_id,
+	User_NM AS user_nm,
 	User_NickNM AS user_nicknm	
 	From tb_user
 	WHERE User_ID = #{user_id} AND User_PWD = #{user_pwd}	

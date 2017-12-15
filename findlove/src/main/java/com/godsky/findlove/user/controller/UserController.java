@@ -49,7 +49,6 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		if(result == true){
 			mav.setViewName("home");
-			mav.addObject("msg", "success");
 			System.out.println("세션추가됨");
 		}else{
 			mav.setViewName("home");
@@ -119,7 +118,7 @@ public class UserController {
 	public String signUp(User user) throws Exception{
 		System.out.println(user);
 		userService.insert(user);
-		return "user/signup";
+		return "home";
 	}
 
 	

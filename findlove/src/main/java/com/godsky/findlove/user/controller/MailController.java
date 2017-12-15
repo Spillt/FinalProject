@@ -47,13 +47,13 @@ public class MailController {
  
     // 아이디 찾기
     @RequestMapping(value = "findId.do", method = RequestMethod.POST)
-    public String sendMailId(HttpSession session, @RequestParam String userName, @RequestParam String email, RedirectAttributes ra) {
+    public String sendMailId(HttpSession session, @RequestParam String user_nm, @RequestParam String email, RedirectAttributes ra) {
     	User user = userService.findAccount(email);
-        System.out.println("user : " + user + " userName : " + userName + "email : " + email);
+        System.out.println("user : " + user + " userName : " + user_nm + "email : " + email);
     	if (user != null) {
-        	if (!user.getUser_nm().equals(userName)) {
+        	if (!user.getUser_nm().equals(user_nm)) {
                 ra.addFlashAttribute("resultMsg", "입력하신 이메일과 이름이 가입된 회원 정보와 일치하지 않습니다.");
-                return "user/findidpwd";
+                return "redirect:/findidpwd.do";
             }
             String subject = "아이디 찾기 안내 입니다.";
             StringBuilder sb = new StringBuilder();
@@ -63,18 +63,19 @@ public class MailController {
         } else {
             ra.addFlashAttribute("resultMsg", "귀하의 이메일로 가입된 아이디가 존재하지 않습니다.");
         }
-        return "user/findidpwd";
+        return "redirect:/findidpwd.do";
     }
  
     // 비밀번호 찾기
     @RequestMapping(value = "findPwd.do", method = RequestMethod.POST)
-    public String sendMailPassword(HttpSession session, @RequestParam String userId, @RequestParam String email, RedirectAttributes ra) {
+    public String sendMailPassword(HttpSession session, @RequestParam String user_id, @RequestParam String email, RedirectAttributes ra) {
     	User user = userService.findAccount(email);
-    	System.out.println("userId : " + userId + " email : " + email  );
+    	System.out.println("user_Id : " + user_id + " email : " + email  );
+    	System.out.println("user : " + user);
         if (user != null) {
-            if (!user.getUser_id().equals(userId)) {
+            if (!user.getUser_id().equals(user_id)) {
                 ra.addFlashAttribute("resultMsg", "입력하신 이메일과 아이디가 가입된 회원 정보와 일치하지 않습니다.");
-                return "user/findidpwd";
+                return "redirect:/findidpwd.do";
             }
             int ran = new Random().nextInt(100000) + 10000; // 10000 ~ 99999
             String password = String.valueOf(ran);
@@ -91,7 +92,7 @@ public class MailController {
         } else {
             ra.addFlashAttribute("resultMsg", "귀하의 이메일로 가입된 아이디가 존재하지 않습니다.");
         }
-        return "user/findidpwd";
+        return "redirect:/findidpwd.do";
     }
 }
 
