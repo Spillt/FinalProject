@@ -49,9 +49,9 @@ public class UserDao {
 		public int insert(User user);
 	}*/
 	
-	public boolean creatUser(){
-		return false;
-		
+	public int creatUser(User vo){
+		System.out.println("dao");
+		return sqlSession.insert("user.insertUser", vo);
 	}
 	
 	public int checkEmail(){
@@ -96,6 +96,10 @@ public class UserDao {
 
 	public int idCheck(String userId) {
 		return sqlSession.selectOne("user.idCheck", userId);
+	}
+
+	public User findAccount(String email) {
+		return sqlSession.selectOne("user.findAccount", email);
 	}
 
 }

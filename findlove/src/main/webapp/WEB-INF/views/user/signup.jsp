@@ -111,6 +111,9 @@
   
   <label id="icon" for="name"><i class="icon-envelope "></i></label>
   <input type="text" name="email" id="email" placeholder="Email" required/>
+  
+  <label id="icon" for="name"><i class="icon-envelope "></i></label>
+  <input type="text" name="phone" id="phone" placeholder="Phone" required/>
   <hr>  
    
 	<a class ="button" onclick="checkfield()">Register</a>

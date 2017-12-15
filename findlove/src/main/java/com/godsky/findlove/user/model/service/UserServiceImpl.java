@@ -145,15 +145,13 @@ public class UserServiceImpl implements UserService{
 	@Override
 	//회원가입
 	public int insert(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+		return userDao.creatUser(user);
 	}
 
 	@Override
 	//회원 계정 찾기
 	public User findAccount(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.findAccount(email);
 	}
 
 	@Override
