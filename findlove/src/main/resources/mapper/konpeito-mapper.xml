@@ -8,5 +8,17 @@
 		UPDATE TB_USER SET KONPEITO_CNT = KONPEITO_CNT - #{point}
 		WHERE USER_ID = #{senderId}
 	</update>
+	
+	<select id="checkpoint" resultType="Integer">
+	<![CDATA[
+		SELECT 
+			CASE WHEN KONPEITO_CNT > 9 THEN 1
+     		ELSE 0
+		END 
+		FROM TB_USER
+		WHERE USER_ID = #{senderId}
+	]]>
+	</select>
+	
    	 
 </mapper>

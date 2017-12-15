@@ -8,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>연애의발견::프로필 상세보기</title>
-<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">  -->
 
 <style type="text/css">
 .portfolio-item-inner {
@@ -79,9 +80,7 @@
          </div>
       </div>
    </header>
-
-
-
+   
    <!-- Portfolio Grid -->
    <c:set var="p" value="${ profile }"></c:set>
    <div class="container">
@@ -113,7 +112,7 @@
                <p>This is a template that is great for small businesses</p>
                <!-- <a class="btn btn-primary btn-lg" href="#">Send Message</a> -->
                <button type="button" class="btn btn-primary" data-toggle="modal"
-                  data-target="#exampleModal"">Send
+                  data-target="#exampleModal" data-whatever="${ p.user_NickNM }">Send
                   Message</button>
                <button type="button" class="btn btn-primary" data-toggle="modal"
                     data-target="#exampleModal2" aria-label="Left Align">
@@ -233,10 +232,9 @@
       <!-- /.container -->
 
       <!-- Bootstrap core JavaScript -->
-      <script src="/findlove/js/jquery.min.js"></script>
-      <script src="/findlove/js/bootstrap.bundle.min1.js"></script>
+      <!-- <script src="/findlove/resources/js/jquery.min.js"></script> -->
+      <!-- <script src="/findlove/resources/js/bootstrap.bundle.min1.js"></script>  -->
    </section>
-
 
    <!-- Clients -->
    <section class="py-5">
@@ -283,8 +281,7 @@
                <form>
                   <div class="form-group">
                      <label for="recipient-name" class="control-label">받는사람:</label> <input
-                        type="text" class="form-control" id="recipient-name"
-                        value=${ p.user_NickNM } readonly>
+                        type="text" class="form-control" id="recipient-name" readonly>
                   </div>
                   <div class="form-group">
                      <label for="message-text" class="control-label">내용:</label>
@@ -295,8 +292,8 @@
             <div class="modal-footer">
                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                <button type="button" class="btn btn-primary"
-                  <%-- onclick="sendMessage('user77','${p.user_id}', '${sessionScope.Use_Point_CNT}')">10 포인트 차감</button> --%>
-                  onclick="sendMessage('user11','${p.user_id}', '30')">10 별사탕 차감</button>
+                  <%-- onclick="sendMessage('user77','${p.user_id}', '${sessionScope.Use_Point_CNT}')">10 별사탕차감</button> --%>
+                  onclick="sendMessage('${sessionScope.userId}','${p.user_id}')">10 별사탕 차감</button>
             </div>
          </div>
       </div>
@@ -340,16 +337,15 @@
    <script type="text/javascript">
       $('#exampleModal').on('show.bs.modal', function(event) {
          var button = $(event.relatedTarget) // Button that triggered the modal
-         var recipient = ${ p.user_NickNM }// Extract info from data-* attributes
+         var recipient = button.data('whatever')// Extract info from data-* attributes
          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
          var modal = $(this)
-         modal.find('.modal-title').text('New message to ' + recipient)
+         modal.find('.modal-title').text('호감 메세지 보내기')
          modal.find('.modal-body input').val(recipient)
       })
 
-      function sendMessage(sender, reciever, point) {
-         if(point > 9) {
+      function sendMessage(sender, reciever) {
             var modal = $('#exampleModal');
             var message = $('#message-text').val();
             $.ajax({
@@ -365,7 +361,7 @@
                      alert("메시지 보내기 성공!");
                      modal.modal('hide');
                   } else {
-                     alert("메시지 보내기 실패");
+                     alert("포인트 부족!");
                      modal.modal('hide');
                   }
                   $('#message-text').val('');
@@ -375,11 +371,9 @@
                   modal.modal('hide');
                }
             })
-         }else{
-            alert('포인트가 부족합니다.');
-         }
       }
    </script>
+   
    <script type="text/javascript">
       $('#exampleModal2').on('show.bs.modal', function(event) {
          var button = $(event.relatedTarget) // Button that triggered the modal
@@ -421,19 +415,6 @@
    </script> 
    <hr>
    <c:import url="../../include/footer.jsp" />
-
-   <script type="text/javascript"
-      src="/findlove/resources/js/jquery-3.2.1.min.js"></script>
-   <script type="text/javascript"
-      src="/findlove/resources/js/bootstrap.bundle.min.js"></script>
-   <script type="text/javascript"
-      src="/findlove/resources/js/contact_me.js"></script>
-   <script type="text/javascript"
-      src="/findlove/resources/js/jqBootstrapValidation.js"></script>
-   <script type="text/javascript"
-      src="/findlove/resources/js/jquery.easing.min.js"></script>
-   <script type="text/javascript"
-      src="/findlove/resources/js/agency.min.js"></script>
       
 </body>
 

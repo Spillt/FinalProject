@@ -272,7 +272,7 @@
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#">매칭 게시판</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="/findlove/profileboard/openProfileList.do">프로필 게시판</a></li>
+						href="/findlove/openProfileList.do">프로필 게시판</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#">자유 게시판</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
@@ -343,7 +343,7 @@
 							<i class="material-icons">search</i><a href="myinfo.do">내정보보기</a>
 						</div>
 						<div class="i-a-group">
-							<i class="material-icons">search</i><a href="myinfo.do">나의매칭</a>
+							<i class="material-icons">search</i><a href="openSendMessageList.do">나의매칭</a>
 						</div>
 					</c:when>
 					<c:otherwise>						

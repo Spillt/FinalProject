@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%-- <%@ page session="false" %> --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -108,7 +108,7 @@
 												<div class="portfolio-hover-content">
 													<i class="fa fa-plus fa-3x"></i>
 												</div>
-											</div> <a href="/findlove/profileboard/openProfileDetail.do?user_nicknm=${ profile.user_NickNM }"><img class="img-fluid" src="/findlove/resources/img/team/1.jpg"
+											</div> <a href="/findlove/openProfileDetail.do?user_nicknm=${ profile.user_NickNM }"><img class="img-fluid" src="/findlove/resources/img/team/1.jpg"
 											alt=""></a>
 										</a>
 										<div class="portfolio-caption">
@@ -208,20 +208,6 @@
 	<hr>
 	
 	<c:import url="../../include/footer.jsp" /> 
-	
-
-
-	
-
-<script type="text/javascript" src="/findlove/resources/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="/findlove/resources/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="/findlove/resources/js/contact_me.js"></script>
-<script type="text/javascript" src="/findlove/resources/js/jqBootstrapValidation.js"></script>
-<script type="text/javascript" src="/findlove/resources/js/jquery.easing.min.js"></script>
-<script type="text/javascript" src="/findlove/resources/js/agency.min.js"></script>
-<script type="text/javascript">
-
-</script>
 </body>
 
 </html>
