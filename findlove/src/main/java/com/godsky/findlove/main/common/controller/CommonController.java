@@ -28,8 +28,7 @@ public class CommonController {
 		String storedFileName = (String)map.get("STORED_FILE_NAME");
 		String originalFileName = (String)map.get("ORIGINAL_FILE_NAME");
 		
-		byte fileByte[] = FileUtils.readFileToByteArray(new File("C:\\dev\\file\\"+storedFileName));
-		
+		byte fileByte[] = FileUtils.readFileToByteArray(new File("C:\\dev\\file\\"+storedFileName));		
 		response.setContentType("application/octet-stream");
 		response.setContentLength(fileByte.length);
 		response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(originalFileName,"UTF-8")+"\";");
