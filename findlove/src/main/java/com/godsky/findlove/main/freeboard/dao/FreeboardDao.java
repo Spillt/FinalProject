@@ -19,4 +19,10 @@ public class FreeboardDao extends AbstractDAO{
 		return sqlSession.selectList("freeboard.selectFreeboardList", map);
 	}
 
+	//작성하기
+	public void insertFreeboard(Map<String, Object> map) throws Exception{
+		insert("freeboard.insertFreeboard", map);
+		
+	}
+
 }

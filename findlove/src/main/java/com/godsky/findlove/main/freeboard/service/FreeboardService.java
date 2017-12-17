@@ -6,4 +6,7 @@ import java.util.Map;
 public interface FreeboardService {
 	List<Map<String, Object>> selectFreeboardList(Map<String, Object> map) throws Exception;
 
+	//작성하기
+	void insertFreeboard(Map<String, Object> map) throws Exception;
+
 }

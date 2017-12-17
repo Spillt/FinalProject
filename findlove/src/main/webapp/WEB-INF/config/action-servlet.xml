@@ -20,6 +20,13 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
+	<!-- freeboard -->
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean class="com.godsky.findlove.main.common.resolver.CustomMapArgumentResolver"></bean>
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+	<!-- freeboard 끝 -->
     
     
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />

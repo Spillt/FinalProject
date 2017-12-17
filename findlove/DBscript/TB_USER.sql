@@ -20,37 +20,37 @@ CREATE TABLE TB_USER (
   CONSTRAINT CHK_UST CHECK (User_ST IN ('0', '1', '2', '3', '4')),
   CONSTRAINT CHK_RANK CHECK (Rank_GB IN ('G', 'D', 'P', 'G', 'S', 'B'))
 );
-COMMENT ON TABLE TB_USER IS 'íšŒì› í…Œì´ë¸”';
-COMMENT ON COLUMN TB_USER.User_ID IS 'ì•„ì´ë””';
-COMMENT ON COLUMN TB_USER.User_PWD IS 'ë¹„ë°€ë²ˆí˜¸';
-COMMENT ON COLUMN TB_USER.User_NM IS 'ì´ë¦„';
-COMMENT ON COLUMN TB_USER.User_NickNM IS 'ë‹‰ë„¤ì„';
-COMMENT ON COLUMN TB_USER.User_ST IS 'ì‚¬ìš©ì ìƒíƒœ(0:ìŠ¹ì¸ëŒ€ê¸°/1:ì¼ë°˜/2:íœ´ë©´/3:ì •ì§€/4:ì‚­ì œëŒ€ê¸°)';
-COMMENT ON COLUMN TB_USER.Email IS 'ì´ë©”ì¼';
-COMMENT ON COLUMN TB_USER.Phone IS 'íœ´ëŒ€í°ë²ˆí˜¸';
-COMMENT ON COLUMN TB_USER.Point_CNT IS 'í¬ì¸íŠ¸ ìˆ˜';
-COMMENT ON COLUMN TB_USER.Konpeito_CNT IS 'ë³„ì‚¬íƒ• ìˆ˜';
-COMMENT ON COLUMN TB_USER.Rank_GB IS 'ê´€ë¦¬ì ë° ë“±ê¸‰ êµ¬ë¶„(ê´€ë¦¬ì(G),ì¼ë°˜íšŒì›(D:ë‹¤ì´ì•„/P:í”Œë˜í‹°ë„˜/G:ê³¨ë“œ/S:ì‹¤ë²„/B:ë¸Œë¡ ì¦ˆ))';
-COMMENT ON COLUMN TB_USER.Grade_AVG IS 'í‰ì ';
-COMMENT ON COLUMN TB_USER.Enroll_DT IS 'ê°€ì…ì¼';
-COMMENT ON COLUMN TB_USER.Latest_Access_DT IS 'ìµœê·¼ ì ‘ì†ì¼';
-COMMENT ON COLUMN TB_USER.Delete_DT IS 'ì‚­ì œì¼';
+COMMENT ON TABLE TB_USER IS 'È¸¿ø Å×ÀÌºí';
+COMMENT ON COLUMN TB_USER.User_ID IS '¾ÆÀÌµğ';
+COMMENT ON COLUMN TB_USER.User_PWD IS 'ºñ¹Ğ¹øÈ£';
+COMMENT ON COLUMN TB_USER.User_NM IS 'ÀÌ¸§';
+COMMENT ON COLUMN TB_USER.User_NickNM IS '´Ğ³×ÀÓ';
+COMMENT ON COLUMN TB_USER.User_ST IS '»ç¿ëÀÚ »óÅÂ(0:½ÂÀÎ´ë±â/1:ÀÏ¹İ/2:ÈŞ¸é/3:Á¤Áö/4:»èÁ¦´ë±â)';
+COMMENT ON COLUMN TB_USER.Email IS 'ÀÌ¸ŞÀÏ';
+COMMENT ON COLUMN TB_USER.Phone IS 'ÈŞ´ëÆù¹øÈ£';
+COMMENT ON COLUMN TB_USER.Point_CNT IS 'Æ÷ÀÎÆ® ¼ö';
+COMMENT ON COLUMN TB_USER.Konpeito_CNT IS 'º°»çÅÁ ¼ö';
+COMMENT ON COLUMN TB_USER.Rank_GB IS '°ü¸®ÀÚ ¹× µî±Ş ±¸ºĞ(°ü¸®ÀÚ(G),ÀÏ¹İÈ¸¿ø(D:´ÙÀÌ¾Æ/P:ÇÃ·¡Æ¼³Ñ/G:°ñµå/S:½Ç¹ö/B:ºê·ĞÁî))';
+COMMENT ON COLUMN TB_USER.Grade_AVG IS 'ÆòÁ¡';
+COMMENT ON COLUMN TB_USER.Enroll_DT IS '°¡ÀÔÀÏ';
+COMMENT ON COLUMN TB_USER.Latest_Access_DT IS 'ÃÖ±Ù Á¢¼ÓÀÏ';
+COMMENT ON COLUMN TB_USER.Delete_DT IS '»èÁ¦ÀÏ';
 
-INSERT INTO TB_USER VALUES('admin', 'admin', 'ê´€ë¦¬ì', 'ê´€ë¦¬ì', '1', 'admin@naver.com', '010-1234-5678', 
+INSERT INTO TB_USER VALUES('admin', 'admin', '°ü¸®ÀÚ', '°ü¸®ÀÚ', '1', 'admin@naver.com', '010-1234-5678', 
 default, default, 'G', default, default, default, null); 
-INSERT INTO TB_USER VALUES('user11', 'pass11', 'ìœ¤ì°¬í˜¸', 'ë„ˆêµ¬ë¦¬', '1', 'raccoon@naver.com', '010-1234-
+INSERT INTO TB_USER VALUES('user11', 'pass11', 'À±ÂùÈ£', '³Ê±¸¸®', '1', 'raccoon@naver.com', '010-1234-
 1111', default, default, 'D', 1, default, default, null); 
-INSERT INTO TB_USER VALUES('user22', 'pass22', 'ì†ì •í•œ', 'ë¼ì§€', '1', 'pig22@naver.com', '010-1234-2222', 
+INSERT INTO TB_USER VALUES('user22', 'pass22', '¼ÕÁ¤ÇÑ', 'µÅÁö', '1', 'pig22@naver.com', '010-1234-2222', 
 default, default, 'P', 2, default, default, null); 
-INSERT INTO TB_USER VALUES('user33', 'pass33', 'ê¹€ì§€í›ˆ', 'ì‚¬ìœ¡ì‚¬', '2', 'keeper@naver.com', '010-1234-
+INSERT INTO TB_USER VALUES('user33', 'pass33', '±èÁöÈÆ', '»çÀ°»ç', '2', 'keeper@naver.com', '010-1234-
 3333', default, default, 'G', 3, default, default, null); 
-INSERT INTO TB_USER VALUES('user44', 'pass44', 'ë‚¨ì°¬ìš°', 'ë‚˜ë¬´', '2', 'tree@gmail.com', '010-1234-4444', 
+INSERT INTO TB_USER VALUES('user44', 'pass44', '³²Âù¿ì', '³ª¹«', '2', 'tree@gmail.com', '010-1234-4444', 
 default, default, 'S', 4, default, default, null); 
-INSERT INTO TB_USER VALUES('user55', 'pass55', 'ì¡°ë‚¨í›ˆ', 'ê³°', '3', 'bear55@naver.com', '010-1234-5555', 
+INSERT INTO TB_USER VALUES('user55', 'pass55', 'Á¶³²ÈÆ', '°õ', '3', 'bear55@naver.com', '010-1234-5555', 
 default, default, 'B', 5, default, default, null); 
-INSERT INTO TB_USER VALUES('user66', 'pass66', 'ê¹€í˜œì •', 'ì¥', '3', 'mouse@naver.com', '010-1234-6666', 
+INSERT INTO TB_USER VALUES('user66', 'pass66', '±èÇıÁ¤', 'Áã', '3', 'mouse@naver.com', '010-1234-6666', 
 default, default, 'G', 6, default, default, null); 
-INSERT INTO TB_USER VALUES('user77', 'pass77', 'ê¹€ì—¬ì§„', 'ì—¬ìš°', '4', 'fox77@naver.com', '010-1234-7777', 
+INSERT INTO TB_USER VALUES('user77', 'pass77', '±è¿©Áø', '¿©¿ì', '4', 'fox77@naver.com', '010-1234-7777', 
 default, default, 'G', 7, default, default, null); 
 
 

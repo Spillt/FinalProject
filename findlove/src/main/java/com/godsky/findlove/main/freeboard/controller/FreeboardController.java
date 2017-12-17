@@ -38,7 +38,7 @@ public class FreeboardController {
 	public ModelAndView testMapArgumentResolver(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("");
 
-		if (commandMap.isEmpty() == false) {
+		if(commandMap.isEmpty() == false) {
 			Iterator<Entry<String, Object>> iterator = commandMap.getMap().entrySet().iterator();
 			Entry<String, Object> entry = null;
 			while (iterator.hasNext()) {
@@ -48,4 +48,22 @@ public class FreeboardController {
 		}
 		return mv;
 	}*/
+	
+	//글쓰기 액션 호출
+	@RequestMapping(value="openFreeboardWrite.do")
+	public ModelAndView openFreeboardWrite(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("/freeboard/freeboardWrite");
+		
+		return mv;
+	}
+	
+	//작성하기
+	@RequestMapping(value="insertFreeboard.do")
+	public ModelAndView insertFreeboard(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/openFreeboardList.do");
+		
+		FreeboardService.insertFreeboard(commandMap.getMap());
+		
+		return mv;
+	}
 }

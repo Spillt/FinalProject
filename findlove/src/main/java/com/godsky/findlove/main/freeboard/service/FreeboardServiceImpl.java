@@ -22,5 +22,11 @@ public class FreeboardServiceImpl implements FreeboardService{
 		
 		return FreeboardDao.selectFreeboardService(map);
 	}
+	
+	//작성하기
+	@Override
+	public void insertFreeboard(Map<String, Object> map) throws Exception{
+		FreeboardDao.insertFreeboard(map);
+	}
 
 }

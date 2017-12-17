@@ -8,19 +8,6 @@
 <meta charset="UTF-8">
 <title>freeboardList</title>
 <style type="text/css">
-.portfolio-item-inner {
-	line-height: 1.42857143;
-	background-color: #fff;
-	border-radius: 2px;
-	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0
-		rgba(0, 0, 0, 0.12);
-	transition: box-shadow .25s;
-}
-
-.portfolio-item-inner:hover {
-	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
-		rgba(0, 0, 0, 0.19);
-}
 
 .row.panel-title {
 	padding-top: 5px;
@@ -103,6 +90,35 @@
 			</c:choose>
 		</tbody>
 	</table>
+	<br/>
+	
+	<a href="#this" class="btn" id="write">글쓰기</a>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#write").on("click", function(e){ //글쓰기 버튼
+				e.preventDefault();
+				fn_openFreeboardWrite();
+			});	
+			
+			$("a[name='title']").on("click", function(e){ //제목
+				e.preventDefault();
+				fn_openFreeboardDetail($(this));
+			});
+		});
+		
+		function fn_openFreeboardWrite(){
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='openFreeboardWrite.do' />");
+			comSubmit.submit();
+		}
+		
+		/* function fn_openFreeboardDetail(obj){
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='openFreeboardWrite.do'/>");
+			comSubmit.submit();
+		} */
+	</script>
 	<c:import url="../include/footer.jsp" />
 </body>
 </html>
