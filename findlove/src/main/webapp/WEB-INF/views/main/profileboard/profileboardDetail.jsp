@@ -349,21 +349,25 @@
             var modal = $('#exampleModal');
             var message = $('#message-text').val();
             $.ajax({
-               url : '/findlove/message/sendMessage.do',
+               url : 'sendMessage.do',
                type : 'post',
+               dataType : "json",
                data : {
-                  "sender" : sender,
-                  "reciever" : reciever,
-                  "message" : message
+                  "sender_id" : sender,
+                  "reciever_id" : reciever,
+                  "message_content" : message
                },
                success : function(data) {
-                  if (data == 1) {
+                /*  if (data == 1) {
                      alert("메시지 보내기 성공!");
                      modal.modal('hide');
                   } else {
                      alert("포인트 부족!");
                      modal.modal('hide');
-                  }
+                  }  */
+                  
+                  alert("메세지 보내기 성공!");
+                  modal.modal('hide');
                   $('#message-text').val('');
                },
                error : function(data) {

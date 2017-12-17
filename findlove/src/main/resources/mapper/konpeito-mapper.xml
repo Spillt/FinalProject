@@ -6,7 +6,7 @@
 
 	<update id="updateKonpeito">
 		UPDATE TB_USER SET KONPEITO_CNT = KONPEITO_CNT - #{point}
-		WHERE USER_ID = #{senderId}
+		WHERE USER_ID = #{sender_id}
 	</update>
 	
 	<select id="checkpoint" resultType="Integer">

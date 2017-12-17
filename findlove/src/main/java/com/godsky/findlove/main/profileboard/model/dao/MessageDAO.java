@@ -16,7 +16,7 @@ public class MessageDAO {
 
 
 	public int sendMessage(Message message) {
-		return sqlSession.insert("message.sendMessage",message);
+		return sqlSession.insert("message.sendMessage", message);
 	}
 
 

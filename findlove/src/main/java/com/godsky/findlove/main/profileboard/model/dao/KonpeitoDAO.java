@@ -13,15 +13,11 @@ public class KonpeitoDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public int minusPoint(String senderId, int point) {
+	public int minusPoint(String sender_id, int point) {
 		 Map<String, Object> map = new HashMap<String, Object>();
-	     map.put("senderId", senderId);
+	     map.put("sender_id", sender_id);
 	     map.put("point", point);
 	     return sqlSession.update("konpeito.updateKonpeito", map);
-	}
-
-	public int checkpoint(String senderId) {
-		return sqlSession.selectOne("konpeito.checkpoint", senderId);
 	}
 
 }

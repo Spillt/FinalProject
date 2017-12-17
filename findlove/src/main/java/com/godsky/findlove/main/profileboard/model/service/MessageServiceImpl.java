@@ -3,6 +3,7 @@ package com.godsky.findlove.main.profileboard.model.service;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.godsky.findlove.main.profileboard.model.dao.KonpeitoDAO;
 import com.godsky.findlove.main.profileboard.model.dao.MessageDAO;
@@ -17,9 +18,11 @@ public class MessageServiceImpl implements MessageService{
 	
 	@Resource(name="konpeitoDAO")
     private KonpeitoDAO konpeitoDAO;
-
+	
+	@Transactional
 	@Override
-	public int sendMessage(Message message) {
-		return (messageDAO.sendMessage(message) & konpeitoDAO.minusPoint(message.getSenderId(), 10));
+	public void sendMessage(Message message) {
+		messageDAO.sendMessage(message);
+		konpeitoDAO.minusPoint(message.getSender_id(), 10);
 	}
 }
