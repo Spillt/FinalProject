@@ -25,4 +25,9 @@ public class FreeboardDao extends AbstractDAO{
 		
 	}
 
+	public void insertFile(Map<String, Object> map) throws Exception{
+		insert("freeboard.insertFile", map);
+		
+	}
+
 }

@@ -21,6 +21,7 @@ public class AbstractDAO {
 	
 	public Object insert(String queryId, Object params){
 		printQueryId(queryId);
+		System.out.println("queryId : " + queryId);
 		return sqlSession.insert(queryId, params);
 	}
 	

@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -59,10 +60,10 @@ public class FreeboardController {
 	
 	//작성하기
 	@RequestMapping(value="insertFreeboard.do")
-	public ModelAndView insertFreeboard(CommandMap commandMap) throws Exception{
+	public ModelAndView insertFreeboard(CommandMap commandMap, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("redirect:/openFreeboardList.do");
 		
-		FreeboardService.insertFreeboard(commandMap.getMap());
+		FreeboardService.insertFreeboard(commandMap.getMap(), request);
 		
 		return mv;
 	}

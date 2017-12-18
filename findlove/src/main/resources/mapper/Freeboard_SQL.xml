@@ -16,8 +16,8 @@
 	<!-- 작성하기 -->
 	<insert id="insertFreeboard" parameterType="hashmap">
 		<![CDATA[
-			INSERT INTO TB_FREE (Free_NO, Free_Title, Free_Content, Free_Read_CNT, Free_DT, Free_Writer_ID)
-			VALUES(SEQ_TB_FREE_IDX.NEXTVAL, #{TITLE}, #{CONTENTS}, 0, SYSDATE, 'admin')
+			INSERT INTO TB_FREE 
+			VALUES(SEQ_TB_FREE_NO.NEXTVAL, #{TITLE}, #{WRITER}, #{CONTENT}, NULL, NULL, SYSDATE, 0, 0, 0, 0, 0)
 		]]>
 	</insert>
 

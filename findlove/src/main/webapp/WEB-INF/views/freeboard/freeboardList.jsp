@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,9 +92,9 @@
 	</table>
 	<br/>
 	
-	<a href="#this" class="btn" id="write">글쓰기</a>
+	<a href="openFreeboardWrite.do" class="btn" id="write">글쓰기</a>
 	
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		$(document).ready(function(){
 			$("#write").on("click", function(e){ //글쓰기 버튼
 				e.preventDefault();
@@ -118,7 +118,7 @@
 			comSubmit.setUrl("<c:url value='openFreeboardWrite.do'/>");
 			comSubmit.submit();
 		} */
-	</script>
+	</script> -->
 	<c:import url="../include/footer.jsp" />
 </body>
 </html>
