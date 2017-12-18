@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>연애의발견</title>
+	<title>연애의발견::나의매칭</title>
     
 	<style type="text/css">
 		.portfolio-item-inner {

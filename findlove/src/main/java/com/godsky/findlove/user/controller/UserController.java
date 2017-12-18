@@ -122,17 +122,41 @@ public class UserController {
 	}
 
 	
-	//내정보	
+	//내정보 보기
 	@RequestMapping(value = "myinfo.do")
-	public String selectMyInfo(){
+	public String myInfoView(){
 		return "user/myinfo" ;
 	}
 	
-	//내정보 업데이트
-	@RequestMapping(value = "updateMyInfo.do")
-	public String updateMyInfo(){
-		return null;
+	//내정보 수정
+	@RequestMapping(value = "myinfoset.do")
+	public String myInfoSet(){
+		return "user/myinfoset";
 		
+	}
+	//내 프로필 보기
+	@RequestMapping(value = "myprofile.do")
+	public String myProfileView(){
+		return "user/myprofile";
+	}
+	
+	//내 프로필 수정
+	@RequestMapping(value = "myprofileset.do")
+	public String myProfileSet(){
+		return "user/myprofileset";		
+	}
+	
+	//이상형 프로필 보기
+	@RequestMapping(value = "idealprofile.do")
+	public String idealProfileView(){
+		return "user/idealprofile";
+		
+	}
+	
+	//이상형 프로필 수정
+	@RequestMapping(value = "idealprofileset.do")
+	public String idealProfileSet(){
+		return "user/idealprofileset";
 	}
 	
 	//회원삭제

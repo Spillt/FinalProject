@@ -340,7 +340,7 @@
 				<c:choose>
 					<c:when test="${sessionScope.user_id ne null }">
 						<div class="i-a-group">
-							<i class="material-icons">search</i><a href="myinfo.do">내정보보기</a>
+							<i class="material-icons">search</i><a href="myinfo.do">마이페이지</a>
 						</div>
 						<div class="i-a-group">
 							<i class="material-icons">search</i><a href="openSendMessageList.do">나의매칭</a>

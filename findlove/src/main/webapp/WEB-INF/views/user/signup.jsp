@@ -18,7 +18,7 @@
 		var pattern4 = /([^가-힣\x20])/i; //한글
 		
 		if(!form.id.value){
-			alert("아이디를 입력하세요");
+			alert("아이디를 입력하세요.");
 			form.id.focus();
 			return false;		
 		}
@@ -28,11 +28,11 @@
 			return false;
 		}
 		if(!form.pwd1.value){
-			alert("비밀번호를 입력하세요")
+			alert("비밀번호를 입력하세요.")
 			form.pwd1.focus();
 			return false;
 		}else if(!form.pwd2.value){
-			alert("비밀번호를 한번 더 입력하세요")
+			alert("비밀번호를 한번 더 입력하세요.")
 			form.pwd2.focus();
 			return false;
 		}
@@ -42,7 +42,7 @@
 			return false;
 		}	
 		if(!form.name.value){
-			alert("이름을 입력하세요");
+			alert("이름을 입력하세요.");
 			form.name.focus();
 			return false;
 		}
@@ -52,7 +52,7 @@
 			return false;
 		}		
 		if(!form.nickname.value){
-			alert("닉네임을 입력하세요");
+			alert("닉네임을 입력하세요.");
 			form.nickname.focus();
 			return false;
 		}
@@ -63,10 +63,15 @@
 		}
 		
 		if(!form.email.value){
-			alert("이메일을 입력하세요")
+			alert("이메일을 입력하세요.")
 			form.email.focus();
 			return false;
-		}		
+		}
+		if(!form.phone.value){
+			alert("휴대폰 번호를 입력하세요.")
+			form.phone.focus();
+			return false;
+		}
 		
 		var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 		

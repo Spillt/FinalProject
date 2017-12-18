@@ -42,12 +42,36 @@
 	</div>
 	<script>
 	function submitfindId(){
-		alert("귀하의 메일로 아이디를 발송하였습니다.")
-		findId.submit();		
+		var form document.findId;
+		
+		if(!form.name.value){
+			alert("이름을 입력하세요")
+			form.name.focus();
+			return;
+		}
+		if(!form.email.value){
+			alert("이메일을 입력하세요");
+			form.email.focus();
+			return;
+		}
+		findId.submit();
+		alert("${resultMsg}")				
 	}
 	</script>
 	<script>
 	function submitfindPwd(){
+		var form = document.findPwd;
+	
+		if(!form.id.value){
+			alert("아이디를 입력하세요");
+			form.id.focus();
+			return;
+		}
+		if(!form.email.value){
+			alert("이메일을 입력하세요");
+			form.email.focus();
+			return;
+		}
 		findPwd.submit();
 		alert("${resultMsg}")
 	}

@@ -30,7 +30,7 @@ public interface UserService {
 	public User findAccount(String email);
 	
 	//회원 정보 업데이트
-	public void updateInfo(String userId, String string, String password);
+	public void myInfoSet(String userId, String string, String password);
 
 
 	

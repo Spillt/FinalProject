@@ -27,16 +27,12 @@ public class UserServiceImpl implements UserService{
 			session.setAttribute("user_nicknm", vo2.getUser_nicknm());
 			session.setAttribute("konpeito_cnt",vo2.getKonpeito_cnt() );
 		}
+		System.out.println("result :" + result);
 		
 		return result;
 		
 	}
 	
-/*	@Override
-	//로그인 정보
-	public User viewMember(User vo){
-		return UserDao.viewMember(vo);
-	}*/
 	
 	@Override
 	//로그 아웃
@@ -96,7 +92,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	//회원 정보 업데이트
-	public void updateInfo(String userId, String string, String password) {
+	public void myInfoSet(String userId, String string, String password) {
 		// TODO Auto-generated method stub
 		
 	}
