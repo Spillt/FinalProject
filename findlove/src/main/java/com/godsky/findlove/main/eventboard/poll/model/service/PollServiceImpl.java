@@ -1,6 +1,7 @@
 package com.godsky.findlove.main.eventboard.poll.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ public class PollServiceImpl implements PollService {
 	PollDao pollDao;
 
 	@Override
-	public ArrayList<Poll> getPollList() {
-		return PollDao.getPollList();
+	public List<Poll> listAll(){
+		return pollDao.listAll();
 	}
 
 	@Override

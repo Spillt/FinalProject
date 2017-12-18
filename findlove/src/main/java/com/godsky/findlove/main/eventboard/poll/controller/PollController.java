@@ -23,16 +23,15 @@ public class PollController {
 	
 	//  목록 전체 보기
 	@RequestMapping(value="polllist.do")
-	public String pollList(Model model) {
+	public ModelAndView pollList(Model model) {
 		
-		/* List<Poll> list = PollService.getPollList();
+		 List<Poll> list = pollService.listAll();
+	      	   
+	      ModelAndView mv = new ModelAndView();
+	      mv.setViewName("main/eventboard/poll/polllist");
+	      mv.addObject("list", list);
 	      
-	      Map<String, Object> map = new HashMap<String, Object>();
-	   
-	      ModelAndView mv = new ModelAndView("main/eventboard/poll/polllist");
-	      mv.addObject("map", map);*/
-	      
-	      return "main/eventboard/poll/polllist";
+	      return mv;
 	}
 	//  상세 보기
 		@RequestMapping(value="polldetail.do")

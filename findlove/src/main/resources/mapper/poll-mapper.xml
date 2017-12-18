@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poll">
+
+	<resultMap id="PollList" type="Poll">
+		<id property="pollNo" column="Poll_NO"/>
+		<result property="pollTitle" column="Poll_Title"/>
+		<result property="pollST" column="Poll_ST"/>
+		<result property="SDT" column="Start_DT"/>
+		<result property="EDT" column="End_DT"/>
+		<result property="queNo" column="Question_NO"/>
+		<result property="queContent" column="Question_Content"/>
+		<result property="answer" column="Answer"/>
+	</resultMap>
+	
+	<select id="listAll" resultType="Poll" resultMap="PollList">
+		<![CDATA[
+			SELECT *
+			FROM TB_POLL
+			JOIN TB_POLL_QUESTION, TB_POLL_ANSWER
+			ORDER BY Poll_NO DESC, Start_DT DESC;
+			
+		]]>
+	</select>
+</mapper>

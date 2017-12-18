@@ -2,6 +2,8 @@ package com.godsky.findlove.main.eventboard.poll.model.vo;
 
 import java.sql.Date;
 
+
+
 public class Poll {
 
 	private int pollNo;
@@ -99,6 +101,7 @@ public class Poll {
 		return "pollNo=" + pollNo + ", pollTitle=" + pollTitle + ", pollST=" + pollST + ", SDT=" + SDT + ", EDT="
 				+ EDT + ", queNo=" + queNo + ", queContent=" + queContent + ", answer=" + answer;
 	}
+
 	
 	
 	

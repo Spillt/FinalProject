@@ -85,79 +85,14 @@ background:url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-A
 				<td width="10%">시작하기</td>
 				<td width="10%">결과보기</td>
 			</tr>
+			<c:forEach var="list" items="${list}">
 			<tr>
-				<td >남자/여자가 싫어하는 말은?</td>
-				<td>2017.12.12 ~ 2017.12.30</td>
+				<td >${list.title}</td>
+				<td>${list.date}</td>
 				<td><a href="polldetail.do" class="btn btn-primary">시작하기</a></td>
 				<td><a href="pollresult.do" class="btn btn-primary">결과보기</a></td>
 			</tr>
-			<tr>
-				<td >남자/여자가 싫어하는 말은?</td>
-				<td>2017.12.12 ~ 2017.12.30</td>
-				<td><a href="polldetail.do" class="btn btn-primary">시작하기</a></td>
-				<td><a href="pollresult.do" class="btn btn-primary">결과보기</a></td>
-			</tr>
-			<tr>
-				<td >남자/여자가 싫어하는 말은?</td>
-				<td>2017.12.12 ~ 2017.12.30</td>
-				<td><a href="polldetail.do" class="btn btn-primary">시작하기</a></td>
-				<td><a href="pollresult.do" class="btn btn-primary">결과보기</a></td>
-			</tr>
-			<tr>
-				<td >남자/여자가 싫어하는 말은?</td>
-				<td>2017.12.12 ~ 2017.12.30</td>
-				<td><a href="polldetail.do" class="btn btn-primary">시작하기</a></td>
-				<td><a href="pollresult.do" class="btn btn-primary">결과보기</a></td>
-			</tr>
-			<tr>
-				<td >남자/여자가 싫어하는 말은?</td>
-				<td>2017.12.12 ~ 2017.12.30</td>
-				<td><a href="polldetail.do" class="btn btn-primary">시작하기</a></td>
-				<td><a href="pollresult.do" class="btn btn-primary">결과보기</a></td>
-			</tr>
-			<tr>
-				<td >남자/여자가 싫어하는 말은?</td>
-				<td>2017.12.12 ~ 2017.12.30</td>
-				<td><a href="polldetail.do" class="btn btn-primary">시작하기</a></td>
-				<td><a href="pollresult.do" class="btn btn-primary">결과보기</a></td>
-			</tr>
-			<tr>
-				<td >남자/여자가 싫어하는 말은?</td>
-				<td>2017.12.12 ~ 2017.12.30</td>
-				<td><a href="polldetail.do" class="btn btn-primary">시작하기</a></td>
-				<td><a href="pollresult.do" class="btn btn-primary">결과보기</a></td>
-			</tr>
-			<tr>
-				<td >남자/여자가 싫어하는 말은?</td>
-				<td>2017.12.12 ~ 2017.12.30</td>
-				<td><a href="polldetail.do" class="btn btn-primary">시작하기</a></td>
-				<td><a href="pollresult.do" class="btn btn-primary">결과보기</a></td>
-			</tr>
-			<tr>
-				<td >남자/여자가 싫어하는 말은?</td>
-				<td>2017.12.12 ~ 2017.12.30</td>
-				<td><a href="polldetail.do" class="btn btn-primary">시작하기</a></td>
-				<td><a href="pollresult.do" class="btn btn-primary">결과보기</a></td>
-			</tr>
-			<tr>
-				<td >남자/여자가 싫어하는 말은?</td>
-				<td>2017.12.12 ~ 2017.12.30</td>
-				<td><a href="polldetail.do" class="btn btn-primary">시작하기</a></td>
-				<td><a href="pollresult.do" class="btn btn-primary">결과보기</a></td>
-			</tr>
-			<tr>
-				<td >남자/여자가 싫어하는 말은?</td>
-				<td>2017.12.12 ~ 2017.12.30</td>
-				<td><a href="polldetail.do" class="btn btn-primary">시작하기</a></td>
-				<td><a href="pollresult.do" class="btn btn-primary">결과보기</a></td>
-			</tr>
-			<tr>
-				<td >남자/여자가 싫어하는 말은?</td>
-				<td>2017.12.12 ~ 2017.12.30</td>
-				<td><a href="polldetail.do" class="btn btn-primary">시작하기</a></td>
-				<td><a href="pollresult.do" class="btn btn-primary">결과보기</a></td>
-			</tr>
-			
+			</c:forEach>
 		</table>  
 
 	</div>

@@ -5,13 +5,15 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.godsky.findlove.user.model.vo.User" alias="User" />
+		<typeAlias type="com.godsky.findlove.main.eventboard.poll.model.vo.Poll" alias="Poll" />
 				
 	</typeAliases>
 	
 	<!-- 사용할 매퍼 파일 등록 : 필수 -->
 	<!-- 주의 : 등록된 매퍼 파일중에 오류가 있으면, 다른 매퍼에도 영향을 줌 -->
 	<mappers>
-		<mapper resource="mapper/user-mapper.xml" />		
+		
+		<mapper resource="mapper/poll-mapper.xml" />		
 	</mappers>
 </configuration>
 
