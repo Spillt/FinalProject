@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="matchUser">
+
+ <resultMap id="resultMatchUser" type="MatchUser">
+ 		<result property="myId" column="my_id" />
+		<result property="insertDate" column="insert_date" />
+		<result property="userId1" column="user_id1" />
+		<result property="userId2" column="user_id2" />
+		<result property="userId3" column="user_id3" />
+ </resultMap>
+ <select id="getUserCheck" resultType="MatchUser">
+ 	select * from match_user where my_id = #{userId} 
+ </select>
+ 
+ <insert id="insertMatchUser" parameterType="MatchUser">
+ 	insert into match_user values (#{userId},default,,,)
+ </insert>
+ 
+ 
+ 
+ <update id="updateReadCount" parameterType="int">
+		update tb_match_user
+		 set user_id1 = 'user44' and user_id2 = 'user55' and user_id3='user33' and insert_date = sysdate 
+		 where my_id='#{userId}';
+	</update>
+ 
+ 
+ </mapper>

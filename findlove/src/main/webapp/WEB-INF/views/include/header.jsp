@@ -246,7 +246,7 @@
                <li class="nav-item"><a class="nav-link js-scroll-trigger"
                   href="#">공지사항</a></li>
                <li class="nav-item"><a class="nav-link js-scroll-trigger"
-                  href="#">매칭 게시판</a></li>
+                  href="selectuserlist.do">매칭 게시판</a></li>
                <li class="nav-item"><a class="nav-link js-scroll-trigger"
                   href="#">프로필 게시판</a></li>
                <li class="nav-item"><a class="nav-link js-scroll-trigger"

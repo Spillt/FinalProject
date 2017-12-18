@@ -26,4 +26,14 @@
 			SELECT * FROM TB_USER WHERE User_ID = #{userId}
 		]]>
 	</select>
+		<select id="selectMatchList3" parameterType="java.util.Map" resultType="list" resultMap="resultUser">
+		   <![CDATA[
+	      select * from( 
+		    select user_id from tb_user
+			    left join TB_PROFILE using(user_id)
+			    where TB_PROFILE.GENDER = case when #{gender} = 'M' then 'F' else 'M' end
+			    order by DBMS_RANDOM.RANDOM)
+			where rownum <= 3 and user_id != 'admin';
+             ]]>
+   </select>
 </mapper>

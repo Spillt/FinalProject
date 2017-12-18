@@ -1,5 +1,6 @@
 package com.godsky.findlove.main.matchboard.qna.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.godsky.findlove.main.matchboard.qna.vo.MatchQnA;
+import com.godsky.findlove.main.matchboard.qna.vo.MatchUser;
+import com.godsky.findlove.user.model.vo.Profile;
 import com.godsky.findlove.user.model.vo.User;
 
 @Repository("MatchQnADao")
@@ -32,5 +35,21 @@ public class MatchQnADao {
 	
 	public MatchQnA selectMatchQnA(MatchQnA QnA){
 		return null;
+	}
+
+	public MatchUser selectUser(Profile profile) {
+		return sqlSession.selectOne("matchUser.getUserCheck",profile);
+	}
+
+	public int insertMatchUser(User user) {
+		return sqlSession.insert("matchUser.insertMatchUser",user); 
+	}
+
+	public int updateMatchUser(User user) {
+		return sqlSession.update("matchUser.updateMatchUser",user);
+	}
+
+	public List<Profile> select3(MatchUser muser) {
+		return sqlSession.selectList("profile.selectMatchUserList",muser);
 	}
 }
