@@ -6,18 +6,18 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.godsky.findlove.main.profileboard.model.dao.MessageDAO;
-import com.godsky.findlove.main.profileboard.model.vo.Message;
+import com.godsky.findlove.main.mymatchboard.model.dao.MyMessageDAO;
+import com.godsky.findlove.main.mymatchboard.model.vo.MyMessage;
 
 @Service("mymatchboardService")
 public class MymatchboardServiceImpl implements MymatchboardService{
 
-	@Resource(name="messageDAO")
-    private MessageDAO messageDAO;
+	@Resource(name="myMessageDAO")
+    private MyMessageDAO myMessageDAO;
 	
 	@Override
-	public List<Message> selectSendMessage(String senderId) {
-		return messageDAO.selectSendMessage(senderId);
+	public List<MyMessage> selectSendMessages(String sender_id) {
+		return myMessageDAO.selectSendMessages(sender_id);
 	}
 
 	/*@Override

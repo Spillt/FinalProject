@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.godsky.findlove.main.mymatchboard.model.service.MymatchboardService;
-import com.godsky.findlove.main.profileboard.model.vo.Message;
+import com.godsky.findlove.main.mymatchboard.model.vo.MyMessage;
 
 import net.sf.json.JSONObject;
 /**
@@ -39,23 +39,24 @@ public class MymatchboardController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/openSendMessageList.do", method=RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView openSendMessageList(@RequestParam("userId") String senderId) throws Exception {
+	public ModelAndView openSendMessageList(@RequestParam("sender_id") String sender_id) throws Exception {
+		System.out.println(sender_id);
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<Message> list = mymatchboardService.selectSendMessage(senderId);
-		System.out.println(senderId);
+		List<MyMessage> list = mymatchboardService.selectSendMessages(sender_id);
+		
 		JSONArray sendList = new JSONArray();
-		for(Message message: list) {
+		for(MyMessage message: list) {
 			JSONObject jMessage = new JSONObject();
-			jMessage.put("messageNo", message.getMessageNo());
-			jMessage.put("receiverId", message.getReceiverId());
-			jMessage.put("messageContent", message.getMessageContent());
-			jMessage.put("sendDT", message.getSendDT().toString());
-			jMessage.put("readFL", message.getReadFL());
-			jMessage.put("acceptST", message.getAcceptST());
+			jMessage.put("userNickNM", message.getUser_nicknm());
+			jMessage.put("messageContent", message.getMessage_content());
+			jMessage.put("sendDT", message.getSend_DT().toString());
+			jMessage.put("readFL", message.getRead_FL());
+			jMessage.put("acceptST", message.getAccept_ST());
 			
 			sendList.add(jMessage);
 		}
-				map.put("sendList", sendList);
+			map.put("sendList", sendList);
+			
 		ModelAndView mv = new ModelAndView("jsonView");
 		mv.addAllObjects(map);
 		

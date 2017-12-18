@@ -15,31 +15,22 @@ public interface UserService {
 	//회원 로그아웃
 	public void logout(HttpSession session);
 	
-	boolean createUser();
-
-	int checkEmail();
-
-	int checkName();
-
-	int checkNickName();
-
-	int checkPwd();
-
-	String sendNewPwd();
-
-	String randomCreatePwd();
-
-	int modifyPwd();
+	//회원 생성
+	public int insert(User user);
 
 	int changeUserState();
-
-	int updateUserInfo();
 
 	int createUserProfile();
 
 	int createIdealProfile();
 
 	public int idCheck(String userId);
+	
+	//회원 계정 찾기
+	public User findAccount(String email);
+	
+	//회원 정보 업데이트
+	public void updateInfo(String userId, String string, String password);
 
 
 	

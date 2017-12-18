@@ -180,13 +180,13 @@
 
 
 <script type="text/javascript">
-        var sender="${sessionScope.userId}";
+        var sender="${sessionScope.user_id}";
         
         $.ajax({
             url:"openSendMessageList.do",
             type: "post",
             dataType: "json",
-            data : {"userId":sender},
+            data : {"sender_id":sender},
             success : function(data){
                
                var jsonStr = JSON.stringify(data);
@@ -198,15 +198,17 @@
 					+'<th>받은사람</th>'
 					+'<th>내용</th>'
 					+'<th>보낸 날짜</th>'
+					+'<th>읽은 여부</th>'
 					+'<th>수락 여부</th>'
 					+'</tr>';
                for (var i in json.sendList){
             	   values+='<tr>'
-            	   +'<td><a href="">'+json.sendList[i].receiverId+'</a></td>'
+            	   +'<td><a href="">'+json.sendList[i].userNickNM+'</a></td>'
             	   +'<td><a href="javascript:OpenMessagePopup();">'+json.sendList[i].messageContent+'</a></td>'
-            	   +'<td>'+json.sendList[i].sendDT+'</a></td>'
-            	   +'<td>'+json.sendList[i].acceptST+'</a></td>'
-					+'</tr>';
+            	   +'<td>'+json.sendList[i].sendDT+'</td>'
+            	   +'<td>'+json.sendList[i].readFL+'</td>'
+            	   +'<td>'+json.sendList[i].acceptST+'</td>'
+				   +'</tr>';
 					}
          
                $('#tableData').html(values);

@@ -293,7 +293,7 @@
                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                <button type="button" class="btn btn-primary"
                   <%-- onclick="sendMessage('user77','${p.user_id}', '${sessionScope.Use_Point_CNT}')">10 별사탕차감</button> --%>
-                  onclick="sendMessage('${sessionScope.userId}','${p.user_id}')">10 별사탕 차감</button>
+                  onclick="sendMessage('${sessionScope.user_id}','${p.user_id}')">10 별사탕 차감</button>
             </div>
          </div>
       </div>
@@ -351,27 +351,23 @@
             $.ajax({
                url : 'sendMessage.do',
                type : 'post',
-               dataType : "json",
                data : {
-                  "sender_id" : sender,
-                  "reciever_id" : reciever,
-                  "message_content" : message
+                  "sender" : sender,
+                  "reciever" : reciever,
+                  "message" : message
                },
                success : function(data) {
-                /*  if (data == 1) {
+                  if (data == 1) {
                      alert("메시지 보내기 성공!");
                      modal.modal('hide');
                   } else {
-                     alert("포인트 부족!");
+                     alert("별사탕 부족합니다.");
                      modal.modal('hide');
-                  }  */
-                  
-                  alert("메세지 보내기 성공!");
-                  modal.modal('hide');
+                  }
                   $('#message-text').val('');
                },
                error : function(data) {
-                  alert("메시지보내기 오류");
+                  alert("메세지 오류!");
                   modal.modal('hide');
                }
             })

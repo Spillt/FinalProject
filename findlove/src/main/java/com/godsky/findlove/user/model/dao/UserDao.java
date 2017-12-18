@@ -42,44 +42,20 @@ public class UserDao {
 	}
 	
 	//로그아웃
-	public void logout(HttpSession session){
-		
+	public void logout(HttpSession session){}
+	
+	//회원 생성
+	public int creatUser(User vo){
+		System.out.println("dao");
+		return sqlSession.insert("user.insertUser", vo);
 	}
 	
-	public boolean creatUser(){
-		return false;
-		
-	}
-	
-	public int checkEmail(){
-		return 0;		
-	}
-	
-	public int checkName(){
-		return 0;		
-	}
-	
-	public int checkNickName(){
-		return 0;
-		
-	}
-	
-	public int checkPwd(){
-		return 0;
-	}
-	
-	public int modifyPwd(){
-		return 0;
-	}
+
 	
 	public int changeUserState(){
 		return 0;
 	}
 	
-	public int updateUserInfo(){
-		return 0;
-		
-	}
 	
 	public int createUserProfile(){
 		return 0;
@@ -93,6 +69,10 @@ public class UserDao {
 
 	public int idCheck(String userId) {
 		return sqlSession.selectOne("user.idCheck", userId);
+	}
+
+	public User findAccount(String email) {
+		return sqlSession.selectOne("user.findAccount", email);
 	}
 
 }

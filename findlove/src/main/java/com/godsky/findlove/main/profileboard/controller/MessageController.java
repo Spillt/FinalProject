@@ -1,47 +1,57 @@
 package com.godsky.findlove.main.profileboard.controller;
 
-import javax.annotation.Resource;
+import java.io.IOException;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-
+import com.godsky.findlove.main.profileboard.model.service.KonpeitoService;
 import com.godsky.findlove.main.profileboard.model.service.MessageService;
 import com.godsky.findlove.main.profileboard.model.vo.Message;
 
 /**
  * Handles requests for the application home page.
  */
-@RestController
+@Controller
 public class MessageController {
 
 	public MessageController() {}
 	
 	@Resource(name="messageService")
 	private MessageService messageService;
-
+	
+	@Resource(name="konpeitoService")
+	private KonpeitoService konpeitoService;
 	
 	/*ajax로 실행될 메소드*/
-	@RequestMapping("sendMessage.do")
-	public ResponseEntity<String> sendMessage(@RequestParam("sender_id")String sender_id, @RequestParam("reciever_id")String reciever_id, @RequestParam("message_content")String message_content) {
-		Message message = new Message(sender_id, reciever_id, message_content);
+	@RequestMapping("/sendMessage.do")
+	public void sendMessage(HttpServletResponse response, @RequestParam("sender")String sender, @RequestParam("reciever")String reciever, @RequestParam("message")String content) {
+		Message message = new Message(sender, reciever, content);
 		System.out.println(message);
 		
-		ResponseEntity<String> entity = null;
+		//별사탕이 10보다 많은지 확인 -> 많으면 1출력, 부족하면 0출력
+		int point = konpeitoService.checkpoint(sender);
+		System.out.println(point);
 		
-		try {
-			messageService.sendMessage(message);
-			entity = new ResponseEntity<String>("success", HttpStatus.OK);
+		if(point == 1) { //별사탕이 10보다 많을 때 
+			int result = messageService.sendMessage(message);
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-            entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+			try {
+		        response.getWriter().print(result); //메세지성공
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    } 
+		}else { //별사탕이 10보다 작을 떄
+			
+			try {
+		        response.getWriter().print(point); //별사탕부족
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    } 
 		}
-		System.out.println(entity);
-		return entity;
-		
 	}
 }

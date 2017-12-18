@@ -5,7 +5,7 @@
 <mapper namespace="konpeito">
 
 	<update id="updateKonpeito">
-		UPDATE TB_USER SET KONPEITO_CNT = KONPEITO_CNT - #{point}
+		UPDATE TB_USER SET KONPEITO_CNT = KONPEITO_CNT - #{konpeito_cnt}
 		WHERE USER_ID = #{sender_id}
 	</update>
 	
@@ -16,7 +16,7 @@
      		ELSE 0
 		END 
 		FROM TB_USER
-		WHERE USER_ID = #{senderId}
+		WHERE USER_ID = #{sender_id}
 	]]>
 	</select>
 	

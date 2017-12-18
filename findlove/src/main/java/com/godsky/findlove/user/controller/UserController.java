@@ -49,7 +49,6 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		if(result == true){
 			mav.setViewName("home");
-			mav.addObject("msg", "success");
 			System.out.println("세션추가됨");
 		}else{
 			mav.setViewName("home");
@@ -108,11 +107,20 @@ public class UserController {
 	}
 		
 	//회원가입 페이지
-	@RequestMapping(value = "signupview.do")
+	@RequestMapping(value = "signup.do", method=RequestMethod.GET)
 	public String signUpView(){
 		return "user/signup";		
 	}
-		
+	
+	
+	//회원가입 처리
+	@RequestMapping(value = "signup.do", method=RequestMethod.POST)
+	public String signUp(User user) throws Exception{
+		System.out.println(user);
+		userService.insert(user);
+		return "home";
+	}
+
 	
 	//내정보	
 	@RequestMapping(value = "myinfo.do")

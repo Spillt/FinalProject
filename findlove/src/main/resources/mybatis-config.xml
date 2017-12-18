@@ -8,7 +8,7 @@
 		<typeAlias type="com.godsky.findlove.main.profileboard.model.vo.Report" alias="Report" />
 		<typeAlias type="com.godsky.findlove.main.profileboard.model.vo.Message" alias="Message" />
 		<typeAlias type="com.godsky.findlove.main.profileboard.model.vo.Profileboard" alias="Profileboard" />
-				
+		<typeAlias type="com.godsky.findlove.main.mymatchboard.model.vo.MyMessage" alias="MyMessage" />		
 	</typeAliases>
 	
 	<!-- 사용할 매퍼 파일 등록 : 필수 -->
@@ -17,8 +17,8 @@
 		<mapper resource="mapper/user-mapper.xml" />
 		<mapper resource="mapper/profile-mapper.xml" />	
 	 	<mapper resource="mapper/message-mapper.xml" /> 
+	 	<mapper resource="mapper/mymessage-mapper.xml" /> 
 	 	<mapper resource="mapper/report-mapper.xml" /> 
-	 	<mapper resource="mapper/point-mapper.xml" />
 	 	<mapper resource="mapper/konpeito-mapper.xml" /> 		
 	</mappers>
 </configuration>
