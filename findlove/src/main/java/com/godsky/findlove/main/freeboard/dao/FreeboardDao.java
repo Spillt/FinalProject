@@ -16,7 +16,7 @@ public class FreeboardDao extends AbstractDAO{
 	
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectFreeboardService(Map<String, Object> map) throws Exception{	
-		return sqlSession.selectList("freeboard.selectFreeboardList", map);
+		return sqlSession.selectList("freeboard.selectFreeboardList");
 	}
 
 	//작성하기

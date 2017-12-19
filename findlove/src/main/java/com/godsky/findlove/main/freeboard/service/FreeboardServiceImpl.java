@@ -33,9 +33,9 @@ public class FreeboardServiceImpl implements FreeboardService{
 	public void insertFreeboard(Map<String, Object> map, HttpServletRequest request) throws Exception{
 		FreeboardDao.insertFreeboard(map);
 		
-		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
+		/*List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
 		for(int i=0, size=list.size(); i<size; i++){
-			FreeboardDao.insertFile(list.get(i));
+			FreeboardDao.insertFile(list.get(i));*/
 		}
 	}
 

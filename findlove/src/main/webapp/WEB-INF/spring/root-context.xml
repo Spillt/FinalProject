@@ -12,12 +12,9 @@
 	    <property name="password" value="final" />
 	</bean>			
 		
-	<bean id="sqlSession"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
-	<property name="configLocation"
-		value="classpath:mybatis-config.xml">
-	</property>
-	<property name="dataSource" ref="dataSource"></property>
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
 	<bean class="org.mybatis.spring.SqlSessionTemplate">

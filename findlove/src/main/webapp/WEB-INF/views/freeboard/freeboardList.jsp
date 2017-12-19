@@ -34,7 +34,7 @@
 }
 
 .masthead {
-	margin-bottom: 20px;
+	margin-top: 80px;
 }
 </style>
 </head>
@@ -43,17 +43,8 @@
 	<c:import url="../include/header.jsp" />
 
 
-	<!-- Header -->
-	<!-- <header class="masthead">
-		<div class="container">
-			<div class="intro-text">
-				<div class="intro-heading">&nbsp;</div>
-				<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger"
-					href="#services">시작하기</a>
-			</div>
-		</div>
-	</header> -->
-	<!-- Header 끝 -->
+	<header class="masthead">
+	</header>
 
 	<table style="border: 1px solid #ccc">
 		<colgroup>
@@ -75,10 +66,10 @@
 				<c:when test="${fn:length(list) > 0 }">
 					<c:forEach items="${list }" var="row">
 						<tr>
-							<td>${row.FREE_NO }</td>
-							<td>${row.FREE_TITLE }</td>
-							<td>${row.FREE_READ_CNT }</td>
-							<td>${row.FREE_DT }</td>
+							<td>${row.freeNo }</td>
+							<td>${row.freeTitle }</td>
+							<td>${row.freeReadCnt }</td>
+							<td>${row.freeDt }</td>
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -120,5 +111,11 @@
 		} */
 	</script> -->
 	<c:import url="../include/footer.jsp" />
+	
+	<script>
+	$(function() {
+        $('#mainNav').css('background-color', '#faadad');
+     });
+	</script>
 </body>
 </html>

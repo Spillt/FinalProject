@@ -33,22 +33,6 @@ public class FreeboardController {
 
 		return mv;
 	}
-
-	//CustomMapArgumentResolver 등록 확인
-	/*@RequestMapping(value = "testMapArgumentResolver.do")
-	public ModelAndView testMapArgumentResolver(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("");
-
-		if(commandMap.isEmpty() == false) {
-			Iterator<Entry<String, Object>> iterator = commandMap.getMap().entrySet().iterator();
-			Entry<String, Object> entry = null;
-			while (iterator.hasNext()) {
-				entry = iterator.next();
-				log.debug("key : " + entry.getKey() + ", value : " + entry.getValue());
-			}
-		}
-		return mv;
-	}*/
 	
 	//글쓰기 액션 호출
 	@RequestMapping(value="openFreeboardWrite.do")

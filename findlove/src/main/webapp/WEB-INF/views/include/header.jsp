@@ -67,8 +67,8 @@
    transition: 0.3s;
    font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
    white-space: nowrap
-   
 }
+
 .sidenav .closebtn {
    margin-left:265px;
    padding: 0px;
@@ -218,25 +218,25 @@
    padding-left:20px;
 }
 #go-to-top {
-	display:none;
-	position: fixed;
-	bottom: 30px;
-	right: 30px;
-	z-index: 99;
-	outline: none;
-	background-color: #faadad;
-	color: white;
-	cursor: pointer;
-	padding: 15px;
-	border-radius: 1px;
-	opacity:0.7
+   display:none;
+   position: fixed;
+   bottom: 30px;
+   right: 30px;
+   z-index: 99;
+   outline: none;
+   background-color: #faadad;
+   color: white;
+   cursor: pointer;
+   padding: 15px;
+   border-radius: 1px;
+   opacity:0.7
 }
 </style>
 </head>
 <body>
    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
       <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Find love</a>
+      <a class="navbar-brand js-scroll-trigger" href="home.do">Find love</a>
       <div id="container2">
          <span id="menu-btn" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarResponsive"><i class="material-icons">menu</i><i class="fa fa-bars"></i></span>
          <span id="account-sm" onclick="openNav()"><i class="material-icons md-36">account_circle</i></span>
@@ -265,50 +265,90 @@
          
          <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="material-icons">close</i></a>
-            <img src="/findlove/resources/img/logos/logo.png" class="logo">
-            <div class="nav-text">로그인하세요</div>
-            <hr class="horiz-divide">
-            <form class="form-container">
-               <input type="text" class="form-control" placeholder="아이디">
-               <input type="password" class="form-control" placeholder="패스워드">
-               <button class="form-control btn">로그인</button>
-               <label class="form-check-label"><input type="checkbox" class="form-check-input">아이디 저장</label>
-            </form>
-            <div class="btn-toolbar">
-               <div class="btn-group mr-2">
-                  <button class="btn btn-naver">N</button>
+            <div id="beforelogin">
+               <img src="/findlove/resources/img/logos/logo.png" class="logo">
+               <div class="nav-text">로그인하세요</div>
+               <hr class="horiz-divide">
+               <form class="form-container">
+                  <input type="text" class="form-control" placeholder="아이디">
+                  <input type="password" class="form-control" placeholder="패스워드">
+                  <button id="loginbtn" type="button" class="form-control btn">로그인</button>
+                  <br>
+                  <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input">아이디 저장</label>
+               </form>
+               <div class="btn-toolbar">
+                  <div class="btn-group mr-2">
+                     <button class="btn btn-naver">N</button>
+                  </div>
+                  <div class="btn-group mr-2">
+                     <button class="btn btn-face">f</button>
+                  </div>
                </div>
-               <div class="btn-group mr-2">
-                  <button class="btn btn-face">f</button>
+               <hr class="horiz-divide">
+               <div class="i-a-group">
+                  <i class="material-icons">group_add</i><a href="#">회원가입</a>
+               </div>
+               <div class="i-a-group">
+                  <i class="material-icons">search</i><a href="#">아이디/비밀번호 찾기</a>
+               </div>
+               <hr class="horiz-divide">
+            </div>
+            <div id="afterlogin" style="display:none">
+               <img src="/findlove/resources/img/logos/logo.png" class="logo">
+               <div class="nav-text">관리자님</div>
+               <hr class="horiz-divide">
+               
+               <div class="i-a-group">
+                  <i class="material-icons">supervisor_account</i><a href="userlist.do">회원관리</a>
+               </div>
+               <div class="i-a-group">
+                  <i class="material-icons">assignment</i><a href="#">게시판관리</a>
+               </div>
+                <div class="i-a-group">
+                  <i class="material-icons">show_chart</i><a href="statisticlist.do">통계관리</a>
+               </div>
+                <hr class="horiz-divide">
+               <div class="form-container">
+               <button id="logoutbtn" class="form-control btn">로그아웃</button>
                </div>
             </div>
-            <hr class="horiz-divide">
-            <div class="i-a-group">
-               <i class="material-icons">group_add</i><a href="#">회원가입</a>
-            </div>
-            <div class="i-a-group">
-               <i class="material-icons">search</i><a href="#">아이디/비밀번호 찾기</a>
-            </div>
-            <hr class="horiz-divide">
          </div>
+         
    </nav>
    <a id="go-to-top" class="js-scroll-trigger" href="#page-top"><i class="material-icons">expand_less</i></a>
-	<script>
-	window.onscroll = function() {scrollFunction()};
-		function openNav() {
-			document.getElementById("mySidenav").style.width = "300px";
-		}
+   
+   <script type="text/javascript" src="/findlove/resources/js/jquery-3.2.1.min.js"></script>
+   <script type="text/javascript" src="/findlove/resources/js/bootstrap.bundle.min.js"></script>
+   <script type="text/javascript" src="/findlove/resources/js/contact_me.js"></script>
+   <script type="text/javascript" src="/findlove/resources/js/jqBootstrapValidation.js"></script>
+   <script type="text/javascript" src="/findlove/resources/js/jquery.easing.min.js"></script>
+   <script type="text/javascript" src="/findlove/resources/js/agency.min.js"></script>
+   <script>
+      window.onscroll = function() {scrollFunction()};
+      function openNav() {
+         document.getElementById("mySidenav").style.width = "300px";
+      }
 
-		function closeNav() {
-			document.getElementById("mySidenav").style.width = "0";
-		}
-		function scrollFunction() {
-		    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-		        document.getElementById("go-to-top").style.display = "block";
-		    } else {
-		        document.getElementById("go-to-top").style.display = "none";
-		    }
-		}
-	</script>
+      function closeNav() {
+         document.getElementById("mySidenav").style.width = "0";
+      }
+      function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+              document.getElementById("go-to-top").style.display = "block";
+          } else {
+              document.getElementById("go-to-top").style.display = "none";
+          }
+      }
+      
+      $('button#loginbtn').click(function() {
+         $('#beforelogin').hide();
+         $('#afterlogin').show();
+      });
+      $('button#logoutbtn').click(function() {
+         $('#beforelogin').show();
+         $('#afterlogin').hide();
+      });
+   </script>
 </body>
 </html>

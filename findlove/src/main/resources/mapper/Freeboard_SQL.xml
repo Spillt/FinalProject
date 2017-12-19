@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="freeboard">
 
+	<resultMap id="resultFreeboardList" type="Freeboard">
+		<id property="freeNo" column="FREE_NO"/>
+		<result property="freeTitle" column="FREE_TITLE"/>
+		<result property="freeWriter" column="FREE_WRITER_ID"/>
+		<result property="freeContent" column="FREE_CONTENT"/>
+		<result property="freeOnm" column="FREE_FILE_ONM"/>
+		<result property="freeRnm" column="FREE_FILE_RNM"/>
+		<result property="freeDt" column="FREE_DT"/>
+		<result property="freeLevel" column="FREE_LEVEL"/>
+		<result property="freeRef" column="FREE_REF"/>
+		<result property="freeReflyRef" column="FREE_REPLY_REF"/>
+		<result property="freeReflySq" column="FREE_REPLY_SQ"/>
+		<result property="freeReadCnt" column="FREE_READ_CNT"/>
+	</resultMap>
+
 	<!-- list 조회 -->
-	<select id="selectFreeboardList" parameterType="hashmap" resultType="hashmap">
+	<select id="selectFreeboardList" resultType="Freeboard" resultMap="resultFreeboardList">
 		<![CDATA[
 			SELECT Free_NO, Free_Title, Free_Read_CNT, Free_DT 
 			FROM TB_FREE 
@@ -14,11 +28,12 @@
 	</select>
 	
 	<!-- 작성하기 -->
-	<insert id="insertFreeboard" parameterType="hashmap">
+	<insert id="insertFreeboard">
 		<![CDATA[
 			INSERT INTO TB_FREE 
-			VALUES(SEQ_TB_FREE_NO.NEXTVAL, #{TITLE}, #{WRITER}, #{CONTENT}, NULL, NULL, SYSDATE, 0, 0, 0, 0, 0)
+			VALUES(SEQ_TB_FREE_NO.NEXTVAL, #{freeTitle}, #{freeWriter}, #{freeContent}, NULL, NULL, SYSDATE, NULL, NULL, NULL, NULL, 0)
 		]]>
 	</insert>
+	
 
 </mapper>
