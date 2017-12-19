@@ -43,6 +43,9 @@
 		.masthead {
 			margin-bottom: 20px;
 		}
+		.container.top{
+			margin-top: 100px;
+		}
 	</style>
 	
 </head>
@@ -63,21 +66,21 @@
 
 	<!-- Header -->
 	<header class="masthead">
-		<div class="container">
-			<div class="intro-text">
+		<div class="container top">
+		<!-- 	<div class="intro-text">
 				<div class="intro-heading">&nbsp;</div>
 				<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger"
 					href="#services">시작하기</a>
-			</div>
+			</div> -->
 		</div>
 	</header>
 
 	<!-- Portfolio Grid -->
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-12 text-center">
+			<!-- <div class="col-lg-12 text-center">
 				<img class="img-fluid" src="/findlove/resources/img/ad/ad-banner.jpg">
-			</div>
+			</div> -->
 		</div>
 	</div>
 
@@ -228,6 +231,12 @@ function OpenMessagePopup(){
 }
 
 </script>
+
+<script type="text/javascript">
+					$(function() {
+						$('#mainNav').css('background-color', '#faadad');
+					});
+				</script>
 
 </body>
 

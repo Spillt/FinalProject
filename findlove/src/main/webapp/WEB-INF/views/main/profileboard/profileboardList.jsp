@@ -42,6 +42,9 @@
 		.masthead {
 			margin-bottom: 20px;
 		}
+		.container.top{
+			margin-top: 100px;
+		}
 	</style>
 </head>
 <body id="page-top">
@@ -61,11 +64,11 @@
 
 	<!-- Header -->
 	<header class="masthead">
-		<div class="container">
+		<div class="container top">
 			<div class="intro-text">
-				<div class="intro-heading">&nbsp;</div>
+			<!-- 	<div class="intro-heading">&nbsp;</div>
 				<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger"
-					href="#services">시작하기</a>
+					href="#services">시작하기</a>-->
 			</div>
 		</div>
 	</header>
@@ -208,6 +211,11 @@
 	<hr>
 	
 	<c:import url="../../include/footer.jsp" /> 
+	<script type="text/javascript">
+					$(function() {
+						$('#mainNav').css('background-color', '#faadad');
+					});
+				</script>
 </body>
 
 </html>

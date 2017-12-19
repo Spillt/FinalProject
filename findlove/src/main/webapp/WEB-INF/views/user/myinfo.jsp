@@ -42,25 +42,19 @@
 		.masthead {
 			margin-bottom: 20px;
 		}
+		.container.top {
+			margin-top: 100px;
+		}
+		
 	</style>
 	
 </head>
 <body id="page-top">
 <c:import url="../include/header.jsp" />
-
-	<!-- Header -->
-	<header class="masthead">
-		<div class="container">
-			<div class="intro-text">
-				<div class="intro-heading">&nbsp;</div>
-				<!-- <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger"
-					href="#services">시작하기</a> -->
-			</div>
-		</div>
-	</header>
+	
 
 	<!-- Portfolio Grid -->
-	<div class="container">
+	<div class="container top">
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<!-- <img class="img-fluid" src="/findlove/resources/img/ad/ad-banner.jpg"> -->
@@ -171,6 +165,11 @@
 	
 	<c:import url="../include/footer.jsp" /> 
 	
+	
+	<script type="text/javascript">$(function() {
+         $('#mainNav').css('background-color', '#faadad');
+      });
+	</script>
 
 </body>
 </html>

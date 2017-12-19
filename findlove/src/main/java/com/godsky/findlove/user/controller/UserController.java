@@ -172,7 +172,11 @@ public class UserController {
 		return "user/findidpwd";		
 	}
 	
-	
+	//스토어 이동
+	@RequestMapping(value = "store.do")
+	public String store(){
+		return "user/store";
+	}
 
 
 	
