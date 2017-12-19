@@ -27,7 +27,6 @@ background:url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-A
 	padding-top: 10px;
 	margin: 0 auto;
 	text-align: center;
-	border: 1px solid  #ffb7b9;
 }
 
 .event ul {
@@ -58,7 +57,7 @@ background:url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-A
   }
   td {
     background-color: white;
-  }
+  } 
 </style>
 </head>
 <body>
@@ -78,22 +77,26 @@ background:url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-A
 	</div>
 	<hr>
 	<div class="poll" id="polltitle">
-		<table id="tableData" class="table table-bordered table-striped" align="center" border="1">
-			<tr >
-				<td width="60%">설문내용</td>
-				<td width="20%">설문기간</td>
-				<td width="10%">시작하기</td>
-				<td width="10%">결과보기</td>
-			</tr>
-			<c:forEach var="list" items="${list}">
+	<table id="tableData" class="table table-striped text-center">
+            <thead>
+               <tr>
+                  <th>설문내용</th>
+                  <th>기간</th>
+                  <th>설문시작</th>
+                  <th>결과보기</th>
+               </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="list" items="${list}">
 			<tr>
-				<td >${list.title}</td>
-				<td>${list.date}</td>
+				<td >${list.pollTitle}</td>
+				<td>${list.SDT}~${list.EDT}</td>
 				<td><a href="polldetail.do" class="btn btn-primary">시작하기</a></td>
 				<td><a href="pollresult.do" class="btn btn-primary">결과보기</a></td>
 			</tr>
 			</c:forEach>
-		</table>  
+</tbody>
+</table>
 
 	</div>
 	
@@ -107,6 +110,7 @@ background:url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-A
 		  $(document).ready(function() {
               $('#tableData').paging({limit:5});
           });
+		  
 	</script>
 	    
 </body>

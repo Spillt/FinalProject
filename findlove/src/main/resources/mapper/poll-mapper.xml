@@ -10,18 +10,25 @@
 		<result property="pollST" column="Poll_ST"/>
 		<result property="SDT" column="Start_DT"/>
 		<result property="EDT" column="End_DT"/>
-		<result property="queNo" column="Question_NO"/>
-		<result property="queContent" column="Question_Content"/>
+		<result property="answer1" column="Answer1"/>
+		<result property="answer2" column="Answer2"/>
+		<result property="answer3" column="Answer3"/>		
 		<result property="answer" column="Answer"/>
 	</resultMap>
 	
 	<select id="listAll" resultType="Poll" resultMap="PollList">
 		<![CDATA[
-			SELECT *
+			SELECT POLL_NO,POLL_TITLE,POLL_ST,START_DT,END_DT,ANSWER1,ANSWER2,ANSWER3,ANSWER
 			FROM TB_POLL
-			JOIN TB_POLL_QUESTION, TB_POLL_ANSWER
-			ORDER BY Poll_NO DESC, Start_DT DESC;
+			JOIN TB_POLL_ANSWER using (POLL_NO)
+			ORDER BY Poll_NO DESC, Start_DT DESC
 			
-		]]>
+		]]>				
 	</select>
+<!-- 	<select id="deail" resultType="Poll" resultMap="Polldetail">
+		SELECT POLL_NO,POLL_TITLE,POLL_ST,START_DT,END_DT,ANSWER1,ANSWER2,ANSWER3,ANSWER
+        FROM TB_POLL
+		JOIN TB_POLL_ANSWER using (POLL_NO)
+        WHERE POLL_NO = #{POLL_NO}
+    </select> -->    
 </mapper>
