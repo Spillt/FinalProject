@@ -17,11 +17,11 @@ public class PollDao {
 	private SqlSessionTemplate sqlSession;
 
 	public List<Poll> listAll(){
-		return null; //sqlSession.selectList("poll.listAll");
+		return sqlSession.selectList("poll.listAll");
 	}
 
 	public Poll getPolldetail(int pollNo) {
-		return null;
+		return null;//SqlSession.selectone("Poll.detail");
 	}
 	
 	public Poll getPoll(int no) {

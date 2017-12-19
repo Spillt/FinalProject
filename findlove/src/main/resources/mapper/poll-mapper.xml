@@ -25,10 +25,11 @@
 			
 		]]>				
 	</select>
-<!-- 	<select id="deail" resultType="Poll" resultMap="Polldetail">
+	<!-- <select id="deail" resultType="Poll" resultMap="Polldetail">
 		SELECT POLL_NO,POLL_TITLE,POLL_ST,START_DT,END_DT,ANSWER1,ANSWER2,ANSWER3,ANSWER
         FROM TB_POLL
 		JOIN TB_POLL_ANSWER using (POLL_NO)
         WHERE POLL_NO = #{POLL_NO}
-    </select> -->    
+    </select> -->
+    
 </mapper>
