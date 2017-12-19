@@ -32,7 +32,7 @@ public class MatchQnAController {
 	@RequestMapping(value="selectuserlist.do", method=RequestMethod.GET)
 	public ModelAndView selectUserList(User user,Profile profile,HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
-		MatchUser muser = (MatchUser)matchQnAService.selectUser(profile);
+		/*MatchUser muser = (MatchUser)matchQnAService.selectUser(profile);
 		
 		if(user!= null){
 			if(profile != null){
@@ -51,13 +51,15 @@ public class MatchQnAController {
 		}else{
 			
 			mv.setViewName("matchboard/qna/error");//로그인필요
-		}
+		}*/mv.setViewName("matchboard/qna/matchMain");
 		return mv;
 	}
 	
-	@RequestMapping(value="insertmatchqna.do", method=RequestMethod.POST)
-	public MatchQnA insertMatchQnA(MatchQnA QnA){
-		return null;
+	@RequestMapping(value="insertmatchqna.do", method=RequestMethod.GET)
+	public ModelAndView insertMatchQnA(MatchQnA QnA){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("matchboard/qna/matchInsertView");
+		return mv;
 	}
 	
 	@RequestMapping(value="updatematchqna.do", method=RequestMethod.POST)
@@ -70,9 +72,11 @@ public class MatchQnAController {
 		return null;
 	}
 	
-	@RequestMapping(value="selectmatchqna.do", method=RequestMethod.POST)
-	public MatchQnA selectMatchQnA(MatchQnA QnA){
-		return null;
+	@RequestMapping(value="selectmatchqna.do", method=RequestMethod.GET)
+	public ModelAndView selectMatchQnA(MatchQnA QnA){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("matchboard/qna/matchQnAView");
+		return mv;
 	}
 	
 }
