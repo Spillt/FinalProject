@@ -268,7 +268,7 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav text-uppercase ml-auto">
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#">공지사항</a></li>
+						href="notice.do">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="selectuserlist.do">매칭 게시판</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"

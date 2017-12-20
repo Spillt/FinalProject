@@ -6,6 +6,10 @@
 <html>
 <head>
 <meta charset=UTF-8">
+<link rel="stylesheet" type="text/css"
+	href="/findlove/resources/css/credit.css">
+
+
 <title>연애의발견::스토어</title>
 
 <style type="text/css">
@@ -58,9 +62,6 @@
 .container.top {
 	margin-top: 100px;
 }
-
-
-
 </style>
 
 </head>
@@ -93,130 +94,149 @@
 						href="store.do" class="list-group-item active">스토어</a>
 				</div>
 				<div class="list-group" style="margin-bottom: 24px;">
-				<span class="list-group-item">보유별사탕 개수</span> 
-				<span class="list-group-item"><img src="/findlove/resources/img/konpeito.jpg" style="margin-left:15px; width:90px; height:60px;"><font size="6";> 25</font></span> 				
+					<span class="list-group-item">보유별사탕 개수</span> <span
+						class="list-group-item"><img
+						src="/findlove/resources/img/konpeito.jpg"
+						style="margin-left: 15px; width: 90px; height: 60px;"><font
+						size="6";> 25</font></span>
 				</div>
 				<div class="btn" style="padding-left: 75px;">
 					<button>이전</button>
 					<button>다음</button>
 				</div>
 				<div class="list-group">
-				<a class="list-group-item">별사탕 이용내역</a>
-				<div class="inner" style="width:1275px; height:350px; margin-left:0px;">
-					<ul class="list-group" style="position: relative; height: 255px; float: left; width: 255px;">
-						<li class="row"></li>
-						<li class="row"></li>
-						<li class="row"></li>
-						<li class="row"></li>
-						<li class="row"></li>					
-					</ul>
-					<ul class="list-group">
-						<li class="row"></li>
-						<li class="row"></li>
-						<li class="row"></li>
-						<li class="row"></li>
-						<li class="row"></li>					
-					</ul>
-					<ul class="list-group">
-						<li class="row"></li>
-						<li class="row"></li>
-						<li class="row"></li>
-						<li class="row"></li>
-						<li class="row"></li>					
-					</ul>
-					<ul class="list-group">
-						<li class="row"></li>
-						<li class="row"></li>
-						<li class="row"></li>
-						<li class="row"></li>
-						<li class="row"></li>					
-					</ul>
-					<ul class="list-group">
-						<li class="row"></li>
-						<li class="row"></li>
-						<li class="row"></li>
-						<li class="row"></li>
-						<li class="row"></li>					
-					</ul>
+					<a class="list-group-item">별사탕 이용내역</a>
+					<div class="inner"
+						style="width: 1275px; height: 350px; margin-left: 0px;">
+						<ul class="list-group"
+							style="position: relative; height: 255px; float: left; width: 255px;">
+							<li class="row"></li>
+							<li class="row"></li>
+							<li class="row"></li>
+							<li class="row"></li>
+							<li class="row"></li>
+						</ul>
+						<ul class="list-group">
+							<li class="row"></li>
+							<li class="row"></li>
+							<li class="row"></li>
+							<li class="row"></li>
+							<li class="row"></li>
+						</ul>
+						<ul class="list-group">
+							<li class="row"></li>
+							<li class="row"></li>
+							<li class="row"></li>
+							<li class="row"></li>
+							<li class="row"></li>
+						</ul>
+						<ul class="list-group">
+							<li class="row"></li>
+							<li class="row"></li>
+							<li class="row"></li>
+							<li class="row"></li>
+							<li class="row"></li>
+						</ul>
+						<ul class="list-group">
+							<li class="row"></li>
+							<li class="row"></li>
+							<li class="row"></li>
+							<li class="row"></li>
+							<li class="row"></li>
+						</ul>
+					</div>
 				</div>
-				</div>
-				
-			</div>
-			
 
+			</div>
 
 			<div class="col-lg-9">
 				<div class="card card-outline-secondary my-4">
 					<div class="card-header">1. 별사탕 개수 선택</div>
 					<div class="card-body">
 						<form action="myinfo" name="myinfo" method="post">
+						
+							<section id="plans">
+								<div class="container">
+									<div class="row">
 
-							<!-- 사용자 이미지 -->
-							<table class="table table-bordered">
-								<tr>
-									<td>
-										<div class="image1">
-										<a target="_blank" href="img_fjords.jpg"> <img
-										src="/findlove/resources/img/konpeito.jpg" alt="" width="120"
-										height="120">
-										</a>
-										<div class="center">10개(￦1,000)</div>										
+										<!-- item -->
+										<div class="col-md-4 text-center">
+											<div class="panel panel-danger panel-pricing">
+												<div class="panel-body text-center">
+													<img src="/findlove/resources/img/konpeito.jpg" alt=""
+														style="margin-bottom: 15px;"> <span>10</span>
+												</div>
+												<ul class="list-group text-center">
+													<li class="list-group-item">￦ 1,000</li>
+												</ul>
+												<div class="panel-footer">
+													<a class="btn btn-lg btn-block btn-danger" href="#">BUY
+														NOW!</a>
+												</div>
+											</div>
 										</div>
-									</td>
-									<td>
-										<div class="image1">
-										<a target="_blank" href="img_fjords.jpg"> <img
-										src="/findlove/resources/img/konpeito.jpg" alt="" width="120"
-										height="120">
-										</a>
-										<div class="desc">20개+보너스2개(￦2,000)</div>
+										<!-- /item -->
+										<!-- item -->
+										<div class="col-md-4 text-center">
+											<div class="panel panel-danger panel-pricing">
+												<div class="panel-body text-center">
+													<img src="/findlove/resources/img/konpeito.jpg" alt=""
+														style="margin-bottom: 15px;"> <span>30(+5)</span>
+												</div>
+												<ul class="list-group text-center">
+													<li class="list-group-item">￦ 3,000</li>
+												</ul>
+												<div class="panel-footer">
+													<a class="btn btn-lg btn-block btn-danger" href="#">BUY
+														NOW!</a>
+												</div>
+											</div>
 										</div>
-									</td>
-									<!-- <td>
-										<div class="image1">
-										<a target="_blank" href="img_fjords.jpg"> <img
-										src="/findlove/resources/img/konpeito.jpg" alt="" width="120"
-										height="120">
-										</a>
-										<div class="desc">30개+보너스5개(￦3,000)</div>
+										<!-- /item -->
+										<!-- item -->
+										<div class="col-md-4 text-center">
+											<div class="panel panel-danger panel-pricing">
+												<div class="panel-body text-center">
+													<img src="/findlove/resources/img/konpeito.jpg" alt=""
+														style="margin-bottom: 15px;"> <span>100(+20)</span>
+												</div>
+												<ul class="list-group text-center">
+													<li class="list-group-item">￦ 10,000</li>
+												</ul>
+												<div class="panel-footer">
+													<a class="btn btn-lg btn-block btn-danger" href="#">BUY
+														NOW!</a>
+												</div>
+											</div>
 										</div>
-									</td> -->
-									<td>
-										<div class="image1">
-										<a target="_blank" href="img_fjords.jpg"> <img
-										src="/findlove/resources/img/konpeitos.jpg" alt="" width="120"
-										height="120">
-										</a>
-										<div class="desc">50개+보너스10개(￦5,000)</div>
-										</div>
-									</td>
-									<td>
-										<div class="image1">
-										<a target="_blank" href="img_fjords.jpg"> <img
-										src="/findlove/resources/img/konpeitos.jpg" alt="" width="120"
-										height="120">
-										</a>
-										<div class="desc">100개+보너스20개(￦10,000)</div>
-										</div>
-									</td>
-								</tr>
-							</table>
-						</form>
-						</div>
-						</div>
-						<div class="card card-outline-secondary my-4">
-						<div class="card-header">2. 포인트 전환</div>
-						<div class="card-body">
-						<form action="mypoint" name="mypoint" method="post">
-						<table class="table table-bordered">
-							<tr>
-								<td>
-								</td>
-							</tr>
-						</table>
-						</form>
-						</div>
-						</div>		
+									</div>
+								</div>
+							</section>
+							</form>
+							</div>
+							</div>							
+							<!-- /item -->
+							<div class="card card-outline-secondary my-4">
+								<div class="card-header">2. 포인트 전환</div>
+								<div class="card-body">
+									
+										<form action="mypoint" name="mypoint" method="post">
+											<table class="table table-bordered">
+												<tr>
+													<td></td>
+												</tr>
+											</table>
+										</form>
+									</div>
+								</div>
+
+
+
+							</div>
+					</div>
+					</section>
+					<!-- 						
+							
 
 					<div class="card card-outline-secondary my-4">
 						<div class="card-header">3. 주문 금액</div>
@@ -242,12 +262,13 @@
 				</div>
 			</div>
 		</div>
+			</div> -->
 
-	</div>
-	<script type="text/javascript">
-		$(function() {
-			$('#mainNav').css('background-color', '#faadad');
-		});
-	</script>
+
+					<script type="text/javascript">
+						$(function() {
+							$('#mainNav').css('background-color', '#faadad');
+						});
+					</script>
 </body>
 </html>
