@@ -244,14 +244,14 @@
          <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ml-auto">
                <li class="nav-item"><a class="nav-link js-scroll-trigger"
-                  href="#">공지사항</a></li>
+                  href="notice.do">공지사항</a></li>
                <li class="nav-item"><a class="nav-link js-scroll-trigger"
                   href="#">매칭 게시판</a></li>
                <li class="nav-item"><a class="nav-link js-scroll-trigger"
                   href="#">프로필 게시판</a></li>
                <li class="nav-item"><a class="nav-link js-scroll-trigger"
                   href="#">자유 게시판</a></li>
-               <li class="nav-item"><a class="nav-link js-scroll-trigger"
+               <li class="nav-item"><a class="nav-li`nk js-scroll-trigger"
                   href="#">이벤트 게시판</a></li>
                <li class="nav-item"><a class="nav-link js-scroll-trigger"
                   href="#">Q&A</a></li>
@@ -293,6 +293,12 @@
          </div>
    </nav>
    <a id="go-to-top" class="js-scroll-trigger" href="#page-top"><i class="material-icons">expand_less</i></a>
+   <script type="text/javascript" src="/findlove/resources/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/findlove/resources/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/findlove/resources/js/contact_me.js"></script>
+<script type="text/javascript" src="/findlove/resources/js/jqBootstrapValidation.js"></script>
+<script type="text/javascript" src="/findlove/resources/js/jquery.easing.min.js"></script>
+<script type="text/javascript" src="/findlove/resources/js/agency.min.js"></script>
 	<script>
 	window.onscroll = function() {scrollFunction()};
 		function openNav() {

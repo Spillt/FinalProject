@@ -1,5 +1,7 @@
 package com.godsky.findlove.main.matchboard.Idealworldcup.model.vo;
 
+import java.util.List;
+
 public class IdealWorldCup {
 	private String UserId;	//유저아이디
 	private String Gender;	//성별
@@ -55,6 +57,10 @@ public class IdealWorldCup {
 		
 		return UserId + ", " + Gender + ", " + Picture + ", " + Message; 
 	}
-	
+
+	public static List<IdealWorldCup> listAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
