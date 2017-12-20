@@ -18,6 +18,10 @@
 <body>
 
 
+${user_id }<br>
+${gender }
+
+
 <a href="insertmatchqna.do">내 질문 만들기</a>
 <div class="container" style = "width : 500pt; height : 100pt;">  
   <div id="myCarousel" class="carousel slide" data-ride="carousel">

@@ -1,17 +1,18 @@
 package com.godsky.findlove.main.matchboard.qna.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.godsky.findlove.main.matchboard.qna.model.service.MatchQnAService;
 import com.godsky.findlove.main.matchboard.qna.model.vo.MatchQnA;
-import com.godsky.findlove.user.model.vo.Profile;
-import com.godsky.findlove.user.model.vo.User;
 @Controller
 public class MatchQnAController {
 	@Autowired
@@ -27,11 +28,20 @@ public class MatchQnAController {
 	
 	
 	@RequestMapping(value="selectuserlist.do", method=RequestMethod.GET)
-	public ModelAndView selectUserList(User user,Profile profile,HttpServletRequest request){
+	public ModelAndView selectUserList(@RequestParam("userId") String userId,HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
-		/*MatchUser muser = (MatchUser)matchQnAService.selectUser(profile);
 		
-		if(user!= null){
+		System.out.println("유저 아이디 : " + userId);
+		//Profile profile = (Profile)matchQnAService.selectUserProfile(userId);
+		String myGender = (String)matchQnAService.selectUserGender(userId);
+		System.out.println("성별 : " + myGender);
+		
+		//MatchUser muser = (MatchUser)matchQnAService.selectUser(profile);
+		ArrayList<String> matchusers = (ArrayList<String>)matchQnAService.selectUser3(myGender);
+		for(int i = 0; i< matchusers.size();i++){
+			System.out.println(matchusers.get(i));
+		}
+		/*if(user!= null){
 			if(profile != null){
 				if(muser != null){
 					int result = matchQnAService.insertMatchUser(user);
@@ -48,7 +58,8 @@ public class MatchQnAController {
 		}else{
 			
 			mv.setViewName("matchboard/qna/error");//로그인필요
-		}*/mv.setViewName("matchboard/qna/matchMain");
+		}*/
+		mv.setViewName("matchboard/qna/matchMain");
 		return mv;
 	}
 	

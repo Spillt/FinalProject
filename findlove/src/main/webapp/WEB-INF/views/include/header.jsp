@@ -270,7 +270,7 @@
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#">매칭 게시판</a></li>
+						href="selectuserlist.do?userId=${user_id }">매칭 게시판</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="/findlove/openProfileList.do">프로필 게시판</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"

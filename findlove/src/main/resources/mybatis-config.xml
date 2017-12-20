@@ -5,6 +5,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.godsky.findlove.user.model.vo.User" alias="User" />
+		<typeAlias type="com.godsky.findlove.user.model.vo.User" alias="Profile" />
 		<typeAlias type="com.godsky.findlove.main.profileboard.model.vo.Report" alias="Report" />
 		<typeAlias type="com.godsky.findlove.main.profileboard.model.vo.Message" alias="Message" />
 		<typeAlias type="com.godsky.findlove.main.profileboard.model.vo.Profileboard" alias="Profileboard" />
@@ -19,7 +20,8 @@
 	 	<mapper resource="mapper/message-mapper.xml" /> 
 	 	<mapper resource="mapper/report-mapper.xml" /> 
 	 	<mapper resource="mapper/point-mapper.xml" />
-	 	<mapper resource="mapper/konpeito-mapper.xml" /> 		
+	 	<mapper resource="mapper/konpeito-mapper.xml" /> 
+	 	<mapper resource="mapper/match-mapper.xml" />		
 	</mappers>
 </configuration>
 

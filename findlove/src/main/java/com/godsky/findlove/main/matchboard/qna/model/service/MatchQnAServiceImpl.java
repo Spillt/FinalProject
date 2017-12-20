@@ -1,5 +1,6 @@
 package com.godsky.findlove.main.matchboard.qna.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,17 @@ public class MatchQnAServiceImpl implements MatchQnAService{
 	@Override
 	public List<Profile> select3(MatchUser muser) {
 		return matchQnADao.select3(muser);
+	}
+
+
+	@Override
+	public String selectUserGender(String userId) {
+		return matchQnADao.selectUserGender(userId);
+	}
+
+	@Override
+	public List<String> selectUser3(String myGender) {
+		return matchQnADao.selectUser3(myGender);
 	}
 	
 }

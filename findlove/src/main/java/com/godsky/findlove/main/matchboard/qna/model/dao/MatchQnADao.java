@@ -1,5 +1,6 @@
 package com.godsky.findlove.main.matchboard.qna.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -50,5 +51,13 @@ public class MatchQnADao {
 
 	public List<Profile> select3(MatchUser muser) {
 		return sqlSession.selectList("profile.selectMatchUserList",muser);
+	}
+
+	public String selectUserGender(String userId) {
+		return sqlSession.selectOne("profile.selectProfileOne",userId);
+	}
+
+	public List<String> selectUser3(String myGender) {
+		return sqlSession.selectList("match.selectMatchuser3",myGender);
 	}
 }

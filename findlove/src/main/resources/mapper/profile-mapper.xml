@@ -43,7 +43,6 @@
    SELECT * FROM (
         SELECT ROWNUM AS rn, A.* FROM (
 	</sql>
-
 	<sql id="pagingFooter">
         ) A
     ) WHERE rn BETWEEN #{start} AND #{end}
@@ -65,5 +64,12 @@
 			AND THUMNAIL_FL = '0'
         ]]>
     </select>
-   
+   <select id="selectProfileOne" resultType="String" parameterType="String">
+        <![CDATA[
+            SELECT gender FROM TB_PROFILE
+            WHERE USER_ID = #{userId}
+			
+			
+        ]]>
+    </select>
 </mapper>

@@ -1,5 +1,6 @@
 package com.godsky.findlove.main.matchboard.qna.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.godsky.findlove.main.matchboard.qna.model.vo.MatchQnA;
@@ -25,6 +26,10 @@ public interface MatchQnAService {
 	public int updateMatchUser(User user);
 
 	public List<Profile> select3(MatchUser muser);
+
+	public String selectUserGender(String userId);
+
+	public List<String> selectUser3(String myGender);
 
 	
 }
