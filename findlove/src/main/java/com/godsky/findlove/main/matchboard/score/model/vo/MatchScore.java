@@ -1,4 +1,4 @@
-package com.godsky.findlove.main.matchboard.score.vo;
+package com.godsky.findlove.main.matchboard.score.model.vo;
 
 import java.io.Serializable;
 

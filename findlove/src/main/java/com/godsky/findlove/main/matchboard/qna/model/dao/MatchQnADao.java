@@ -1,14 +1,13 @@
-package com.godsky.findlove.main.matchboard.qna.dao;
+package com.godsky.findlove.main.matchboard.qna.model.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.godsky.findlove.main.matchboard.qna.vo.MatchQnA;
-import com.godsky.findlove.main.matchboard.qna.vo.MatchUser;
+import com.godsky.findlove.main.matchboard.qna.model.vo.MatchQnA;
+import com.godsky.findlove.main.matchboard.qna.model.vo.MatchUser;
 import com.godsky.findlove.user.model.vo.Profile;
 import com.godsky.findlove.user.model.vo.User;
 

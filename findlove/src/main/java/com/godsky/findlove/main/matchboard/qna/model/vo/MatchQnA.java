@@ -1,4 +1,4 @@
-package com.godsky.findlove.main.matchboard.qna.vo;
+package com.godsky.findlove.main.matchboard.qna.model.vo;
 
 import java.io.Serializable;
 

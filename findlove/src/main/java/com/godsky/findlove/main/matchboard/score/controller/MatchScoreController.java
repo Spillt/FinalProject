@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.godsky.findlove.main.matchboard.score.service.MatchScoreService;
-import com.godsky.findlove.main.matchboard.score.vo.MatchScore;
+import com.godsky.findlove.main.matchboard.score.model.service.MatchScoreService;
+import com.godsky.findlove.main.matchboard.score.model.vo.MatchScore;
 @Controller
 public class MatchScoreController {
 	@Autowired

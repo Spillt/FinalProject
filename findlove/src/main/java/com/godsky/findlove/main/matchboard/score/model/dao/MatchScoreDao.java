@@ -1,4 +1,4 @@
-package com.godsky.findlove.main.matchboard.score.dao;
+package com.godsky.findlove.main.matchboard.score.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.godsky.findlove.main.matchboard.score.vo.MatchScore;
+import com.godsky.findlove.main.matchboard.score.model.vo.MatchScore;
 import com.godsky.findlove.user.model.vo.User;
 
 @Repository("matchScoreDao")

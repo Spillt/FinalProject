@@ -1,13 +1,12 @@
-package com.godsky.findlove.main.matchboard.score.service;
+package com.godsky.findlove.main.matchboard.score.model.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.godsky.findlove.main.matchboard.score.dao.MatchScoreDao;
-import com.godsky.findlove.main.matchboard.score.vo.MatchScore;
+import com.godsky.findlove.main.matchboard.score.model.dao.MatchScoreDao;
+import com.godsky.findlove.main.matchboard.score.model.vo.MatchScore;
 import com.godsky.findlove.user.model.vo.User;
 @Service("MatchScoreService")
 public class MatchScoreServiceImpl implements MatchScoreService{
