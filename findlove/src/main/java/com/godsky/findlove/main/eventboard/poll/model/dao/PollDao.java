@@ -20,8 +20,8 @@ public class PollDao {
 		return sqlSession.selectList("poll.listAll");
 	}
 
-	public Poll getPolldetail(int pollNo) {
-		return null;//SqlSession.selectone("Poll.detail");
+	public Poll polldetail(int pollNo) {
+		return sqlSession.selectOne("poll.detail",pollNo);
 	}
 	
 	public Poll getPoll(int no) {

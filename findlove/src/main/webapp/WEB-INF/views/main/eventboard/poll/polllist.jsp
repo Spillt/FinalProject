@@ -91,8 +91,8 @@ background:url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-A
 			<tr>
 				<td >${list.pollTitle}</td>
 				<td>${list.SDT}~${list.EDT}</td>
-				<td><a href="polldetail.do" class="btn btn-primary">시작하기</a></td>
-				<td><a href="pollresult.do" class="btn btn-primary">결과보기</a></td>
+				<td><a href="polldetail.do?pollNo=${list.pollNo }" class="btn btn-primary">시작하기</a></td>
+				<td><a href="pollresult.do?pollNo=${list.pollNo }" class="btn btn-primary">결과보기</a></td>
 			</tr>
 			</c:forEach>
 </tbody>

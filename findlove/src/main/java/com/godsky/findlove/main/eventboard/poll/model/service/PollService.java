@@ -5,7 +5,7 @@ import com.godsky.findlove.main.eventboard.poll.model.vo.Poll;
 public interface PollService {
 
 	public List<Poll> listAll();
-	public Poll getPolldetail(int pollNo);
+	public Poll polldetail(int pollNo);
 	Poll getPoll(int no);
 	int pollAnswer(Poll poll);
 	static Object selectProfileList() {

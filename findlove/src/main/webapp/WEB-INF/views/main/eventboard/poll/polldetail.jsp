@@ -112,25 +112,26 @@ tr:nth-child(2n), td:nth-child(2n) {
 	</div>
 	<div class="detail">
 		<table>
+		
 			<tr>
 				<td>설문내용</td>
-				<td><$></td>
+				<td>${poll.pollTitle}</td>
 			</tr>
 			<tr>
 				<td>기간</td>
-				<td>2017.12.12 ~ 2017.12.30</td>
+				<td>${poll.SDT}~${poll.EDT}</td>
 			</tr>
 			<tr>
 				<td>답변</td>
 				<td>
 					<div>
-						<input type="radio" name="chk_info" value="1">ㅇㅇ
+						<input type="radio" name="chk_info" value="1">${poll.answer1}
 					</div>
 					<div>
-						<input type="radio" name="chk_info" value="2">이상한말
+						<input type="radio" name="chk_info" value="2">${poll.answer2}
 					</div>
 					<div>
-						<input type="radio" name="chk_info" value="3">멀까
+						<input type="radio" name="chk_info" value="3">${poll.answer3}
 					</div>
 				</td>
 			</tr>

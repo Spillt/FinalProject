@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,14 +35,15 @@ public class PollController {
 	      return mv;
 	}
 	//  상세 보기
-		@RequestMapping(value="polldetail.do", method=RequestMethod.GET)
-		public ModelAndView pollDetail(@RequestParam int pollNo, HttpSession session) {
+		@RequestMapping(value="polldetail.do", method= {RequestMethod.GET, RequestMethod.POST})
+		public ModelAndView pollDetail(@RequestParam int pollNo) {
+			
 			// 모델(데이터)+뷰(화면)를 함께 전달하는 객체
 	        ModelAndView mav = new ModelAndView();
 	        // 뷰의 이름
 	        mav.setViewName("main/eventboard/poll/polldetail");
 	        // 뷰에 전달할 데이터
-	        mav.addObject("pollNo", pollService.getPolldetail(pollNo));
+	        mav.addObject("poll", pollService.polldetail(pollNo));
 	        return mav;
 		}
 		

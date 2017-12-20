@@ -4,7 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="poll">
 
-	<resultMap id="PollList" type="Poll">
+	<resultMap id="resultPoll" type="Poll">
 		<id property="pollNo" column="Poll_NO"/>
 		<result property="pollTitle" column="Poll_Title"/>
 		<result property="pollST" column="Poll_ST"/>
@@ -16,7 +16,7 @@
 		<result property="answer" column="Answer"/>
 	</resultMap>
 	
-	<select id="listAll" resultType="Poll" resultMap="PollList">
+	<select id="listAll" resultType="Poll" resultMap="resultPoll">
 		<![CDATA[
 			SELECT POLL_NO,POLL_TITLE,POLL_ST,START_DT,END_DT,ANSWER1,ANSWER2,ANSWER3,ANSWER
 			FROM TB_POLL
@@ -25,11 +25,11 @@
 			
 		]]>				
 	</select>
-	<!-- <select id="deail" resultType="Poll" resultMap="Polldetail">
+	<select id="detail" parameterType="int" resultType="Poll" resultMap="resultPoll">
 		SELECT POLL_NO,POLL_TITLE,POLL_ST,START_DT,END_DT,ANSWER1,ANSWER2,ANSWER3,ANSWER
         FROM TB_POLL
 		JOIN TB_POLL_ANSWER using (POLL_NO)
-        WHERE POLL_NO = #{POLL_NO}
-    </select> -->
+        WHERE POLL_NO = #{pollNo}
+    </select>
     
 </mapper>
