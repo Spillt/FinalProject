@@ -24,10 +24,9 @@ public class PollDao {
 		return sqlSession.selectOne("poll.detail",pollNo);
 	}
 	
-	public Poll getPoll(int no) {
-		return null;
+	public Poll pollResult(int pollNo) {
+		return sqlSession.selectOne("poll.result",pollNo);
 	}
-
 	public int pollAnswer(Poll poll) {
 		return 0;
 	}

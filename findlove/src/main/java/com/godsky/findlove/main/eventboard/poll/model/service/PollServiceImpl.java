@@ -24,10 +24,9 @@ public class PollServiceImpl implements PollService {
 	public Poll polldetail(int pollNo) {
 		return pollDao.polldetail(pollNo);
 	}
-
 	@Override
-	public Poll getPoll(int no) {
-		return pollDao.getPoll(no);
+	public Poll pollResult(int pollNo) {
+		return pollDao.pollResult(pollNo);
 	}
 
 	@Override

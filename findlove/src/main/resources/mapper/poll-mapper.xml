@@ -12,7 +12,10 @@
 		<result property="EDT" column="End_DT"/>
 		<result property="answer1" column="Answer1"/>
 		<result property="answer2" column="Answer2"/>
-		<result property="answer3" column="Answer3"/>		
+		<result property="answer3" column="Answer3"/>
+		<result property="result1" column=""/>
+		<result property="result2" column=""/>
+		<result property="result3" column=""/>		
 		<result property="answer" column="Answer"/>
 	</resultMap>
 	
@@ -26,6 +29,12 @@
 		]]>				
 	</select>
 	<select id="detail" parameterType="int" resultType="Poll" resultMap="resultPoll">
+		SELECT POLL_NO,POLL_TITLE,POLL_ST,START_DT,END_DT,ANSWER1,ANSWER2,ANSWER3,ANSWER
+        FROM TB_POLL
+		JOIN TB_POLL_ANSWER using (POLL_NO)
+        WHERE POLL_NO = #{pollNo}
+    </select>
+    <select id="result" parameterType="int" resultType="Poll" resultMap="resultPoll">
 		SELECT POLL_NO,POLL_TITLE,POLL_ST,START_DT,END_DT,ANSWER1,ANSWER2,ANSWER3,ANSWER
         FROM TB_POLL
 		JOIN TB_POLL_ANSWER using (POLL_NO)

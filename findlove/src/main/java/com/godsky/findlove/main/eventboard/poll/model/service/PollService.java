@@ -6,7 +6,7 @@ public interface PollService {
 
 	public List<Poll> listAll();
 	public Poll polldetail(int pollNo);
-	Poll getPoll(int no);
+	public Poll pollResult(int pollNo);
 	int pollAnswer(Poll poll);
 	static Object selectProfileList() {
 		// TODO Auto-generated method stub

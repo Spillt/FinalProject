@@ -116,11 +116,11 @@ tr:nth-child(2n), td:nth-child(2n) {
 		<table>
 			<tr>
 				<td>설문내용</td>
-				<td>남자/여자가 싫어하는 말은?</td>
+				<td>${poll.pollTitle}</td>
 			</tr>
 			<tr>
 				<td>기간</td>
-				<td>2017.12.12 ~ 2017.12.30</td>
+				<td>${poll.SDT}~${poll.EDT}</td>
 			</tr>
 			<tr>
 				<td>답변</td>
@@ -128,9 +128,9 @@ tr:nth-child(2n), td:nth-child(2n) {
 					</div>
 	<div id="population_chart" data-sort="false" data-width="400" class="jChart chart-lg" >
 	
-	<div class="define-chart-row" data-color="#008DD3" title="ㅇㅇ">10</div>
-	<div class="define-chart-row" data-color="#0074AA" title="이상한말">50</div>
-	<div class="define-chart-row" data-color="#005882" title="멀까">30</div>
+	<div class="define-chart-row" data-color="#008DD3" title="${poll.answer1}">10</div>
+	<div class="define-chart-row" data-color="#0074AA" title="${poll.answer2}">50</div>
+	<div class="define-chart-row" data-color="#005882" title="${poll.answer3}">30</div>
 	
 </div>
 				</td>

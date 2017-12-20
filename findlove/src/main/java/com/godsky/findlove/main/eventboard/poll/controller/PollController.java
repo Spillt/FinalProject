@@ -47,17 +47,17 @@ public class PollController {
 	        return mav;
 		}
 		
-	//  결과보기
-	@RequestMapping(value="pollresult.do")
-	public String pollResult(Model model) {
-		return "main/eventboard/poll/pollresult";
-	}
-		
-	// 답변하기
-	@RequestMapping(value="pollanswer.do")
-	public String pollAnswer(Poll poll, Model model) {
-		int result = pollService.pollAnswer(poll);
-		return null;
-	}
+	//  결과보기	
+		@RequestMapping(value="pollresult.do", method= {RequestMethod.GET, RequestMethod.POST})
+		public ModelAndView pollResult(@RequestParam int pollNo) {
+			
+			// 모델(데이터)+뷰(화면)를 함께 전달하는 객체
+	        ModelAndView mav = new ModelAndView();
+	        // 뷰의 이름
+	        mav.setViewName("main/eventboard/poll/pollresult");
+	        // 뷰에 전달할 데이터
+	        mav.addObject("poll", pollService.polldetail(pollNo));
+	        return mav;
+		}	
 
 }
