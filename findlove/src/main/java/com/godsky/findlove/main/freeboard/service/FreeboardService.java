@@ -5,10 +5,16 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.godsky.findlove.main.freeboard.vo.Freeboard;
+
 public interface FreeboardService {
+	
+	//전체 조회
 	List<Map<String, Object>> selectFreeboardList(Map<String, Object> map) throws Exception;
 
-	//작성하기
-	void insertFreeboard(Map<String, Object> map, HttpServletRequest request) throws Exception;
+	//게시판 작성
+	public int insertFreeboard(Freeboard freeboard);
+
+	
 
 }

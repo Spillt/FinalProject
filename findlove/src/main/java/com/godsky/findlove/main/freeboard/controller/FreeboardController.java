@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.godsky.findlove.main.common.common.CommandMap;
 import com.godsky.findlove.main.freeboard.service.FreeboardService;
+import com.godsky.findlove.main.freeboard.vo.Freeboard;
 
 @Controller
 public class FreeboardController {
@@ -36,7 +37,7 @@ public class FreeboardController {
 	
 	//글쓰기 액션 호출
 	@RequestMapping(value="openFreeboardWrite.do")
-	public ModelAndView openFreeboardWrite(CommandMap commandMap) throws Exception{
+	public ModelAndView openFreeboardWrite() throws Exception{
 		ModelAndView mv = new ModelAndView("/freeboard/freeboardWrite");
 		
 		return mv;
@@ -44,11 +45,12 @@ public class FreeboardController {
 	
 	//작성하기
 	@RequestMapping(value="insertFreeboard.do")
-	public ModelAndView insertFreeboard(CommandMap commandMap, HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/openFreeboardList.do");
+	public ModelAndView insertFreeboard(@ModelAttribute("Freeboard") Freeboard Freeboard) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/openFreeboardList");
 		
-		FreeboardService.insertFreeboard(commandMap.getMap(), request);
+		FreeboardService.insertFreeboard(Freeboard);
 		
 		return mv;
 	}
+	
 }

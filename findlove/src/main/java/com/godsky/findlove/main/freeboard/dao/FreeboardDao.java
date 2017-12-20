@@ -6,10 +6,11 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.godsky.findlove.main.common.dao.*;
+
+import com.godsky.findlove.main.freeboard.vo.Freeboard;
 
 @Repository("FreeboardDao")
-public class FreeboardDao extends AbstractDAO{
+public class FreeboardDao{
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -19,15 +20,10 @@ public class FreeboardDao extends AbstractDAO{
 		return sqlSession.selectList("freeboard.selectFreeboardList");
 	}
 
-	//작성하기
-	public void insertFreeboard(Map<String, Object> map) throws Exception{
-		insert("freeboard.insertFreeboard", map);
-		
+	public int insertFreeboard(Freeboard freeboard){
+		return sqlSession.insert("freeboard.insertFreeboard");
 	}
 
-	public void insertFile(Map<String, Object> map) throws Exception{
-		insert("freeboard.insertFile", map);
-		
-	}
+	
 
 }

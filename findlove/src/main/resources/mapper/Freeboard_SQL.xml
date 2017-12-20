@@ -30,8 +30,8 @@
 	<!-- 작성하기 -->
 	<insert id="insertFreeboard">
 		<![CDATA[
-			INSERT INTO TB_FREE 
-			VALUES(SEQ_TB_FREE_NO.NEXTVAL, #{freeTitle}, #{freeWriter}, #{freeContent}, NULL, NULL, SYSDATE, NULL, NULL, NULL, NULL, 0)
+			INSERT INTO TB_FREE
+			VALUES (SEQ_TB_FREE_NO.NEXTVAL, #{Title}, #{Writer}, #{Content}, NULL, NULL, SYSDATE, NULL, NULL, NULL, NULL, 0)
 		]]>
 	</insert>
 	

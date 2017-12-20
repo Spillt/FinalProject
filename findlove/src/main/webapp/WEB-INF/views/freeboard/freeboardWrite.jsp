@@ -19,7 +19,7 @@
 	</header>
 	
 	
-	<form id="frm" name="frm" enctype="multipart/form-data">
+	<form id="frm" name="frm" enctype="multipart/form-data" action="insertFreeboard">
 	<table class="freeboard_view">
 		<colgroup>
 			<col width="15%">
@@ -29,16 +29,16 @@
 		<tbody>
 			<tr>
 				<th scope="row">제목</th>
-				<td><input type="text" id="freeTitle" name="freeTitle" class="wdp_90"></input></td>
+				<td><input type="text" id="Title" name="Title" class="wdp_90"></input></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td><input type="text" id="freeWriter" name="freeWriter"></input></td>
+				<td><input type="text" id="Writer" name="Writer"></input></td>
 			</tr>
 			<tr>
 				<th>내용</th>
 				<td colspan="2" class="view_text">
-					<textarea rows="20" cols="100" id="freeContent" name="freeContent"></textarea>
+					<textarea rows="20" cols="100" id="Content" name="Content"></textarea>
 				</td>
 			</tr>
 		</tbody>
