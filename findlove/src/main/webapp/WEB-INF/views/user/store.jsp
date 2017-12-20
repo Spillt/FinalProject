@@ -94,7 +94,7 @@
 				</div>
 				<div class="list-group" style="margin-bottom: 24px;">
 				<span class="list-group-item">보유별사탕 개수</span> 
-				<span class="list-group-item"></span> 				
+				<span class="list-group-item"><img src="/findlove/resources/img/konpeito.jpg" style="margin-left:15px; width:90px; height:60px;"><font size="6";> 25</font></span> 				
 				</div>
 				<div class="btn" style="padding-left: 75px;">
 					<button>이전</button>
@@ -172,7 +172,7 @@
 										<div class="desc">20개+보너스2개(￦2,000)</div>
 										</div>
 									</td>
-									<td>
+									<!-- <td>
 										<div class="image1">
 										<a target="_blank" href="img_fjords.jpg"> <img
 										src="/findlove/resources/img/konpeito.jpg" alt="" width="120"
@@ -180,7 +180,7 @@
 										</a>
 										<div class="desc">30개+보너스5개(￦3,000)</div>
 										</div>
-									</td>
+									</td> -->
 									<td>
 										<div class="image1">
 										<a target="_blank" href="img_fjords.jpg"> <img

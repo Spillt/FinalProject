@@ -94,7 +94,7 @@
 
 			<div class="col-lg-9">
 				<div class="card card-outline-secondary my-4">
-					<div class="card-header"></div>
+					<div class="card-header">
 					<div class="card-body">
 						<form action="myinfo" name="myinfo" method="post">
 
@@ -104,8 +104,8 @@
 									<td>
 										<div class="image1">
 										<a target="_blank" href="img_fjords.jpg"> <img
-										src="/findlove/resources/img/team/1.jpg" alt="" width="180"
-										height="180">
+										src="/findlove/resources/img/team/1.jpg" alt="Responsive image" class="img-thumbnail">
+										
 										</a>
 										<div class="desc"></div>
 										</div>
@@ -114,14 +114,68 @@
 										<!-- 이미지 업로드 -->
 										<input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'View_area')">
 										<div id='View_area' style='position:relative; width: 180px; height: 180px; color: black; 
-										border: 1px solid black; dispaly: inline; '></div>
+										border: 1px solid black; dispaly: inline; '>
+										</div>
 									</td>
 								</tr>
 							</table>
-
-						</form>
+						</form>	
 						
-					<script type="text/javascript">
+			
+				
+					
+					<hr>
+
+					<div class="card-body">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th scope="cols">기본프로필</th>
+									<th scope="cols"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">실명</th>
+									<td>내용.</td>
+								</tr>
+								<tr>
+									<th scope="row">닉네임</th>
+									<td>내용.</td>
+								</tr>
+								<tr>
+									<th scope="row">성별</th>
+									<td>내용.</td>
+								</tr>
+								<tr>
+									<th scope="row">직업/직장</th>
+									<td>내용.</td>
+								</tr>
+								<tr>
+									<th scope="row">휴대폰번호</th>
+									<td>내용.</td>
+								</tr>
+							</tbody>
+
+						</table>
+
+
+
+						<a class="button" onclick="checkfield()">Register</a> <a
+							class="button" onclick="">Cancel</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			$('#mainNav').css('background-color', '#faadad');
+		});
+	</script>
+			<script type="text/javascript">
 					function previewImage(targetObj, View_area) {
 						var preview = document.getElementById(View_area); //div id
 						var ua = window.navigator.userAgent;
@@ -192,58 +246,6 @@
 					}
 					
 					</script>
-
-					</div>
-					<hr>
-
-					<div class="card-body">
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th scope="cols">기본프로필</th>
-									<th scope="cols"></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="row">실명</th>
-									<td>내용.</td>
-								</tr>
-								<tr>
-									<th scope="row">닉네임</th>
-									<td>내용.</td>
-								</tr>
-								<tr>
-									<th scope="row">성별</th>
-									<td>내용.</td>
-								</tr>
-								<tr>
-									<th scope="row">직업/직장</th>
-									<td>내용.</td>
-								</tr>
-								<tr>
-									<th scope="row">휴대폰번호</th>
-									<td>내용.</td>
-								</tr>
-							</tbody>
-
-						</table>
-
-
-
-						<a class="button" onclick="checkfield()">Register</a> <a
-							class="button" onclick="">Cancel</a>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
-	<script type="text/javascript">
-		$(function() {
-			$('#mainNav').css('background-color', '#faadad');
-		});
-	</script>
+	
 </body>
 </html>
