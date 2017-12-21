@@ -64,6 +64,10 @@
 .container.top {
 	margin-top: 150px;
 }
+
+.container.middle {
+	margin: 0px;
+}
 </style>
 
 </head>
@@ -76,7 +80,7 @@
 	<div class="container top">
 		<div class="row">
 			<div class="col-lg-12 text-left">
-				<strong style="font-size: 25pt; color: #faadad;">마이페이지</strong>	
+				<strong style="font-size: 25pt; color: #faadad;">마이페이지</strong>
 			</div>
 		</div>
 	</div>
@@ -104,22 +108,14 @@
 						style="margin-left: 15px; width: 90px; height: 60px;"><font
 						size="6";> 25</font></span>
 				</div>
-				<div class="btn" style="padding-left: 75px;">
-					<button>이전</button>
-					<button>다음</button>
+				<div class="btn" style="padding-left: 40px;">
+					<button class="btn btn-danger">이전</button>
+					<button class="btn btn-danger">다음</button>
 				</div>
 				<div class="list-group">
 					<a class="list-group-item">별사탕 이용내역</a>
 					<div class="inner"
 						style="width: 1275px; height: 350px; margin-left: 0px;">
-						<ul class="list-group"
-							style="position: relative; height: 255px; float: left; width: 255px;">
-							<li class="row"></li>
-							<li class="row"></li>
-							<li class="row"></li>
-							<li class="row"></li>
-							<li class="row"></li>
-						</ul>
 						<ul class="list-group">
 							<li class="row"></li>
 							<li class="row"></li>
@@ -156,9 +152,9 @@
 			<div class="col-lg-9">
 				<div class="card card-outline-secondary my-4">
 					<div class="card-header">1. 별사탕 개수 선택</div>
-					<div class="card-body">
+					<div class="card-body" style="margin-top: 0px; margin-bottom: 0px;">
 						<form action="myinfo" name="myinfo" method="post">
-						
+
 							<section id="plans">
 								<div class="container">
 									<div class="row">
@@ -168,8 +164,8 @@
 											<div class="panel panel-danger panel-pricing">
 												<div class="panel-body text-center">
 													<img src="/findlove/resources/img/konpeito.jpg" alt=""
-														style="margin-bottom: 15px;">
-														<br><span>10개</span>
+														style="margin-bottom: 15px;"> <br>
+													<span>10개</span>
 												</div>
 												<ul class="list-group text-center">
 													<li class="list-group-item">￦ 1,000</li>
@@ -180,14 +176,14 @@
 												</div>
 											</div>
 										</div>
-										<!-- /item -->
+
 										<!-- item -->
 										<div class="col-md-4 text-center">
 											<div class="panel panel-danger panel-pricing">
 												<div class="panel-body text-center">
 													<img src="/findlove/resources/img/konpeito.jpg" alt=""
-														style="margin-bottom: 15px;">
-														<br><span>30개(+5)</span>
+														style="margin-bottom: 15px;"> <br>
+													<span>30개(+5)</span>
 												</div>
 												<ul class="list-group text-center">
 													<li class="list-group-item">￦ 3,000</li>
@@ -198,14 +194,14 @@
 												</div>
 											</div>
 										</div>
-										<!-- /item -->
+
 										<!-- item -->
 										<div class="col-md-4 text-center">
 											<div class="panel panel-danger panel-pricing">
 												<div class="panel-body text-center">
 													<img src="/findlove/resources/img/konpeito.jpg" alt=""
-														style="margin-bottom: 15px;"> 
-														<br><span>100개(+20)</span>
+														style="margin-bottom: 15px;"> <br>
+													<span>100개(+20)</span>
 												</div>
 												<ul class="list-group text-center">
 													<li class="list-group-item">￦ 10,000</li>
@@ -219,38 +215,132 @@
 									</div>
 								</div>
 							</section>
-							</form>
-							</div>
-							</div>							
-							<!-- /item -->
-							<div class="card card-outline-secondary my-4">
-								<div class="card-header">2. 포인트 전환</div>
-								<div class="card-body">
-									
-										<form action="mypoint" name="mypoint" method="post">
-											<table class="table table-bordered">
-												<tr>
-													<td></td>
-												</tr>
-											</table>
-										</form>
+						</form>
+					</div>
+				</div>
+				<!-- /item -->
+				<div class="card card-outline-secondary my-4">
+					<div class="card-header">2. 포인트 전환</div>
+					<div class="card-body">
+						<form action="mypoint" name="mypoint" method="post">
+							<section id="plans" style="padding: 0px;">
+								<div class="container">
+									<div class="row">
+										<div class="col-md-3 text-center" style="padding: 0px;">
+											<ul class="list-group text-center">
+												<li class="list-group-item"
+													style="padding: auto; border: 0px;">내 보유 포인트 :</li>
+											</ul>
+										</div>
+										<div class="col-md-3 text-center" style="padding-left: 0px;">
+											<ul class="list-group text-center"
+												style="padding-top: 11px; padding-bottom: 11px;">
+												<li class="list-group-item" style="padding: 0px;">1,000</li>
+											</ul>
+										</div>
+										<div class="col-md-3 text-center"
+											style="padding-top: 11px; padding-bottom: 11px; padding-left: 0px; padding-right: 0px;">
+											<input type="text" name="point_cnt" id="point_cnt"
+												style="width: 150px;" />
+										</div>
+										<div class="col-md-2 text-center"
+											style="padding-top: 7px; padding-right: 0px; padding-left: 0px;">
+											<button class="btn btn-danger">전액전환</button>
+											</td>
+										</div>
+										<div class="col-md-1 text-center"
+											style="padding-top: 7px; padding-right: 0px; padding-left: 0px;">
+											<button class="btn btn-danger">전환</button>
+											</td>
+										</div>
 									</div>
 								</div>
-
-
-
-							</div>
+							</section>
+						</form>
 					</div>
-					</section>
-					<!-- 						
-							
+				</div>
+				<div class="card card-outline-secondary my-4">
+					<div class="card-header">3. 주문 금액</div>
+					<table class="table table-bordered">
+					</table>
+				</div>
 
-					<div class="card card-outline-secondary my-4">
-						<div class="card-header">3. 주문 금액</div>
-						<table class="table table-bordered">
-							
-						</table>
-						</div>						
+
+
+				<div class="card card-outline-secondary my-4">
+					<div class="card-header">4. 결제 수단 선택</div>
+					<form action="credit" name="credit" method="post">
+						<section id="plans">
+							<div class="container">
+								<div class="row">
+
+									<!-- item -->
+									<div class="col-md-4 text-center">
+										<div class="panel panel-danger panel-pricing">
+											<div class="panel-body text-center">
+												<img src="/findlove/resources/img/store/card.PNG" alt=""
+													style="width:152px; height:152px;"> <br>												
+											</div>
+											
+											<div class="panel-footer">
+												<a class="btn btn-lg btn-block btn-danger" href="#">BUY
+													NOW!</a>
+											</div>
+										</div>
+									</div>
+									<!-- item -->
+									<div class="col-md-4 text-center">
+										<div class="panel panel-danger panel-pricing">
+											<div class="panel-body text-center">
+												<img src="/findlove/resources/img/konpeito.jpg" alt=""
+													style="margin-bottom: 15px;"> <br>
+												<span>10개</span>
+											</div>
+											<ul class="list-group text-center">
+												<li class="list-group-item">￦ 1,000</li>
+											</ul>
+											<div class="panel-footer">
+												<a class="btn btn-lg btn-block btn-danger" href="#">BUY
+													NOW!</a>
+											</div>
+										</div>
+									</div>
+									<!-- item -->
+									<div class="col-md-4 text-center">
+										<div class="panel panel-danger panel-pricing">
+											<div class="panel-body text-center">
+												<img src="/findlove/resources/img/konpeito.jpg" alt=""
+													style="margin-bottom: 15px;"> <br>
+												<span>10개</span>
+											</div>
+											<ul class="list-group text-center">
+												<li class="list-group-item">￦ 1,000</li>
+											</ul>
+											<div class="panel-footer">
+												<a class="btn btn-lg btn-block btn-danger" href="#">BUY
+													NOW!</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+
+
+
+					</form>
+					<!-- <ul class="payment_type">
+							<li class="phone active" data-payment_type="phone"></li>
+							<li class="credit" data-payment_type="credit"></li>
+							<li class="vbank" data-payment_type="vbank"></li>					
+						</ul> -->
+				</div>
+			</div>
+
+
+			<!-- 	
+
+										
 						
 						<div class="card card-outline-secondary my-4">
 						<div class="card-header">4. 결제 수단 선택</div>
@@ -270,16 +360,16 @@
 			</div>
 		</div>
 			</div> -->
-			
+
 			<!-- footer -->
-			
-			
+
+
 			<!-- 자바스크립트 -->
 
-					<script type="text/javascript">
-						$(function() {
-							$('#mainNav').css('background-color', '#faadad');
-						});
-					</script>
+			<script type="text/javascript">
+				$(function() {
+					$('#mainNav').css('background-color', '#faadad');
+				});
+			</script>
 </body>
 </html>
