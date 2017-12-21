@@ -6,12 +6,14 @@
 <html>
 <head>
 <meta charset=UTF-8">
+<title>연애의발견::스토어</title>
+
+<!-- Page link -->
 <link rel="stylesheet" type="text/css"
 	href="/findlove/resources/css/credit.css">
 
 
-<title>연애의발견::스토어</title>
-
+<!-- CSS 및 스타일 -->
 <style type="text/css">
 .portfolio-item-inner {
 	line-height: 1.42857143;
@@ -60,26 +62,28 @@
 }
 
 .container.top {
-	margin-top: 100px;
+	margin-top: 150px;
 }
 </style>
 
 </head>
 <body id="page-top">
+
+	<!-- header -->
 	<c:import url="../include/header.jsp" />
 
-	<!-- Portfolio Grid -->
+	<!-- title -->
 	<div class="container top">
 		<div class="row">
-			<div class="col-lg-12 text-center">
-				<!-- <img class="img-fluid" src="/findlove/resources/img/ad/ad-banner.jpg"> -->
+			<div class="col-lg-12 text-left">
+				<strong style="font-size: 25pt; color: #faadad;">마이페이지</strong>	
 			</div>
 		</div>
 	</div>
 
-	<br>
+	<!-- <br>
 	<h1 align="center">마이페이지</h1>
-	<br>
+	<br> -->
 
 	<!-- Page Content -->
 	<div class="container">
@@ -164,7 +168,8 @@
 											<div class="panel panel-danger panel-pricing">
 												<div class="panel-body text-center">
 													<img src="/findlove/resources/img/konpeito.jpg" alt=""
-														style="margin-bottom: 15px;"> <span>10</span>
+														style="margin-bottom: 15px;">
+														<br><span>10개</span>
 												</div>
 												<ul class="list-group text-center">
 													<li class="list-group-item">￦ 1,000</li>
@@ -181,7 +186,8 @@
 											<div class="panel panel-danger panel-pricing">
 												<div class="panel-body text-center">
 													<img src="/findlove/resources/img/konpeito.jpg" alt=""
-														style="margin-bottom: 15px;"> <span>30(+5)</span>
+														style="margin-bottom: 15px;">
+														<br><span>30개(+5)</span>
 												</div>
 												<ul class="list-group text-center">
 													<li class="list-group-item">￦ 3,000</li>
@@ -198,7 +204,8 @@
 											<div class="panel panel-danger panel-pricing">
 												<div class="panel-body text-center">
 													<img src="/findlove/resources/img/konpeito.jpg" alt=""
-														style="margin-bottom: 15px;"> <span>100(+20)</span>
+														style="margin-bottom: 15px;"> 
+														<br><span>100개(+20)</span>
 												</div>
 												<ul class="list-group text-center">
 													<li class="list-group-item">￦ 10,000</li>
@@ -263,7 +270,11 @@
 			</div>
 		</div>
 			</div> -->
-
+			
+			<!-- footer -->
+			
+			
+			<!-- 자바스크립트 -->
 
 					<script type="text/javascript">
 						$(function() {

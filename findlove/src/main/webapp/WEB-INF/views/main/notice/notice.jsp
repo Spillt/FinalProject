@@ -4,11 +4,13 @@
 <!DOCTYPE html >
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>notice</title>
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-</head>
+<meta charset=UTF-8">
+<title>연애의발견::공지사항</title>
+<!-- Page link -->
+<!-- <link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+
+<!-- CSS 및 스타일 -->
 <style type="text/css">
 #tableData{
 	align: center;
@@ -17,23 +19,19 @@ a:link {
 	color: black;
 	text-decoration: none;
 }
-a:visited {2z
+a:visited {
 	color: black;
 	text-decoration: none;
 }
-
 .number {
 	width: 10%;
 }
-
 .title {
 	width: 60%;
 }
-
 .date {
 	widthd: 15%;
 }
-
 .count {
 	width: 15%;
 }
@@ -42,12 +40,28 @@ a:visited {2z
     height: 3px;
     background: #ccc;
   }
+.container.top {
+	margin-top: 150px;
+}
 
 </style>
-<body>
+</head>
+
+<body id="page-top">
+	<!-- header -->
 	<c:import url="../../include/header.jsp" />
-	<div class="container" style="margin-top: 150px;">
-		<strong style="font-size: 25pt; color: #faadad;">공지사항</strong>
+	
+	<!-- title -->
+	<div class="container top">
+		<div class ="row">
+			<div class="col-lg-12 text-left">				
+				<strong style="font-size: 25pt; color: #faadad;">공지사항</strong>				
+			</div>
+		</div>
+	</div>
+		
+		<!-- Page Content -->	
+		<div class="container">
 		<table id="tableData" class="table table-bordered table-striped "
 			width="90%" height="150px">
 			<thead style="font-size: 15px">
@@ -70,7 +84,11 @@ a:visited {2z
 			</tbody>
 		</table>
 	</div>
+	
+	<!-- footer -->
 	<c:import url="../../include/footer.jsp" />
+	
+	<!-- 자바스크립트 -->
 	<script type="text/javascript"
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script

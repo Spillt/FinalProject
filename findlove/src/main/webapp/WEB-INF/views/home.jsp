@@ -63,8 +63,8 @@
 		<div class="container">
 			<div class="intro-text">
 				<div class="intro-heading">&nbsp;</div>
-				<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger"
-					href="#services">시작하기</a>
+				<!-- <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger"
+					href="#services">시작하기</a> -->
 			</div>
 		</div>
 	</header>
@@ -76,7 +76,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
-				<img class="img-fluid" src="/findlove/resources/img/ad/ad-banner.jpg">
+				<!-- <img class="img-fluid" src="/findlove/resources/img/ad/ad-banner.jpg"> -->
 			</div>
 		</div>
 	</div>
