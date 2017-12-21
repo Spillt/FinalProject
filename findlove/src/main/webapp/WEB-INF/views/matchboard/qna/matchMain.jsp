@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="com.godsky.findlove.main.matchboard.qna.model.vo.MatchUserProfile, java.util.ArrayList, java.sql.Date" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,16 +13,26 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
- a:link { color: red; text-decoration: none;}
- a:visited { color: black; text-decoration: none;}
- a:hover { color: black; text-decoration: none;}
+ .matchQnA:link { color: red; text-decoration: none;}
+ .matchQnA:visited { color: black; text-decoration: none;}
+ .matchQnA:hover { color: black; text-decoration: none;}
 </style>
 </head>
 <body>
+<c:import url="../../include/header.jsp"/>
 
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 ${user_id }<br>
-${gender }
+
 
 
 <a href="insertmatchqna.do">내 질문 만들기</a>
@@ -31,16 +44,22 @@ ${gender }
     <!-- Wrapper for slides -->
     
     <div class="carousel-inner">
+   <c:forEach var="m" items="${requestScope.list}" varStatus="status">
     
+      <c:if test="${status.first}">
       <div class="item active">
+      </c:if>
+      <c:if test="${not status.first}">
+      <div class="item">
+      </c:if>
         <div class="container"> 
-        <a href="selectmatchqna.do">          
+        <a href="selectmatchqna.do" class = "matchQnA">          
   <table class="table"style=" width : 200pt; position:relative; left:170px;">
     <thead>
       <tr>
-        <th colspan="3"style="height : 200pt">사진
-        <div>[이름][등급]</div> 
-        <div style = "font-size: 5pt; color : gray">나이,혈액형,지역<div>
+        <th colspan="3"style="height : 200pt">${m.picture_nm }
+        <div>[${m.user_nm}][${m.rank_gb }]</div> 
+        <div style = "font-size: 5pt; color : gray">${m.age },${m.blood_type }${m.blood_type },${m.area }<div>
         </th>
         
       </tr>
@@ -48,10 +67,10 @@ ${gender }
     
     <tbody>
       <tr>
-        <td>키,몸무게,스타일</td>
+        <td>${m.height },${m.weight },${m.style }</td>
       </tr>
       <tr>
-        <td  >종교</td>
+        <td  >${m.religion }</td>
       </tr>
       <tr>
         <td>평점 : ★★★★★</td>
@@ -62,7 +81,7 @@ ${gender }
 </div>
       </div>
 
-
+</c:forEach>
 </div>
 
 
@@ -77,5 +96,10 @@ ${gender }
     </a>
   </div>
 </div>
+<script>
+	$(function() {
+		$('#mainNav').css('background-color', '#faadad');
+	});
+</script>
 </body>
 </html>

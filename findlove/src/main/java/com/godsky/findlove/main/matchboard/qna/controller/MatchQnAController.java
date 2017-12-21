@@ -1,6 +1,9 @@
 package com.godsky.findlove.main.matchboard.qna.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.godsky.findlove.main.matchboard.qna.model.service.MatchQnAService;
 import com.godsky.findlove.main.matchboard.qna.model.vo.MatchQnA;
+import com.godsky.findlove.main.matchboard.qna.model.vo.MatchUser;
+import com.godsky.findlove.main.matchboard.qna.model.vo.MatchUserProfile;
 @Controller
 public class MatchQnAController {
 	@Autowired
@@ -37,29 +42,48 @@ public class MatchQnAController {
 		System.out.println("성별 : " + myGender);
 		
 		//MatchUser muser = (MatchUser)matchQnAService.selectUser(profile);
-		ArrayList<String> matchusers = (ArrayList<String>)matchQnAService.selectUser3(myGender);
-		for(int i = 0; i< matchusers.size();i++){
-			System.out.println(matchusers.get(i));
-		}
-		/*if(user!= null){
-			if(profile != null){
-				if(muser != null){
-					int result = matchQnAService.insertMatchUser(user);
-				}else{
-					int result = matchQnAService.updateMatchUser(user);
-				}
+		ArrayList<String> matchUsers = (ArrayList<String>)matchQnAService.selectUser3(myGender);
+		
+		
+		
+		MatchUser muser = (MatchUser)matchQnAService.selectMyQnA(userId);
+		System.out.println(muser);
+		
+		MatchUser newUser = new MatchUser(userId,null,matchUsers.get(0),matchUsers.get(1),matchUsers.get(2));
+		
+		String matchDate = (String)matchQnAService.selectDate(userId);
+		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyMMdd", Locale.KOREA );
+		Date currentTime = new Date ();
+		String mTime = mSimpleDateFormat.format ( currentTime );
+		
+		
+		
+		int result = 0;
+		
+		if(userId !=null){					//로그인 되있을경우
+			if(muser == null){				//매칭 유무
+				result = matchQnAService.insertMatchUser(newUser); //매칭을 한번도 안한경우
 				
-				ArrayList<Profile> list = (ArrayList<Profile>)matchQnAService.select3(muser);
-				mv.setViewName("matchboard/qna/matchMain");
-				
-			}else{
-				mv.setViewName("matchboard/qna/error");//프로필 갱신필요
-			}
-		}else{
+			}else{			
+				if(!(matchDate.equals(mTime)))
+					result = matchQnAService.updateMatchUser(newUser); //매칭을 했지만 오늘 안한경우 update
 			
-			mv.setViewName("matchboard/qna/error");//로그인필요
-		}*/
-		mv.setViewName("matchboard/qna/matchMain");
+			}
+			MatchUser todayMatchUser = (MatchUser)matchQnAService.selectMyQnA(userId);
+			ArrayList<MatchUserProfile> list = (ArrayList<MatchUserProfile>)matchQnAService.selectMatchUserProfileList(todayMatchUser);
+			
+			System.out.println(todayMatchUser);
+			for(int i = 0; i< list.size();i++){
+				System.out.println(list.get(i));
+			}
+			
+			mv.addObject("list", list);
+			mv.setViewName("matchboard/qna/matchMain");
+			
+		}else{
+			mv.setViewName("matchboard/qna/matchError");
+		}
+		
 		return mv;
 	}
 	

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.godsky.findlove.main.matchboard.qna.model.dao.MatchQnADao;
 import com.godsky.findlove.main.matchboard.qna.model.vo.MatchQnA;
 import com.godsky.findlove.main.matchboard.qna.model.vo.MatchUser;
+import com.godsky.findlove.main.matchboard.qna.model.vo.MatchUserProfile;
 import com.godsky.findlove.user.model.vo.Profile;
 import com.godsky.findlove.user.model.vo.User;
 @Service("MatchQnAService")
@@ -43,13 +44,13 @@ public class MatchQnAServiceImpl implements MatchQnAService{
 	}
 
 	@Override
-	public int insertMatchUser(User user) {
-		return  matchQnADao.insertMatchUser(user);
+	public int insertMatchUser(MatchUser newUser) {
+		return  matchQnADao.insertMatchUser(newUser);
 	}
 
 	@Override
-	public int updateMatchUser(User user) {
-		return matchQnADao.updateMatchUser(user);
+	public int updateMatchUser(MatchUser newUser) {
+		return matchQnADao.updateMatchUser(newUser);
 	}
 
 	@Override
@@ -66,6 +67,21 @@ public class MatchQnAServiceImpl implements MatchQnAService{
 	@Override
 	public List<String> selectUser3(String myGender) {
 		return matchQnADao.selectUser3(myGender);
+	}
+
+	@Override
+	public MatchUser selectMyQnA(String userId) {
+		return matchQnADao.selectMyQnA(userId);
+	}
+
+	@Override
+	public String selectDate(String userId) {
+		return matchQnADao.selectDate(userId);
+	}
+
+	@Override
+	public List<MatchUserProfile> selectMatchUserProfileList(MatchUser todayMatchUser) {
+		return matchQnADao.selectMatchUserProfileList(todayMatchUser);
 	}
 	
 }

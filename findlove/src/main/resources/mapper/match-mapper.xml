@@ -27,16 +27,19 @@
 			order by rnum;
              ]]>
    </select>-->
-   <select id="selectMatchuser3" parameterType="String" resultType="String">
+   <select id="selectMatchuser3"  parameterType="String" resultType="String">
    			<![CDATA[
       		select * from( 
- 			   	select user_id from tb_user
-			    left join TB_PROFILE using(user_id)
-			    where TB_PROFILE.GENDER = decode(#{myGender},'M' ,'F', 'M')
- 			   order by DBMS_RANDOM.RANDOM 
-			)
-			where rownum <= 3 and user_id != 'admin';
+  			  select user_id from tb_user
+  			  left join TB_PROFILE using(user_id)
+  			  left join TB_PROFILE_PICTURE using(user_id)
+  			  where TB_PROFILE.GENDER = case when #{myGender} = 'M' then 'F' else 'M' end
+  			  and TB_PROFILE_PICTURE.THUMNAIL_FL = '1'
+  			  order by DBMS_RANDOM.RANDOM 
+				)
+			where rownum <= 3 and user_id != 'admin'
              ]]>
    
    </select>
+
 </mapper>
