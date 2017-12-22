@@ -51,40 +51,12 @@ public class UserController {
 			mav.setViewName("home");
 			System.out.println("세션추가됨");
 		}else{
-			mav.setViewName("home");
-			mav.addObject("msg", "failure");			
+			mav.setViewName("home");	
 		}
 		return mav;
 		
 		
 	}
-	
-	/*public void loginCheck(Locale locale, Model model, User vo, 
-			HttpSession session, HttpServletResponse response) throws IOException{
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		
-		if(vo.getUserId() != null && !vo.getUserId().equals("")
-				&& vo.getUserPwd() != null && !vo.getUserPwd().equals("")){
-			
-			if(userDao.loginCheck(vo)){
-				session.setAttribute("login", 0);//로그인 성공시 세션
-				
-				session.setAttribute("userId", vo.getUserId());
-				
-				out.println("<script>location.href='/'</script>");
-				out.flush();
-				out.close();
-				
-			}
-			if(userDao.loginCheck(vo) == false){
-				out.println("<script>alert('로그인 정보를 확인하세요!'); history.go(-1);</script>");
-				out.flush();
-				out.close();
-			}
-			
-		}
-	}*/
 	
 	//로그아웃
 	@RequestMapping(value = "logout.do")
@@ -92,7 +64,6 @@ public class UserController {
 		userService.logout(session);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("home");
-		mav.addObject("msg", "logout");
 		return mav;
 		
 	}

@@ -285,18 +285,18 @@
 		<span class="divider">&nbsp;</span>
 
 		<!-- Use any element to open the sidenav -->
-		
-		
-					
+
+
+
 		<span id="account-lg" onclick="openNav()" class="pull-left"><i
-			class="material-icons md-36">account_circle</i></span> 
+			class="material-icons md-36">account_circle</i></span>
 		<c:choose>
-			<c:when test ="${sessionScope.user_id ne null }">
-			<span id="account-lg-txt" onclick="openNav()"><a>${sessionScope.user_id}</a></span>
+			<c:when test="${sessionScope.user_id ne null }">
+				<span id="account-lg-txt" onclick="openNav()"><a>${sessionScope.user_id}</a></span>
 			</c:when>
 			<c:otherwise>
-		<span id="account-lg-txt" onclick="openNav()"><a>로그인</a></span>
-		</c:otherwise>
+				<span id="account-lg-txt" onclick="openNav()"><a>로그인</a></span>
+			</c:otherwise>
 		</c:choose>
 
 		<div id="mySidenav" class="sidenav">
@@ -304,59 +304,76 @@
 				class="material-icons">close</i></a> <img
 				src="/findlove/resources/img/logos/logo.png" class="logo">
 			<c:choose>
-				<c:when test ="${sessionScope.user_id ne null }">
-				<div class="nav-text">${sessionScope.user_id } 님</div>
-				<hr class="horiz-divide">
-				<!-- <form class="form-container" name="form1" method="post">
-				<input type="text" id="userId" name="userId" class="form-control"
-					placeholder="아이디"> <input type="password" id="userPwd"
-					name="userPwd" class="form-control" placeholder="패스워드"> -->
-				<form class="form-container">
-				<a href = "logout.do"><button class="form-control btn logout-btn" type="button">로그아웃</button></a>
-				</form>
+				<c:when test="${sessionScope.user_id ne null }">
+					<div class="nav-text">${sessionScope.user_id }님</div>
+					
 				</c:when>
-			<c:otherwise>			
-				<div class="nav-text">로그인하세요</div>
-				<hr class="horiz-divide">
-				<form class="form-container" name="form1" method="post">
-				<input type="text" id="user_id" name="user_id" class="form-control"
-					placeholder="아이디"> <input type="password" id="user_pwd"
-					name="user_pwd" class="form-control" placeholder="패스워드">
-				<button class="form-control btn login-btn" type="button">로그인</button>
-				<label class="form-check-label"><input type="checkbox"
-					class="form-check-input">아이디 저장</label>
-			</form>
-				<div class="btn-toolbar">
-					<div class="btn-group mr-2">
-						<button class="btn btn-naver">N</button>
+				<c:otherwise>
+					<div class="nav-text">로그인하세요</div>
+					<hr class="horiz-divide">
+					<form class="form-container" name="form1" method="post">
+						<input type="text" id="user_id" name="user_id"
+							class="form-control" placeholder="아이디"> <input
+							type="password" id="user_pwd" name="user_pwd"
+							class="form-control" placeholder="패스워드">
+						<button class="form-control btn login-btn" type="button">로그인</button>
+						<label class="form-check-label"><input type="checkbox"
+							class="form-check-input">아이디 저장</label>
+					</form>
+					<div class="btn-toolbar">
+						<div class="btn-group mr-2">
+							<button class="btn btn-naver">N</button>
+						</div>
+						<div class="btn-group mr-2">
+							<button class="btn btn-face">f</button>
+						</div>
 					</div>
-					<div class="btn-group mr-2">
-						<button class="btn btn-face">f</button>
-					</div>
-				</div>
-			</c:otherwise>
+				</c:otherwise>
 			</c:choose>
-				<hr class="horiz-divide">
-				<c:choose>
-					<c:when test="${sessionScope.user_id ne null }">
+			<hr class="horiz-divide">
+			<c:choose>
+				<c:when test="${sessionScope.user_id ne null }">
+					<c:if test="${sessionScope.user_id ne 'admin' }">
 						<div class="i-a-group">
 							<i class="material-icons">search</i><a href="myinfo.do">마이페이지</a>
 						</div>
 						<div class="i-a-group">
-							<i class="material-icons">search</i><a href="openSendMessageList.do">나의매칭</a>
+							<i class="material-icons">search</i><a
+								href="openSendMessageList.do">나의매칭</a>
 						</div>
-					</c:when>
-					<c:otherwise>						
+						
+					</c:if>
+					<c:if test="${sessionScope.user_id eq 'admin' }">
 						<div class="i-a-group">
-							<i class="material-icons">group_add</i><a href="signup.do">회원가입</a>
+							<i class="material-icons">supervisor_account</i><a
+								href="userlist.do?pageNo=1">회원관리</a>
 						</div>
 						<div class="i-a-group">
-							<i class="material-icons">search</i><a href="findidpwd.do">아이디/비밀번호
-								찾기</a>
+							<i class="material-icons">assignment</i><a href="#">게시판관리</a>
 						</div>
-					</c:otherwise>
-				</c:choose>
-				<hr class="horiz-divide">
+						<div class="i-a-group">
+							<i class="material-icons">show_chart</i><a
+								href="statisticlist.do">통계관리</a>
+						</div>
+						
+					</c:if>
+					<hr class="horiz-divide">
+						<form class="form-container">
+						<a href="logout.do"><button
+								class="form-control btn logout-btn" type="button">로그아웃</button></a>
+					</form>
+				</c:when>
+				<c:otherwise>
+					<div class="i-a-group">
+						<i class="material-icons">group_add</i><a href="signup.do">회원가입</a>
+					</div>
+					<div class="i-a-group">
+						<i class="material-icons">search</i><a href="findidpwd.do">아이디/비밀번호
+							찾기</a>
+					</div>
+				</c:otherwise>
+			</c:choose>
+			<hr class="horiz-divide">
 		</div>
 	</nav>
 	<a id="go-to-top" class="js-scroll-trigger" href="#page-top"><i
@@ -393,48 +410,51 @@
 			}
 		}
 	</script>
-	<script>	
-		$(".login-btn").on('click', function() {
-			var userId = $("#user_id").val();
-			var userPwd = $("#user_pwd").val();
-			var param = "user_id" + "=" + user_id + "&" + "user_pwd" + "=" + user_pwd;
-			if (userId == "") {
-				alert("아이디를 입력하세요.");
-				$("#user_id").focus(); //입력포커스
-				return false;
-			}
-			/* $.ajax({
-				url : "/login.do",
-				type : "GET",
-				data : param,
-				cache : false,
-				async : false,
-				dataType : "text",
-				
-				success : function(response){
-					if(response != '1'){
-						alert("아이디 또는 비밀번호가 틀립니다. 확인하여주세요.")
-						return false;						
+	<script>
+		$(".login-btn").on(
+				'click',
+				function() {
+					var userId = $("#user_id").val();
+					var userPwd = $("#user_pwd").val();
+					var param = "user_id" + "=" + user_id + "&" + "user_pwd"
+							+ "=" + user_pwd;
+					if (userId == "") {
+						alert("아이디를 입력하세요.");
+						$("#user_id").focus(); //입력포커스
+						return false;
 					}
-					alert(check);
-					
-				},
-				error : function(request, status, error){
-					if(request.status != '0'){
-						alert("code : " + request.status + "\r\nmessage : "
-								+ request.reponseText + "\r\nerror : " + error);
+					/* $.ajax({
+						url : "/login.do",
+						type : "GET",
+						data : param,
+						cache : false,
+						async : false,
+						dataType : "text",
+						
+						success : function(response){
+							if(response != '1'){
+								alert("아이디 또는 비밀번호가 틀립니다. 확인하여주세요.")
+								return false;						
+							}
+							alert(check);
+							
+						},
+						error : function(request, status, error){
+							if(request.status != '0'){
+								alert("code : " + request.status + "\r\nmessage : "
+										+ request.reponseText + "\r\nerror : " + error);
 
-					}
-				}	 */		
-			
-			/* if(!userPwd.value){
-				alert("비밀번호를 입력하세요");
-				$("#userPwd").focus();
-				return false;
-			} */
-			document.form1.action = "logincheck.do" //데이터 전송
-			document.form1.submit(); // 제출
-		});
+							}
+						}	 */
+
+					/* if(!userPwd.value){
+						alert("비밀번호를 입력하세요");
+						$("#userPwd").focus();
+						return false;
+					} */
+					document.form1.action = "logincheck.do" //데이터 전송
+					document.form1.submit(); // 제출
+				});
 	</script>
 </body>
 </html>

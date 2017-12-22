@@ -68,6 +68,11 @@
 .container.middle {
 	margin: 0px;
 }
+
+a.buy-btn {
+	cursor: pointer;
+	color: #fff !important;
+}
 </style>
 
 </head>
@@ -104,7 +109,7 @@
 				<div class="list-group" style="margin-bottom: 24px;">
 					<span class="list-group-item">보유별사탕 개수</span> <span
 						class="list-group-item"><img
-						src="/findlove/resources/img/konpeito.jpg"
+						src="/findlove/resources/img/credit/konpeito.png"
 						style="margin-left: 15px; width: 90px; height: 60px;"><font
 						size="6";> 25</font></span>
 				</div>
@@ -163,16 +168,15 @@
 										<div class="col-md-4 text-center">
 											<div class="panel panel-danger panel-pricing">
 												<div class="panel-body text-center">
-													<img src="/findlove/resources/img/konpeito.jpg" alt=""
-														style="margin-bottom: 15px;"> <br>
-													<span>10개</span>
+													<img src="/findlove/resources/img/credit/konpeito.png"
+														alt="" style="margin-bottom: 15px;"> <br> <span>10개</span>
 												</div>
 												<ul class="list-group text-center">
 													<li class="list-group-item">￦ 1,000</li>
 												</ul>
 												<div class="panel-footer">
-													<a class="btn btn-lg btn-block btn-danger" href="#">BUY
-														NOW!</a>
+													<a class="btn btn-lg btn-block btn-danger buy-btn"
+														data-price=1000>BUY NOW!</a>
 												</div>
 											</div>
 										</div>
@@ -181,16 +185,15 @@
 										<div class="col-md-4 text-center">
 											<div class="panel panel-danger panel-pricing">
 												<div class="panel-body text-center">
-													<img src="/findlove/resources/img/konpeito.jpg" alt=""
-														style="margin-bottom: 15px;"> <br>
-													<span>30개(+5)</span>
+													<img src="/findlove/resources/img/credit/konpeito.png"
+														alt="" style="margin-bottom: 15px;"> <br> <span>30개(+5)</span>
 												</div>
 												<ul class="list-group text-center">
 													<li class="list-group-item">￦ 3,000</li>
 												</ul>
 												<div class="panel-footer">
-													<a class="btn btn-lg btn-block btn-danger" href="#">BUY
-														NOW!</a>
+													<a class="btn btn-lg btn-block btn-danger buy-btn"
+														data-price=3000>BUY NOW!</a>
 												</div>
 											</div>
 										</div>
@@ -199,16 +202,15 @@
 										<div class="col-md-4 text-center">
 											<div class="panel panel-danger panel-pricing">
 												<div class="panel-body text-center">
-													<img src="/findlove/resources/img/konpeito.jpg" alt=""
-														style="margin-bottom: 15px;"> <br>
-													<span>100개(+20)</span>
+													<img src="/findlove/resources/img/credit/konpeito.png"
+														alt="" style="margin-bottom: 15px;"> <br> <span>100개(+20)</span>
 												</div>
 												<ul class="list-group text-center">
 													<li class="list-group-item">￦ 10,000</li>
 												</ul>
 												<div class="panel-footer">
-													<a class="btn btn-lg btn-block btn-danger" href="#">BUY
-														NOW!</a>
+													<a class="btn btn-lg btn-block btn-danger buy-btn"
+														data-price=10000>BUY NOW!</a>
 												</div>
 											</div>
 										</div>
@@ -220,7 +222,7 @@
 				</div>
 				<!-- /item -->
 				<div class="card card-outline-secondary my-4">
-					<div class="card-header">2. 포인트 전환</div>
+					<div class="card-header">2. 포인트 사용</div>
 					<div class="card-body">
 						<form action="mypoint" name="mypoint" method="post">
 							<section id="plans" style="padding: 0px;">
@@ -235,7 +237,8 @@
 										<div class="col-md-3 text-center" style="padding-left: 0px;">
 											<ul class="list-group text-center"
 												style="padding-top: 11px; padding-bottom: 11px;">
-												<li class="list-group-item" style="padding: 0px;">1,000</li>
+												<li id="myPoint" class="list-group-item"
+													style="padding: 0px;" data-point="1000">1,000</li>
 											</ul>
 										</div>
 										<div class="col-md-3 text-center"
@@ -243,15 +246,15 @@
 											<input type="text" name="point_cnt" id="point_cnt"
 												style="width: 150px;" />
 										</div>
-										<div class="col-md-2 text-center"
-											style="padding-top: 7px; padding-right: 0px; padding-left: 0px;">
-											<button class="btn btn-danger">전액전환</button>
-											</td>
-										</div>
 										<div class="col-md-1 text-center"
 											style="padding-top: 7px; padding-right: 0px; padding-left: 0px;">
-											<button class="btn btn-danger">전환</button>
-											</td>
+											<button type="button" class="btn btn-danger" id="discountBtn">사용</button>
+
+										</div>
+										<div class="col-md-2 text-center"
+											style="padding-top: 7px; padding-right: 0px; padding-left: 0px;">
+											<button class="btn btn-danger">전액사용</button>
+
 										</div>
 									</div>
 								</div>
@@ -261,84 +264,90 @@
 				</div>
 				<div class="card card-outline-secondary my-4">
 					<div class="card-header">3. 주문 금액</div>
-					<table class="table table-bordered">
-					</table>
+					<!-- <table class="table table-bordered">
+						
+					</table> -->
+					<div class="card-body">
+						<div class="container">
+							<div class="row">
+								<div class="panel panel-danger panel-pricing">
+									<div class="credit-body text-center">총 주문 금액</div>
+									<div class="credit-body text-center" id="default-price"></div>
+								</div>
+								<div class="panel panel-danger panel-pricing">
+									<div class="panel-body text-center">포인트</div>								
+									<div class="panel-body text-center" id="using-point">0</div>
+								</div>
+								<div class="panel panel-danger panel-pricing">
+									<div class="panel-body text-center">최종 결제 금액</div>							
+									<div class="panel-body text-center" id="total-price">0</div>
+								</div>
+						</div>
+					</div>
 				</div>
+			
+		
 
 
 
-				<div class="card card-outline-secondary my-4">
-					<div class="card-header">4. 결제 수단 선택</div>
-					<form action="credit" name="credit" method="post">
-						<section id="plans">
-							<div class="container">
-								<div class="row">
+		<div class="card card-outline-secondary my-4">
+			<div class="card-header">4. 결제 수단 선택</div>
+			<form action="credit" name="credit" method="post">
+				<section id="plans">
+					<div class="container">
+						<div class="row">
 
-									<!-- item -->
-									<div class="col-md-4 text-center">
-										<div class="panel panel-danger panel-pricing">
-											<div class="panel-body text-center">
-												<img src="/findlove/resources/img/store/card.PNG" alt=""
-													style="width:152px; height:152px;"> <br>												
-											</div>
-											
-											<div class="panel-footer">
-												<a class="btn btn-lg btn-block btn-danger" href="#">BUY
-													NOW!</a>
-											</div>
-										</div>
+							<!-- 신용카드 -->
+							<div class="col-md-4 text-center">
+								<div class="panel panel-danger panel-pricing">
+									<div class="panel-body text-center">
+										<img src="/findlove/resources/img/credit/card.png" alt=""
+											style="width: 152px; height: 180px;"> <br>
 									</div>
-									<!-- item -->
-									<div class="col-md-4 text-center">
-										<div class="panel panel-danger panel-pricing">
-											<div class="panel-body text-center">
-												<img src="/findlove/resources/img/konpeito.jpg" alt=""
-													style="margin-bottom: 15px;"> <br>
-												<span>10개</span>
-											</div>
-											<ul class="list-group text-center">
-												<li class="list-group-item">￦ 1,000</li>
-											</ul>
-											<div class="panel-footer">
-												<a class="btn btn-lg btn-block btn-danger" href="#">BUY
-													NOW!</a>
-											</div>
-										</div>
-									</div>
-									<!-- item -->
-									<div class="col-md-4 text-center">
-										<div class="panel panel-danger panel-pricing">
-											<div class="panel-body text-center">
-												<img src="/findlove/resources/img/konpeito.jpg" alt=""
-													style="margin-bottom: 15px;"> <br>
-												<span>10개</span>
-											</div>
-											<ul class="list-group text-center">
-												<li class="list-group-item">￦ 1,000</li>
-											</ul>
-											<div class="panel-footer">
-												<a class="btn btn-lg btn-block btn-danger" href="#">BUY
-													NOW!</a>
-											</div>
-										</div>
-									</div>
+									<div class="panel-footer"></div>
 								</div>
 							</div>
-						</section>
+							<!-- 모바일 -->
+							<div class="col-md-4 text-center">
+								<div class="panel panel-danger panel-pricing">
+									<div class="panel-body text-center">
+										<img src="/findlove/resources/img/credit/phone.png" alt=""
+											style="width: 152px; height: 180px;"> <br>
+									</div>
+									<ul class="list-group text-center">
+									</ul>
+									<div class="panel-footer"></div>
+								</div>
+							</div>
+							<!-- 가상계좌 -->
+							<div class="col-md-4 text-center">
+								<div class="panel panel-danger panel-pricing">
+									<div class="panel-body text-center">
+										<img src="/findlove/resources/img/credit/virtual account.png"
+											alt="" style="width: 152px; height: 180px;"> <br>
+									</div>
+									<ul class="list-group text-center">
+									</ul>
+									<div class="panel-footer"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
 
 
 
-					</form>
-					<!-- <ul class="payment_type">
+			</form>
+			<!-- <ul class="payment_type">
 							<li class="phone active" data-payment_type="phone"></li>
 							<li class="credit" data-payment_type="credit"></li>
 							<li class="vbank" data-payment_type="vbank"></li>					
 						</ul> -->
-				</div>
-			</div>
+		</div>
+	</div>
 
 
-			<!-- 	
+	<!-- 	
 
 										
 						
@@ -361,15 +370,35 @@
 		</div>
 			</div> -->
 
-			<!-- footer -->
+	<!-- footer -->
 
 
-			<!-- 자바스크립트 -->
+	<!-- 자바스크립트 -->
 
-			<script type="text/javascript">
-				$(function() {
-					$('#mainNav').css('background-color', '#faadad');
-				});
-			</script>
+	<script type="text/javascript">
+		$(function() {
+			$('#mainNav').css('background-color', '#faadad');
+		});
+
+		$('.buy-btn').on('click', function() {
+			$('#default-price').text($(this).data('price'));
+			updateTotalPrice();
+		});
+
+		$('#discountBtn').on('click', function() {
+			if ($('#myPoint').data('point') < $('#point_cnt').val()) {
+				alert("다시 입력해주세요.");
+				$('#point_cnt').val('');
+			} else {
+				$('#using-point').text($('#point_cnt').val());
+				updateTotalPrice();
+			}
+		});
+
+		function updateTotalPrice() {
+			$('#total-price').text(
+					$('#default-price').text() - $('#using-point').text());
+		}
+	</script>
 </body>
 </html>

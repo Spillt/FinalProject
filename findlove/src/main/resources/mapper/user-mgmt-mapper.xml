@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userMgmt">
+
+	<select id="selectUserAllCnt" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM TB_USER WHERE rank_gb != 'M'
+		]]>
+	</select>
+
+	<select id="selectUserList" parameterType="map" resultType="UserBasic">
+		<![CDATA[
+			SELECT picture_nm, user_id, user_nm, user_nicknm, enroll_dt, rank_gb, user_st
+			FROM (
+			SELECT ROW_NUMBER() OVER (ORDER BY user_nm) rnum, picture_nm, user_id, user_nm, user_nicknm, enroll_dt, rank_gb, user_st
+			FROM TB_USER
+			LEFT JOIN (SELECT * FROM TB_PROFILE_PICTURE WHERE THUMNAIL_FL = 1) USING (user_id)
+			WHERE rank_gb != 'M')
+			WHERE rnum BETWEEN #{startIdx} AND #{lastIdx}
+		]]>
+	</select>
+	
+	<select id="selectUserDetail" parameterType="String" resultType="UserDetail">
+		<![CDATA[
+			SELECT picture_nm, user_id, user_nm, user_nicknm, email, phone, TO_CHAR(enroll_dt, 'YYYY-MM-DD') as enroll_dt, TO_CHAR(latest_access_dt, 'YYYY-MM-DD') as latest_access_dt, TO_CHAR(delete_dt, 'YYYY-MM-DD') as delete_dt, rank_gb, user_st, grade_avg,
+			(SELECT COUNT(DISTINCT SENDER_ID) FROM TB_MESSAGE WHERE receiver_id = #{userId}) AS favorite_cnt
+			FROM (SELECT * FROM TB_USER WHERE user_id = #{userId})
+			LEFT JOIN (SELECT * FROM TB_PROFILE_PICTURE WHERE thumnail_fl = 1) USING (user_id)
+		]]>
+	</select>
+	
+	<select id="selectUserProfile" parameterType="String" resultType="Profile">
+		<![CDATA[
+			SELECT * FROM TB_PROFILE WHERE user_id = #{userId}
+		]]>
+	</select>
+	
+	<select id="selectUserPictureList" parameterType="String" resultType="String">
+		<![CDATA[
+			SELECT picture_nm FROM TB_PROFILE_PICTURE WHERE user_id = #{userId} AND THUMNAIL_FL = 0
+		]]>
+	</select>
+	
+	<update id="updateSignupWait" parameterType="String">
+		<![CDATA[
+			UPDATE TB_USER SET user_st = 1 WHERE user_id = #{userId}
+		]]>
+	</update>
+	
+	
+	<select id="selectWaitCnt" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM TB_USER WHERE user_st = 0
+		]]>
+	</select>
+	
+	<select id="selectSignupWaitList" resultType="UserBasic">
+		<![CDATA[
+			SELECT picture_nm, user_id, user_nm, user_nicknm, enroll_dt
+			FROM TB_USER
+			LEFT JOIN (SELECT * FROM TB_PROFILE_PICTURE WHERE THUMNAIL_FL = 1) USING (user_id)
+			WHERE user_st = 0
+			ORDER BY enroll_dt DESC
+		]]>
+	</select>
+	
+	<select id="selectReportCnt" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM TB_REPORT WHERE report_st = 0
+		]]>
+	</select>
+	
+	<select id="selectReportList" resultType="Report">
+		<![CDATA[
+			SELECT report_no, report_type, sender_id, receiver_id, REPLACE(report_content,'\r\n', '<br>') as report_content, report_st FROM TB_REPORT
+		]]>
+	</select>
+	
+	<update id="updateReportComplete" parameterType="int">
+		<![CDATA[
+			UPDATE TB_REPORT SET report_st = '1' WHERE report_no = #{reportNo}
+		]]>
+	</update>
+	
+	<update id="updateReportHold" parameterType="int">
+		<![CDATA[
+			UPDATE TB_REPORT SET report_st = '2' WHERE report_no = #{reportNo}
+		]]>
+	</update>
+	
+	<update id="updateUserSuspend" parameterType="int">
+		<![CDATA[
+			UPDATE TB_USER SET user_st = '3' WHERE user_id = (SELECT receiver_id FROM TB_REPORT WHERE report_no = #{reportNo})
+		]]>
+	</update>
+
+</mapper>

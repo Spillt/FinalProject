@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.godsky.findlove.main.matchboard.qna.model.service.MatchQnAService;
 import com.godsky.findlove.main.matchboard.qna.model.vo.MatchQnA;
 import com.godsky.findlove.main.matchboard.qna.model.vo.MatchUser;
-import com.godsky.findlove.user.model.vo.Profile;
+import com.godsky.findlove.common.model.vo.Profile;
 import com.godsky.findlove.user.model.vo.User;
 @Controller
 public class MatchQnAController {
