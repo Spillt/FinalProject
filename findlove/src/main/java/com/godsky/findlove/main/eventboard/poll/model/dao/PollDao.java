@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.godsky.findlove.main.eventboard.poll.model.vo.Poll;
+import com.godsky.findlove.main.eventboard.poll.model.vo.PollAnswer;
 
 @Repository("pollDao")
 public class PollDao {
@@ -27,8 +28,8 @@ public class PollDao {
 	public Poll pollResult(int pollNo) {
 		return sqlSession.selectOne("poll.result",pollNo);
 	}
-	public int pollAnswer(Poll poll) {
-		return 0;
+	public void pollAnswer(PollAnswer answer) {
+		sqlSession.insert("poll.answer", answer);
 	}
 
 }

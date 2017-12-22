@@ -6,6 +6,7 @@
 
 	<resultMap id="resultPoll" type="Poll">
 		<id property="pollNo" column="Poll_NO"/>
+		<result property="userId" column="USER_ID"/>
 		<result property="pollTitle" column="Poll_Title"/>
 		<result property="pollST" column="Poll_ST"/>
 		<result property="SDT" column="Start_DT"/>
@@ -40,5 +41,9 @@
 		JOIN TB_POLL_ANSWER using (POLL_NO)
         WHERE POLL_NO = #{pollNo}
     </select>
+     <insert id="answer" parameterType="PollAnswer">
+        INSERT INTO TB_POLL_ANSWER(USER_ID, Poll_NO, Answer)
+        VALUES(#{user_id}, #{poll_no}, #{answer})
+    </insert>
     
 </mapper>

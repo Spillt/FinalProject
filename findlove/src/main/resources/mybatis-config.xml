@@ -6,6 +6,7 @@
 	<typeAliases>
 		<typeAlias type="com.godsky.findlove.user.model.vo.User" alias="User" />
 		<typeAlias type="com.godsky.findlove.main.eventboard.poll.model.vo.Poll" alias="Poll" />
+		<typeAlias type="com.godsky.findlove.main.eventboard.poll.model.vo.PollAnswer" alias="PollAnswer" />
 				
 	</typeAliases>
 	

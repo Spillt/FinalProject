@@ -124,15 +124,20 @@ tr:nth-child(2n), td:nth-child(2n) {
 			<tr>
 				<td>답변</td>
 				<td>
-					<div>
-						<input type="radio" name="chk_info" value="1">${poll.answer1}
-					</div>
-					<div>
-						<input type="radio" name="chk_info" value="2">${poll.answer2}
-					</div>
-					<div>
-						<input type="radio" name="chk_info" value="3">${poll.answer3}
-					</div>
+					<form action="pollAnswer.do">
+						<input type="hidden" name="user_id" value="user11">
+						<input type="hidden" name="poll_no" value="${poll.pollNo}">
+						<div>
+							<input type="radio" name="answer" value=1>${poll.answer1}
+						</div>
+						<div>
+							<input type="radio" name="answer" value=2>${poll.answer2}
+						</div>
+						<div>
+							<input type="radio" name="answer" value=3>${poll.answer3}
+						</div>
+						<input type="submit" value="설문완료">
+					</form>
 				</td>
 			</tr>
 		</table>
@@ -146,7 +151,7 @@ tr:nth-child(2n), td:nth-child(2n) {
 			<li class="nav-item"><a class="nav-link js-scroll-trigger"
 				href="polllist.do">이전으로</a></li>
 			<li class="nav-item"><a class="nav-link js-scroll-trigger"
-				href="polllist.do">설문완료</a></li>
+				>설문완료</a></li>
 
 		</ul>
 

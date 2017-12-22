@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.godsky.findlove.main.eventboard.poll.model.dao.PollDao;
 import com.godsky.findlove.main.eventboard.poll.model.vo.Poll;
+import com.godsky.findlove.main.eventboard.poll.model.vo.PollAnswer;
 
 @Service("pollService")
 public class PollServiceImpl implements PollService {
@@ -30,8 +31,8 @@ public class PollServiceImpl implements PollService {
 	}
 
 	@Override
-	public int pollAnswer(Poll poll) {
-		return pollDao.pollAnswer(poll);
+	public void pollAnswer(PollAnswer answer) {
+		pollDao.pollAnswer(answer);
 	}
 	
 	
