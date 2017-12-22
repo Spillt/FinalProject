@@ -6,6 +6,7 @@ import java.sql.Date;
 
 public class Poll {
 
+	private String userId;
 	private int pollNo;
 	private String pollTitle;
 	private int pollST;
@@ -20,14 +21,11 @@ public class Poll {
 	public Poll() {
 		super();
 	}
-
 	
-
-
-
-	public Poll(int pollNo, String pollTitle, int pollST, Date sDT, Date eDT, String answer1, String answer2,
-			String answer3, int answer) {
+	public Poll(String userId, int pollNo, String pollTitle, int pollST, Date sDT, Date eDT, String answer1,
+			String answer2, String answer3, int answer) {
 		super();
+		this.userId = userId;
 		this.pollNo = pollNo;
 		this.pollTitle = pollTitle;
 		this.pollST = pollST;
@@ -38,10 +36,6 @@ public class Poll {
 		this.answer3 = answer3;
 		this.answer = answer;
 	}
-
-
-
-
 
 	public int getPollNo() {
 		return pollNo;
@@ -145,12 +139,26 @@ public class Poll {
 
 
 
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 	@Override
 	public String toString() {
-		return "pollNo=" + pollNo + ", pollTitle=" + pollTitle + ", pollST=" + pollST + ", SDT=" + SDT + ", EDT="
-				+ EDT + ", answer1=" + answer1 + ", answer2=" + answer2 + ", answer3=" + answer3 + ", answer=" + answer
-				;
+		return "userId=" + userId + ", pollNo=" + pollNo + ", pollTitle=" + pollTitle + ", pollST=" + pollST
+				+ ", SDT=" + SDT + ", EDT=" + EDT + ", answer1=" + answer1 + ", answer2=" + answer2 + ", answer3="
+				+ answer3 + ", answer=" + answer ;
 	}
+
+
+
+
+
+
 
 	
 	

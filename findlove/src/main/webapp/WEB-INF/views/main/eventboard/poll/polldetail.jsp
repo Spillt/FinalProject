@@ -125,7 +125,7 @@ tr:nth-child(2n), td:nth-child(2n) {
 				<td>답변</td>
 				<td>
 					<form action="pollAnswer.do">
-						<input type="hidden" name="user_id" value="user11">
+						<input type="hidden" name="user_id" value="${sessionScope.user_id}">
 						<input type="hidden" name="poll_no" value="${poll.pollNo}">
 						<div>
 							<input type="radio" name="answer" value=1>${poll.answer1}

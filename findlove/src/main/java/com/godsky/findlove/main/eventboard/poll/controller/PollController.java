@@ -24,12 +24,14 @@ public class PollController {
 	private PollService pollService;
 	
 	public PollController() {}
-	
+	 
+	 
 	//  목록 전체 보기
 	@RequestMapping(value="polllist.do")
-	public ModelAndView pollList(Model model) {
+	public ModelAndView pollList(Model model /*,@RequestParam("userId") String userId*/) {
 		
 		 List<Poll> list = pollService.listAll();
+		// List<Integer> listNo = pollService.listAnswerPollNo(userId);
 	      ModelAndView mv = new ModelAndView();
 	      mv.setViewName("main/eventboard/poll/polllist");
 	      mv.addObject("list", list);
