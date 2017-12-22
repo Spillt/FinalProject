@@ -26,4 +26,11 @@
 			SELECT * FROM TB_USER WHERE User_ID = #{userId}
 		]]>
 	</select>
+	
+	<select id="selectUserList" resultType="User" resultMap="resultUser">
+		<![CDATA[
+			SELECT * FROM TB_USER
+		]]>
+	</select>
+	
 </mapper>

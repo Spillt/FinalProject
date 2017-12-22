@@ -300,7 +300,7 @@
 	            <hr class="horiz-divide">
 	            
          		<div class="i-a-group">
-	               <i class="material-icons">supervisor_account</i><a href="userlist.do">회원관리</a>
+	               <i class="material-icons">supervisor_account</i><a href="userlist.do?pageNo=1">회원관리</a>
 	            </div>
 	            <div class="i-a-group">
 	               <i class="material-icons">assignment</i><a href="#">게시판관리</a>
