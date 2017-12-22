@@ -260,9 +260,6 @@ CREATE TABLE TB_POLL (
   Poll_ST CHAR(1) DEFAULT '0',
   Start_DT DATE DEFAULT SYSDATE,
   End_DT DATE NOT NULL,
-  ANSWER1 VARCHAR2(30) , 
-  ANSWER2 VARCHAR2(30) ,
-  ANSWER3 VARCHAR2(30),
   
   CONSTRAINT PK_POLL PRIMARY KEY (Poll_NO),
   CONSTRAINT CHK_POLL_ST CHECK (Poll_ST IN ('0', '1', '2'))
@@ -273,22 +270,36 @@ COMMENT ON COLUMN TB_POLL.Poll_Title IS '설문제목';
 COMMENT ON COLUMN TB_POLL.Poll_ST IS '설문 상태(0:준비/1:진행/2:마감)';
 COMMENT ON COLUMN TB_POLL.Start_DT IS '설문시작일';
 COMMENT ON COLUMN TB_POLL.End_DT IS '설문종료일';
-COMMENT ON COLUMN TB_POLL.ANSWER1 IS '답변1';
-COMMENT ON COLUMN TB_POLL.ANSWER2 IS '답변2';
-COMMENT ON COLUMN TB_POLL.ANSWER3 IS '답변3';
+
+-- 13. 설문조사 질문 테이블
+CREATE TABLE TB_POLL_QUESTION (
+  Poll_NO NUMBER,
+  Question_NO NUMBER,
+  Question_Content VARCHAR2(200) NOT NULL,
+  
+  CONSTRAINT PK_PQ PRIMARY KEY (Poll_NO, Question_NO),
+  CONSTRAINT FK_PQ FOREIGN KEY (Poll_NO) REFERENCES TB_POLL ON DELETE CASCADE 
+);
+COMMENT ON TABLE TB_POLL_QUESTION IS '설문조사 질문 테이블';
+COMMENT ON COLUMN TB_POLL_QUESTION.Question_NO IS '질문번호';
+COMMENT ON COLUMN TB_POLL_QUESTION.Poll_NO IS '설문번호';
+COMMENT ON COLUMN TB_POLL_QUESTION.Question_Content IS '질문내용';
 
 -- 14. 설문조사 답변 테이블
 CREATE TABLE TB_POLL_ANSWER (
   User_ID VARCHAR2(30),
   Poll_NO NUMBER,
+  Question_NO NUMBER,
   Answer NUMBER NOT NULL,
   
-  CONSTRAINT PK_PA PRIMARY KEY (User_ID, Poll_NO),
-  CONSTRAINT FK_PA_UID FOREIGN KEY (User_ID) REFERENCES TB_USER ON DELETE SET NULL
+  CONSTRAINT PK_PA PRIMARY KEY (User_ID, Poll_NO, Question_NO),
+  CONSTRAINT FK_PA_UID FOREIGN KEY (User_ID) REFERENCES TB_USER ON DELETE SET NULL,
+  CONSTRAINT FK_PA_PQ FOREIGN KEY (Poll_NO, Question_NO) REFERENCES TB_POLL_QUESTION ON DELETE CASCADE
 );
 COMMENT ON TABLE TB_POLL_ANSWER IS '설문조사 답변 테이블';
 COMMENT ON COLUMN TB_POLL_ANSWER.User_ID IS '아이디';
 COMMENT ON COLUMN TB_POLL_ANSWER.Poll_NO IS '설문번호';
+COMMENT ON COLUMN TB_POLL_ANSWER.Question_NO IS '질문번호';
 COMMENT ON COLUMN TB_POLL_ANSWER.Answer IS '답변';
 
 -- 15. 공지사항 테이블
@@ -402,17 +413,35 @@ COMMIT;
 ----------------- 샘플데이터 -------------------
 -- 1. 사용자 테이블
 INSERT INTO TB_USER VALUES('admin', 'admin', '관리자', '관리자', '1', 'admin@naver.com', '010-1234-5678', default, default, 'G', default, default, default, null); 
-INSERT INTO TB_USER VALUES('user11', 'pass11', '윤찬호', '너구리', '1', 'raccoon@naver.com', '010-1234-1111', default, default, 'D', 3, default, default, null); 
-INSERT INTO TB_USER VALUES('user22', 'pass22', '손정한', '돼지', '1', 'pig22@naver.com', '010-1234-2222', default, default, 'P', 3.5, default, default, null); 
-INSERT INTO TB_USER VALUES('user33', 'pass33', '김지훈', '사육사', '2', 'keeper@naver.com', '010-1234-3333', default, default, 'G', 3.5, default, default, null); 
+INSERT INTO TB_USER VALUES('user11', 'pass11', '윤찬호', '너구리', '1', 'raccoon@naver.com', '010-1234-1111', default, default, 'D', 1, default, default, null); 
+INSERT INTO TB_USER VALUES('user22', 'pass22', '손정한', '돼지', '1', 'pig22@naver.com', '010-1234-2222', default, default, 'P', 2, default, default, null); 
+INSERT INTO TB_USER VALUES('user33', 'pass33', '김지훈', '사육사', '2', 'keeper@naver.com', '010-1234-3333', default, default, 'G', 3, default, default, null); 
 INSERT INTO TB_USER VALUES('user44', 'pass44', '남찬우', '나무', '2', 'tree@gmail.com', '010-1234-4444', default, default, 'S', 4, default, default, null); 
-INSERT INTO TB_USER VALUES('user55', 'pass55', '조남훈', '곰', '3', 'bear55@naver.com', '010-1234-5555', default, default, 'B', 4, default, default, null); 
-INSERT INTO TB_USER VALUES('user66', 'pass66', '김혜정', '쥐', '3', 'mouse@naver.com', '010-1234-6666', default, default, 'G', 4, default, default, null); 
-INSERT INTO TB_USER VALUES('user77', 'pass77', '김여진', '여우', '4', 'fox77@naver.com', '010-1234-7777', default, default, 'G', 4.5, default, default, null); 
+INSERT INTO TB_USER VALUES('user55', 'pass55', '조남훈', '곰', '3', 'bear55@naver.com', '010-1234-5555', default, default, 'B', 5, default, default, null); 
+INSERT INTO TB_USER VALUES('user66', 'pass66', '김혜정', '쥐', '3', 'mouse@naver.com', '010-1234-6666', default, default, 'G', 6, default, default, null); 
+INSERT INTO TB_USER VALUES('user77', 'pass77', '김여진', '여우', '4', 'fox77@naver.com', '010-1234-7777', default, default, 'G', 7, default, default, null); 
 
+commit;
 -- 2. 사용자(또는 이상형) 프로필
+INSERT INTO TB_PROFILE VALUES('user11', '0', 'M', 31, 170, 80, '서울광역시', '게임하기', '대학 졸업', 'A', '흡연', '즐겨마심', '무교', '대학생'); 
+INSERT INTO TB_PROFILE VALUES('user22', '0', 'M', 30, 171, 81, '서울광역시', '모마하기', '대학 졸업', 'A', '흡연', '즐겨마심', '무교', '양아치'); 
+INSERT INTO TB_PROFILE VALUES('user33', '0', 'M', 29, 172, 82, '인천광역시', '게임하기', '대학 졸업', 'B', '금연', '안마심', '기독교', '공대'); 
+INSERT INTO TB_PROFILE VALUES('user44', '0', 'M', 28, 173, 83, '인천광역시', '개발하기', '대학 졸업', 'B', '금연', '안마심', '기독교', '키다리'); 
+INSERT INTO TB_PROFILE VALUES('user55', '0', 'M', 27, 174, 84, '경기도', '술먹기', '대학 졸업', 'O', '금연', '적당히마심', '기독교', '공대'); 
+INSERT INTO TB_PROFILE VALUES('user66', '0', 'F', 26, 175, 85, '경기도', '집가기', '대학 졸업', 'O', '금연', '적당히마심', '불교', '직장인'); 
+INSERT INTO TB_PROFILE VALUES('user77', '0', 'F', 25, 176, 86, '경기도', '볼링', '대학 졸업', 'O', '금연', '적당히마심', '불교', '학생'); 
 
+COMMIT;
 -- 3. 프로필 사진 테이블
+INSERT INTO TB_PROFILE_PICTURE VALUES('user11_1','user11', '0');
+INSERT INTO TB_PROFILE_PICTURE VALUES('user22_1','user22', '0');
+INSERT INTO TB_PROFILE_PICTURE VALUES('user33_1','user33', '0');
+INSERT INTO TB_PROFILE_PICTURE VALUES('user44_1','user44', '0');
+INSERT INTO TB_PROFILE_PICTURE VALUES('user55_1','user55', '0');
+INSERT INTO TB_PROFILE_PICTURE VALUES('user66_1','user66', '0');
+INSERT INTO TB_PROFILE_PICTURE VALUES('user77_1','user77', '0');
+
+COMMIT;
 
 -- 4. 매칭 질문 테이블
 

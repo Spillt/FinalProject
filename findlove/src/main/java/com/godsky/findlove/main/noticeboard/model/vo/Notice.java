@@ -4,90 +4,89 @@ import java.sql.Date;
 
 public class Notice {
 
-	private int NoticeNo;
-	private String NoticeTitle;
-	private String NoticeContent;
-	private Date NoticeDt;
-	private String NoticeFileOnm;
-	private String NoticeFileRnm;
-	private int NoticeReadCnt;
+	private int noticeNo;
+	private String noticeTitle;
+	private String noticeContent;
+	private Date noticeDate;
+	private String noticeFileOName;
+	private String noticeFileRName;
+	private int noticeReadCnt;
 	
-	public Notice() {
+	public Notice() {}
+
+	public Notice(int noticeNo, String noticeTitle, String noticeContent, Date noticeDate, String noticeFileOName,
+			String noticeFileRName, int noticeReadCnt) {
 		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.noticeDate = noticeDate;
+		this.noticeFileOName = noticeFileOName;
+		this.noticeFileRName = noticeFileRName;
+		this.noticeReadCnt = noticeReadCnt;
 	}
 
-	public Notice(int noticeNo, String noticeTitle, String noticeContent, Date noticeDt, String noticeFileOnm,
-			String noticeFileRnm, int noticeReadCnt) {
-		super();
-		NoticeNo = noticeNo;
-		NoticeTitle = noticeTitle;
-		NoticeContent = noticeContent;
-		NoticeDt = noticeDt;
-		NoticeFileOnm = noticeFileOnm;
-		NoticeFileRnm = noticeFileRnm;
-		NoticeReadCnt = noticeReadCnt;
+	public int getnoticeNo() {
+		return noticeNo;
 	}
 
-	public int getNoticeNo() {
-		return NoticeNo;
+	public void setnoticeNo(int noticeNo) {
+		this.noticeNo = noticeNo;
 	}
 
 	public String getNoticeTitle() {
-		return NoticeTitle;
-	}
-
-	public String getNoticeContent() {
-		return NoticeContent;
-	}
-
-	public Date getNoticeDt() {
-		return NoticeDt;
-	}
-
-	public String getNoticeFileOnm() {
-		return NoticeFileOnm;
-	}
-
-	public String getNoticeFileRnm() {
-		return NoticeFileRnm;
-	}
-
-	public int getNoticeReadCnt() {
-		return NoticeReadCnt;
-	}
-
-	public void setNoticeNo(int noticeNo) {
-		NoticeNo = noticeNo;
+		return noticeTitle;
 	}
 
 	public void setNoticeTitle(String noticeTitle) {
-		NoticeTitle = noticeTitle;
+		this.noticeTitle = noticeTitle;
+	}
+
+	public String getNoticeContent() {
+		return noticeContent;
 	}
 
 	public void setNoticeContent(String noticeContent) {
-		NoticeContent = noticeContent;
+		this.noticeContent = noticeContent;
 	}
 
-	public void setNoticeDt(Date noticeDt) {
-		NoticeDt = noticeDt;
+	public Date getNoticeDate() {
+		return noticeDate;
 	}
 
-	public void setNoticeFileOnm(String noticeFileOnm) {
-		NoticeFileOnm = noticeFileOnm;
+	public void setNoticeDate(Date noticeDate) {
+		this.noticeDate = noticeDate;
 	}
 
-	public void setNoticeFileRnm(String noticeFileRnm) {
-		NoticeFileRnm = noticeFileRnm;
+	public String getNoticeFileOName() {
+		return noticeFileOName;
+	}
+
+	public void setNoticeFileOName(String noticeFileOName) {
+		this.noticeFileOName = noticeFileOName;
+	}
+
+	public String getNoticeFileRName() {
+		return noticeFileRName;
+	}
+
+	public void setNoticeFileRName(String noticeFileRName) {
+		this.noticeFileRName = noticeFileRName;
+	}
+
+	public int getNoticeReadCnt() {
+		return noticeReadCnt;
 	}
 
 	public void setNoticeReadCnt(int noticeReadCnt) {
-		NoticeReadCnt = noticeReadCnt;
+		this.noticeReadCnt = noticeReadCnt;
 	}
 
 	@Override
 	public String toString() {
-		
-		return NoticeNo + ", " + NoticeTitle + ", " + NoticeContent + ", " + NoticeDt + ", " + NoticeFileOnm + ", " + NoticeFileRnm + ", " + NoticeReadCnt; 
+		return "Notice [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
+				+ ", noticeDate=" + noticeDate + ", noticeFileOName=" + noticeFileOName + ", noticeFileRName="
+				+ noticeFileRName + ", noticeReadCnt=" + noticeReadCnt + "]";
 	}
 	
 	
