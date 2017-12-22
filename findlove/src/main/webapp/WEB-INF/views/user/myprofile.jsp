@@ -8,6 +8,9 @@
 <meta charset=UTF-8">
 <title>연애의발견::마이페이지</title>
 
+<!-- Page link -->
+
+<!-- CSS 및 스타일 -->
 <style type="text/css">
 .portfolio-item-inner {
 	line-height: 1.42857143;
@@ -56,26 +59,24 @@
 }
 
 .container.top {
-	margin-top: 100px;
+	margin-top: 150px;
 }
 </style>
 
 </head>
 <body id="page-top">
+
+	<!-- header -->
 	<c:import url="../include/header.jsp" />
 
-	<!-- Portfolio Grid -->
+	<!-- title -->
 	<div class="container top">
 		<div class="row">
-			<div class="col-lg-12 text-center">
-				<!-- <img class="img-fluid" src="/findlove/resources/img/ad/ad-banner.jpg"> -->
+			<div class="col-lg-12 text-left">
+				<strong style="font-size: 25pt; color: #faadad;">마이페이지</strong>	
 			</div>
 		</div>
-	</div>
-
-	<br>
-	<h1 align="center">마이페이지</h1>
-	<br>
+	</div>	
 
 	<!-- Page Content -->
 	<div class="container">
@@ -170,6 +171,10 @@
 		</div>
 
 	</div>
+	
+	<!-- footer -->
+	
+	<!-- 자바스크립트 -->
 	<script type="text/javascript">
 		$(function() {
 			$('#mainNav').css('background-color', '#faadad');
