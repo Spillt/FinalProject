@@ -43,28 +43,26 @@
 			margin-bottom: 20px;
 		}
 		.container.top {
-			margin-top: 100px;
+			margin-top: 150px;
 		}
 		
 	</style>
 	
 </head>
 <body id="page-top">
+
+<!-- header -->
 <c:import url="../include/header.jsp" />
 	
 
-	<!-- Portfolio Grid -->
+	<!-- title -->
 	<div class="container top">
 		<div class="row">
-			<div class="col-lg-12 text-center">
-				<!-- <img class="img-fluid" src="/findlove/resources/img/ad/ad-banner.jpg"> -->
+			<div class="col-lg-12 text-left">
+				<strong style="font-size: 25pt; color: #faadad;">마이페이지</strong>	
 			</div>
 		</div>
-	</div>
-
-	<br>
-	<h1 align="center">마이페이지</h1>
-	<br>
+	</div>	
 	
 	<!-- Page Content -->
     <div class="container">
@@ -120,8 +118,8 @@
             	  </tr>
             	  </form> 
              	</table>
-			    <a class="btn btn-primary" onclick="location.href='myinfoset.do'">수정하기</a>
-			    <a class="btn btn-primary" onclick="history.go(-1)">취소</a>
+			    <a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick="location.href='myinfoset.do'">수정하기</a>
+			    <a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick="history.go(-1)">취소</a>
             </div>
           </div>
           <!-- /.card -->

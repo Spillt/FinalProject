@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,7 +108,7 @@ a.buy-btn {
 						href="store.do" class="list-group-item active">스토어</a>
 				</div>
 				<div class="list-group" style="margin-bottom: 24px;">
-					<span class="list-group-item">보유별사탕 개수</span> <span
+					<span class="list-group-item" align="center">보유별사탕 개수</span> <span
 						class="list-group-item"><img
 						src="/findlove/resources/img/credit/konpeito.png"
 						style="margin-left: 15px; width: 90px; height: 60px;"><font
@@ -118,7 +119,7 @@ a.buy-btn {
 					<button class="btn btn-danger">다음</button>
 				</div>
 				<div class="list-group">
-					<a class="list-group-item">별사탕 이용내역</a>
+					<a class="list-group-item" align="center">별사탕 이용내역</a>
 					<div class="inner"
 						style="width: 1275px; height: 350px; margin-left: 0px;">
 						<ul class="list-group">
@@ -224,7 +225,7 @@ a.buy-btn {
 				<div class="card card-outline-secondary my-4">
 					<div class="card-header">2. 포인트 사용</div>
 					<div class="card-body">
-						<form action="mypoint" name="mypoint" method="post">
+						<!-- <form action="mypoint" name="mypoint" method="post"> -->
 							<section id="plans" style="padding: 0px;">
 								<div class="container">
 									<div class="row">
@@ -259,7 +260,7 @@ a.buy-btn {
 									</div>
 								</div>
 							</section>
-						</form>
+						<!-- </form> -->
 					</div>
 				</div>
 				<div class="card card-outline-secondary my-4">
@@ -268,22 +269,31 @@ a.buy-btn {
 						
 					</table> -->
 					<div class="card-body">
-						<div class="container">
+						<div class="container credit">
 							<div class="row">
 								<div class="panel panel-danger panel-pricing">
 									<div class="credit-body text-center">총 주문 금액</div>
-									<div class="credit-body text-center" id="default-price"></div>
+									<div class="price-body text-center" id="default-price">0</div>
 								</div>
 								<div class="panel panel-danger panel-pricing">
-									<div class="panel-body text-center">포인트</div>								
-									<div class="panel-body text-center" id="using-point">0</div>
+									<div class="calculate-body text-center">-</div>
+									
 								</div>
 								<div class="panel panel-danger panel-pricing">
-									<div class="panel-body text-center">최종 결제 금액</div>							
-									<div class="panel-body text-center" id="total-price">0</div>
+									<div class="credit-body text-center">포인트</div>								
+									<div class="price-body text-center" id="using-point">0</div>
+								</div>
+								<div class="panel panel-danger panel-pricing">
+									<div class="calculate-body text-center">=</div>
+									
+								</div>
+								<div class="panel panel-danger panel-pricing">
+									<div class="credit-body text-center">최종 결제 금액</div>							
+									<div class="price-body text-center" id="total-price">0</div>
 								</div>
 						</div>
 					</div>
+				</div>
 				</div>
 			
 		
@@ -345,30 +355,6 @@ a.buy-btn {
 						</ul> -->
 		</div>
 	</div>
-
-
-	<!-- 	
-
-										
-						
-						<div class="card card-outline-secondary my-4">
-						<div class="card-header">4. 결제 수단 선택</div>
-						<ul class="payment_type">
-							<li class="phone active" data-payment_type="phone"></li>
-							<li class="credit" data-payment_type="credit"></li>
-							<li class="vbank" data-payment_type="vbank"></li>					
-						</ul>
-
-
-
-						<a class="button" onclick="checkfield()">Register</a> <a
-							class="button" onclick="">Cancel</a>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-			</div> -->
 
 	<!-- footer -->
 

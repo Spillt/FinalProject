@@ -61,6 +61,15 @@
 .container.top {
 	margin-top: 150px;
 }
+
+#image {
+	display: none;
+}
+
+#imagePreview{
+	width: 100%;
+}
+
 </style>
 
 </head>
@@ -73,10 +82,10 @@
 	<div class="container top">
 		<div class="row">
 			<div class="col-lg-12 text-left">
-				<strong style="font-size: 25pt; color: #faadad;">마이페이지</strong>	
+				<strong style="font-size: 25pt; color: #faadad;">마이페이지</strong>
 			</div>
 		</div>
-	</div>	
+	</div>
 
 	<!-- Page Content -->
 	<div class="container">
@@ -95,162 +104,130 @@
 
 			<div class="col-lg-9">
 				<div class="card card-outline-secondary my-4">
-					<div class="card-header">
+					<div class="card-header">${sessionScope.user_id }님의프로필입니다.</div>
 					<div class="card-body">
-						<form action="myinfo" name="myinfo" method="post">
+						<section id="plans">
+							<div class="container">
+								<div class="row">
 
-							<!-- 사용자 이미지 -->
-							<table class="table table-bordered">
-								<tr>
-									<td>
-										<div class="image1">
-										<a target="_blank" href="img_fjords.jpg"> <img
-										src="/findlove/resources/img/team/1.jpg" alt="Responsive image" class="img-thumbnail">
-										
-										</a>
-										<div class="desc"></div>
+									<!-- 사용자 이미지 -->
+									<div class="col-md-4 text-center">
+										<div class="panel panel-danger panel-pricing">											
+											<div id="imagePreview"></div>
+											<div>
+												<button type="button" id="btn" class="btn img-rounded" style="padding-top:10px;">대표
+													사진 등록</button>
+												<input id="image" name="groupimg" type="file"
+													onchange="InputImage();">
+											</div>
 										</div>
-									</td>
-									<td>
-										<!-- 이미지 업로드 -->
-										<input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'View_area')">
-										<div id='View_area' style='position:relative; width: 180px; height: 180px; color: black; 
-										border: 1px solid black; dispaly: inline; '>
-										</div>
-									</td>
-								</tr>
-							</table>
-						</form>	
-						
-			
-				
-					
-					<hr>
-
-					<div class="card-body">
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th scope="cols">기본프로필</th>
-									<th scope="cols"></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="row">실명</th>
-									<td>내용.</td>
-								</tr>
-								<tr>
-									<th scope="row">닉네임</th>
-									<td>내용.</td>
-								</tr>
-								<tr>
-									<th scope="row">성별</th>
-									<td>내용.</td>
-								</tr>
-								<tr>
-									<th scope="row">직업/직장</th>
-									<td>내용.</td>
-								</tr>
-								<tr>
-									<th scope="row">휴대폰번호</th>
-									<td>내용.</td>
-								</tr>
-							</tbody>
-
-						</table>
+									</div>
+									
+									<!-- 닉네임 출력 -->
+									<div class="col-md-4 text-center">
+									<div class="credit-body text-center">${sessionScope.user_id }</div>
+									</div>
 
 
 
-						<a class="button" onclick="checkfield()">Register</a> <a
-							class="button" onclick="">Cancel</a>
-						</form>
+
+
+
+									
+									</div>
+
+									<div class="card-body">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th scope="cols">기본프로필</th>
+													<th scope="cols"></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<th scope="row">실명</th>
+													<td>내용.</td>
+												</tr>
+												<tr>
+													<th scope="row">닉네임</th>
+													<td>내용.</td>
+												</tr>
+												<tr>
+													<th scope="row">성별</th>
+													<td>내용.</td>
+												</tr>
+												<tr>
+													<th scope="row">직업/직장</th>
+													<td>내용.</td>
+												</tr>
+												<tr>
+													<th scope="row">휴대폰번호</th>
+													<td>내용.</td>
+												</tr>
+											</tbody>
+
+										</table>
+
+
+
+										<a class="button" onclick="checkfield()">Register</a> <a
+											class="button" onclick="">Cancel</a>
+										</form>
+									</div>
+								</div>
+							</div>
 					</div>
+
 				</div>
-			</div>
-		</div>
 
-	</div>
-	
-	<!-- footer -->
-	
-	<!-- 자바스크립트 -->
-	<script type="text/javascript">
-		$(function() {
-			$('#mainNav').css('background-color', '#faadad');
-		});
-	</script>
-			<script type="text/javascript">
-					function previewImage(targetObj, View_area) {
-						var preview = document.getElementById(View_area); //div id
-						var ua = window.navigator.userAgent;
+				<!-- footer -->
 
-					  //ie일때(IE8 이하에서만 작동)
-						if (ua.indexOf("MSIE") > -1) {
-							targetObj.select();
-							try {
-								var src = document.selection.createRange().text; // get file full path(IE9, IE10에서 사용 불가)
-								var ie_preview_error = document.getElementById("ie_preview_error_" + View_area);
+				<!-- 자바스크립트 -->
+				<script type="text/javascript">
+					$(function() {
+						$('#mainNav').css('background-color', '#faadad');
+					});
+				</script>
+				<script type="text/javascript">
+					$(function() {
+						$('#btn').click(function(e) {
+							e.preventDefault();
+							$('#image').click();
+						});
+					});
 
-
-								if (ie_preview_error) {
-									preview.removeChild(ie_preview_error); //error가 있으면 delete
+					var InputImage = (function loadImageFile() {
+						if (window.FileReader) {
+							var ImagePre;
+							var ImgReader = new window.FileReader();
+							var fileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png|image\/x\-xwindowdump|image\/x\-portable\-bitmap)$/i;
+							ImgReader.onload = function(Event) {
+								if (!ImagePre) {
+									var newPreview = document
+											.getElementById("imagePreview");
+									ImagePre = new Image();
+									ImagePre.style.width = "100%";
+									ImagePre.style.height = "100%";
+									newPreview.appendChild(ImagePre);
 								}
+								ImagePre.src = Event.target.result;
+							};
 
-								var img = document.getElementById(View_area); //이미지가 뿌려질 곳
+							return function() {
+								var img = document.getElementById("image").files;
 
-								//이미지 로딩, sizingMethod는 div에 맞춰서 사이즈를 자동조절 하는 역할
-								img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+src+"', sizingMethod='scale')";
-							} catch (e) {
-								if (!document.getElementById("ie_preview_error_" + View_area)) {
-									var info = document.createElement("<p>");
-									info.id = "ie_preview_error_" + View_area;
-									info.innerHTML = e.name;
-									preview.insertBefore(info, null);
+								if (!fileType.test(img[0].type)) {
+									alert("이미지 파일을 업로드 하세요");
+									return;
 								}
-							}
-					  //ie가 아닐때(크롬, 사파리, FF)
-						} else {
-							var files = targetObj.files;
-							for ( var i = 0; i < files.length; i++) {
-								var file = files[i];
-								var imageType = /image.*/; //이미지 파일일경우만.. 뿌려준다.
-								if (!file.type.match(imageType))
-									continue;
-								var prevImg = document.getElementById("prev_" + View_area); //이전에 미리보기가 있다면 삭제
-								if (prevImg) {
-									preview.removeChild(prevImg);
-								}
-								var img = document.createElement("img"); 
-								img.id = "prev_" + View_area;
-								img.classList.add("obj");
-								img.file = file;
-								img.style.width = '180px'; 
-								img.style.height = '180px';
-								preview.appendChild(img);
-								if (window.FileReader) { // FireFox, Chrome, Opera 확인.
-									var reader = new FileReader();
-									reader.onloadend = (function(aImg) {
-										return function(e) {
-											aImg.src = e.target.result;
-										};
-									})(img);
-									reader.readAsDataURL(file);
-								} else { // safari is not supported FileReader
-									//alert('not supported FileReader');
-									if (!document.getElementById("sfr_preview_error_"
-											+ View_area)) {
-										var info = document.createElement("p");
-										info.id = "sfr_preview_error_" + View_area;
-										info.innerHTML = "not supported FileReader";
-										preview.insertBefore(info, null);
-									}
-								}
+								ImgReader.readAsDataURL(img[0]);
 							}
 						}
-					}
-					
-					</script>
-	
+						document.getElementById("imagePreview").src = document
+								.getElementById("image").value;
+
+					})();
+				</script>
 </body>
 </html>

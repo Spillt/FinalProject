@@ -8,6 +8,9 @@
 <meta charset=UTF-8">
 <title>연애의발견::내정보수정</title>
 
+<!-- Page link -->
+
+<!-- CSS 및 스타일 -->
 <style type="text/css">
 .portfolio-item-inner {
 	line-height: 1.42857143;
@@ -50,92 +53,27 @@
 .masthead {
 	margin-bottom: 20px;
 }
+.container.top {
+			margin-top: 150px;
+		}
 </style>
 
-<script type="text/javascript">
-						function checkfield() {
 
-							var form = document.myinfoset;
-							var pattern1 = /[0-9]/; //숫자
-							var pattern2 = /[a-zA-Z]/; //영문
-							var pattern3 = /[~!@#$%^&*()_+|<>?:{}]/; //특수문자
-							var pattern4 = /([^가-힣\x20])/i; //한글
-
-							if (!form.nickname.value) {
-								alert("닉네임을 입력하세요.");
-								form.nickname.focus();
-								return false;
-							}
-							if (pattern3.test(form.nickname.value)) {
-								alert("닉네임에는 특수문자가 들어갈 수 없습니다.")
-								form.nickname.focus();
-								return false;
-							}
-							if (!form.pwd1.value) {
-								alert("비밀번호를 입력하세요.")
-								form.pwd1.focus();
-								return false;
-							} else if (!form.pwd2.value) {
-								alert("비밀번호를 한번 더 입력하세요.")
-								form.pwd2.focus();
-								return false;
-							}
-							if (form.pwd1.value != form.pwd2.value) {
-								alert("입력한 2개의 비밀번호가 일치하지 않습니다.")
-								form.pwd1.focus();
-								return false;
-							}
-
-							if (!form.email.value) {
-								alert("이메일을 입력하세요.")
-								form.email.focus();
-								return false;
-							}
-							if (!form.phone.value) {
-								alert("휴대폰 번호를 입력하세요.")
-								form.phone.focus();
-								return false;
-							}
-
-							var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-
-							if (exptext.test(form.email.value) == false) {
-								alert("이메일 형식이 올바르지 않습니다.")
-								form.email.focus();
-								return false;
-							}
-							form.submit();
-							alert("회원 정보가 수정되었습니다.");
-						}
-					</script>
 
 </head>
 <body id="page-top">
+	
+	<!-- header -->
 	<c:import url="../include/header.jsp" />
 
-	<!-- Header -->
-	<header class="masthead">
-		<div class="container">
-			<div class="intro-text">
-				<div class="intro-heading">&nbsp;</div>
-				<!-- <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger"
-					href="#services">시작하기</a> -->
-			</div>
-		</div>
-	</header>
-
-	<!-- Portfolio Grid -->
-	<div class="container">
+	<!-- title -->
+	<div class="container top">
 		<div class="row">
-			<div class="col-lg-12 text-center">
-				<!-- <img class="img-fluid" src="/findlove/resources/img/ad/ad-banner.jpg"> -->
+			<div class="col-lg-12 text-left">
+				<strong style="font-size: 25pt; color: #faadad;">마이페이지</strong>	
 			</div>
 		</div>
-	</div>
-
-	<br>
-	<h1 align="center">마이페이지</h1>
-	<br>
+	</div>	
 
 	<!-- Page Content -->
 	<div class="container">
@@ -192,8 +130,8 @@
 							
 						</table>
 						</form>
-						<a class="btn btn-primary" onclick="checkfield()">수정하기</a> <a
-							class="btn btn-primary" onclick="history.go(-1)">취소</a>
+						<a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick="checkfield()">수정하기</a> <a
+							class="btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick="history.go(-1)">취소</a>
 					</div>
 					
 				</div>
@@ -235,8 +173,71 @@
 		</div>
 	</section>
 	<hr>
-
+	
+	<!-- footer -->
 	<c:import url="../include/footer.jsp" />
+	
+	<!-- 자바스크립트 -->
+	<script type="text/javascript">
+						function checkfield() {
+
+							var form = document.myinfoset;
+							var pattern1 = /[0-9]/; //숫자
+							var pattern2 = /[a-zA-Z]/; //영문
+							var pattern3 = /[~!@#$%^&*()_+|<>?:{}]/; //특수문자
+							var pattern4 = /([^가-힣\x20])/i; //한글
+
+							if (!form.nickname.value) {
+								alert("닉네임을 입력하세요.");
+								form.nickname.focus();
+								return false;
+							}
+							if (pattern3.test(form.nickname.value)) {
+								alert("닉네임에는 특수문자가 들어갈 수 없습니다.")
+								form.nickname.focus();
+								return false;
+							}
+							if (!form.pwd1.value) {
+								alert("비밀번호를 입력하세요.")
+								form.pwd1.focus();
+								return false;
+							} else if (!form.pwd2.value) {
+								alert("비밀번호를 한번 더 입력하세요.")
+								form.pwd2.focus();
+								return false;
+							}
+							if (form.pwd1.value != form.pwd2.value) {
+								alert("입력한 2개의 비밀번호가 일치하지 않습니다.")
+								form.pwd1.focus();
+								return false;
+							}
+
+							if (!form.email.value) {
+								alert("이메일을 입력하세요.")
+								form.email.focus();
+								return false;
+							}
+							if (!form.phone.value) {
+								alert("휴대폰 번호를 입력하세요.")
+								form.phone.focus();
+								return false;
+							}
+
+							var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+
+							if (exptext.test(form.email.value) == false) {
+								alert("이메일 형식이 올바르지 않습니다.")
+								form.email.focus();
+								return false;
+							}
+							form.submit();
+							alert("회원 정보가 수정되었습니다.");
+						}
+					</script>
+					<script type="text/javascript">$(function() {
+         $('#mainNav').css('background-color', '#faadad');
+      });
+	</script>
 
 
 </body>
