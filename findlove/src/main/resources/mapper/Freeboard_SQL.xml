@@ -4,7 +4,7 @@
 <mapper namespace="freeboard">
 
 	<resultMap id="resultFreeboardList" type="Freeboard">
-		<id property="freeNo" column="FREE_NO"/>
+		<result property="freeNo" column="FREE_NO"/>
 		<result property="freeTitle" column="FREE_TITLE"/>
 		<result property="freeWriter" column="FREE_WRITER_ID"/>
 		<result property="freeContent" column="FREE_CONTENT"/>
@@ -28,12 +28,30 @@
 	</select>
 	
 	<!-- 작성하기 -->
-	<insert id="insertFreeboard">
+	<insert id="insertFreeboard" parameterType="Freeboard">
 		<![CDATA[
 			INSERT INTO TB_FREE
-			VALUES (SEQ_TB_FREE_NO.NEXTVAL, #{Title}, #{Writer}, #{Content}, NULL, NULL, SYSDATE, NULL, NULL, NULL, NULL, 0)
+			VALUES ((SELECT COUNT(*)+1 FROM TB_FREE), #{freeTitle}, #{freeWriter}, #{freeContent}, NULL, NULL, SYSDATE, NULL, NULL, NULL, NULL, 0)
 		]]>
 	</insert>
+	
+	<!-- 상세보기 -->
+	<select id="detailFreeboard" parameterType="int" resultType="Freeboard" resultMap="resultFreeboardList">
+		<![CDATA[
+			SELECT * 
+			FROM TB_FREE
+			WHERE FREE_NO = #{freeNo}
+		]]>
+	</select>
+	
+	<!-- 삭제하기 -->
+	<delete id="deleteFreeboard" parameterType="int">
+		<![CDATA[
+			DELETE
+			FROM TB_FREE
+			WHERE Free_NO = #{freeNo}
+		]]>
+	</delete>
 	
 
 </mapper>

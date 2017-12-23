@@ -7,11 +7,13 @@ import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.godsky.findlove.main.freeboard.service.FreeboardService;
@@ -46,10 +48,29 @@ public class FreeboardController {
 	//작성하기
 	@RequestMapping(value="insertFreeboard.do")
 	public ModelAndView insertFreeboard(@ModelAttribute("Freeboard") Freeboard Freeboard) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/openFreeboardList");
+		ModelAndView mv = new ModelAndView("redirect:/openFreeboardList.do");
 		
 		FreeboardService.insertFreeboard(Freeboard);
+		return mv;
+	}
+	
+	//상세보기, 조회수 증가
+	@RequestMapping(value="detailFreeboard.do")
+	public ModelAndView detailFreeboard(@RequestParam(value="freeNo") int freeNo, HttpSession session ) throws Exception{
+		//조회수 증가
+		//FreeboardService.updateReadCnt(freeNo, session);
 		
+		ModelAndView mv = new ModelAndView("/freeboard/freeboardDetail");
+		mv.addObject("Freeboard", FreeboardService.detailFreeboard(freeNo));
+		return mv;
+	}
+	
+	//삭제하기
+	@RequestMapping(value="deleteFreeboard.do")
+	public ModelAndView deleteFreeboard(@RequestParam(value="freeNo") int freeNo) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/openFreeboardList.do");
+		
+		FreeboardService.deleteFreeboard(freeNo);
 		return mv;
 	}
 	

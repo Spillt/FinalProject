@@ -67,9 +67,13 @@
 					<c:forEach items="${list }" var="row">
 						<tr>
 							<td>${row.freeNo }</td>
-							<td>${row.freeTitle }</td>
+							<%-- <td>${row.freeTitle }</td> --%>
+							<td>
+								<a href="detailFreeboard.do?freeNo=${row.freeNo }" id="Title" name="freeTitle">${row.freeTitle }</a>
+							</td>							
 							<td>${row.freeReadCnt }</td>
 							<td>${row.freeDt }</td>
+							<%-- <td><fmt:formatDate value="${row.freeDt }" pattern="yyyy-MM-dd HH:mm:ss"/></td> --%>
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -85,31 +89,7 @@
 	
 	<a href="openFreeboardWrite.do" class="btn" id="write">글쓰기</a>
 	
-	<!-- <script type="text/javascript">
-		$(document).ready(function(){
-			$("#write").on("click", function(e){ //글쓰기 버튼
-				e.preventDefault();
-				fn_openFreeboardWrite();
-			});	
-			
-			$("a[name='title']").on("click", function(e){ //제목
-				e.preventDefault();
-				fn_openFreeboardDetail($(this));
-			});
-		});
-		
-		function fn_openFreeboardWrite(){
-			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='openFreeboardWrite.do' />");
-			comSubmit.submit();
-		}
-		
-		/* function fn_openFreeboardDetail(obj){
-			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='openFreeboardWrite.do'/>");
-			comSubmit.submit();
-		} */
-	</script> -->
+
 	<c:import url="../include/footer.jsp" />
 	
 	<script>
