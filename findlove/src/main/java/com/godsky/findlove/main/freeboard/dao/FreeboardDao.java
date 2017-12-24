@@ -1,5 +1,6 @@
 package com.godsky.findlove.main.freeboard.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,23 +27,31 @@ public class FreeboardDao{
 	}
 	
 	//상세보기
-	public Freeboard detailFreeboard(int freeNo) {
+	public Freeboard detailFreeboard(int freeNo) throws Exception{
 		return sqlSession.selectOne("freeboard.detailFreeboard", freeNo);
+	}	
+	
+	//수정하기
+	public Freeboard selectFreeboard(int freeNo) throws Exception{
+		//System.out.println(freeboard);
+		return sqlSession.selectOne("freeboard.selectFreeboard", freeNo);
 	}
-	
-	//조회수 증가
-	/*public void updateReadCnt(Freeboard freeboard) throws Exception{
-		update("freeboard.updateReadCnt", freeboard);
-	}*/
-	
+	public int updateFreeboard(Freeboard Freeboard) throws Exception{
+		System.out.println(Freeboard);
+		return sqlSession.update("freeboard.updateFreeboard", Freeboard);
+	}
 
 	//삭제하기
-	public int deleteFreeboard(int freeNo) {
+	public int deleteFreeboard(int freeNo) throws Exception{
 		return sqlSession.delete("freeboard.deleteFreeboard", freeNo);
 	}
 
-	
+	//조회수 증가
+	public int updateReadCnt(int freeNo) throws Exception{
+		return sqlSession.update("freeboard.updateReadCnt", freeNo);
+	}
 
+	
 	
 
 }

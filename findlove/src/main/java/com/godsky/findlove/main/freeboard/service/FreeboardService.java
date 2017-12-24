@@ -16,14 +16,23 @@ public interface FreeboardService {
 	//게시판 작성하기
 	public int insertFreeboard(Freeboard freeboard) throws Exception;
 
-	//조회수 증가
-	//public void updateReadCnt(int freeNo, HttpSession session) throws Exception;
-
 	//상세보기
 	public Freeboard detailFreeboard(int freeNo) throws Exception;
 	
+	//수정하기
+	public Freeboard selectFreeboard(int freeNo) throws Exception;
+	public int updateFreeboard(Freeboard freeboard) throws Exception;
+	
 	//삭제하기
 	public int deleteFreeboard(int freeNo) throws Exception;
+
+	//조회수 증가
+	public int updateReadCnt(int freeNo) throws Exception;
+
+	
+
+	
+
 
 	
 

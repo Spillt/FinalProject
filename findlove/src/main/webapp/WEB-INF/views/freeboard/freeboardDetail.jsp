@@ -71,12 +71,13 @@
 				<td colspan="3">${Freeboard.freeTitle }</td>
 			</tr>
 			<tr>
+				<th scope="row">내용</th>
 				<td colspan="4">${Freeboard.freeContent }</td>
 			</tr>
 		</tbody>
 	</table>
 	<a href="openFreeboardList.do" class="btn" id="list">목록으로</a>
-	<a href="#this" class="btn" id="update">수정하기</a>
+	<a href="updateViewFreeboard.do?freeNo=${Freeboard.freeNo }" class="btn" id="update">수정하기</a>
 	<a href="deleteFreeboard.do?freeNo=${Freeboard.freeNo }" class="btn" id="delete">삭제하기</a>
 	
 	<c:import url="../include/footer.jsp" />

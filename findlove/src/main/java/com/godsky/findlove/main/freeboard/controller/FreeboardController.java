@@ -56,14 +56,33 @@ public class FreeboardController {
 	
 	//상세보기, 조회수 증가
 	@RequestMapping(value="detailFreeboard.do")
-	public ModelAndView detailFreeboard(@RequestParam(value="freeNo") int freeNo, HttpSession session ) throws Exception{
+	public ModelAndView detailFreeboard(@RequestParam(value="freeNo") int freeNo) throws Exception{
 		//조회수 증가
-		//FreeboardService.updateReadCnt(freeNo, session);
+		FreeboardService.updateReadCnt(freeNo);
 		
 		ModelAndView mv = new ModelAndView("/freeboard/freeboardDetail");
 		mv.addObject("Freeboard", FreeboardService.detailFreeboard(freeNo));
 		return mv;
 	}
+
+	//수정하기 페이지
+	@RequestMapping(value="updateViewFreeboard.do")
+	public ModelAndView updateViewFreeboard(@RequestParam(value="freeNo") int freeNo) throws Exception{
+		ModelAndView mv = new ModelAndView("/freeboard/freeboardUpdate");
+		Freeboard freeboard = FreeboardService.selectFreeboard(freeNo);			
+		System.out.println("Freeboard : " + freeboard);
+		mv.addObject("Freeboard", freeboard);
+		return mv;
+	}
+	
+	@RequestMapping(value="updateFreeboard.do")
+	public ModelAndView updateFreeboard(@ModelAttribute("Freeboard") Freeboard Freeboard) throws Exception{
+		ModelAndView mv = new ModelAndView("/freeboard/freeboardDetail");
+		FreeboardService.updateFreeboard(Freeboard);
+		
+		return mv;
+	}
+	
 	
 	//삭제하기
 	@RequestMapping(value="deleteFreeboard.do")
@@ -73,5 +92,6 @@ public class FreeboardController {
 		FreeboardService.deleteFreeboard(freeNo);
 		return mv;
 	}
+	
 	
 }

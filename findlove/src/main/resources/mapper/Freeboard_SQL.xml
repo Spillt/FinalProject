@@ -44,6 +44,23 @@
 		]]>
 	</select>
 	
+	<!-- 수정하기 -->
+	<update id="updateFreeboard" parameterType="Freeboard">
+		<![CDATA[
+			UPDATE TB_FREE SET
+			FREE_TITLE = #{freeTitle},
+			FREE_CONTENT = #{freeContent}
+			WHERE FREE_NO = #{freeNo}
+		]]>
+	</update>
+
+	<select id="selectFreeboard" parameterType="int" resultType="Freeboard" resultMap="resultFreeboardList">
+		<![CDATA[
+			SELECT * FROM TB_FREE WHERE free_NO = #{freeNo}
+		]]>
+	</select>
+
+	
 	<!-- 삭제하기 -->
 	<delete id="deleteFreeboard" parameterType="int">
 		<![CDATA[
@@ -52,6 +69,14 @@
 			WHERE Free_NO = #{freeNo}
 		]]>
 	</delete>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateReadCnt" parameterType="int">
+		<![CDATA[
+			UPDATE TB_FREE SET FREE_READ_CNT = FREE_READ_CNT + 1
+			WHERE FREE_NO = #{freeNo}
+		]]>
+	</update>
 	
 
 </mapper>
