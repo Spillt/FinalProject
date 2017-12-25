@@ -62,11 +62,18 @@
 	</select>
 	
 	<select id="findAccount" resultType="User" parameterType="string">
+	
 		<![CDATA[
 			select *
 			from tb_user
 			where email = #{ email }
 		]]>
 	</select>
+	
+	
+	<delete id="removeUserById" parameterType="string">
+	delete from tb_user
+	where User_ID = #{user_id}
+	</delete>
 	
 </mapper>

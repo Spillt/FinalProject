@@ -86,40 +86,46 @@
             <div class="card-header">
               	정보 수정은 아이디와 이름은 변경 불가능 합니다.
             </div>
+            <section>
             <div class="card-body"> 
-            	  <table id="tableData" class="table table-bordered">
-            	  <form class="form-contaioner" name = "form" method = "post">
+            <form class="form-contaioner" name = "form" method = "post">
+            	  <table id="tableData" class="table table-bordered">            	  
             	  <tr>
-            	  	<td>아이디</td>
+            	  	<th>아이디</th>
             	  	<td>${sessionScope.user_id }</td>
             	  </tr>
             	  <tr>
-            	  	<td>이름</td>
+            	  	<th>이름</th>
             	  	<td>${sessionScope.user_nm }</td>
             	  </tr>            	  	
             	  <tr>
-            	  	<td>닉네임</td>
-            	  	<td>${sessionScope.user_nicknm }</td>
+            	  	<th>닉네임</th>
+            	  	<td>${user.user_nicknm } </td>
             	  </tr>
-            	  	<td>별사탕</td>
+            	  <tr>
+            	  	<th>별사탕</th>
             	  	<td>${sessionScope.konpeito_cnt}</td>
             	  </tr>
-            	  </tr>
-            	  	<td>포인트</td>
+            	  <tr>
+            	  	<th>포인트</th>
             	  	<td>${sessionScope.point_cnt}</td>
             	  </tr>  
             	  <tr>
-            	  	<td>이메일</td>
+            	  	<th>이메일</th>
             	  	<td>${sessionScope.email }</td>
             	  </tr>
             	  <tr>
-            	  	<td>휴대폰 번호</td>
+            	  	<th>휴대폰 번호</th>
             	  	<td>${sessionScope.phone }</td>
             	  </tr>
-            	  </form> 
+            	  
              	</table>
+             	</form>
+             	<!-- <a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick=>회원탈퇴</a>  -->
+             	<a href="/${initParam.context_root }/removeuser.do">회원 탈퇴</a>
 			    <a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick="location.href='myinfoset.do'">수정하기</a>
 			    <a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick="history.go(-1)">취소</a>
+            </section>
             </div>
           </div>
           <!-- /.card -->
@@ -130,35 +136,8 @@
       </div>
 
     </div>
-    <!-- /.container -->
+    <!-- /.container -->	
 	
-	<!-- Clients -->
-	<section class="py-5">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/envato.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/designmodo.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/themeforest.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/creative-market.jpg" alt="">
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
 	<hr>
 	
 	<c:import url="../include/footer.jsp" /> 

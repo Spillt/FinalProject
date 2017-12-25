@@ -66,13 +66,20 @@ public class UserDao {
 		return 0;
 		
 	}
-
+	
+	//아이디 중복 체크
 	public int idCheck(String userId) {
 		return sqlSession.selectOne("user.idCheck", userId);
 	}
-
+	
+	//계정 찾기
 	public User findAccount(String email) {
 		return sqlSession.selectOne("user.findAccount", email);
+	}
+	
+	//회원 탈퇴
+	public int removeUserById(String user_id) {
+		return sqlSession.delete("removeUserById", user_id);
 	}
 
 }

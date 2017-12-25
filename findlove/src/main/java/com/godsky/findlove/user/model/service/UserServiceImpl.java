@@ -1,5 +1,7 @@
 package com.godsky.findlove.user.model.service;
 
+import java.sql.SQLException;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -94,6 +96,14 @@ public class UserServiceImpl implements UserService{
 	//회원 정보 업데이트
 	public void myInfoSet(String userId, String string, String password) {
 		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void removeUserById(String user_id){
+		int cnt = userDao.removeUserById(user_id);
+		System.out.println(cnt + "개의 행이 삭제되었습니다.");
 		
 	}
 

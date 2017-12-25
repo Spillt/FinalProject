@@ -2,6 +2,7 @@ package com.godsky.findlove.user.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
@@ -130,10 +131,20 @@ public class UserController {
 		return "user/idealprofileset";
 	}
 	
-	//회원삭제
-	@RequestMapping(value = "dropUser.do")
-	public String dropUser(){
-		return null;
+	//회원탈퇴
+	@RequestMapping(value = "removeuser.do")
+	public ModelAndView removeUser(HttpSession session) throws SQLException{
+		User user=(User)session.getAttribute("user");
+		ModelAndView mv = null;
+		if(user == null){
+			mv = new ModelAndView("home.do","error_message","로그인 후 회원 탈퇴 이용바랍니다.");
+		}else{
+			userService.removeUserById(user.getUser_id());
+			mv = new ModelAndView("home.do");
+			//세션 소멸
+			session.invalidate();
+		}
+		return mv;
 		
 	}
 	
