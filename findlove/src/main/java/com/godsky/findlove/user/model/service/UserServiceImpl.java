@@ -94,8 +94,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	//회원 정보 업데이트
-	public void myInfoSet(String userId, String string, String password) {
-		// TODO Auto-generated method stub
+	public User myInfoSet(String user_id) {
+		return userDao.myInfoSet(user_id);
 		
 	}
 

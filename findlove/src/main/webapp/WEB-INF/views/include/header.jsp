@@ -335,7 +335,7 @@
 				<c:when test="${sessionScope.user_id ne null }">
 					<c:if test="${sessionScope.user_id ne 'admin' }">
 						<div class="i-a-group">
-							<i class="material-icons">search</i><a href="myinfo.do">마이페이지</a>
+							<i class="material-icons">search</i><a href="myinfo.do?user_id=${sessionScope.user_id }">마이페이지</a>
 						</div>
 						<div class="i-a-group">
 							<i class="material-icons">search</i><a

@@ -96,8 +96,15 @@ public class UserController {
 	
 	//내정보 보기
 	@RequestMapping(value = "myinfo.do")
-	public String myInfoView(){
-		return "user/myinfo" ;
+	public ModelAndView myInfoView(@RequestParam("user_id") String user_id){
+		ModelAndView mav = new ModelAndView();
+        // 뷰의 이름
+        mav.setViewName("user/myinfo");
+        // 뷰에 전달할 데이터
+        User user =userService.myInfoSet(user_id);
+        System.out.println(user);
+        mav.addObject("user", userService.myInfoSet(user_id));
+		return mav ;
 	}
 	
 	//내정보 수정
@@ -144,6 +151,7 @@ public class UserController {
 			//세션 소멸
 			session.invalidate();
 		}
+		
 		return mv;
 		
 	}

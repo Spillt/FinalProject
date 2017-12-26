@@ -31,10 +31,12 @@ public interface UserService {
 	public User findAccount(String email);
 	
 	//회원 정보 업데이트
-	public void myInfoSet(String userId, String string, String password);
+	public User myInfoSet(String user_id);
 	
 	//회원 탈퇴
 	public void removeUserById(String user_id);
+
+	
 
 
 	

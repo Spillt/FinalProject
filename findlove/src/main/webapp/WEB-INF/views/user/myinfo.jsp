@@ -73,7 +73,7 @@
           <br>
           <!-- <h1 class="my-4">Shop Name</h1> -->
           <div class="list-group">
-            <a href="myinfo.do" class="list-group-item active">나의 정보</a>
+            <a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item active">나의 정보</a>
             <a href="myprofile.do" class="list-group-item">나의 프로필 설정</a>
             <a href="idealprofile.do" class="list-group-item">이상형 프로필 설정</a>
             <a href="store.do" class="list-group-item">스토어</a>
@@ -92,11 +92,11 @@
             	  <table id="tableData" class="table table-bordered">            	  
             	  <tr>
             	  	<th>아이디</th>
-            	  	<td>${sessionScope.user_id }</td>
+            	  	<td>${user.user_id }</td>
             	  </tr>
             	  <tr>
             	  	<th>이름</th>
-            	  	<td>${sessionScope.user_nm }</td>
+            	  	<td>${user.user_nm }</td>
             	  </tr>            	  	
             	  <tr>
             	  	<th>닉네임</th>
@@ -104,19 +104,19 @@
             	  </tr>
             	  <tr>
             	  	<th>별사탕</th>
-            	  	<td>${sessionScope.konpeito_cnt}</td>
+            	  	<td>${user.konpeito_cnt}</td>
             	  </tr>
             	  <tr>
             	  	<th>포인트</th>
-            	  	<td>${sessionScope.point_cnt}</td>
+            	  	<td>${user.point_cnt}</td>
             	  </tr>  
             	  <tr>
             	  	<th>이메일</th>
-            	  	<td>${sessionScope.email }</td>
+            	  	<td>${user.email }</td>
             	  </tr>
             	  <tr>
             	  	<th>휴대폰 번호</th>
-            	  	<td>${sessionScope.phone }</td>
+            	  	<td>${user.phone }</td>
             	  </tr>
             	  
              	</table>

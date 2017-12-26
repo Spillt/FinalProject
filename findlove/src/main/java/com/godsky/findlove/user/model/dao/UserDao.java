@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.godsky.findlove.main.eventboard.poll.model.vo.Poll;
 import com.godsky.findlove.user.model.vo.User;
 
 @Repository("userDao")
@@ -65,6 +66,9 @@ public class UserDao {
 	public int createIdealProfile(){
 		return 0;
 		
+	}
+	public User myInfoSet(String user_id) {
+		return sqlSession.selectOne("user.myinfo",user_id);
 	}
 	
 	//아이디 중복 체크

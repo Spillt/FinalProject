@@ -117,7 +117,7 @@ ul{
 				<br>
 				<!-- <h1 class="my-4">Shop Name</h1> -->
 				<div class="list-group">
-					<a href="myinfo.do" class="list-group-item">나의 정보</a> <a
+					<a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item">나의 정보</a> <a
 						href="myprofile.do" class="list-group-item">나의 프로필</a> <a
 						href="idealprofile.do" class="list-group-item active">이상형 프로필
 						</a> <a href="store.do" class="list-group-item">스토어</a>
@@ -441,7 +441,7 @@ ul{
 							$("input[name=style]:checkbox").change(function(){
 								var cnt = 3; //3개까지 선택 가능함
 								if(cnt == $("input[name=style]:checkbox:checked").length){
-									$(":checkbox:not(:checked)").attr("disabled", "disalbed");
+									$("input[name=style]:checkbox:not(:checked)").attr("disabled", "disalbed");
 								}else{
 									$("input[name=style]:checkbox").removeAttr("disabled");
 								}			

@@ -39,6 +39,13 @@
 	]]>
 	</select>
 	
+	<select id="myinfo" resultType="User">
+	<![CDATA[
+	SELECT *
+	From tb_user
+	WHERE User_ID = #{user_id}
+	]]>
+	</select>
 	
 	<!-- <select id="totalAccount" resultType="integer">
 		SELECT Count(*) from tb_user
