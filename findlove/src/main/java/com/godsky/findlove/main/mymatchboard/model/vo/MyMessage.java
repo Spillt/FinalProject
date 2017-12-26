@@ -5,6 +5,7 @@ import java.sql.Date;
 public class MyMessage {
 	private int message_no;
 	private String user_nicknm;
+	private String picture_nm;
 	private String sender_id;
 	private String receiver_id;
 	private String message_content;
@@ -13,17 +14,18 @@ public class MyMessage {
 	private String accept_ST;
 	
 	public MyMessage() {}
-	
+
 	public MyMessage(String sender_id) {
 		super();
 		this.sender_id = sender_id;
 	}
 
-	public MyMessage(int message_no, String user_nicknm, String sender_id, String receiver_id, String message_content,
-			Date send_DT, String read_FL, String accept_ST) {
+	public MyMessage(int message_no, String user_nicknm, String picture_nm, String sender_id, String receiver_id,
+			String message_content, Date send_DT, String read_FL, String accept_ST) {
 		super();
 		this.message_no = message_no;
 		this.user_nicknm = user_nicknm;
+		this.picture_nm = picture_nm;
 		this.sender_id = sender_id;
 		this.receiver_id = receiver_id;
 		this.message_content = message_content;
@@ -46,6 +48,14 @@ public class MyMessage {
 
 	public void setUser_nicknm(String user_nicknm) {
 		this.user_nicknm = user_nicknm;
+	}
+
+	public String getPicture_nm() {
+		return picture_nm;
+	}
+
+	public void setPicture_nm(String picture_nm) {
+		this.picture_nm = picture_nm;
 	}
 
 	public String getSender_id() {
@@ -98,7 +108,7 @@ public class MyMessage {
 
 	@Override
 	public String toString() {
-		return "Message [message_no=" + message_no + ", user_nicknm=" + user_nicknm + ", sender_id=" + sender_id + ", receiver_id=" + receiver_id
+		return "Message [message_no=" + message_no + ", user_nicknm=" + user_nicknm + ", picture_nm "+ picture_nm +", sender_id=" + sender_id + ", receiver_id=" + receiver_id
 				+ ", message_content=" + message_content + ", send_DT=" + send_DT 
 				+ ", read_FL=" + read_FL + ", accept_ST=" + accept_ST + "]";
 	}

@@ -56,17 +56,6 @@
 </style>
 </head>
 <body id="page-top">
-   <%-- <h1>home.jsp</h1>
-<c:if test="${empty sessionScope.user }">
-   <form action="login.do" method="post">
-      <input type="text" name="userId">
-      <input type="password" name="userPwd">
-      <input type="submit" value="로그인">
-   </form>
-</c:if>
-<c:if test="${!empty sessionScope.user }">
-   <p>${user.userName } 님 환영합니다.</p>
-</c:if> --%>
 
    <c:import url="../../include/header.jsp" />
 
@@ -99,25 +88,64 @@
 
          <!-- Heading Row -->
          <div class="row my-4">
-            <div class="col-lg-8">
-               <img class="img-fluid rounded" src="http://placehold.it/900x400"
-                  alt="">
+            <div class="col-lg-4">
+
+					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    
+    <c:choose>
+		<c:when test="${ fn:length(profileImg) > 0}">
+			<c:forEach items="${ profileImg }" varStatus="status">
+    		<li data-target="#carouselExampleIndicators" data-slide-to="${status.index+1}"></li>
+    		</c:forEach>
+    	</c:when>
+    </c:choose>
+    
+  </ol>
+  <div class="carousel-inner" role="listbox">
+    <div class="carousel-item active">
+      <img src="/findlove/uploadfiles/profile/${ p.picture_NM }" style="width:350px; height:350px;">
+    </div>
+    
+    <c:forEach items="${ profileImg }" var="result">
+   	<div class="carousel-item">
+      <img src="/findlove/uploadfiles/profile/${ result }" style="width:350px; height:350px;">
+    </div>
+   	</c:forEach>
+   
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+					<!-- <img class="img-fluid rounded" src="http://placehold.it/900x400"
+                  alt=""> -->
             </div>
             <!-- /.col-lg-8 -->
-            <div class="col-lg-4">
-               <h1>${ p.user_NickNM }</h1>
+            <div class="col-lg-3">
+               <h1>${ p.user_NickNM }님</h1>
                <span><img
                   src="/findlove/resources/img/starGrade/starGrade${ p.grade_AVG }.png"
                   width=160, height=40></span>
-               <p>This is a template that is great for small businesses</p>
-               <!-- <a class="btn btn-primary btn-lg" href="#">Send Message</a> -->
+                  <br><br>
+               
                <button type="button" class="btn btn-primary" data-toggle="modal"
-                  data-target="#exampleModal" data-whatever="${ p.user_NickNM }">Send
-                  Message</button>
-               <button type="button" class="btn btn-primary" data-toggle="modal"
+                  data-target="#exampleModal" data-whatever="${ p.user_NickNM }">
+                                  호감 메세지 보내기</button>
+                 
+               <button type="button" class="btn btn-primary" aria-label="Left Align">
+                 	별점 매기기
+               </button>
+               <!-- <button type="button" class="btn btn-primary" data-toggle="modal"
                     data-target="#exampleModal2" aria-label="Left Align">
                   <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> 신고하기
-               </button>
+               </button> -->
             </div>
             <!-- /.col-md-4 -->
          </div>
@@ -126,7 +154,7 @@
          <!-- Call to Action Well -->
          <div class="card text-white bg-secondary my-4 text-center">
             <div class="card-body">
-               <p class="text-white m-0">${ p.user_NickNM }님의간단한 프로필 입니다
+               <p class="text-white m-0">${ p.user_NickNM }님의 간단한 프로필 입니다
             </div>
          </div>
 
@@ -136,9 +164,6 @@
                <div class="card h-80">
                   <div class="card-body">
                      <h2 class="card-title">Card One</h2>
-                     <!-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur
-                        adipisicing elit. Rem magni quas ex numquam, maxime minus quam
-                        molestias corporis quod, ea minima accusamus.</p> -->
                      <table class="table">
                         <tr>
                            <th>나이</th>
@@ -182,11 +207,9 @@
                <div class="card h-80">
                   <div class="card-body">
                      <h2 class="card-title">Card Two</h2>
-                     <!-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur
-                        adipisicing elit. Quod tenetur ex natus at dolorem enim!
-                        Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id
-                        dolore voluptates quos eligendi labore.</p> -->
+                     
                      <table class="table">
+                     
                         <tr>
                            <th>혈액형</th>
                         </tr>
@@ -227,7 +250,9 @@
 
          </div>
          <!-- /.row -->
-
+        <div class="row">
+        
+        </div>
       </div>
       <!-- /.container -->
 
@@ -300,7 +325,7 @@
    </div>
    
    <!-- model -->
-   <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
+   <%-- <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
       aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
          <div class="modal-content">
@@ -332,8 +357,9 @@
             </div>
          </div>
       </div>
-   </div>
-
+   </div> --%>
+  
+  
    <script type="text/javascript">
       $('#exampleModal').on('show.bs.modal', function(event) {
          var button = $(event.relatedTarget) // Button that triggered the modal

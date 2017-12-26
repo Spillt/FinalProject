@@ -7,52 +7,52 @@
     <select id="selectProfileList" resultType="Profileboard">
     	<include refid="pagingHeader"></include>
         <![CDATA[
-            SELECT 
-            ROWNUM,
-            USER_ID,
-            USER_NICKNM,
-            GRADE_AVG,
-            PICTURE_NM,
-            GENDER,
-            AGE,
-            HEIGHT,
-            WEIGHT,
-            AREA,
-            HOBBY,
-            ACHIEVEMENT,
-            BLOOD_TYPE,
-            SMOKING,
-            DRINKING,
-            RELIGION,
-            STYLE
+            SELECT ROWNUM, USER_ID, USER_NICKNM, GRADE_AVG, PICTURE_NM, GENDER, AGE, HEIGHT, WEIGHT, 
+            AREA, HOBBY, ACHIEVEMENT, BLOOD_TYPE, SMOKING, DRINKING, RELIGION, STYLE
             FROM TB_USER 
-			LEFT JOIN TB_PROFILE USING (USER_ID)
-			LEFT JOIN TB_PROFILE_PICTURE USING (USER_ID)
+			INNER JOIN TB_PROFILE USING (USER_ID)
+			INNER JOIN TB_PROFILE_PICTURE USING (USER_ID)
 			WHERE USER_ID != 'admin'
-			AND THUMNAIL_FL = '0'
+			AND THUMNAIL_FL = '1'
         ]]>
         <include refid="search"></include>
         <include refid="pagingFooter"></include>
     </select>
     
     <sql id="search">
-			AND USER_NICKNM like '%'||#{keyword}||'%'
+      <choose>
+    	<when test="searchOption == 'all'">
+    		AND USER_NICKNM like '%'||#{keyword}||'%'
+    	</when>
+    	<when test="searchOption == 'M'">
+    		AND GENDER = 'M'
+    		AND USER_NICKNM like '%'||#{keyword}||'%'
+    	</when>
+    	 <otherwise>
+    		AND GENDER = 'F'
+    		AND USER_NICKNM like '%'||#{keyword}||'%'
+    	</otherwise>
+      </choose>	
 	</sql>
 
 	<sql id="pagingHeader">
-   SELECT * FROM (
-        SELECT ROWNUM AS rn, A.* FROM (
+   		SELECT * FROM (
+        	SELECT ROWNUM AS rn, A.* FROM (
 	</sql>
 
 	<sql id="pagingFooter">
-        ) A
-    ) WHERE rn BETWEEN #{start} AND #{end}
+        	) A
+    	) WHERE rn BETWEEN #{start} AND #{end}
 	</sql>
 
     <select id="countProfile" resultType="int">
     	<![CDATA[
     	SELECT COUNT(*) FROM TB_USER
-    	WHERE USER_NICKNM like '%'||#{keyword}||'%'
+    	INNER JOIN TB_PROFILE USING (USER_ID)
+		INNER JOIN TB_PROFILE_PICTURE USING (USER_ID)
+		WHERE USER_ID != 'admin'
+		AND THUMNAIL_FL = '1'
+    	AND USER_NICKNM like '%'||#{keyword}||'%'
     	 ]]>
     </select>
     
@@ -62,8 +62,16 @@
 			LEFT JOIN TB_PROFILE USING(USER_ID)
 			LEFT JOIN TB_PROFILE_PICTURE USING (USER_ID)
 			WHERE USER_NICKNM = #{USER_NICKNM}
-			AND THUMNAIL_FL = '0'
+			AND THUMNAIL_FL = '1'
         ]]>
     </select>
+    
+    <select id="selecProfileImage" parameterType="String" resultType="String">
+		<![CDATA[
+			SELECT picture_nm FROM TB_PROFILE_PICTURE 
+			LEFT JOIN TB_USER USING(USER_ID)
+			WHERE USER_NICKNM = #{USER_NICKNM} AND THUMNAIL_FL = 0
+		]]>
+	</select>
    
 </mapper>

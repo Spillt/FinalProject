@@ -171,7 +171,6 @@
 }
 
 .form-control {
-	width: 240px;
 	border-radius: 1px;
 	color: #faadad
 }
@@ -343,7 +342,15 @@
 							<i class="material-icons">search</i><a href="myinfo.do">내정보보기</a>
 						</div>
 						<div class="i-a-group">
-							<i class="material-icons">search</i><a href="/findlove/openSendMessageList.do">나의 매칭보기</a>
+							<!-- <i class="material-icons">search</i><a href="#" onclick="javascript:document.myForm.submit();">나의 매칭보기</a> -->
+							<i class="material-icons">search</i><a href="/findlove/openSendMessageList.do?sender_id=${ sessionScope.user_id }">나의 매칭보기</a>
+							<!-- <i class="material-icons">search</i><a href="#" onclick="javascript:document.myForm.submit();">나의 매칭보기</a> -->
+						</div>
+						<div class="i-a-group">
+							<i class="material-icons">search</i><a href="/findlove/openSendMessageList2.do?sender_id=${ sessionScope.user_id }">나의 테스트</a>
+						</div>
+						<div class="i-a-group">
+							<i class="material-icons">search</i><a href="/findlove/test.do?sender_id=${ sessionScope.user_id }">채팅하기</a>
 						</div>
 					</c:when>
 					<c:otherwise>						
@@ -357,10 +364,56 @@
 					</c:otherwise>
 				</c:choose>
 				<hr class="horiz-divide">
+			<c:choose>
+				<c:when test="${sessionScope.user_id ne null }">
+					<c:if test="${sessionScope.user_id ne 'admin' }">
+						<div class="i-a-group">
+							<i class="material-icons">search</i><a href="myinfo.do">마이페이지</a>
+						</div>
+						<div class="i-a-group">
+							<i class="material-icons">search</i><a
+								href="openSendMessageList.do">나의매칭</a>
+						</div>
+						
+					</c:if>
+					<c:if test="${sessionScope.user_id eq 'admin' }">
+						<div class="i-a-group">
+							<i class="material-icons">supervisor_account</i><a
+								href="userlist.do?pageNo=1">회원관리</a>
+						</div>
+						<div class="i-a-group">
+							<i class="material-icons">assignment</i><a href="#">게시판관리</a>
+						</div>
+						<div class="i-a-group">
+							<i class="material-icons">show_chart</i><a
+								href="statisticlist.do">통계관리</a>
+						</div>
+						
+					</c:if>
+					<hr class="horiz-divide">
+						<form class="form-container">
+						<a href="logout.do"><button
+								class="form-control btn logout-btn" type="button">로그아웃</button></a>
+					</form>
+				</c:when>
+				<c:otherwise>
+					<div class="i-a-group">
+						<i class="material-icons">group_add</i><a href="signup.do">회원가입</a>
+					</div>
+					<div class="i-a-group">
+						<i class="material-icons">search</i><a href="findidpwd.do">아이디/비밀번호
+							찾기</a>
+					</div>
+				</c:otherwise>
+			</c:choose>
+			<hr class="horiz-divide">
 		</div>
 	</nav>
 	<a id="go-to-top" class="js-scroll-trigger" href="#page-top"><i
 		class="material-icons">expand_less</i></a>
+	<form name="myForm" action="/findlove/openSendMessageList.do" method="POST">
+		<input type="hidden" name="sender_id" value="${ sessionScope.user_id }" />
+	</form>
 	<script type="text/javascript"
 		src="/findlove/resources/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript"

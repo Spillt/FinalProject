@@ -5,10 +5,13 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.godsky.findlove.user.model.vo.User" alias="User" />
-		<typeAlias type="com.godsky.findlove.main.profileboard.model.vo.Report" alias="Report" />
 		<typeAlias type="com.godsky.findlove.main.profileboard.model.vo.Message" alias="Message" />
 		<typeAlias type="com.godsky.findlove.main.profileboard.model.vo.Profileboard" alias="Profileboard" />
-		<typeAlias type="com.godsky.findlove.main.mymatchboard.model.vo.MyMessage" alias="MyMessage" />		
+		<typeAlias type="com.godsky.findlove.main.mymatchboard.model.vo.MyMessage" alias="MyMessage" />	
+		<typeAlias type="com.godsky.findlove.admin.usermanagement.model.vo.UserBasic" alias="UserBasic" />
+		<typeAlias type="com.godsky.findlove.admin.usermanagement.model.vo.UserDetail" alias="UserDetail" />
+		<typeAlias type="com.godsky.findlove.common.model.vo.Profile" alias="Profile" />
+		<typeAlias type="com.godsky.findlove.common.model.vo.Report" alias="Report" />	
 	</typeAliases>
 	
 	<!-- 사용할 매퍼 파일 등록 : 필수 -->
@@ -18,8 +21,8 @@
 		<mapper resource="mapper/profile-mapper.xml" />	
 	 	<mapper resource="mapper/message-mapper.xml" /> 
 	 	<mapper resource="mapper/mymessage-mapper.xml" /> 
-	 	<mapper resource="mapper/report-mapper.xml" /> 
-	 	<mapper resource="mapper/konpeito-mapper.xml" /> 		
+	 	<mapper resource="mapper/konpeito-mapper.xml" /> 
+	 	<mapper resource="mapper/user-mgmt-mapper.xml" />		
 	</mappers>
 </configuration>
 

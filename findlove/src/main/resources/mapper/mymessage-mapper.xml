@@ -7,6 +7,7 @@
 	<resultMap id="resultMyMessage" type="MyMessage">
       <result property="message_no" column="MESSAGE_NO" />
       <result property="user_nicknm" column="USER_NICKNM" />
+      <result property="picture_nm" column="PICTURE_NM" />
       <result property="sender_id" column="SENDER_ID" />
       <result property="receiver_id" column="RECEIVER_ID" />
       <result property="message_content" column="MESSAGE_CONTENT" />
@@ -21,7 +22,11 @@
    	 
  	 <select id="sendMessageList" parameterType="string" resultType="list" resultMap="resultMyMessage">
    	 	<![CDATA[
-   	 	SELECT MESSAGE_NO, USER_NICKNM, SENDER_ID, RECEIVER_ID, MESSAGE_CONTENT, SEND_DT, READ_FL FROM TB_MESSAGE LEFT JOIN TB_USER ON (RECEIVER_ID = USER_ID) WHERE SENDER_ID = #{sender_id}
+   	 	SELECT MESSAGE_NO, USER_NICKNM, PICTURE_NM, SENDER_ID, RECEIVER_ID, MESSAGE_CONTENT, SEND_DT, READ_FL, ACCEPT_ST 
+		FROM TB_MESSAGE
+		LEFT JOIN TB_USER ON (RECEIVER_ID = USER_ID)
+		LEFT JOIN TB_PROFILE_PICTURE USING (USER_ID)
+		WHERE SENDER_ID = #{sender_id}
    	 	]]>
    	 </select>
    	 
