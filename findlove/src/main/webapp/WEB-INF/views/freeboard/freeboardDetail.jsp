@@ -74,6 +74,9 @@
 				<th scope="row">내용</th>
 				<td colspan="4">${Freeboard.freeContent }</td>
 			</tr>
+			<tr>
+				<td></td>
+			</tr>
 		</tbody>
 	</table>
 	<a href="openFreeboardList.do" class="btn" id="list">목록으로</a>

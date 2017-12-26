@@ -41,6 +41,11 @@
 					<textarea rows="20" cols="100" id="Content" name="freeContent"></textarea>
 				</td>
 			</tr>
+			<tr>
+				<td>
+					<input name="FREE_FILE_ONM" type="file">
+				</td>
+			</tr>
 		</tbody>
 	</table>
 	

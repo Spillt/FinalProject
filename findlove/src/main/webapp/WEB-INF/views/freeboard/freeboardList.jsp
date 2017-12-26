@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,6 +47,15 @@
 	<header class="masthead">
 	</header>
 
+	<!-- 검색 기능 -->
+	<div class="input-group search-bar col-md-6">
+		<input id="search" type="text" class="form-control" placeholder="리스트 내 검색">
+        <span class="input-group-btn">
+        	<button class="btn btn-search" type="button"><i class="material-icons">search</i></button>
+        </span>
+    </div>
+    <!-- 검색 기능 끝 -->
+    
 	<table style="border: 1px solid #ccc">
 		<colgroup>
 			<col width="10%" />
@@ -72,8 +82,8 @@
 								<a href="detailFreeboard.do?freeNo=${row.freeNo }" id="Title" name="freeTitle">${row.freeTitle }</a>
 							</td>							
 							<td>${row.freeReadCnt }</td>
-							<td>${row.freeDt }</td>
-							<%-- <td><fmt:formatDate value="${row.freeDt }" pattern="yyyy-MM-dd HH:mm:ss"/></td> --%>
+							<%-- <td>${row.freeDt }</td> --%>
+							<td><fmt:formatDate value="${row.freeDt }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -96,6 +106,15 @@
 	$(function() {
         $('#mainNav').css('background-color', '#faadad');
      });
+	
+	/* 검색 기능 */
+	$("#search").on("keyup", function() {
+		var value = $(this).val();
+		$("table tr:gt(0)").filter(function() {
+			$(this).toggle($(this).text().indexOf(value) > -1)
+		});
+	});
+	/* 검색 기능 끝 */
 	</script>
 </body>
 </html>

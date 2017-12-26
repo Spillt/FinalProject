@@ -49,7 +49,7 @@ public class FreeboardController {
 	@RequestMapping(value="insertFreeboard.do")
 	public ModelAndView insertFreeboard(@ModelAttribute("Freeboard") Freeboard Freeboard) throws Exception{
 		ModelAndView mv = new ModelAndView("redirect:/openFreeboardList.do");
-		
+		System.out.println("Freeboard : " + Freeboard);
 		FreeboardService.insertFreeboard(Freeboard);
 		return mv;
 	}
@@ -92,6 +92,13 @@ public class FreeboardController {
 		FreeboardService.deleteFreeboard(freeNo);
 		return mv;
 	}
+	
+	//댓글 입력
+	/*@RequestMapping(value="insertReply.do")
+	public void insertReply(@ModelAttribute("Freeboard") Freeboard Freeboard, HttpSession session){
+		String freeWriter = (String)session.getAttribute("freeWriter");
+		FreeboardService.insertReply(Freeboard);
+	}*/
 	
 	
 }

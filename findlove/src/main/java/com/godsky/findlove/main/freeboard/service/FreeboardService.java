@@ -13,7 +13,7 @@ public interface FreeboardService {
 	//전체 조회
 	public List<Map<String, Object>> selectFreeboardList(Map<String, Object> map) throws Exception;
 
-	//게시판 작성하기
+	//작성하기
 	public int insertFreeboard(Freeboard freeboard) throws Exception;
 
 	//상세보기
@@ -28,6 +28,9 @@ public interface FreeboardService {
 
 	//조회수 증가
 	public int updateReadCnt(int freeNo) throws Exception;
+
+	//댓글 입력
+	//public void insertReply(Freeboard freeboard);
 
 	
 

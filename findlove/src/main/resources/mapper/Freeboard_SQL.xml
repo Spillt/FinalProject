@@ -31,7 +31,7 @@
 	<insert id="insertFreeboard" parameterType="Freeboard">
 		<![CDATA[
 			INSERT INTO TB_FREE
-			VALUES ((SELECT COUNT(*)+1 FROM TB_FREE), #{freeTitle}, #{freeWriter}, #{freeContent}, NULL, NULL, SYSDATE, NULL, NULL, NULL, NULL, 0)
+			VALUES ((SELECT MAX(Free_NO)+1 FROM TB_FREE), #{freeTitle}, #{freeWriter}, #{freeContent}, NULL, NULL, SYSDATE, NULL, NULL, NULL, NULL, 0)
 		]]>
 	</insert>
 	
@@ -77,6 +77,13 @@
 			WHERE FREE_NO = #{freeNo}
 		]]>
 	</update>
+	
+	<!-- 댓글 입력 -->
+	<!-- <insert id="sqlSession" parameterType="Freeboard">
+		<![CDATA[
+			INSERT INTO TB_FREE VALUES(#{freeNo}, #{freeTitle}, #{freeWriter}, #{freeContent}, NULL, NULL, SYSDATE, NULL, NULL, NULL, NULL, 0) 
+		]]>
+	</insert> -->
 	
 
 </mapper>

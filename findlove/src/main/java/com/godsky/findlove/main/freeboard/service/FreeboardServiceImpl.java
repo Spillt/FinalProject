@@ -1,5 +1,7 @@
 package com.godsky.findlove.main.freeboard.service;
 
+import java.io.File;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +11,9 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.godsky.findlove.main.freeboard.dao.*;
 import com.godsky.findlove.main.freeboard.vo.Freeboard;
@@ -29,7 +34,7 @@ public class FreeboardServiceImpl implements FreeboardService {
 
 	//작성하기
 	@Override
-	public int insertFreeboard(Freeboard Freeboard)  throws Exception{
+	public int insertFreeboard(Freeboard Freeboard) throws Exception{	
 		return FreeboardDao.insertFreeboard(Freeboard);
 	}
 	
@@ -60,4 +65,11 @@ public class FreeboardServiceImpl implements FreeboardService {
 	public int updateReadCnt(int freeNo) throws Exception{
 		return FreeboardDao.updateReadCnt(freeNo);
 	}
+	
+	//댓글 입력
+	/*@Override
+	public void insertReply(Freeboard Freeboard){
+		FreeboardDao.insertReply(Freeboard);
+	}*/
+	
 }
