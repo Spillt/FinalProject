@@ -30,9 +30,9 @@
 		<![CDATA[
 			SELECT USER_ID,POLL_NO,POLL_TITLE,POLL_ST,START_DT,END_DT,ANSWER1,ANSWER2,ANSWER3
 			FROM TB_POLL
-      join TB_POLL_ANSWER USING(POLL_NO)
-      WHERE user_id='user11'
-						ORDER BY Poll_NO DESC, Start_DT DESC
+     		join TB_POLL_ANSWER USING(POLL_NO)
+   			WHERE user_id=#{userId}
+			ORDER BY Poll_NO DESC, Start_DT DESC
 			
 		]]>
 	</select>

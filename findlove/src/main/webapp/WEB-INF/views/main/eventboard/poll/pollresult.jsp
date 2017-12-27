@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>PollResult</title>
 <link rel="stylesheet" type="text/css"
-   href="/findlove/resources/css/chart.css">
+	href="/findlove/resources/css/chart.css">
 <style>
 header.subhead {
 	height: 56px
@@ -18,9 +18,12 @@ header.subhead {
 		height: 103px
 	}
 }
-body{
-background:url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-Abstract-Blurred-Background-Of-92820527.jpg);
+
+body {
+	background:
+		url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-Abstract-Blurred-Background-Of-92820527.jpg);
 }
+
 .event {
 	float: left;
 	width: 100%;
@@ -78,9 +81,8 @@ table {
 	height: 200px;
 	margin-left: auto;
 	margin-right: auto;
-	
 }
-  
+
 th, td {
 	border: 1px solid #444444;
 	padding: 10px;
@@ -88,12 +90,12 @@ th, td {
 }
 
 tr:nth-child(2n), td:nth-child(2n) {
-    background-color: #e3f2fd;
-  }
-  tr:nth-child(2n+1), td:nth-child(2n+1) {
-    background-color: #bbdefb;
-  }
+	background-color: #e3f2fd;
+}
 
+tr:nth-child(2n+1), td:nth-child(2n+1) {
+	background-color: #bbdefb;
+}
 </style>
 </head>
 <body>
@@ -126,13 +128,22 @@ tr:nth-child(2n), td:nth-child(2n) {
 				<td>답변</td>
 				<td>
 					</div>
-	<div id="population_chart" data-sort="false" data-width="400" class="jChart chart-lg" >
-	<!--포문 이프로 하나씩  -->
-	<div class="define-chart-row" data-color="#008DD3" title="${poll.answer1}">${statistics}</div>
-	<div class="define-chart-row" data-color="#0074AA" title="${poll.answer2}">50</div>
-	<div class="define-chart-row" data-color="#005882" title="${poll.answer3}">30</div>
-	
-</div>
+					<div id="population_chart" data-sort="false" data-width="400"
+						class="jChart chart-lg">
+						<c:forEach var="sta" items="${statistics}">
+							<c:choose>
+								<c:when test="${sta.answer=='1'}">
+									<div class="define-chart-row" data-color="#008DD3" title="${poll.answer1}">${sta.cnt}</div>
+								</c:when>
+								<c:when test="${sta.answer=='2'}">
+									<div class="define-chart-row" data-color="#0074AA" title="${poll.answer2}">${sta.cnt}</div>
+								</c:when>
+								<c:when test="${sta.answer=='3'}">
+									<div class="define-chart-row" data-color="#005882" title="${poll.answer3}">${sta.cnt}</div>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+					</div>
 				</td>
 			</tr>
 		</table>
@@ -143,15 +154,17 @@ tr:nth-child(2n), td:nth-child(2n) {
 		</ul>
 
 
-	
-	
-	<script type="text/javascript" src="/findlove/resources/js/jchart.js"></script>
-	<script type="text/javascript">
-		$(function() {
-			$('#mainNav').css('background-color', '#faadad');
-			$("#population_chart").jChart({x_label:"Population"});
-			$("#colors_chart").jChart();
-		});
-	</script>
+
+
+		<script type="text/javascript" src="/findlove/resources/js/jchart.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('#mainNav').css('background-color', '#faadad');
+				$("#population_chart").jChart({
+					x_label : "Population"
+				});
+				$("#colors_chart").jChart();
+			});
+		</script>
 </body>
 </html>

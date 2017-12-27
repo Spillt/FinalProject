@@ -2,8 +2,6 @@ package com.godsky.findlove.main.eventboard.poll.model.vo;
 
 import java.sql.Date;
 
-
-
 public class Poll {
 
 	private String userId;
@@ -15,13 +13,13 @@ public class Poll {
 	private String answer1;
 	private String answer2;
 	private String answer3;
-	
+
 	private int answer;
-	
+
 	public Poll() {
 		super();
 	}
-	
+
 	public Poll(String userId, int pollNo, String pollTitle, int pollST, Date sDT, Date eDT, String answer1,
 			String answer2, String answer3, int answer) {
 		super();
@@ -77,8 +75,6 @@ public class Poll {
 		EDT = eDT;
 	}
 
-	
-
 	public int getAnswer() {
 		return answer;
 	}
@@ -87,57 +83,29 @@ public class Poll {
 		this.answer = answer;
 	}
 
-
-
-
-
 	public String getAnswer1() {
 		return answer1;
 	}
-
-
-
-
 
 	public void setAnswer1(String answer1) {
 		this.answer1 = answer1;
 	}
 
-
-
-
-
 	public String getAnswer2() {
 		return answer2;
 	}
-
-
-
-
 
 	public void setAnswer2(String answer2) {
 		this.answer2 = answer2;
 	}
 
-
-
-
-
 	public String getAnswer3() {
 		return answer3;
 	}
 
-
-
-
-
 	public void setAnswer3(String answer3) {
 		this.answer3 = answer3;
 	}
-
-
-
-
 
 	public String getUserId() {
 		return userId;
@@ -149,18 +117,9 @@ public class Poll {
 
 	@Override
 	public String toString() {
-		return "userId=" + userId + ", pollNo=" + pollNo + ", pollTitle=" + pollTitle + ", pollST=" + pollST
-				+ ", SDT=" + SDT + ", EDT=" + EDT + ", answer1=" + answer1 + ", answer2=" + answer2 + ", answer3="
-				+ answer3 + ", answer=" + answer ;
+		return "userId=" + userId + ", pollNo=" + pollNo + ", pollTitle=" + pollTitle + ", pollST=" + pollST + ", SDT="
+				+ SDT + ", EDT=" + EDT + ", answer1=" + answer1 + ", answer2=" + answer2 + ", answer3=" + answer3
+				+ ", answer=" + answer;
 	}
 
-
-
-
-
-
-
-	
-	
-		
 }
