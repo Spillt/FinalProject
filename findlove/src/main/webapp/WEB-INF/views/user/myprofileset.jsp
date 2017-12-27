@@ -121,7 +121,7 @@ ul{
 				<!-- <h1 class="my-4">Shop Name</h1> -->
 				<div class="list-group">
 					<a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item">나의 정보</a> <a
-						href="myprofile.do" class="list-group-item active">나의 프로필</a> <a
+						href="myprofile.do?user_id=${sessionScope.user_id }" class="list-group-item active">나의 프로필</a> <a
 						href="idealprofile.do" class="list-group-item">이상형 프로필</a> <a
 						href="store.do" class="list-group-item">스토어</a>
 				</div>
@@ -195,11 +195,11 @@ ul{
 												<table class="table">
 													<tr>
 														<th>실명</th>
-														<td>윤찬호</td>
+														<td>${user.user_nm }</td>
 													</tr>
 													<tr>
 														<th>닉네임</th>
-														<td>류하</td>
+														<td>${user.user_nicknm }</td>
 													</tr>
 													<tr>
 														<th>성별</th>
@@ -231,7 +231,7 @@ ul{
 													</tr>
 													<tr>
 														<th>휴대폰</th>
-														<td><input type="text" name="job" style="width:70%;"></td>
+														<td><input type="text" name="phone" style="width:70%;"></td>
 													</tr>
 												</table>
 											</div>
@@ -247,110 +247,46 @@ ul{
 
 												<table class="table" style="margin-bottom:0px;">
 													<tr>
-														<th>생년월일</th>
+														<th>나이</th>
 														<td>
-														<select name = "birthday_year">
+														<select name = "age">
 															<option value>선택</option>
-															<option value="2000">2000</option>
-															<option value="1999">1999</option>
-															<option value="1998">1998</option>
-															<option value="1997">1997</option>
-															<option value="1996">1996</option>
-															<option value="1995">1995</option>
-															<option value="1994">1994</option>
-															<option value="1993">1993</option>
-															<option value="1992">1992</option>
-															<option value="1991">1991</option>
-															<option value="1990">1990</option>
-															<option value="1989">1989</option>
-															<option value="1988">1988</option>
-															<option value="1987">1987</option>
-															<option value="1986">1986</option>
-															<option value="1985">1985</option>
-															<option value="1984">1984</option>
-															<option value="1983">1983</option>
-															<option value="1982">1982</option>
-															<option value="1981">1981</option>
-															<option value="1980">1980</option>
-															<option value="1979">1979</option>
-															<option value="1978">1978</option>
-															<option value="1977">1977</option>
-															<option value="1976">1976</option>
-															<option value="1975">1975</option>
-															<option value="1974">1974</option>
-															<option value="1973">1973</option>
-															<option value="1972">1972</option>
-															<option value="1971">1971</option>
-															<option value="1970">1970</option>
-															<option value="1969">1969</option>
-															<option value="1968">1968</option>
-															<option value="1967">1967</option>
-															<option value="1966">1966</option>
-															<option value="1965">1965</option>
-															<option value="1964">1964</option>
-															<option value="1963">1963</option>
-															<option value="1962">1962</option>
-															<option value="1961">1961</option>
-															<option value="1960">1960</option>
-															<option value="1959">1959</option>
-															<option value="1958">1958</option>
-															<option value="1957">1957</option>
-															<option value="1956">1956</option>
-															<option value="1955">1955</option>
-															<option value="1954">1954</option>
-															<option value="1953">1953</option>
-															<option value="1952">1952</option>
-															<option value="1951">1951</option>
-															<option value="1950">1950</option>															
-														</select>							
-														<select name = "birthday_month">
-															<option value>선택</option>
-															<option value="1">1월</option>
-															<option value="2">2월</option>
-															<option value="3">3월</option>
-															<option value="4">4월</option>
-															<option value="5">5월</option>
-															<option value="6">6월</option>
-															<option value="7">7월</option>
-															<option value="8">8월</option>
-															<option value="9">9월</option>
-															<option value="10">10월</option>
-															<option value="11">11월</option>
-															<option value="12">12월</option>
-														</select>
-														<select name ="birthday_date">
-															<option value>선택</option>
-															<option value="1">1일</option>
-															<option value="2">2일</option>
-															<option value="3">3일</option>
-															<option value="4">4일</option>
-															<option value="5">5일</option>
-															<option value="6">6일</option>
-															<option value="7">7일</option>
-															<option value="8">8일</option>
-															<option value="9">9일</option>
-															<option value="10">10일</option>
-															<option value="11">11일</option>
-															<option value="12">12일</option>
-															<option value="13">13일</option>
-															<option value="14">14일</option>
-															<option value="15">15일</option>
-															<option value="16">16일</option>
-															<option value="17">17일</option>
-															<option value="18">18일</option>
-															<option value="19">19일</option>
-															<option value="20">20일</option>
-															<option value="21">21일</option>
-															<option value="22">22일</option>
-															<option value="23">23일</option>
-															<option value="24">24일</option>
-															<option value="25">25일</option>
-															<option value="26">26일</option>
-															<option value="27">27일</option>
-															<option value="28">28일</option>
-															<option value="29">29일</option>
-															<option value="30">30일</option>
-															<option value="31">31일</option>
+															<option value="15">15</option>
+															<option value="16">16</option>
+															<option value="17">17</option>
+															<option value="18">18</option>
+															<option value="19">19</option>
+															<option value="20">20</option>
+															<option value="21">21</option>
+															<option value="22">22</option>
+															<option value="23">23</option>
+															<option value="24">24</option>
+															<option value="25">25</option>
+															<option value="26">26</option>
+															<option value="27">27</option>
+															<option value="28">28</option>
+															<option value="29">29</option>
+															<option value="30">30</option>
+															<option value="31">31</option>
+															<option value="32">32</option>
+															<option value="33">33</option>
+															<option value="34">34</option>
+															<option value="35">35</option>
+															<option value="36">36</option>
+															<option value="37">37</option>
+															<option value="38">38</option>
+															<option value="39">39</option>
+															<option value="40">40</option>
+															<option value="41">41</option>
+															<option value="42">42</option>
+															<option value="43">43</option>
+															<option value="44">44</option>
+															<option value="45">45</option>
+															<option value="46">46</option>
+															<option value="47">47</option>
+															<option value="48">48</option>
+															<option value="49">49</option>
+															<option value="50">50</option>																													
 														</select>
 														</td>
 													</tr>

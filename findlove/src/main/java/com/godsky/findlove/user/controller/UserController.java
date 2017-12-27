@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.godsky.findlove.common.model.vo.Profile;
 import com.godsky.findlove.user.model.dao.UserDao;
 import com.godsky.findlove.user.model.service.UserService;
 import com.godsky.findlove.user.model.vo.User;
@@ -40,6 +41,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	private UserDao userDao;
+	private Profile profile;
 	
 	public UserController(){}
 	
@@ -78,7 +80,7 @@ public class UserController {
 			
 	}
 		
-	//회원가입 페이지
+	//회원가입 페이지 이동
 	@RequestMapping(value = "signup.do", method=RequestMethod.GET)
 	public String signUpView(){
 		return "user/signup";		
@@ -89,7 +91,7 @@ public class UserController {
 	@RequestMapping(value = "signup.do", method=RequestMethod.POST)
 	public String signUp(User user) throws Exception{
 		System.out.println(user);
-		userService.insert(user);
+		userService.signUp(user);
 		return "home";
 	}
 
@@ -101,22 +103,40 @@ public class UserController {
         // 뷰의 이름
         mav.setViewName("user/myinfo");
         // 뷰에 전달할 데이터
-        User user =userService.myInfoSet(user_id);
-        System.out.println(user);
-        mav.addObject("user", userService.myInfoSet(user_id));
+        User user =userService.myInfo(user_id);
+        System.out.println("내정보 보기 : " + user);
+        mav.addObject("user", userService.myInfo(user_id));
 		return mav ;
 	}
-	
-	//내정보 수정
+
+	//내정보 수정 
 	@RequestMapping(value = "myinfoset.do")
-	public String myInfoSet(){
-		return "user/myinfoset";
+	public String myInfoSet(@ModelAttribute User user_id){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("user/myinfoset");		
+		userService.myInfoSet(user_id);
+		System.out.println("내정보 수정 컨트롤러: " + user_id);
+		return "redirect:user/myinfo";
 		
 	}
+	
+	
+	
 	//내 프로필 보기
 	@RequestMapping(value = "myprofile.do")
-	public String myProfileView(){
-		return "user/myprofile";
+	public ModelAndView myProfileView(@RequestParam("user_id") String user_id){
+		ModelAndView mav= new ModelAndView();
+		System.out.println("내 프로필 보기 user_id : " + user_id);
+		//뷰 이름
+		mav.setViewName("user/myprofile");
+		// 전달할 데이터
+		Profile profile = userService.myProfile(user_id);
+		User user = userService.myInfo(user_id);
+		System.out.println("내 프로필 보기 profile : " + profile);
+		mav.addObject("user", userService.myInfo(user_id));
+		mav.addObject("profile", userService.myProfile(user_id));
+		
+		return mav;
 	}
 	
 	//내 프로필 수정
@@ -127,8 +147,14 @@ public class UserController {
 	
 	//이상형 프로필 보기
 	@RequestMapping(value = "idealprofile.do")
-	public String idealProfileView(){
-		return "user/idealprofile";
+	public ModelAndView idealProfileView(@RequestParam("user_id") String user_id){
+		ModelAndView mav = new ModelAndView();
+		System.out.println("이성 프로필 보기 user_id" + user_id);
+		Profile profile = userService.idealProfile(user_id);
+		System.out.println("이성 프로필 보기 profile : " + profile);
+		mav.addObject("profile",userService.idealProfile(user_id));
+		
+		return mav;
 		
 	}
 	

@@ -15,8 +15,7 @@
             PICTURE_NM,
             GENDER,
             AGE,
-            HEIGHT,
-            WEIGHT,
+            HEIGHT,            
             AREA,
             HOBBY,
             ACHIEVEMENT,
@@ -24,7 +23,8 @@
             SMOKING,
             DRINKING,
             RELIGION,
-            STYLE
+            STYLE,
+            BODYFORM
             FROM TB_USER 
 			LEFT JOIN TB_PROFILE USING (USER_ID)
 			LEFT JOIN TB_PROFILE_PICTURE USING (USER_ID)
@@ -64,6 +64,54 @@
 			WHERE USER_NICKNM = #{USER_NICKNM}
 			AND THUMNAIL_FL = '0'
         ]]>
+    </select>
+    
+     <!-- 내프로필 설정 -->
+    <select id="myprofile" parameterType="String" resultType="Profile">
+    	SELECT    	
+    	USER_ID,
+    	target_gb,    	   	
+    	GENDER,
+    	BLOOD_TYPE,
+    	JOB,
+    	ACHIEVEMENT,
+    	PHONE,
+    	AGE,
+    	AREA,
+    	STYLE,
+    	HEIGHT,
+    	BODYFORM,
+    	RELIGION,
+    	DRINKING,
+    	SMOKING    	
+    	FROM TB_USER
+    	LEFT JOIN TB_PROFILE USING(USER_ID)
+    	WHERE USER_ID = #{user_id} AND target_gb = '0'
+    	
+    </select>
+    
+    <!-- 이상형 프로필 설정 -->
+    <select id="idealprofile" parameterType="String" resultType="Profile">
+    	SELECT    	
+    	USER_ID,
+    	target_gb,    	   	
+    	GENDER,
+    	BLOOD_TYPE,
+    	JOB,
+    	ACHIEVEMENT,
+    	PHONE,
+    	AGE,
+    	AREA,
+    	STYLE,
+    	HEIGHT,
+    	BODYFORM,
+    	RELIGION,
+    	DRINKING,
+    	SMOKING    	
+    	FROM TB_USER
+    	LEFT JOIN TB_PROFILE USING(USER_ID)
+    	WHERE USER_ID = #{user_id} AND target_gb = '1'
+    	
     </select>
    
 </mapper>

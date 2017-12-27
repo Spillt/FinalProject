@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.godsky.findlove.common.model.vo.Profile;
 import com.godsky.findlove.user.model.dao.UserDao;
 import com.godsky.findlove.user.model.vo.User;
 
@@ -51,15 +52,8 @@ public class UserServiceImpl implements UserService{
 	public int changeUserState(){
 		return 0;
 		
-	}
-
+	}	
 	
-	@Override
-	//유저 프로필 생성
-	public int createUserProfile(){
-		return 0;
-		
-	}
 	
 	@Override
 	//이상형 프로필 생성
@@ -69,7 +63,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	//멤버 정보 보기
+	//로그인 정보 보기
 	public User viewMember(User vo) {
 		return userDao.viewMember(vo);
 	}
@@ -82,8 +76,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	//회원가입
-	public int insert(User user) {
-		return userDao.creatUser(user);
+	public int signUp(User user) {
+		return userDao.signUp(user);
 	}
 
 	@Override
@@ -93,19 +87,45 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	//회원 정보 업데이트
-	public User myInfoSet(String user_id) {
-		return userDao.myInfoSet(user_id);
+	//내정보 보기
+	public User myInfo(String user_id) {
+		return userDao.myInfo(user_id);
 		
 	}
-
-
+	
 	@Override
+	//내 정보 수정 처리
+	public void myInfoSet(User user_id) {
+		userDao.myInfoSet(user_id);
+	}
+
+	
+	@Override
+	//회원 삭제
 	public void removeUserById(String user_id){
 		int cnt = userDao.removeUserById(user_id);
 		System.out.println(cnt + "개의 행이 삭제되었습니다.");
 		
 	}
+
+
+	@Override
+	//내 프로필 설정
+	public Profile myProfile(String user_id) {		
+		return userDao.myProfile(user_id);
+	}
+
+
+	@Override
+	public User myInfoSet(String user_id, String string, String user_pwd) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
+
+
 
 	
 

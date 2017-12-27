@@ -95,8 +95,8 @@
 				<!-- <h1 class="my-4">Shop Name</h1> -->
 				<div class="list-group">
 					<a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item">나의 정보</a> <a
-						href="myprofile.do" class="list-group-item active">나의 프로필 설정</a> <a
-						href="idealprofile.do" class="list-group-item">이상형 프로필 설정</a> <a
+						href="myprofile.do?user_id=${sessionScope.user_id }" class="list-group-item active">나의 프로필</a> <a
+						href="idealprofile.do" class="list-group-item">이상형 프로필</a> <a
 						href="store.do" class="list-group-item">스토어</a>
 				</div>
 			</div>
@@ -122,7 +122,7 @@
 										style="padding-left: 0px; padding-right: 0px;">
 										<!-- 닉네임 출력 -->
 										<div class="credit-body text-center">
-											<h2>${sessionScope.user_id }</h2>
+											<h2>${user.user_nicknm }</h2>
 										</div>
 
 										<!-- 이미지 등록 버튼 -->
@@ -163,27 +163,27 @@
 													<table class="table">
 														<tr>
 															<th>실명</th>
-															<td>윤찬호</td>
+															<td>${user.user_nm }</td>
 														</tr>
 														<tr>
 															<th>닉네임</th>
-															<td>류하</td>
+															<td>${user.user_nicknm }</td>
 														</tr>
 														<tr>
 															<th>성별</th>
-															<td>남자</td>
+															<td>${profile.gender }</td>
 														</tr>
 														<tr>
 															<th>혈액형</th>
-															<td>${ p.blood_Type }B</td>
+															<td>${profile.blood_type }</td>
 														</tr>
 														<tr>
 															<th>직업/직장</th>
-															<td>회사원</td>
+															<td>${profile.job }</td>
 														</tr>														
 														<tr>
 															<th>휴대폰번호</th>
-															<td>010-1234-5678</td>
+															<td>${user.phone }</td>
 														</tr>
 													</table>
 												</div>
@@ -197,32 +197,32 @@
 
 													<table class="table">
 														<tr>
-															<th>생년월일</th>
-															<td>1988.4.3</td>
+															<th>나이</th>
+															<td>${profile.age }</td>
 														</tr>
 														<tr>
 															<th>지역</th>
-															<td>${ p.area }서울</td>
+															<td>${profile.area }</td>
 														</tr>
 														<tr>
 															<th>스타일</th>
-															<td>${ p.style }패션에민감한,터프,열정적인</td>
+															<td>${profile.style}</td>
 														</tr>
 														<tr>
-															<th>키/몸무게</th>
-															<td>${ p.height }175cm/68kg</td>
+															<th>키/체형</th>
+															<td>${ profile.height }cm/${profile.bodyform }</td>
 														</tr>
 														<tr>
 															<th>종교</th>
-															<td>${ p.religion }무교</td>
+															<td>${ profile.religion }</td>
 														</tr>
 														<tr>
 															<th>음주여부</th>
-															<td>${ p.smoking }즐겨마심</td>
+															<td>${ profile.drinking }</td>
 														</tr>
 														<tr>
 															<th>흡연여부</th>
-															<td>${ p.smoking }흡연</td>
+															<td>${ profile.smoking }</td>
 														</tr>
 													</table>
 												</div>

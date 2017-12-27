@@ -85,8 +85,8 @@
 				<!-- <h1 class="my-4">Shop Name</h1> -->
 				<div class="list-group">
 					<a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item active">나의 정보</a> 
-					<a href="myprofile.do"	class="list-group-item">나의 프로필 설정</a> 
-					<a href="idealprofile.do"	class="list-group-item">이상형 프로필 설정</a> 
+					<a href="myprofile.do?user_id=${sessionScope.user_id }"	class="list-group-item">나의 프로필</a> 
+					<a href="idealprofile.do"	class="list-group-item">이상형 프로필</a> 
 					<a href="store.do"	class="list-group-item">스토어</a>
 				</div>
 			</div>
@@ -96,7 +96,7 @@
 				<div class="card card-outline-secondary my-4">
 					<div class="card-header">정보 수정은 아이디와 이름은 변경 불가능 합니다.</div>
 					<div class="card-body">
-					<form class="form-contaioner" name="myinfoset" method="post">
+					<form class="form-contaioner" name="updatemyinfo" method="post">
 						<table id="tableData" class="table table-bordered">
 							
 								<tr>
@@ -113,7 +113,7 @@
 								</tr>
 								<tr>
 									<td>비밀번호</td>
-									<td><input type="password" name="pwd1" id="pwd1" /></td>
+									<td><input type="password" name="user_pwd" id="pwd1" /></td>
 								</tr>
 								<tr>
 									<td>비밀번호 확인</td>
@@ -181,7 +181,7 @@
 	<script type="text/javascript">
 						function checkfield() {
 
-							var form = document.myinfoset;
+							var form = document.updatemyinfo;
 							var pattern1 = /[0-9]/; //숫자
 							var pattern2 = /[a-zA-Z]/; //영문
 							var pattern3 = /[~!@#$%^&*()_+|<>?:{}]/; //특수문자

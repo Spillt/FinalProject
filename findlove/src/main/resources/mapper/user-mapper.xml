@@ -21,11 +21,11 @@
 		<result property="delete_dt" column="Delete_DT"/>
 	</resultMap>
 	
+	<!-- 회원 등록 -->
 	<insert id ="insertUser" parameterType = "User">
 		INSERT INTO TB_USER(USER_ID, USER_PWD, USER_NM, USER_NICKNM, EMAIL, PHONE)
 		VALUES (#{user_id}, #{user_pwd}, #{user_nm}, #{user_nicknm}, #{email}, #{phone})
 	</insert>
-	
 	
 	<select id="loginCheck" resultType="String">
 	<!-- <select id="loginCheck" resultType="integer"> -->
@@ -39,6 +39,7 @@
 	]]>
 	</select>
 	
+	<!-- 내정보 보기 -->
 	<select id="myinfo" resultType="User">
 	<![CDATA[
 	SELECT *
@@ -51,6 +52,7 @@
 		SELECT Count(*) from tb_user
 	</select> -->
 	
+	<!-- 로그인 정보 보기 -->
 	<select id="viewMember" resultType="com.godsky.findlove.user.model.vo.User">
 	SELECT
 		User_NM AS user_nm,
@@ -68,6 +70,7 @@
 	WHERE User_ID = #{user_id}	
 	</select>
 	
+	<!-- 이메일로 계정 찾기 -->
 	<select id="findAccount" resultType="User" parameterType="string">
 	
 		<![CDATA[
@@ -77,7 +80,20 @@
 		]]>
 	</select>
 	
+	<!-- 내정보 수정 -->
+	<update id="myinfoset">
+	UPDATE TB_USER
+	SET
+		USER_NICKNM = #{user_nicknm},
+		USER_PWD = #{user_pwd},
+		EMAIL = #{email},
+		PHONE = #{phone}
+	WHERE
+		USER_ID = #{user_id} 
 	
+	</update>
+	
+	<!-- 탈퇴 -->
 	<delete id="removeUserById" parameterType="string">
 	delete from tb_user
 	where User_ID = #{user_id}

@@ -2,6 +2,7 @@ package com.godsky.findlove.user.model.service;
 
 import javax.servlet.http.HttpSession;
 
+import com.godsky.findlove.common.model.vo.Profile;
 import com.godsky.findlove.user.model.vo.User;
 
 public interface UserService {
@@ -16,12 +17,10 @@ public interface UserService {
 	public void logout(HttpSession session);
 	
 	//회원 생성
-	public int insert(User user);
+	public int signUp(User user);
 	
 
 	int changeUserState();
-
-	int createUserProfile();
 
 	int createIdealProfile();
 
@@ -30,17 +29,26 @@ public interface UserService {
 	//회원 계정 찾기
 	public User findAccount(String email);
 	
-	//회원 정보 업데이트
-	public User myInfoSet(String user_id);
+	//내정보 보기
+	public User myInfo(String user_id);
+	
+	//내정보 수정
+	public User myInfoSet(String user_id, String string, String user_pwd);
 	
 	//회원 탈퇴
 	public void removeUserById(String user_id);
 
+	//내 프로필 보기
+	public Profile myProfile(String user_id);
+	
+	//이성 프로필 보기
+	public Profile idealProfile(String user_id);
+	
+	//내정보 수정 처리
+	public void myInfoSet(User user_id);
+
 	
 
-
-	
-	
 	
 
 }
