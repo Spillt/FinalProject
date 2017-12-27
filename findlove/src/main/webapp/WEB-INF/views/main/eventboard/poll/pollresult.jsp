@@ -77,8 +77,6 @@ table, tr, td {
 }
 
 table {
-	width: 800px;
-	height: 200px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -90,12 +88,12 @@ th, td {
 }
 
 tr:nth-child(2n), td:nth-child(2n) {
-	background-color: #e3f2fd;
-}
+    background-color: #fff;
+  }
+  tr:nth-child(2n+1), td:nth-child(2n+1) {
+    background-color: #faadad;
+  }
 
-tr:nth-child(2n+1), td:nth-child(2n+1) {
-	background-color: #bbdefb;
-}
 </style>
 </head>
 <body>
@@ -108,14 +106,14 @@ tr:nth-child(2n+1), td:nth-child(2n+1) {
 
 	<div class="event">
 		<ul>
-			<li class="nav-item"><a class="nav-link js-scroll-trigger"
+			<li class="nav-item"><a class="btn btn-primary nav-link js-scroll-trigger"
 				href="attendancelist.do">출석체크</a></li>
-			<li class="nav-item"><a class="nav-link js-scroll-trigger"
-				href="polllist.do">설문조사</a></li>
+			<li class="nav-item"><a class="btn btn-primary nav-link js-scroll-trigger"
+				href="polllist.do?userId=${user_id}">설문조사</a></li>
 		</ul>
 	</div>
 	<div class="detail">
-		<table>
+		<table class="table table-striped text-center">
 			<tr>
 				<td>설문내용</td>
 				<td>${poll.pollTitle}</td>
@@ -125,21 +123,21 @@ tr:nth-child(2n+1), td:nth-child(2n+1) {
 				<td>${poll.SDT}~${poll.EDT}</td>
 			</tr>
 			<tr>
-				<td>답변</td>
+				<td><br>답변</td>
 				<td>
 					</div>
-					<div id="population_chart" data-sort="false" data-width="400"
+					<div id="population_chart" data-sort="false" data-width="500"
 						class="jChart chart-lg">
 						<c:forEach var="sta" items="${statistics}">
 							<c:choose>
 								<c:when test="${sta.answer=='1'}">
-									<div class="define-chart-row" data-color="#008DD3" title="${poll.answer1}">${sta.cnt}</div>
+									<div class="define-chart-row" data-color="#faadad" title="${poll.answer1}">${sta.cnt}</div>
 								</c:when>
 								<c:when test="${sta.answer=='2'}">
-									<div class="define-chart-row" data-color="#0074AA" title="${poll.answer2}">${sta.cnt}</div>
+									<div class="define-chart-row" data-color="#f99191" title="${poll.answer2}">${sta.cnt}</div>
 								</c:when>
 								<c:when test="${sta.answer=='3'}">
-									<div class="define-chart-row" data-color="#005882" title="${poll.answer3}">${sta.cnt}</div>
+									<div class="define-chart-row" data-color="#f87e7e" title="${poll.answer3}">${sta.cnt}</div>
 								</c:when>
 							</c:choose>
 						</c:forEach>
@@ -149,7 +147,7 @@ tr:nth-child(2n+1), td:nth-child(2n+1) {
 		</table>
 
 		<ul>
-			<li class="nav-item"><a class="nav-link js-scroll-trigger"
+			<li class="nav-item"><a class="btn btn-primary"
 				href="polllist.do?userId=${user_id}">이전으로</a></li>
 		</ul>
 

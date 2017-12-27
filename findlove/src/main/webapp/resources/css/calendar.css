@@ -97,7 +97,7 @@ html .fc,
 	span.fc-button {
     font-family: 'Roboto', sans-serif;
     border-color: #faadad;
-	color: #faadad;
+	color: #f87e7e;
 }
 .fc-state-down, .fc-state-active {
     background-color: #faadad !important;
