@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.godsky.findlove.main.eventboard.poll.model.service.PollService;
 import com.godsky.findlove.main.eventboard.poll.model.vo.Poll;
 import com.godsky.findlove.main.eventboard.poll.model.vo.PollAnswer;
+import com.godsky.findlove.main.eventboard.poll.model.vo.PollResult;
 
 @Controller
 public class PollController {
@@ -28,14 +29,14 @@ public class PollController {
 	 
 	//  목록 전체 보기
 	@RequestMapping(value="polllist.do")
-	public ModelAndView pollList(Model model /*,@RequestParam("userId") String userId*/) {
-		
-		 List<Poll> list = pollService.listAll();
+	public ModelAndView pollList(Model model ,@RequestParam("userId") String userId) {
+		List<Poll> list = pollService.listAll();
+		 List<Poll> mylist = pollService.listAll(userId);
 		// List<Integer> listNo = pollService.listAnswerPollNo(userId);
 	      ModelAndView mv = new ModelAndView();
 	      mv.setViewName("main/eventboard/poll/polllist");
 	      mv.addObject("list", list);
-	      
+	      mv.addObject("mylist", mylist);
 	      return mv;
 	}
 	//  상세 보기
@@ -54,21 +55,28 @@ public class PollController {
 	//  답변 입력 
 			@RequestMapping(value="pollAnswer.do")
 			public ModelAndView pollAnswer(@ModelAttribute PollAnswer answer, Model model) {
+
+				System.out.println("a=" +answer);
 				pollService.pollAnswer(answer);
-		        return pollList(model);
+		        return pollList(model,answer.getUser_id());
 			}
 		
 		
 	//  결과보기	
 		@RequestMapping(value="pollresult.do", method= {RequestMethod.GET})
 		public ModelAndView pollResult(@RequestParam int pollNo) {
-			
+
+			List<PollResult> pollResults = pollService.pollResult(pollNo);
 			// 모델(데이터)+뷰(화면)를 함께 전달하는 객체
+			for(PollResult p: pollResults) {
+				System.out.println(p);
+			}
 	        ModelAndView mav = new ModelAndView();
 	        // 뷰의 이름
 	        mav.setViewName("main/eventboard/poll/pollresult");
 	        // 뷰에 전달할 데이터
 	        mav.addObject("poll", pollService.polldetail(pollNo));
+	        mav.addObject("statistics", pollResults);
 	        return mav;
 		}	
 

@@ -72,7 +72,7 @@ background:url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-A
 			<li class="nav-item"><a class="nav-link js-scroll-trigger"
 				href="attendancelist.do">출석체크</a></li>
 			<li class="nav-item"><a class="nav-link js-scroll-trigger"
-				href="polllist.do">설문조사</a></li>
+				href="polllist.do?userId=${user_id}">설문조사</a></li>
 		</ul>
 	</div>
 	<hr>
@@ -86,14 +86,25 @@ background:url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-A
                   <th>결과보기</th>
                </tr>
             </thead>
-            <tbody>
+            <tbody>	
             <c:forEach var="list" items="${list}">
-			<tr>
-				<td>${list.pollTitle}</td>
-				<td>${list.SDT}~${list.EDT}</td>
-				<td><a href="polldetail.do?pollNo=${list.pollNo }" class="btn btn-primary">시작하기</a></td>
-				<td><a href="pollresult.do?pollNo=${list.pollNo }" class="btn btn-primary">결과보기</a></td>
-			</tr>
+				<tr>
+					<td>${list.pollTitle}</td>
+					<td>${list.SDT}~${list.EDT}</td>	
+							<c:set var="doneLoop" value="false"/>
+						<c:forEach var="mylist" items="${mylist}" varStatus="status">	
+							<c:if test="${not doneLoop}">
+								<c:if test="${list.pollNo eq mylist.pollNo}">
+									<td><a href="#" class="btn btn-primary">시작하기</a></td>
+									<c:set var="doneLoop" value="true"/>
+								</c:if>
+							</c:if>
+						</c:forEach>
+						<c:if test="${not doneLoop}">
+						<td><a href="polldetail.do?pollNo=${list.pollNo }" class="btn btn-primary">시작하기</a></td>
+								</c:if>
+					<td><a href="pollresult.do?pollNo=${list.pollNo }" class="btn btn-primary">결과보기</a></td>
+				</tr>
 			</c:forEach>
 </tbody>
 </table>
@@ -110,7 +121,6 @@ background:url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-A
 		  $(document).ready(function() {
               $('#tableData').paging({limit:5});
           });
-		  
 	</script>
 	    
 </body>

@@ -127,8 +127,8 @@ tr:nth-child(2n), td:nth-child(2n) {
 				<td>
 					</div>
 	<div id="population_chart" data-sort="false" data-width="400" class="jChart chart-lg" >
-	
-	<div class="define-chart-row" data-color="#008DD3" title="${poll.answer1}">10</div>
+	<!--포문 이프로 하나씩  -->
+	<div class="define-chart-row" data-color="#008DD3" title="${poll.answer1}">${statistics}</div>
 	<div class="define-chart-row" data-color="#0074AA" title="${poll.answer2}">50</div>
 	<div class="define-chart-row" data-color="#005882" title="${poll.answer3}">30</div>
 	
@@ -139,7 +139,7 @@ tr:nth-child(2n), td:nth-child(2n) {
 
 		<ul>
 			<li class="nav-item"><a class="nav-link js-scroll-trigger"
-				href="polllist.do">이전으로</a></li>
+				href="polllist.do?userId=${user_id}">이전으로</a></li>
 		</ul>
 
 

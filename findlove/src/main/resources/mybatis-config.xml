@@ -14,6 +14,7 @@
 		<typeAlias type="com.godsky.findlove.common.model.vo.Report" alias="Report" />
 		<typeAlias type="com.godsky.findlove.main.eventboard.poll.model.vo.Poll" alias="Poll" />
 		<typeAlias type="com.godsky.findlove.main.eventboard.poll.model.vo.PollAnswer" alias="PollAnswer" />
+		<typeAlias type="com.godsky.findlove.main.eventboard.poll.model.vo.PollResult" alias="PollResult" />
 	</typeAliases>
 	
 	<!-- 사용할 매퍼 파일 등록 : 필수 -->

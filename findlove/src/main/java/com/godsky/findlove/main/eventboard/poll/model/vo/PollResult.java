@@ -6,66 +6,38 @@ import java.sql.Date;
 
 public class PollResult {
 
-	private int pollNo;
-	private String pollTitle;
-	private int result1;
-	private int result2;
-	private int result3;
+	private int answer;
+	private int cnt;
 	
-	public PollResult(int pollNo, String pollTitle, int result1, int result2, int result3) {
+	
+	
+	public PollResult() {
 		super();
-		this.pollNo = pollNo;
-		this.pollTitle = pollTitle;
-		this.result1 = result1;
-		this.result2 = result2;
-		this.result3 = result3;
+		// TODO Auto-generated constructor stub
 	}
-
-	public int getPollNo() {
-		return pollNo;
+	public PollResult(int answer, int cnt) {
+		super();
+		this.answer = answer;
+		this.cnt = cnt;
 	}
-
-	public void setPollNo(int pollNo) {
-		this.pollNo = pollNo;
+	public int getAnswer() {
+		return answer;
 	}
-
-	public String getPollTitle() {
-		return pollTitle;
+	public void setAnswer(int answer) {
+		this.answer = answer;
 	}
-
-	public void setPollTitle(String pollTitle) {
-		this.pollTitle = pollTitle;
+	public int getCnt() {
+		return cnt;
 	}
-
-	public int getResult1() {
-		return result1;
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
-
-	public void setResult1(int result1) {
-		this.result1 = result1;
-	}
-
-	public int getResult2() {
-		return result2;
-	}
-
-	public void setResult2(int result2) {
-		this.result2 = result2;
-	}
-
-	public int getResult3() {
-		return result3;
-	}
-
-	public void setResult3(int result3) {
-		this.result3 = result3;
-	}
-
 	@Override
 	public String toString() {
-		return "pollNo=" + pollNo + ", pollTitle=" + pollTitle + ", result1=" + result1 + ", result2="
-				+ result2 + ", result3=" + result3 ;
+		return "PollResult [answer=" + answer + ", cnt=" + cnt + "]";
 	}
+	
+
 	
 	
 	

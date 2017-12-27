@@ -125,6 +125,7 @@ tr:nth-child(2n), td:nth-child(2n) {
 				<td>답변</td>
 				<td>
 					<form action="pollAnswer.do">
+					
 						<input type="hidden" name="user_id" value="${sessionScope.user_id}">
 						<input type="hidden" name="poll_no" value="${poll.pollNo}">
 						<div>
@@ -149,7 +150,7 @@ tr:nth-child(2n), td:nth-child(2n) {
 
 		<ul>
 			<li class="nav-item"><a class="nav-link js-scroll-trigger"
-				href="polllist.do">이전으로</a></li>
+				href="polllist.do?userId=${user_id}">이전으로</a></li>
 			<li class="nav-item"><a class="nav-link js-scroll-trigger"
 				>설문완료</a></li>
 
