@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.godsky.findlove.main.matchboard.qna.model.vo.MatchQnA;
 import com.godsky.findlove.main.matchboard.qna.model.vo.MatchUser;
 import com.godsky.findlove.main.matchboard.qna.model.vo.MatchUserProfile;
+import com.godsky.findlove.main.matchboard.qna.model.vo.MatchingQuestion;
 import com.godsky.findlove.user.model.vo.Profile;
 import com.godsky.findlove.user.model.vo.User;
 
@@ -72,5 +73,33 @@ public class MatchQnADao {
 
 	public List<MatchUserProfile> selectMatchUserProfileList(MatchUser todayMatchUser) {
 		return sqlSession.selectList("matchUser.selectMatchUserProfileList",todayMatchUser);
+	}
+
+	public List<MatchingQuestion> selectQuestion() {
+		return sqlSession.selectList("match.selectQuestion");
+	}
+
+	public int insertMyQnA(MatchQnA myQnA) {
+		return sqlSession.insert("match.insertMyQnA",myQnA);
+	}
+
+	public List<MatchQnA> selectMyQuestion(String userId) {
+		return sqlSession.selectList("match.myQuestionCheck",userId);
+	}
+
+	public List<MatchingQuestion> selectQuestion3() {
+		return sqlSession.selectList("match.selectMatchQuestionList");
+	}
+
+	public MatchQnA checkMatchingUserQnA(MatchQnA matchingUserQnA) {
+		return sqlSession.selectOne("match.checkMatchingUserQnA",matchingUserQnA);
+	}
+
+	public int todayMatchCheck(String userId) {
+		return sqlSession.update("match.todayMatchCheck",userId);
+	}
+
+	public int updateMyQnA(MatchQnA myQnA) {
+		return sqlSession.update("match.updateMyQnA",myQnA);
 	}
 }

@@ -16,6 +16,7 @@
  .matchQnA:link { color: red; text-decoration: none;}
  .matchQnA:visited { color: black; text-decoration: none;}
  .matchQnA:hover { color: black; text-decoration: none;}
+ .matchQnA { color: black; text-decoration: none;}
 </style>
 </head>
 <body>
@@ -31,11 +32,21 @@
 <br>
 <br>
 <br>
-${user_id }<br>
+<br>
+<div class="col-lg-3">
+          <br>
+          <div class="list-group">
+            <a href="selectuserlist.do?userId=${user_id }" class="list-group-item active">매칭게시판</a>
+            <c:if test="${!empty myQnA}">
+            <a href="myMatchqna.do?userId=${user_id }" class="list-group-item">내 QnA수정하기</a>
+            </c:if>
+            <c:if test="${empty myQnA}">
+            <a href="listMatchqna.do" class="list-group-item">내 QnA작성하기</a>
+            </c:if>
+            <a href="#" class="list-group-item">내 QnA삭제하기</a>
+          </div>
+        </div>
 
-
-
-<a href="insertmatchqna.do">내 질문 만들기</a>
 <div class="container" style = "width : 500pt; height : 100pt;">  
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -44,42 +55,46 @@ ${user_id }<br>
     <!-- Wrapper for slides -->
     
     <div class="carousel-inner">
-   <c:forEach var="m" items="${requestScope.list}" varStatus="status">
+  		<c:forEach var="m" items="${requestScope.list}" varStatus="status">
     
-      <c:if test="${status.first}">
-      <div class="item active">
-      </c:if>
-      <c:if test="${not status.first}">
-      <div class="item">
-      </c:if>
-        <div class="container"> 
-        <a href="selectmatchqna.do" class = "matchQnA">          
-  <table class="table"style=" width : 200pt; position:relative; left:170px;">
-    <thead>
-      <tr>
-        <th colspan="3"style="height : 200pt">${m.picture_nm }
-        <div>[${m.user_nm}][${m.rank_gb }]</div> 
-        <div style = "font-size: 5pt; color : gray">${m.age },${m.blood_type }${m.blood_type },${m.area }<div>
-        </th>
-        
-      </tr>
-    </thead>
-    
-    <tbody>
-      <tr>
-        <td>${m.height },${m.weight },${m.style }</td>
-      </tr>
-      <tr>
-        <td  >${m.religion }</td>
-      </tr>
-      <tr>
-        <td>평점 : ★★★★★</td>
-      </tr>
-    </tbody>
-  </table>
-  </a>
-</div>
-      </div>
+      	<c:if test="${status.first}">
+     		<div class="item active">
+     	</c:if>
+      	<c:if test="${not status.first}">
+      		<div class="item">
+      	</c:if>
+        <div class="container">
+        	<c:if test="${today_matching eq 0 }"> 
+        		<a href="selectmatchqna.do?matchingUserId=${m.user_id }" class = "matchQnA" style="color: black;">
+        	</c:if>
+        	<c:if test="${today_matching eq 1 }">
+        		<a href="#" class = "matchQnA" onclick="selectMacthQnA();"style="color: black;">
+        	</c:if>         
+  				<table class="table"style=" width : 200pt; position:relative; left:170px;">
+    				<thead>
+      					<tr>
+	        				<th colspan="3"style="height : 200pt">${m.picture_nm }
+	        					<div>[${m.user_nm}][${m.rank_gb }]</div> 
+	        					<div style = "font-size: 5pt; color : gray">${m.age },${m.blood_type },${m.area }<div>
+	        				</th>
+	        			</tr>
+	   		 		</thead>
+	    
+	    			<tbody>
+	      				<tr>
+	        				<td>${m.height },${m.weight },${m.style }</td>
+	      				</tr>
+	      				<tr>
+	 	       				<td  >${m.religion }</td>
+	      				</tr>
+	      				<tr>
+	        				<td>평점 : ★★★★★</td>
+	      				</tr>
+	    			</tbody>
+	  			</table>
+  			</a>
+		</div>
+	</div>
 
 </c:forEach>
 </div>
@@ -95,11 +110,17 @@ ${user_id }<br>
       <span class="sr-only">Next</span>
     </a>
   </div>
-</div>
+
 <script>
 	$(function() {
 		$('#mainNav').css('background-color', '#faadad');
 	});
+</script>
+<script type="text/javascript">
+ function selectMacthQnA(){
+	 alert("매칭은 하루에 한번 가능합니다.\n계속 하고 싶으신 경우 결제하여주십시오. ");//결제창이동 예정
+ }
+
 </script>
 </body>
 </html>

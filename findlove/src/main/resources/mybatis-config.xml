@@ -8,6 +8,8 @@
 		<typeAlias type="com.godsky.findlove.user.model.vo.User" alias="Profile" />
 		<typeAlias type="com.godsky.findlove.main.matchboard.qna.model.vo.MatchUser" alias="MatchUser" />
 		<typeAlias type="com.godsky.findlove.main.matchboard.qna.model.vo.MatchUserProfile" alias="MatchUserProfile" />
+		<typeAlias type="com.godsky.findlove.main.matchboard.qna.model.vo.MatchingQuestion" alias="MatchingQuestion" />
+		<typeAlias type="com.godsky.findlove.main.matchboard.qna.model.vo.MatchQnA" alias="MatchQnA" />
 		<typeAlias type="com.godsky.findlove.main.profileboard.model.vo.Report" alias="Report" />
 		<typeAlias type="com.godsky.findlove.main.profileboard.model.vo.Message" alias="Message" />
 		<typeAlias type="com.godsky.findlove.main.profileboard.model.vo.Profileboard" alias="Profileboard" />

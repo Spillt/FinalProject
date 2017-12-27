@@ -10,23 +10,11 @@
 		<result property="sendId" column="send_id" />
 		<result property="score" column="GRADE" />
 	</resultMap>  -->
-	
-	<!-- <select id="getListCount" resultType="int">
-		select count(*) from TB_PROFILE WHERE TARGET_GB = '0'; 
-	</select>
-	<select id="selectList" parameterType="java.util.Map" resultType="list" resultMap="resultMatchScore">
-		   <![CDATA[
-      		select * from(
-			select rownum rnum, nic,GENDER,AGE,STYLE,avg,pt from(
-			select  tb_user.USER_NICKNM nic,GENDER,AGE,STYLE,tb_user.GRADE_AVG avg,PICTURE_NM pt
-	        from TB_PROFILE
-	        join TB_PROFILE_PICTURE using (user_id)
-    	    join tb_user using (user_id)
-        	order by avg,tb_user.ENROLL_DT))
-			where rnum >= #{startRow} and rnum <= #{endRow} and user_id != #{userId)
-			order by rnum;
-             ]]>
-   </select>-->
+	<resultMap id="resultMatchAnswer" type="MatchQnA">
+		<result property="userId" column="user_id" />
+		<result property="question" column="QUESTION_NO" />
+		<result property="answer1" column="ANSWER" />
+	</resultMap>
    <select id="selectMatchuser3"  parameterType="String" resultType="String">
    			<![CDATA[
       		select * from( 
@@ -41,5 +29,39 @@
              ]]>
    
    </select>
-
+	<select id="selectQuestion" resultType="MatchingQuestion">
+		select * from tb_matching_question
+	</select>
+	<insert id="insertMyQnA" parameterType="MatchQnA">
+		insert into TB_MATCHING_ANSWER values(#{userId},#{question},#{answer1})
+	</insert> 
+	<update id="updateMyQnA" parameterType="MatchQnA">
+		update TB_MATCHING_ANSWER set ANSWER= #{answer1} where user_id = #{userId} and QUESTION_NO = #{question} 
+	</update>
+	<select id="myQuestionCheck" parameterType="String" resultType="MatchQnA" resultMap="resultMatchAnswer">
+	<![CDATA[
+		select * from TB_MATCHING_ANSWER where user_id = #{userId}
+		]]>
+	</select>
+	<select id="selectMatchQuestionList" resultType="MatchingQuestion">
+		<![CDATA[
+		select * from( 
+  			  select * from TB_MATCHING_QUESTION
+  			  
+  			  order by DBMS_RANDOM.RANDOM 
+				)
+			where rownum <= 3
+			]]>
+	</select>
+	<select id="checkMatchingUserQnA" parameterType="MatchQnA" resultType="MatchQnA" resultMap="resultMatchAnswer">
+	<![CDATA[
+		select * 
+		from TB_MATCHING_ANSWER
+		where user_id = #{userId} and QUESTION_NO = #{question} and ANSWER = #{answer1}
+			]]>
+	
+	</select>
+	<update id="todayMatchCheck" parameterType="String">
+	update tb_match_user set matching = 1 where my_id = #{userId}
+	</update>
 </mapper>
