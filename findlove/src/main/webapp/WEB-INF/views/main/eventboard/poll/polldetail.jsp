@@ -68,7 +68,7 @@ background:url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-A
 }
 
 table, tr, td {
-	border: 1px solid #bcbcbc;
+	border: 1px solid #000;
 }
 
 table {
@@ -109,18 +109,18 @@ tr:nth-child(2n), td:nth-child(2n) {
 	</div>
 	<div class="<!-- detail -->">
 	<form action="pollAnswer.do">
-		<table class="table table-striped text-center">
+		<table class="table table-striped">
 		
 			<tr>
-				<td style="width:20%">설문내용</td>
-				<td style="width:80%; text-align: left">${poll.pollTitle}</td>
+				<td style="width:10%; text-align: left">설문내용</td>
+				<td style="width:90%; text-align: left">${poll.pollTitle}</td>
 			</tr>
 			<tr>
-				<td>기간</td>
+				<td style="text-align: left">기간</td>
 				<td style="text-align: left">${poll.SDT}~${poll.EDT}</td>
 			</tr>
 			<tr>
-				<td><br>답변
+				<td style="text-align: left"><br>답변
 				</td>
 				<td style="text-align: left">
 					
