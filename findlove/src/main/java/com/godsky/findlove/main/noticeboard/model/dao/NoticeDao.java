@@ -1,31 +1,50 @@
 package com.godsky.findlove.main.noticeboard.model.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.godsky.findlove.main.noticeboard.model.vo.Notice;
-
+	
 
 @Repository("NoticeDao")
 public class NoticeDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
-	public Notice loginCheck(){
-		return null;
+
+	public void increaseViewcnt(int noticeNo) {
+		sqlSession.update("notice.increaseViewcnt", noticeNo);
 	}
-	public String checkRankGb(){
-		return null;
+
+	public List<Notice> listAll() {
+		return sqlSession.selectList("notice.listAll");
 	}
-	public String updateNotice(){
-		return null;
+
+	public Notice read(int noticeNo) {
+		return sqlSession.selectOne("notice.view", noticeNo);
 	}
-	public String insertNotice(){
-		return null;
+
+	public List<Notice> PNwriteList(int noticeNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("PNwriterList", noticeNo);
 	}
-	public String deleteNotice(){
-		return null;
+
+	public int getNoticeCnt() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getNoticeCnt");
 	}
-	
+
+	public String prev(int noticeNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("notice.prev", noticeNo);
+	}
+
+	public String next(int noticeNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("notice.next", noticeNo);
+	}
+
 }

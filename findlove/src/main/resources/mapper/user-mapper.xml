@@ -5,25 +5,98 @@
 <mapper namespace="user">
 
 	<resultMap id="resultUser" type="User">
-		<id property="userId" column="User_ID"/>
-		<result property="userPwd" column="User_PWD"/>
-		<result property="userName" column="User_NM"/>
-		<result property="userNickName" column="User_NickNM"/>
-		<result property="userState" column="User_ST"/>
+		<id property="user_id" column="User_ID"/>
+		<result property="user_pwd" column="User_PWD"/>
+		<result property="user_nm" column="User_NM"/>
+		<result property="user_nicknm" column="User_NickNM"/>
+		<result property="user_st" column="User_ST"/>
 		<result property="email" column="Email"/>
 		<result property="phone" column="Phone"/>
-		<result property="pointCNT" column="Point_CNT"/>
-		<result property="konpeitoCNT" column="Konpeito_CNT"/>
-		<result property="rankGB" column="Rank_GB"/>
-		<result property="gradeAVG" column="Grade_AVG"/>
-		<result property="enrollDT" column="Enroll_DT"/>
-		<result property="lastestAccessDT" column="Latest_Access_DT"/>
-		<result property="deleteDT" column="Delete_DT"/>
+		<result property="point_cnt" column="Point_CNT"/>
+		<result property="konpeito_cnt" column="Konpeito_CNT"/>
+		<result property="rank_gb" column="Rank_GB"/>
+		<result property="grade_avg" column="Grade_AVG"/>
+		<result property="enroll_dt" column="Enroll_DT"/>
+		<result property="lastest_access_dt" column="Latest_Access_DT"/>
+		<result property="delete_dt" column="Delete_DT"/>
 	</resultMap>
 	
-	<select id="selectUser" parameterType="User" resultType="User" resultMap="resultUser">
+	<!-- 회원 등록 -->
+	<insert id ="insertUser" parameterType = "User">
+		INSERT INTO TB_USER(USER_ID, USER_PWD, USER_NM, USER_NICKNM, EMAIL, PHONE)
+		VALUES (#{user_id}, #{user_pwd}, #{user_nm}, #{user_nicknm}, #{email}, #{phone})
+	</insert>
+	
+	<select id="loginCheck" resultType="String">
+	<!-- <select id="loginCheck" resultType="integer"> -->
+	<![CDATA[
+	SELECT 
+	User_ID AS user_id,
+	User_NM AS user_nm,
+	User_NickNM AS user_nicknm	
+	From tb_user
+	WHERE User_ID = #{user_id} AND User_PWD = #{user_pwd}	
+	]]>
+	</select>
+	
+	<!-- 내정보 보기 -->
+	<select id="myinfo" resultType="User">
+	<![CDATA[
+	SELECT *
+	From tb_user
+	WHERE User_ID = #{user_id}
+	]]>
+	</select>
+	
+	<!-- <select id="totalAccount" resultType="integer">
+		SELECT Count(*) from tb_user
+	</select> -->
+	
+	<!-- 로그인 정보 보기 -->
+	<select id="viewMember" resultType="com.godsky.findlove.user.model.vo.User">
+	SELECT
+		User_NM AS user_nm,
+		User_ID AS user_id,
+		Email AS email,
+		Latest_Access_DT AS lastestAccessDT
+	FROM tb_user
+	WHERE User_ID = #{user_id} AND User_PWD = #{user_pwd}	
+	</select>
+	
+	<select id="idCheck" resultType="Integer">
+	SELECT
+		count(*)
+	FROM tb_user
+	WHERE User_ID = #{user_id}	
+	</select>
+	
+	<!-- 이메일로 계정 찾기 -->
+	<select id="findAccount" resultType="User" parameterType="string">
+	
 		<![CDATA[
-			SELECT * FROM TB_USER WHERE User_ID = #{userId}
+			select *
+			from tb_user
+			where email = #{ email }
 		]]>
 	</select>
+	
+	<!-- 내정보 수정 -->
+	<update id="myinfoset" parameterType="User">
+	UPDATE TB_USER
+	SET
+		USER_NICKNM = #{user_nicknm},
+		USER_PWD = #{user_pwd},
+		EMAIL = #{email},
+		PHONE = #{phone}
+	WHERE
+		USER_ID = #{user_id} 
+	
+	</update>
+	
+	<!-- 탈퇴 -->
+	<delete id="removeUserById" parameterType="string">
+	delete from tb_user
+	where User_ID = #{user_id}
+	</delete>
+	
 </mapper>

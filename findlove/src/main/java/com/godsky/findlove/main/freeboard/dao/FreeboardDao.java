@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -52,12 +50,6 @@ public class FreeboardDao{
 	public int updateReadCnt(int freeNo) throws Exception{
 		return sqlSession.update("freeboard.updateReadCnt", freeNo);
 	}
-
-	/*//댓글 입력
-	public void insertReply(Freeboard Freeboard) {
-		sqlSession.insertReply("freeboard.sqlSession", Freeboard);
-		
-	}*/
 
 	
 	

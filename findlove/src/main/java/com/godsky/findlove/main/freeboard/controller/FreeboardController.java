@@ -28,7 +28,7 @@ public class FreeboardController {
 
 	@RequestMapping(value = "openFreeboardList.do")
 	public ModelAndView openFreeboardList(Map<String, Object> commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/freeboard/freeboardList");
+		ModelAndView mv = new ModelAndView("main/freeboard/freeboardList");
 
 		List<Map<String, Object>> list = FreeboardService.selectFreeboardList(commandMap);
 		// System.out.println(list); //출력확인
@@ -40,7 +40,7 @@ public class FreeboardController {
 	//글쓰기 액션 호출
 	@RequestMapping(value="openFreeboardWrite.do")
 	public ModelAndView openFreeboardWrite() throws Exception{
-		ModelAndView mv = new ModelAndView("/freeboard/freeboardWrite");
+		ModelAndView mv = new ModelAndView("main/freeboard/freeboardWrite");
 		
 		return mv;
 	}
@@ -49,7 +49,7 @@ public class FreeboardController {
 	@RequestMapping(value="insertFreeboard.do")
 	public ModelAndView insertFreeboard(@ModelAttribute("Freeboard") Freeboard Freeboard) throws Exception{
 		ModelAndView mv = new ModelAndView("redirect:/openFreeboardList.do");
-		System.out.println("Freeboard : " + Freeboard);
+		
 		FreeboardService.insertFreeboard(Freeboard);
 		return mv;
 	}
@@ -60,7 +60,7 @@ public class FreeboardController {
 		//조회수 증가
 		FreeboardService.updateReadCnt(freeNo);
 		
-		ModelAndView mv = new ModelAndView("/freeboard/freeboardDetail");
+		ModelAndView mv = new ModelAndView("main/freeboard/freeboardDetail");
 		mv.addObject("Freeboard", FreeboardService.detailFreeboard(freeNo));
 		return mv;
 	}
@@ -68,7 +68,7 @@ public class FreeboardController {
 	//수정하기 페이지
 	@RequestMapping(value="updateViewFreeboard.do")
 	public ModelAndView updateViewFreeboard(@RequestParam(value="freeNo") int freeNo) throws Exception{
-		ModelAndView mv = new ModelAndView("/freeboard/freeboardUpdate");
+		ModelAndView mv = new ModelAndView("main/freeboard/freeboardUpdate");
 		Freeboard freeboard = FreeboardService.selectFreeboard(freeNo);			
 		System.out.println("Freeboard : " + freeboard);
 		mv.addObject("Freeboard", freeboard);
@@ -77,7 +77,7 @@ public class FreeboardController {
 	
 	@RequestMapping(value="updateFreeboard.do")
 	public ModelAndView updateFreeboard(@ModelAttribute("Freeboard") Freeboard Freeboard) throws Exception{
-		ModelAndView mv = new ModelAndView("/freeboard/freeboardDetail");
+		ModelAndView mv = new ModelAndView("main/freeboard/freeboardDetail");
 		FreeboardService.updateFreeboard(Freeboard);
 		
 		return mv;
@@ -92,13 +92,6 @@ public class FreeboardController {
 		FreeboardService.deleteFreeboard(freeNo);
 		return mv;
 	}
-	
-	//댓글 입력
-	/*@RequestMapping(value="insertReply.do")
-	public void insertReply(@ModelAttribute("Freeboard") Freeboard Freeboard, HttpSession session){
-		String freeWriter = (String)session.getAttribute("freeWriter");
-		FreeboardService.insertReply(Freeboard);
-	}*/
 	
 	
 }

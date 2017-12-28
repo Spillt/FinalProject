@@ -1,108 +1,148 @@
 package com.godsky.findlove.user.model.service;
 
+import java.sql.SQLException;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.godsky.findlove.common.model.vo.Profile;
 import com.godsky.findlove.user.model.dao.UserDao;
-import com.godsky.findlove.user.model.vo.Profile;
 import com.godsky.findlove.user.model.vo.User;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
 	//dao 사용	
-	@Autowired
-	UserDao userDao;
-	User user;
-	Profile profile;
-	
+	@Resource(name ="userDao")
+	private UserDao userDao;	
+		
 	@Override	
-	//로그인
-	public User loginCheck(User vo){
-		return userDao.selectUser(vo);		
-	}
-	
-	@Override
-	//회원생성
-	public boolean createUser(){
-		return false;		
-	}
-	
-	@Override
-	//이메일 체크
-	public int checkEmail(){
-		return 0;
+	//로그인 체크
+	public boolean loginCheck(User vo, HttpSession session){
+		boolean result = userDao.loginCheck(vo);
+		if(result){
+			User vo2 = viewMember(vo);
+			//세션 변수 등록
+			session.setAttribute("user_id", vo2.getUser_id());
+			session.setAttribute("user_nm", vo2.getUser_nm());
+			session.setAttribute("user_nicknm", vo2.getUser_nicknm());
+			session.setAttribute("konpeito_cnt",vo2.getKonpeito_cnt() );
+		}
+		System.out.println("result :" + result);
+		
+		return result;
 		
 	}
 	
-	@Override
-	//이름 체크
-	public int checkName(){
-		return 0;
-		
-	}
 	
 	@Override
-	//닉네임 체크
-	public int checkNickName(){
-		return 0;
+	//로그 아웃
+	public void logout(HttpSession session){
+		//세션 개별 변수 삭제
+		//session.removeAttrbute("userId");
+		//세션 정보 초기화
+		session.invalidate();
 	}
-	
-	@Override
-	//비밀번호 체크
-	public int checkPwd(){
-		return 0;
-		
-	}
-	
-	@Override
-	//임시 비밀번호 발급
-	public String sendNewPwd(){
-		return null;
-		
-	}
-	
-	@Override
-	//비밀번호 랜덤생성
-	public String randomCreatePwd(){
-		return null;
-		
-	}
-	
-	@Override
-	//비밀번호 확인
-	public int modifyPwd(){
-		return 0;
-		
-	}
+
 	
 	@Override
 	//회원 상태 변경
 	public int changeUserState(){
 		return 0;
 		
-	}
+	}	
 	
-	@Override
-	//회원 정보 업데이트
-	public int updateUserInfo(){
-		return 0;
-		
-	}
-	
-	@Override
-	//유저 프로필 생성
-	public int createUserProfile(){
-		return 0;
-		
-	}
 	
 	@Override
 	//이상형 프로필 생성
 	public int createIdealProfile(){
 		return 0;
 		
-	}	
+	}
+
+	@Override
+	//로그인 정보 보기
+	public User viewMember(User vo) {
+		return userDao.viewMember(vo);
+	}
+
+	@Override
+	//아이디 중복 체크
+	public int idCheck(String userId) {
+		return userDao.idCheck(userId);
+	}
+
+	@Override
+	//회원가입
+	public int signUp(User user) {
+		return userDao.signUp(user);
+	}
+
+	@Override
+	//회원 계정 찾기
+	public User findAccount(String email) {
+		return userDao.findAccount(email);
+	}
+
+	@Override
+	//내정보 보기
+	public User myInfo(String user_id) {
+		return userDao.myInfo(user_id);
+		
+	}
+	
+	@Override
+	//내 정보 수정
+	public void myInfoSet(User user) {
+		userDao.myInfoSet(user);
+	}
+
+	@Override
+	//내 프로필 보기
+	public Profile myProfile(String user_id) {		
+		return userDao.myProfile(user_id);
+	}
+	
+	@Override
+	//내 프로필 수정
+	public void myProfileSet(Profile profile) {
+		userDao.myProfileset(profile);
+		
+	}
+
+
+	@Override
+	//내 정보 수정(메일용)
+	public User myInfoSet(String user_id, String string, String user_pwd) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
+	//이상형 프로필 보기
+	@Override
+	public Profile idealProfile(String user_id) {		
+		return userDao.idealProfile(user_id);
+	}
+	
+	@Override
+	//회원 삭제
+	public void removeUserById(String user_id){
+		int cnt = userDao.removeUserById(user_id);
+		System.out.println(cnt + "개의 행이 삭제되었습니다.");
+		
+	}
+
+
+	
+
+
+	
+
+
+
+	
 
 }

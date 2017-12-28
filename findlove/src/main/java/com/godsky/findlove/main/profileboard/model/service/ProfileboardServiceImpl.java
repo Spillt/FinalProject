@@ -1,59 +1,39 @@
 package com.godsky.findlove.main.profileboard.model.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import com.godsky.findlove.main.profileboard.model.dao.ProfileboardDao;
-import com.godsky.findlove.main.profileboard.model.vo.Message;
-import com.godsky.findlove.main.profileboard.model.vo.Report;
-import com.godsky.findlove.user.model.vo.Profile;
+import com.godsky.findlove.main.profileboard.model.dao.ProfileDAO;
+import com.godsky.findlove.main.profileboard.model.vo.Profileboard;
 
 @Service("profileboardService")
 public class ProfileboardServiceImpl implements ProfileboardService{
 	
-	//dao 사용	
-	@Autowired
-	ProfileboardDao profileboardDao;
-	Profile profile;
-	Report report;
-	Message message;
-	
-	@Override
-	//전체 프로필 갯수 조회
-	public int getListCount() {
-		return 0;
-	}
+	@Resource(name="profileDAO")
+    private ProfileDAO profileDAO;
 
 	@Override
-	//해당 페이지용 프로필 조회
-	public ArrayList<Profile> selectList() {
-		return null;
-	}
-
-	@Override
-	//프로필 검색
-	public ArrayList<Profile> selectSearch() {
-		return null;
+	public int countProfileList(String searchOption, String keyword) throws Exception {
+		return profileDAO.countProfileList(searchOption, keyword);
 	}
 	
 	@Override
-	//프로필 상세 조회
-	public Profile selectProfile() {
-		return null;
+	public List<Profileboard> selectProfileList(int start, int end, String searchOption, String keyword) throws Exception {
+		return profileDAO.selectProfileList(start, end, searchOption, keyword);
 	}
+
+	@Override
+	public Profileboard selectProfileDetail(String user_nicknm) throws Exception {
+		return profileDAO.selectProfileDetail(user_nicknm);
+	}
+
+	@Override
+	public List<String> selectProfileImage(String user_nicknm) throws Exception {
+		return profileDAO.selectProfileImage(user_nicknm);
+	}
+
 	
-	@Override
-	//프로필 신고하기
-	public int reportProfile() {
-		return 0;
-	}
-
-	//호감 메시지 보내기
-	@Override
-	public int sendMessage() {
-		return 0;
-	}
-
+	
 }

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMgmt">
+
+	<select id="selectNotice" parameterType="int" resultType="NoticeMgmt">
+		<![CDATA[
+			SELECT * FROM TB_NOTICE WHERE notice_NO = #{boardNo}
+		]]>
+	</select>
+	<select id="selectFaq" parameterType="int" resultType="Faq">
+		<![CDATA[
+			SELECT * FROM TB_FAQ WHERE faq_NO = #{boardNo}
+		]]>
+	</select>
+	<select id="selectEvent" parameterType="int" resultType="PollMgmt">
+		<![CDATA[
+			SELECT * FROM TB_POLL WHERE poll_NO = #{boardNo}
+		]]>
+	</select>
+	
+
+	<select id="selectNoticeList" resultType="NoticeMgmt">
+		<![CDATA[
+			SELECT * FROM TB_NOTICE ORDER BY 1 DESC
+		]]>
+	</select>
+	
+	<select id="selectFaqList" resultType="Faq">
+		<![CDATA[
+			SELECT * FROM TB_FAQ ORDER BY 1 DESC
+		]]>
+	</select>
+	
+	<select id="selectPollList" resultType="PollMgmt">
+		<![CDATA[
+			SELECT * FROM TB_POLL ORDER BY 1 DESC
+		]]>
+	</select>
+	
+	<insert id="insertNotice" parameterType="Board">
+		<![CDATA[
+			INSERT INTO TB_NOTICE
+			VALUES((SELECT MAX(notice_NO)+1 FROM TB_NOTICE), #{title}, #{content}, DEFAULT, DEFAULT)
+		]]>
+	</insert>
+	<insert id="insertFaq" parameterType="Board">
+		<![CDATA[
+			INSERT INTO TB_FAQ
+			VALUES((SELECT MAX(faq_NO)+1 FROM TB_FAQ), #{faqType}, #{title}, #{content})
+		]]>
+	</insert>
+	<insert id="insertEvent" parameterType="Board">
+		<![CDATA[
+			INSERT INTO TB_POLL
+			VALUES((SELECT MAX(poll_NO)+1 FROM TB_POLL), #{title}, DEFAULT, #{startDate}, #{endDate}, #{eventAnswer1}, #{eventAnswer2}, #{eventAnswer3})
+		]]>
+	</insert>
+	
+	<delete id="deleteNotice" parameterType="int">
+		<![CDATA[
+			DELETE FROM TB_NOTICE
+			WHERE notice_NO = #{boardNo}
+		]]>
+	</delete>
+	<delete id="deleteFaq" parameterType="int">
+		<![CDATA[
+			DELETE FROM TB_FAQ
+			WHERE faq_NO = #{boardNo}
+		]]>
+	</delete>
+	<delete id="deleteEvent" parameterType="int">
+		<![CDATA[
+			DELETE FROM TB_POLL
+			WHERE poll_NO = #{boardNo}
+		]]>
+	</delete>
+	
+	<update id="updateNotice" parameterType="Board">
+		<![CDATA[
+			UPDATE TB_NOTICE
+			SET notice_title = #{title},
+				notice_content = #{content}
+			WHERE notice_NO = #{boardNo}
+		]]>
+	</update>
+	
+	<update id="updateFaq" parameterType="Board">
+		<![CDATA[
+			UPDATE TB_FAQ
+			SET faq_gb = #{faqType},
+				faq_title = #{title},
+				faq_content = #{content}
+			WHERE faq_NO = #{boardNo}
+		]]>
+	</update>
+	
+	<update id="updateEvent" parameterType="Board">
+		<![CDATA[
+			UPDATE TB_POLL
+			SET poll_title = #{title},
+				start_dt = #{startDate},
+				end_dt = #{endDate},
+				answer1 = #{eventAnswer1},
+				answer2 = #{eventAnswer2},
+				answer3 = #{eventAnswer3}
+			WHERE poll_NO = #{boardNo}
+		]]>
+	</update>
+	
+	<select id="getNoticeCnt" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM TB_NOTICE
+		]]>
+	</select>
+	
+	<select id="getFaqCnt" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM TB_FAQ
+		]]>
+	</select>
+	
+	<select id="getPollCnt" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM TB_POLL
+		]]>
+	</select>
+
+</mapper>
