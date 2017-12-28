@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="attendance">
+
+	<resultMap id="att" type="Attendance">
+		<id property="userId" column="USER_ID" />
+		<result property="attendanceDT" column="ATTENDANCE_DT" />
+	</resultMap>
+
+	<select id="listAll" resultType="Attendance" resultMap="att">
+		<![CDATA[
+			SELECT USER_ID, ATTENDANCE_DT
+			FROM TB_ATTENDANCE
+			
+		]]>
+	</select>
+	
+<!-- 	<insert id="answer" parameterType="PollAnswer">
+		INSERT INTO TB_POLL_ANSWER(USER_ID, Poll_NO, Answer)
+		VALUES(#{user_id}, #{poll_no}, #{answer})
+	</insert>
+ -->
+</mapper>

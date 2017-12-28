@@ -1,6 +1,7 @@
 package com.godsky.findlove.main.eventboard.attendance.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,24 +16,10 @@ public class AttendanceServiceImpl implements AttendanceService {
 	AttendanceDao attendanceDao;
 
 	@Override
-	public ArrayList<Attendance> getAttendanceList() {
-		return AttendanceDao.getAttendanceList();
+	public List<Attendance> listAll(String userId) {
+		return attendanceDao.listAll(userId);
 	}
 
-	@Override
-	public ArrayList<Attendance> getAttendanceWaitList() {
-		return attendanceDao.getAttendanceWaitList();
-	}
-
-	@Override
-	public Attendance getAttendance(int no) {
-		return attendanceDao.getAttendance(no);
-	}
-
-	@Override
-	public int attendanceAnswer(Attendance attendance) {
-		return attendanceDao.attendanceAnswer(attendance);
-	}
 	
 	
 }

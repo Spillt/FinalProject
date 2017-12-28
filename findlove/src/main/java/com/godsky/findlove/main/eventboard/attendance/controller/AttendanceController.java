@@ -1,9 +1,14 @@
 package com.godsky.findlove.main.eventboard.attendance.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.godsky.findlove.main.eventboard.attendance.model.service.AttendanceService;
 import com.godsky.findlove.main.eventboard.attendance.model.vo.Attendance;
@@ -17,31 +22,16 @@ public class AttendanceController {
 	public AttendanceController() {}
 	
 	// 일대일 문의 목록 전체 보기
-	@RequestMapping(value="attendancelist.do")
-	public String attendanceList(Model model) {
-		/*model.addAttribute("list", attendanceService.getAttendanceList());*/
-		return "main/eventboard/attendance/attendancelist";
-	}
 	
-	// 일대일 문의 답변 대기글 보기
-	@RequestMapping(value="attendancewaitlist.do")
-	public String attendanceWaitList(Model model) {
-		model.addAttribute("list", attendanceService.getAttendanceWaitList());
-		return null;
-	}
-	
-	// 일대일 문의 상세 보기
-	@RequestMapping(value="attendancedetail.do")
-	public String attendanceDetail(int no, Model model) {
-		model.addAttribute("poll", attendanceService.getAttendance(no));
-		return null;
-	}
-	
-	// 일대일 문의 답변하기
-	@RequestMapping(value="attendanceanswer.do")
-	public String attendanceAnswer(Attendance attendance, Model model) {
-		int result = attendanceService.attendanceAnswer(attendance);
-		return null;
-	}
+	@RequestMapping(value = "attendancelist.do")
+	public ModelAndView pollAnswer(@RequestParam("userId") String userId) {
 
+		List<Attendance> list = attendanceService.listAll(userId);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("main/eventboard/attendance/attendancelist");
+		mv.addObject("mylist", list);
+		return mv;
+	}
+	
 }

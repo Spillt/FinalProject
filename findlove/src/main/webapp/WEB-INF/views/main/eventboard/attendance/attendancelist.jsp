@@ -135,21 +135,24 @@ body {
 
 	<div class="attendance">
 
-		<div class="container theme-showcase">
-			<div class="event" style="border: 0px; background: transparent;">
-				<ul>
-					<li class="nav-item"><a
-						class="btn btn-primary nav-link js-scroll-trigger"
-						href="attendancelist.do">출석체크</a></li>
-					<li class="nav-item"><a
-						class="btn btn-primary nav-link js-scroll-trigger"
-						href="polllist.do?userId=${user_id}">설문조사</a></li>
-				</ul>
+		<form action="attendancelist.do">
+			<div class="container theme-showcase">
+				<div class="event" style="border: 0px; background: transparent;">
+					<ul style="margin-left: 70px">
+						<li class="nav-item"><a
+							class="btn btn-primary nav-link js-scroll-trigger"
+							href="attendancelist.do">출석체크</a></li>
+						<li class="nav-item"><a
+							class="btn btn-primary nav-link js-scroll-trigger"
+							href="polllist.do?userId=${user_id}">설문조사</a></li>
+						<li class="nav-item float-right"><input
+							class="btn btn-primary" type="submit" value="출석체크"></li>
+					</ul>
+				</div>
+				<div id="holder" class="containers"></div>
+
 			</div>
-			<div id="holder" class="containers"></div>
-
-		</div>
-
+		</form>
 
 		<script type="text/tmpl" id="tmpl">
   {{ 

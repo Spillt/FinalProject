@@ -276,7 +276,7 @@
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#">자유 게시판</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="attendancelist.do"">이벤트 게시판</a></li>
+						href="attendancelist.do?userId=${user_id}"">이벤트 게시판</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#">Q&A</a></li>
 				</ul>
