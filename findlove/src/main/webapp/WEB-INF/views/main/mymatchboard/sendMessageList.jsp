@@ -207,17 +207,6 @@ body {
 <script src = " https://use.fontawesome.com/56a81332b8.js " > </script>
 </head>
 <body id="page-top">
-	<%-- <h1>home.jsp</h1>
-<c:if test="${empty sessionScope.user }">
-	<form action="login.do" method="post">
-		<input type="text" name="userId">
-		<input type="password" name="userPwd">
-		<input type="submit" value="로그인">
-	</form>
-</c:if>
-<c:if test="${!empty sessionScope.user }">
-	<p>${user.userName } 님 환영합니다.</p>
-</c:if> --%>
 
 <c:import url="../../include/header.jsp" />
 <!-- <script type="text/javascript">
@@ -253,7 +242,7 @@ location.reload();
           <div class="list-group">
             <a href="#" class="list-group-item">내가 호감을 보낸 이성</a>
             <a href="#" class="list-group-item active">나에게 호감을 보낸 이성</a>
-            <a href="#" class="list-group-item">내가 높은 평점을 준 이성</a>
+            <a href="openSendGradeList.do?sender_id=${sessionScope.user_id}" class="list-group-item">내가 높은 평점을 준 이성</a>
             <a href="#" class="list-group-item">나에게 높은 평점을 준 이성</a>
           </div>
         </div>

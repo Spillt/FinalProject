@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.godsky.findlove.main.mymatchboard.model.dao.MyMessageDAO;
 import com.godsky.findlove.main.mymatchboard.model.vo.MyMessage;
+import com.godsky.findlove.main.profileboard.model.vo.Profileboard;
 
 @Service("mymatchboardService")
 public class MymatchboardServiceImpl implements MymatchboardService{
@@ -20,9 +21,11 @@ public class MymatchboardServiceImpl implements MymatchboardService{
 		return myMessageDAO.selectSendMessages(sender_id);
 	}
 
-	/*@Override
-	public List<Message> selectReceiverMessage(String user_id) {
-		return messageDAO.selectReceiverMessage(user_id);
-	}*/
+	@Override
+	public List<Profileboard> selectSendGrades(String sender_id) {
+		return myMessageDAO.selectSendGrades(sender_id);
+	}
+
+	
 
 }
