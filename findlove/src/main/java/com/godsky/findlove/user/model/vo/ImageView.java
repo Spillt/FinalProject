@@ -27,7 +27,7 @@ public class ImageView extends AbstractView{
 		res.setContentType(imageFile.getContentType());
 		
 		//파일로 부터 byte 읽어오기
-		byte[] bytes = readFile(imageFile.getFileName());
+		byte[] bytes = readFile(imageFile.getPicture_nm());
 		write(res, bytes);
 	}
 	

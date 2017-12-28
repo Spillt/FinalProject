@@ -68,6 +68,7 @@
     
      <!-- 내프로필 설정 -->
     <select id="myprofile" parameterType="String" resultType="Profile">
+     <![CDATA[
     	SELECT    	
     	USER_ID,
     	target_gb,    	   	
@@ -87,11 +88,37 @@
     	FROM TB_USER
     	LEFT JOIN TB_PROFILE USING(USER_ID)
     	WHERE USER_ID = #{user_id} AND target_gb = '0'
+    	 ]]>
     	
     </select>
     
+    <!-- 내 프로필 수정 -->
+   <update id="myprofileset" parameterType="Profile">
+   <![CDATA[
+    UPDATE TB_PROFILE
+    SET
+    	GENDER = #{gender},
+		BLOOD_TYPE = #{blood_type},
+		JOB = #{job},
+		ACHIEVEMENT = #{achievement},		
+		AGE = #{age},
+		AREA = #{area},
+		STYLE = #{style},
+		HEIGHT = #{height},
+		BODYFORM = #{bodyform},
+		RELIGION = #{religion},
+		DRINKING = #{drinking},
+		SMOKING = #{smoking}
+		
+	WHERE
+		USER_ID = #{user_id} 
+     ]]>
+    </update>
+   
+    
     <!-- 이상형 프로필 설정 -->
     <select id="idealprofile" parameterType="String" resultType="Profile">
+    <![CDATA[
     	SELECT    	
     	USER_ID,
     	target_gb,    	   	
@@ -111,6 +138,7 @@
     	FROM TB_USER
     	LEFT JOIN TB_PROFILE USING(USER_ID)
     	WHERE USER_ID = #{user_id} AND target_gb = '1'
+    	 ]]>
     	
     </select>
    

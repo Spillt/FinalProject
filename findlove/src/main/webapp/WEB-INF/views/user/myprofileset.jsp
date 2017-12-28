@@ -122,7 +122,7 @@ ul{
 				<div class="list-group">
 					<a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item">나의 정보</a> <a
 						href="myprofile.do?user_id=${sessionScope.user_id }" class="list-group-item active">나의 프로필</a> <a
-						href="idealprofile.do" class="list-group-item">이상형 프로필</a> <a
+						href="idealprofile.do?user_id=${sessionScope.user_id }" class="list-group-item">이상형 프로필</a> <a
 						href="store.do" class="list-group-item">스토어</a>
 				</div>
 			</div>
@@ -130,7 +130,7 @@ ul{
 
 			<div class="col-lg-9">
 				<div class="card card-outline-secondary my-4">
-					<div class="card-header"><strong>${sessionScope.user_id }님의프로필입니다.</strong></div>
+					<div class="card-header"><strong>${user.user_nicknm }</strong>님의 프로필입니다.</div>
 					<div class="card-body">
 						<section id="plans">
 							<div class="container">
@@ -148,7 +148,7 @@ ul{
 										style="padding-left: 0px; padding-right: 0px;">
 										<!-- 닉네임 출력 -->
 										<div class="credit-body text-center">
-											<h2>${sessionScope.user_id }</h2>
+											<h2>${user.user_nicknm }</h2>
 										</div>
 
 										<!-- 이미지 등록 버튼 -->
@@ -180,7 +180,8 @@ ul{
 									</div>
 								</div>
 								
-								<form action="" name="myprofileset" method="post">							
+								<form action="myprofileset.do" name="myprofileset" method="post" enctype="multipart/form-data">	
+								<input type="hidden" name="user_id" value="${sessionScope.user_id }">						
 
 								<div class="row">
 									
@@ -191,7 +192,7 @@ ul{
 											기본 프로필</strong><br>
 											<font size=2>상대에게 나를 표현하는 기본 프로필 정보입니다.</font>
 											</div>
-											<div class="card-body">
+											<div class="card-body">												
 												<table class="table">
 													<tr>
 														<th>실명</th>
@@ -204,35 +205,33 @@ ul{
 													<tr>
 														<th>성별</th>
 														<td>
-														<label id = "gender"><input type="radio" name="gender" value="male" checked="checked" />남자 </label>
-														<label id = "gender"><input type="radio" name="gender" value="female" />여자 </label>
+														<label id = "gender"><input type="radio" name="gender" value="M" checked="checked" />남자 </label>
+														<label id = "gender"><input type="radio" name="gender" value="F" />여자 </label>
 														</td> 
 													</tr>
 													<tr>
 														<th>혈액형</th>
 														<td>
-														<label id = "bloodType"><input type="radio" name="blood_Type" value="A"	checked="checked" />A </label>
-														<label id = "bloodType"><input type="radio"	name="blood_Type" value="B" />B </label>
-														<label id = "bloodType"><input type="radio"	name="blood_Type" value="O" />O </label>
-														<label id = "bloodType"><input type="radio"	name="blood_Type" value="AB" />AB</label>
+														<label id = "bloodType"><input type="radio" name="blood_type" value="A"	checked="checked" />A </label>
+														<label id = "bloodType"><input type="radio"	name="blood_type" value="B" />B </label>
+														<label id = "bloodType"><input type="radio"	name="blood_type" value="O" />O </label>
+														<label id = "bloodType"><input type="radio"	name="blood_type" value="AB" />AB</label>
 														</td>
 													</tr>
 													<tr>
 														<th style="padding-right:0px;">직업/직장</th>
 														<td>
-														<input type="text" name="job" style="width:70%;">
+														<input type="text" name="job" value ="${profile.job }" style="width:70%;">
+													
 														</td>
 													</tr>
 													<tr>
 														<th style="padding-right:0px;">학력</th>
 														<td>
-														<input type="text" name="acheievement" style="width:70%;">
+														<input type="text" name="achievement" value="${profile.achievement }" style="width:70%;">
 														</td>
 													</tr>
-													<tr>
-														<th>휴대폰</th>
-														<td><input type="text" name="phone" style="width:70%;"></td>
-													</tr>
+													
 												</table>
 											</div>
 										</div>
@@ -249,7 +248,7 @@ ul{
 													<tr>
 														<th>나이</th>
 														<td>
-														<select name = "age">
+														<select name = "age" value ="${profile.age }">
 															<option value>선택</option>
 															<option value="15">15</option>
 															<option value="16">16</option>
@@ -295,27 +294,27 @@ ul{
 														<td>
 														<select name ="area">
 															<option value>선택</option>
-															<option value="1">서울</option>
-															<option value="2">부산</option>
-															<option value="3">인천</option>
-															<option value="4">광주</option>
-															<option value="5">대전</option>
-															<option value="6">대구</option>
-															<option value="7">울산</option>
-															<option value="8">경기</option>
-															<option value="9">경기-일산 인근</option>
-															<option value="10">경기-의정부 인근</option>
-															<option value="11">경기-안양 인근</option>
-															<option value="12">경기-분당 인근</option>
-															<option value="13">경기-수원 인근</option>
-															<option value="14">강원</option>
-															<option value="15">충북</option>
-															<option value="16">충남</option>
-															<option value="17">전북</option>
-															<option value="18">전남</option>
-															<option value="19">경북</option>
-															<option value="20">경남</option>
-															<option value="21">제주</option>												
+															<option value="서울">서울</option>
+															<option value="부산">부산</option>
+															<option value="인천">인천</option>
+															<option value="광주">광주</option>
+															<option value="대전">대전</option>
+															<option value="대구">대구</option>
+															<option value="울산">울산</option>
+															<option value="경기">경기</option>
+															<option value="경기-일산 인근">경기-일산 인근</option>
+															<option value="경기-의정부 인근">경기-의정부 인근</option>
+															<option value="경기-안양 인근">경기-안양 인근</option>
+															<option value="경기-분당 인근">경기-분당 인근</option>
+															<option value="경기-수원 인근">경기-수원 인근</option>
+															<option value="강원">강원</option>
+															<option value="충북">충북</option>
+															<option value="충남">충남</option>
+															<option value="전북">전북</option>
+															<option value="전남">전남</option>
+															<option value="경북">경북</option>
+															<option value="경남">경남</option>
+															<option value="제주">제주</option>												
 															</select>
 														</td>																												
 													</tr>
@@ -325,85 +324,85 @@ ul{
 														<ul style="margin-bottom:0px;">
 															<li>
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="1">
+																<input class="checkbox" type="checkbox" name="style" value="섹시">
 																섹시
 															</label>															
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="2">
+																<input class="checkbox" type="checkbox" name="style" value="터프">
 																터프
 															</label>															
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="3">
+																<input class="checkbox" type="checkbox" name="style" value="귀여운">
 																귀여운
 															</label>
 															</li>
 															<li>
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="4">
+																<input class="checkbox" type="checkbox" name="style" value="지적인">
 																지적인
 															</label>															
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="5">
+																<input class="checkbox" type="checkbox" name="style" value="패셔너블">
 																패셔너블
 															</label>															
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="6">
+																<input class="checkbox" type="checkbox" name="style" value="듬직한">
 																듬직한
 															</label>
 															</li>
 															<li>
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="7">
+																<input class="checkbox" type="checkbox" name="style" value="착한">
 																착한
 															</label>															
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="8">
+																<input class="checkbox" type="checkbox" name="style" value="유머있는">
 																유머있는
 															</label>															
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="9">
+																<input class="checkbox" type="checkbox" name="style" value="끈기있는">
 																끈기있는
 															</label>
 															</li>
 															<li>
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="10">
+																<input class="checkbox" type="checkbox" name="style" value="도도한">
 																도도한
 															</label>															
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="11">
+																<input class="checkbox" type="checkbox" name="style" value="스포티">
 																스포티
 															</label>															
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="12">
+																<input class="checkbox" type="checkbox" name="style" value="섬세">
 																섬세
 															</label>
 															</li>
 															<li>
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="13">
+																<input class="checkbox" type="checkbox" name="style" value="신중한">
 																신중한
 															</label>															
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="14">
+																<input class="checkbox" type="checkbox" name="style" value="상냥">
 																상냥
 															</label>															
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="15">
+																<input class="checkbox" type="checkbox" name="style" value="대범">
 																대범
 															</label>
 															</li>
 															<li>															
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="16">
+																<input class="checkbox" type="checkbox" name="style" value="창의적인">
 																창의적인
 															</label>															
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="17">
+																<input class="checkbox" type="checkbox" name="style" value="낙천적인">
 																낙천적인
 															</label>															
 															<label id="style">
-																<input class="checkbox" type="checkbox" name="style" value="18">
+																<input class="checkbox" type="checkbox" name="style" value="열정적인">
 																열정적인
 															</label>
 															</li>															
@@ -413,15 +412,15 @@ ul{
 													<tr>
 														<th style="padding-right:0px;">키/체형</th>
 														<td>
-														<input type="text" name="height" style="width:60px;"> cm /
+														<input type="text" name="height" style="width:60px;" value="${profile.height }"> cm /
 														<select name ="bodyform">
 															<option value>선택</option>
-															<option value="1">스키니</option>
-															<option value="2">조금 마름</option>
-															<option value="3">보통</option>
-															<option value="4">슬림 탄탄</option>
-															<option value="5">조금 통통</option>
-															<option value="5">통통</option>																										
+															<option value="스키니">스키니</option>
+															<option value="조금 마름">조금 마름</option>
+															<option value="보통">보통</option>
+															<option value="슬림 탄탄">슬림 탄탄</option>
+															<option value="조금 통통">조금 통통</option>
+															<option value="통통">통통</option>																										
 														</select>
 														</td>
 													</tr>													
@@ -430,10 +429,10 @@ ul{
 														<td>
 														<select name ="religion">
 															<option value>선택</option>
-															<option value="1">기독교</option>
-															<option value="2">천주교</option>
-															<option value="3">불교</option>
-															<option value="4">무교</option>																										
+															<option value="기독교">기독교</option>
+															<option value="천주교">천주교</option>
+															<option value="불교">불교</option>
+															<option value="무교">무교</option>																										
 															</select>
 														</td>
 													</tr>
@@ -442,20 +441,20 @@ ul{
 														<td>
 														<select name ="drinking">
 															<option value>선택</option>
-															<option value="1">전혀 마시지 않아요</option>
-															<option value="2">어쩔 수 없을 때만 마셔요</option>
-															<option value="3">가끔 마셔요</option>
-															<option value="4">어느정도 즐기는 편이에요</option>
-															<option value="5">자주 술자리를 가져요</option>																										
+															<option value="전혀 마시지 않아요">전혀 마시지 않아요</option>
+															<option value="어쩔 수 없을 때만 마셔요">어쩔 수 없을 때만 마셔요</option>
+															<option value="가끔 마셔요">가끔 마셔요</option>
+															<option value="어느정도 즐기는 편이에요">어느정도 즐기는 편이에요</option>
+															<option value="자주 술자리를 가져요">자주 술자리를 가져요</option>																										
 														</select>
 														</td>
 													</tr>
 													<tr>
 														<th>흡연여부</th>
 														<td>
-														<label id = "smoking"><input type="radio"name="smoking" value="notselect" checked="checked"  />선택안함 </label>
-														<label id = "smoking"><input type="radio" name="smoking" value="smoking"/>흡연 </label>
-														<label id = "smoking"><input type="radio" name="smoking" value="nosmoking" />비흡연 </label>														
+														<label id = "smoking"><input type="radio"name="smoking" value="선택안함" checked="checked"  />선택안함 </label>
+														<label id = "smoking"><input type="radio" name="smoking" value="흡연"/>흡연 </label>
+														<label id = "smoking"><input type="radio" name="smoking" value="비흡연" />비흡연 </label>														
 														</td>
 													</tr>
 												</table>
@@ -463,13 +462,10 @@ ul{
 										</div>
 									</div>
 								</div>
-								<a class="btn btn-primary"
-									style="color: #fff; margin-bottom: 20px;"
-									onclick="submit()">등록하기</a> <a
-									class="btn btn-primary"
-									style="color: #fff; margin-bottom: 20px;"
-									onclick="history.go(-1)">취소</a>
-								</form>
+								</form>							
+								<a class="btn btn-primary" style="color: #fff; margin-bottom: 20px;" onclick="checkfield()">등록하기</a> 
+								<a class="btn btn-primary" style="color: #fff; margin-bottom: 20px;" onclick="history.go(-1)">취소</a>
+								
 							</div>
 						</section>
 					</div>
@@ -538,10 +534,28 @@ ul{
 					</script>
 					<!-- 등록하기 -->
 					<script>
-					function submit(){
+					function checkfield(){
+						
+						var form = document.myprofileset;
+						
+						$("input:checkbox[name='style']:checkbox[value='${profile.style}']").attr("checked",true);
+						
+						if($("input[name=style]:checkbox:checked").length < 3){
+							alert("스타일 3가지를 체크하여 주세요")
+							return false;
+						}
+						if(!form.height.value){
+							alert("키를 입력하여 주세요.")
+							form.height.focus();
+							return false;
+						}
+						form.submit();
+						alert("프로필 정보가 수정되었습니다.");
+						
 						
 					}
 					</script>
+				
 					
 </body>
 </html>

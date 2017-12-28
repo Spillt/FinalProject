@@ -94,21 +94,26 @@
 				<br>
 				<!-- <h1 class="my-4">Shop Name</h1> -->
 				<div class="list-group">
-					<a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item">나의 정보</a> <a
-						href="myprofile.do?user_id=${sessionScope.user_id }" class="list-group-item active">나의 프로필</a> <a
-						href="idealprofile.do" class="list-group-item">이상형 프로필</a> <a
-						href="store.do" class="list-group-item">스토어</a>
+					<a href="myinfo.do?user_id=${sessionScope.user_id }"
+						class="list-group-item">나의 정보</a> <a
+						href="myprofile.do?user_id=${sessionScope.user_id }"
+						class="list-group-item active">나의 프로필</a> <a
+						href="idealprofile.do?user_id=${sessionScope.user_id }"
+						class="list-group-item">이상형 프로필</a> <a href="store.do"
+						class="list-group-item">스토어</a>
 				</div>
 			</div>
 
 
 			<div class="col-lg-9">
 				<div class="card card-outline-secondary my-4">
-					<div class="card-header">${sessionScope.user_id }님의 프로필입니다.</div>
+					<div class="card-header">
+						<strong>${user.user_nicknm }</strong>님의 프로필입니다.
+					</div>
 					<div class="card-body">
 						<section id="plans">
 							<div class="container">
-								<div class="row" style="margin-bottom:20px;">
+								<div class="row" style="margin-bottom: 20px;">
 
 									<!-- 사용자 이미지 -->
 									<div class="col-md-3.5 text-center" style="padding-left: 15px;">
@@ -154,138 +159,150 @@
 										</div>
 									</div>
 								</div>
-								
-									<div class="row">
-										<div class="col-md-6 mb-6">
-											<div class="card h-80">
-												<div class="card-header">기본 프로필</div>
-												<div class="card-body">
-													<table class="table">
-														<tr>
-															<th>실명</th>
-															<td>${user.user_nm }</td>
-														</tr>
-														<tr>
-															<th>닉네임</th>
-															<td>${user.user_nicknm }</td>
-														</tr>
-														<tr>
-															<th>성별</th>
-															<td>${profile.gender }</td>
-														</tr>
-														<tr>
-															<th>혈액형</th>
-															<td>${profile.blood_type }</td>
-														</tr>
-														<tr>
-															<th>직업/직장</th>
-															<td>${profile.job }</td>
-														</tr>														
-														<tr>
-															<th>휴대폰번호</th>
-															<td>${user.phone }</td>
-														</tr>
-													</table>
-												</div>
+
+								<div class="row">
+									<div class="col-md-6 mb-6">
+										<div class="card h-80">
+											<div class="card-header">
+												<strong> 기본 프로필</strong><br> <font size=2>상대에게
+													나를 표현하는 기본 프로필 정보입니다.</font>
+											</div>
+											<div class="card-body">
+												<table class="table">
+													<tr>
+														<th>실명</th>
+														<td>${user.user_nm }</td>
+													</tr>
+													<tr>
+														<th>닉네임</th>
+														<td>${user.user_nicknm }</td>
+													</tr>
+													<tr>
+														<th>성별</th>
+														<td>${profile.gender }</td>
+													</tr>
+													<tr>
+														<th>혈액형</th>
+														<td>${profile.blood_type }</td>
+													</tr>
+													<tr>
+														<th>직업/직장</th>
+														<td>${profile.job }</td>
+													</tr>
+
+												</table>
 											</div>
 										</div>
-										<!-- /.col-md-4 -->
-										<div class="col-md-6 mb-6">
-											<div class="card h-80">
-												<div class="card-header">매칭 프로필</div>
-												<div class="card-body">
-
-													<table class="table">
-														<tr>
-															<th>나이</th>
-															<td>${profile.age }</td>
-														</tr>
-														<tr>
-															<th>지역</th>
-															<td>${profile.area }</td>
-														</tr>
-														<tr>
-															<th>스타일</th>
-															<td>${profile.style}</td>
-														</tr>
-														<tr>
-															<th>키/체형</th>
-															<td>${ profile.height }cm/${profile.bodyform }</td>
-														</tr>
-														<tr>
-															<th>종교</th>
-															<td>${ profile.religion }</td>
-														</tr>
-														<tr>
-															<th>음주여부</th>
-															<td>${ profile.drinking }</td>
-														</tr>
-														<tr>
-															<th>흡연여부</th>
-															<td>${ profile.smoking }</td>
-														</tr>
-													</table>
-												</div>
-											</div>
-										</div>										
 									</div>
-									<a class="btn btn-primary"
-											style="color: #fff; margin-bottom: 20px;"
-											onclick="location.href='myprofileset.do'">수정하기</a> <a
-											class="btn btn-primary"
-											style="color: #fff; margin-bottom: 20px;"
-											onclick="history.go(-1)">취소</a>
+									<!-- /.col-md-4 -->
+									<div class="col-md-6 mb-6">
+										<div class="card h-80">
+											<div class="card-header">
+												<strong>매칭 프로필</strong><br> <font size=2>매칭에 필요한
+													내 정보입니다.</font>
+											</div>
+											<div class="card-body">
+
+												<table class="table">
+													<tr>
+														<th>나이</th>
+														<td>${profile.age }</td>
+													</tr>
+													<tr>
+														<th>지역</th>
+														<td>${profile.area }</td>
+													</tr>
+													<tr>
+														<th>스타일</th>
+														<td>${profile.style}</td>
+													</tr>
+													<tr>
+														<th>키/체형</th>
+														<td>${ profile.height }cm/${profile.bodyform }</td>
+													</tr>
+													<tr>
+														<th>종교</th>
+														<td>${ profile.religion }</td>
+													</tr>
+													<tr>
+														<th>음주여부</th>
+														<td>${ profile.drinking }</td>
+													</tr>
+													<tr>
+														<th>흡연여부</th>
+														<td>${ profile.smoking }</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+								<a class="btn btn-primary"
+									style="color: #fff; margin-bottom: 20px;"
+									href='myprofilesetview.do?user_id=${user.user_id }'>수정하기</a> <a
+									class="btn btn-primary"
+									style="color: #fff; margin-bottom: 20px;"
+									onclick="history.go(-1)">취소</a>
 							</div>
-							</section>
+						</section>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-					<!-- footer -->
 
-					<!-- 자바스크립트 -->
-					<script type="text/javascript">
-						$(function() {
-							$('#mainNav').css('background-color', '#faadad');
-						});
-					</script>
-					<script type="text/javascript">
-						$(function() {
-							$('#btn').click(function(e) {
-								e.preventDefault();
-								$('#image').click();
-							});
-						});
 
-						var InputImage = (function loadImageFile() {
-							if (window.FileReader) {
-								var ImagePre;
-								var ImgReader = new window.FileReader();
-								var fileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png|image\/x\-xwindowdump|image\/x\-portable\-bitmap)$/i;
-								ImgReader.onload = function(Event) {
-									if (!ImagePre) {
-										var newPreview = document
-												.getElementById("imagePreview");
-										ImagePre = new Image();
-										ImagePre.style.width = "100%";
-										ImagePre.style.height = "100%";
-										newPreview.appendChild(ImagePre);
-									}
-									ImagePre.src = Event.target.result;
-								};
 
-								return function() {
-									var img = document.getElementById("image").files;
+	<!-- footer -->
+	<hr>
+	<c:import url="../include/footer.jsp" />
 
-									if (!fileType.test(img[0].type)) {
-										alert("이미지 파일을 업로드 하세요");
-										return;
-									}
-									ImgReader.readAsDataURL(img[0]);
-								}
-							}
-							document.getElementById("imagePreview").src = document
-									.getElementById("image").value;
+	<!-- 자바스크립트 -->
+	<script type="text/javascript">
+		$(function() {
+			$('#mainNav').css('background-color', '#faadad');
+		});
+	</script>
+	<script type="text/javascript">
+		$(function() {
+			$('#btn').click(function(e) {
+				e.preventDefault();
+				$('#image').click();
+			});
+		});
 
-						})();
-					</script>
+		var InputImage = (function loadImageFile() {
+			if (window.FileReader) {
+				var ImagePre;
+				var ImgReader = new window.FileReader();
+				var fileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png|image\/x\-xwindowdump|image\/x\-portable\-bitmap)$/i;
+				ImgReader.onload = function(Event) {
+					if (!ImagePre) {
+						var newPreview = document
+								.getElementById("imagePreview");
+						ImagePre = new Image();
+						ImagePre.style.width = "100%";
+						ImagePre.style.height = "100%";
+						newPreview.appendChild(ImagePre);
+					}
+					ImagePre.src = Event.target.result;
+				};
+
+				return function() {
+					var img = document.getElementById("image").files;
+
+					if (!fileType.test(img[0].type)) {
+						alert("이미지 파일을 업로드 하세요");
+						return;
+					}
+					ImgReader.readAsDataURL(img[0]);
+				}
+			}
+			document.getElementById("imagePreview").src = document
+					.getElementById("image").value;
+
+		})();
+	</script>
 </body>
 </html>

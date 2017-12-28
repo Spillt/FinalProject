@@ -32,8 +32,11 @@ public interface UserService {
 	//내정보 보기
 	public User myInfo(String user_id);
 	
-	//내정보 수정
+	//내정보 수정(메일)
 	public User myInfoSet(String user_id, String string, String user_pwd);
+	
+	//내정보 수정 처리
+	public void myInfoSet(User user);
 	
 	//회원 탈퇴
 	public void removeUserById(String user_id);
@@ -41,11 +44,13 @@ public interface UserService {
 	//내 프로필 보기
 	public Profile myProfile(String user_id);
 	
+	//내 프로필 수정 처리
+	public void myProfileSet(Profile profile);
+	
 	//이성 프로필 보기
 	public Profile idealProfile(String user_id);
 	
-	//내정보 수정 처리
-	public void myInfoSet(User user_id);
+	
 
 	
 

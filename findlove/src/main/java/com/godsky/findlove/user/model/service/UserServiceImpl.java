@@ -94,11 +94,38 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	//내 정보 수정 처리
-	public void myInfoSet(User user_id) {
-		userDao.myInfoSet(user_id);
+	//내 정보 수정
+	public void myInfoSet(User user) {
+		userDao.myInfoSet(user);
 	}
 
+	@Override
+	//내 프로필 보기
+	public Profile myProfile(String user_id) {		
+		return userDao.myProfile(user_id);
+	}
+	
+	@Override
+	//내 프로필 수정
+	public void myProfileSet(Profile profile) {
+		userDao.myProfileset(profile);
+		
+	}
+
+
+	@Override
+	//내 정보 수정(메일용)
+	public User myInfoSet(String user_id, String string, String user_pwd) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+	//이상형 프로필 보기
+	@Override
+	public Profile idealProfile(String user_id) {		
+		return userDao.idealProfile(user_id);
+	}
 	
 	@Override
 	//회원 삭제
@@ -109,18 +136,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 
-	@Override
-	//내 프로필 설정
-	public Profile myProfile(String user_id) {		
-		return userDao.myProfile(user_id);
-	}
-
-
-	@Override
-	public User myInfoSet(String user_id, String string, String user_pwd) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 
 	

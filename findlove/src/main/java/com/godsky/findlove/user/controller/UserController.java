@@ -109,17 +109,26 @@ public class UserController {
 		return mav ;
 	}
 
-	//내정보 수정 
-	@RequestMapping(value = "myinfoset.do")
-	public String myInfoSet(@ModelAttribute User user_id){
+	//내정보 수정 페이지 매핑
+	@RequestMapping(value = "myinfosetview.do")
+	public ModelAndView myInfoSetView(@RequestParam("user_id") String user_id){
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("user/myinfoset");		
-		userService.myInfoSet(user_id);
-		System.out.println("내정보 수정 컨트롤러: " + user_id);
-		return "redirect:user/myinfo";
+		//뷰의 이름
+		mav.setViewName("user/myinfoset");
+		//뷰에 전달할 데이터
+		User user = userService.myInfo(user_id);
+		mav.addObject("user", user);
+		return mav;
 		
 	}
 	
+	//내정보 수정 처리
+	@RequestMapping(value="myinfoset.do")
+	public ModelAndView myInfoSet(@ModelAttribute("user") User user) {
+		userService.myInfoSet(user);
+		return myInfoView(user.getUser_id());
+		
+	}
 	
 	
 	//내 프로필 보기
@@ -139,17 +148,36 @@ public class UserController {
 		return mav;
 	}
 	
-	//내 프로필 수정
+	//내 프로필 수정 페이지 매핑
+	@RequestMapping(value = "myprofilesetview.do")
+	public ModelAndView myProfileSetView(@RequestParam("user_id") String user_id){
+		ModelAndView mav = new ModelAndView();
+		System.out.println("내 프로필 수정 user_id : " + user_id);
+		//뷰이름
+		mav.setViewName("user/myprofileset");
+		//전달할 데이터
+		User user = userService.myInfo(user_id);
+		System.out.println("내 프로필 수정 페이지 매핑 : user : " + user);
+		Profile profile = userService.myProfile(user_id);
+		System.out.println("내 프로필 수정 페이지 매핑 : profile : " + profile);
+		mav.addObject("user", userService.myInfo(user_id));
+		mav.addObject("profile", profile);
+		return mav;		
+	}
+	
+	//내 프로필 수정 처리
 	@RequestMapping(value = "myprofileset.do")
-	public String myProfileSet(){
-		return "user/myprofileset";		
+	public ModelAndView myProfileSet(@ModelAttribute("profile") Profile profile){
+		userService.myProfileSet(profile);
+		return myProfileView(profile.getUser_id());
 	}
 	
 	//이상형 프로필 보기
 	@RequestMapping(value = "idealprofile.do")
 	public ModelAndView idealProfileView(@RequestParam("user_id") String user_id){
 		ModelAndView mav = new ModelAndView();
-		System.out.println("이성 프로필 보기 user_id" + user_id);
+		mav.setViewName("user/idealprofile");
+		System.out.println("이성 프로필 보기 user_id : " + user_id);
 		Profile profile = userService.idealProfile(user_id);
 		System.out.println("이성 프로필 보기 profile : " + profile);
 		mav.addObject("profile",userService.idealProfile(user_id));

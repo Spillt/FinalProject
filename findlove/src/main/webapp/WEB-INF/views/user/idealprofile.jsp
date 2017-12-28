@@ -95,8 +95,8 @@
 				<!-- <h1 class="my-4">Shop Name</h1> -->
 				<div class="list-group">
 					<a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item">나의 정보</a> <a
-						href="myprofile.do" class="list-group-item">나의 프로필</a> <a
-						href="idealprofile.do" class="list-group-item active">이상형 프로필
+						href="myprofile.do?user_id=${sessionScope.user_id }" class="list-group-item">나의 프로필</a> <a
+						href="idealprofile.do?user_id=${sessionScope.user_id }" class="list-group-item active">이상형 프로필
 						</a> <a href="store.do" class="list-group-item">스토어</a>
 				</div>
 			</div>
@@ -104,7 +104,7 @@
 
 			<div class="col-lg-9">
 				<div class="card card-outline-secondary my-4">
-					<div class="card-header"><strong>${sessionScope.user_id }님의 이상형 프로필입니다.</strong></div>
+					<div class="card-header"><strong>${sessionScope.user_nm }님의 이상형 프로필입니다.</strong></div>
 					<div class="card-body">
 						<section id="plans">
 							<div class="container">
@@ -115,31 +115,31 @@
 												<table class="table">
 													<tr>
 														<th>나이</th>
-														<td>상관없음</td>
+														<td>${profile.age }</td>
 													</tr>
 													<tr>
 														<th>지역</th>
-														<td>서울</td>
+														<td>${profile.area }</td>
 													</tr>
 													<tr>
 														<th>스타일</th>
-														<td>낙천,신중한,열정적인</td>
+														<td>${profile.style }</td>
 													</tr>
 													<tr>
 														<th>키/체형</th>
-														<td>160~165cm / 마름</td>
+														<td>${profile.height } / ${profile.bodyform }</td>
 													</tr>
 													<tr>
 														<th>종교</th>
-														<td>무교</td>
+														<td>${profile.religion }</td>
 													</tr>
 													<tr>
 														<th>음주여부</th>
-														<td>즐겨 마셔요</td>
+														<td>${profile.drinking }</td>
 													</tr>
 													<tr>
 														<th>흡연여부</th>
-														<td>비흡연</td>
+														<td>${profile.smoking }</td>
 													</tr>
 												</table>
 											</div>

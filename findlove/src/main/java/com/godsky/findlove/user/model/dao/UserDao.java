@@ -55,9 +55,9 @@ public class UserDao {
 	}
 
 	// 내정보 수정
-	public int myInfoSet(User user_id) {
+	public int myInfoSet(User user) {
 		System.out.println("내 정보 수정 dao");
-		return sqlSession.update("user.myinfoset", user_id);
+		return sqlSession.update("user.myinfoset", user);
 
 	}
 
@@ -80,5 +80,18 @@ public class UserDao {
 	public Profile myProfile(String user_id) {
 		return sqlSession.selectOne("profile.myprofile", user_id);
 	}
+	
+	//내 프로필 수정
+	public int myProfileset(Profile profile) {
+		System.out.println("내 프로필 수정 dao");
+		return sqlSession.update("profile.myprofileset",profile);
+		
+	}
+	
+	// 이상형 프로필 보기
+	public Profile idealProfile(String user_id) {		
+		return sqlSession.selectOne("profile.idealprofile", user_id);
+	}
+
 
 }

@@ -75,7 +75,7 @@
           <div class="list-group">
             <a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item active">나의 정보</a>
             <a href="myprofile.do?user_id=${sessionScope.user_id }" class="list-group-item">나의 프로필</a>
-            <a href="idealprofile.do" class="list-group-item">이상형 프로필</a>
+            <a href="idealprofile.do?user_id=${sessionScope.user_id }" class="list-group-item">이상형 프로필</a>
             <a href="store.do" class="list-group-item">스토어</a>
           </div>
         </div>
@@ -123,7 +123,7 @@
              	</form>
              	<!-- <a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick=>회원탈퇴</a>  -->
              	<a href="/${initParam.context_root }/removeuser.do">회원 탈퇴</a>
-			    <a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick="location.href='myinfoset.do'">수정하기</a>
+			    <a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" href='myinfosetview.do?user_id=${user.user_id }'>수정하기</a>
 			    <a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick="history.go(-1)">취소</a>
             </section>
             </div>

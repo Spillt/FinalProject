@@ -86,7 +86,7 @@
 				<div class="list-group">
 					<a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item active">나의 정보</a> 
 					<a href="myprofile.do?user_id=${sessionScope.user_id }"	class="list-group-item">나의 프로필</a> 
-					<a href="idealprofile.do"	class="list-group-item">이상형 프로필</a> 
+					<a href="idealprofile.do?user_id=${sessionScope.user_id }"	class="list-group-item">이상형 프로필</a> 
 					<a href="store.do"	class="list-group-item">스토어</a>
 				</div>
 			</div>
@@ -96,7 +96,8 @@
 				<div class="card card-outline-secondary my-4">
 					<div class="card-header">정보 수정은 아이디와 이름은 변경 불가능 합니다.</div>
 					<div class="card-body">
-					<form class="form-contaioner" name="updatemyinfo" method="post">
+					<form action="myinfoset.do" class="form-contaioner" name="updatemyinfo" method="post">
+						<input type="hidden" name="user_id" value="${sessionScope.user_id }"/>
 						<table id="tableData" class="table table-bordered">
 							
 								<tr>
@@ -109,7 +110,7 @@
 								</tr>
 								<tr>
 									<td>닉네임</td>
-									<td><input type="text" name="user_nicknm" id="nickname" /></td>
+									<td><input type="text" name="user_nicknm" id="nickname" value="${user.user_nicknm }"/></td>
 								</tr>
 								<tr>
 									<td>비밀번호</td>
@@ -121,11 +122,11 @@
 								</tr>
 								<tr>
 									<td>이메일</td>
-									<td><input type="text" name="email" id="email"/></td>
+									<td><input type="text" name="email" id="email" value="${user.email }"/></td>
 								</tr>
 								<tr>
 									<td>휴대폰 번호</td>
-									<td><input type="text" name="phone" id="phone"/></td>
+									<td><input type="text" name="phone" id="phone" value="${user.phone }"/></td>
 								</tr>
 							
 						</table>
@@ -145,33 +146,7 @@
 	</div>
 	<!-- /.container -->
 
-	<!-- Clients -->
-	<section class="py-5">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/envato.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/designmodo.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/themeforest.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/creative-market.jpg" alt="">
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
+	
 	<hr>
 	
 	<!-- footer -->

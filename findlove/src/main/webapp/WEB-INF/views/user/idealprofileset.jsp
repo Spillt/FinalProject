@@ -118,8 +118,8 @@ ul{
 				<!-- <h1 class="my-4">Shop Name</h1> -->
 				<div class="list-group">
 					<a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item">나의 정보</a> <a
-						href="myprofile.do" class="list-group-item">나의 프로필</a> <a
-						href="idealprofile.do" class="list-group-item active">이상형 프로필
+						href="myprofile.do?user_id=${sessionScope.user_id }" class="list-group-item">나의 프로필</a> <a
+						href="idealprofile.do?user_id=${sessionScope.user_id }" class="list-group-item active">이상형 프로필
 						</a> <a href="store.do" class="list-group-item">스토어</a>
 				</div>
 			</div>
