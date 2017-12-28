@@ -1,5 +1,7 @@
 package com.godsky.findlove.main.matchboard.Idealworldcup.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,20 +12,15 @@ import com.godsky.findlove.main.matchboard.Idealworldcup.model.vo.IdealWorldCup;
 public class IWCDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
-	public IdealWorldCup idealWorldCup(){
-		return null;
+
+	public List<IdealWorldCup> list(String gender) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("idealworldcup.list16", gender);
 	}
-	public String logincheck() {
-		return null;
+
+	public String selectUserGender(String userId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("idealworldcup.selectProfileOne", userId);
 	}
-	public String gender(){
-		return null;
+
 	}
-	public String updateiwc(){
-		return null;
-	}
-	public String random(){
-		return null;
-	}
-}

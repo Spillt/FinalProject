@@ -4,7 +4,9 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
@@ -22,7 +24,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.godsky.findlove" />
+	<context:component-scan base-package="com.godsky.findlove, com.godsky.findlove.user.controller" />
 	
 	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView">
 	</beans:bean>
@@ -31,4 +33,33 @@
 		<beans:property name="order" value="0"></beans:property>
 	</beans:bean>
 	
-</beans:beans>
+	<!-- Multipart를 받기 위한 리졸버 추가 --> 
+	<beans:bean id="multipartResolver" 
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</beans:bean>
+	
+	<mybatis-spring:scan base-package="resources"/>
+	
+	<!-- 이메일 관련 -->
+	<beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+  	 	 <beans:property name="host" value="smtp.gmail.com" />
+   		 <beans:property name="port" value="587" />
+ 	     <beans:property name="username" value="findlovetest@gmail.com" />
+   		 <beans:property name="password" value="findlove" />
+   		 <beans:property name="javaMailProperties">
+       		 <beans:props>
+            	<beans:prop key="mail.smtp.ssl.trust">smtp.gmail.com</beans:prop>
+           		<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+            	<beans:prop key="mail.smtp.auth">true</beans:prop>
+             </beans:props>
+          </beans:property>      
+	</beans:bean>
+	<beans:bean id="mailService" class="com.godsky.findlove.user.model.service.MailServiceImpl">
+    	<beans:property name="javaMailSender" ref="javaMailSender" />
+	</beans:bean>
+
+
+	</beans:beans>
+
+	
+

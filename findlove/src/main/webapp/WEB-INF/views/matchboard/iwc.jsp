@@ -1,15 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>iwc</title>
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <style>
+img{
+	border:3px solid red;
+	width : 300px;
+	height: 300px;
+	float: right;
+}
 .myButton {
 	-moz-box-shadow: inset 0px 1px 0px 0px #f7c5c0;
 	-webkit-box-shadow: inset 0px 1px 0px 0px #f7c5c0;
@@ -56,14 +61,15 @@
 	position: relative;
 	top: 1px;
 }
-  .my-hr1 {
-    border: 0;
-    height: 3px;
-    background: #ccc;
-  }
 
+.my-hr1 {
+	border: 0;
+	height: 3px;
+	background: #ccc;
+}
 </style>
 <body>
+
 	<div class="container" style="margin-top: 200px;">
 		<c:import url="../../views/include/header.jsp" />
 		<strong
@@ -71,29 +77,22 @@
 			월드컵 </strong>
 		<hr class="my-hr1">
 		<center>
+		
 			<table class="table table-bordered text-center" style=""middle">
-				<input type="hidden" name="chk_info" value="#">남자여자 히든으로 확인
-				<tr>
-					<th>지역</th>
-					<td><input type="checkbox" name="chk_info" value="#">서울</td>
-					<td><input type="checkbox" name="chk_info" value="#">경기도</td>
-					<td><input type="checkbox" name="chk_info" value="#">경기도</td>
-					<td><input type="checkbox" name="chk_info" value="#">경기도</td>
-					<td><input type="checkbox" name="chk_info" value="#">경기도</td>
-					<td><input type="checkbox" name="chk_info" value="#">경기도</td>
-					<td><input type="checkbox" name="chk_info" value="#">경기도</td>
-					<td><input type="checkbox" name="chk_info" value="#">경기도</td>
-				<tr>
-					<th>나이</th>
-					<td><inputtype-"text"> ~ 
-					<input type-"text">
-					<input type="submit" value="확인"></td>
-				</tr>
+			<div>16강</div>
+				<c:forEach var="dto" items="${list}">
+			       <td class="click"><img src="/images/${dto.picturenm}"><br>photo<br>
+                   id : ${dto.userId}</td>	
+				</c:forEach>
+
+
+
+
 
 			</table>
 		</center>
 		<center>
-			<a href="idealworldcup.do" class="myButton">다시하기</a>
+			<a href="idealworldcup.do?userId=${user_id}" class="myButton">다시하기</a>
 		</center>
 	</div>
 	<%@ include file="../../views/include/footer.jsp"%>
@@ -101,9 +100,17 @@
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/findlove/resources/js/paging.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			$('#mainNav').css('background-color', '#faadad');
+		});
+		$(document).ready(function(){
+		    $('.click').click(function(){
+		        $.ajax({url: "idealworldcup.do?userId=${user_id}", 
+		        		success: function();
+		        }});
+		    });
 		});
 	</script>
 </body>

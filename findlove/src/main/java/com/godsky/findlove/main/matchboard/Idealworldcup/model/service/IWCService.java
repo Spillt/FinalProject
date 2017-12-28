@@ -1,9 +1,13 @@
 package com.godsky.findlove.main.matchboard.Idealworldcup.model.service;
 
+import java.util.List;
+import java.lang.*;
+
+import com.godsky.findlove.main.matchboard.Idealworldcup.model.vo.IdealWorldCup;
+
 public interface IWCService {
-	String idealWorldCup();	//페이지
-	String logincheck();	//로그인확인
-	String gender();		//성별확인
-	String updateiwc();		//업데이트
-	String random();		//랜덤돌리기
+
+	List<IdealWorldCup> list(String gender);
+
+	String selectUserGender(String userId);
 }

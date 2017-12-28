@@ -1,5 +1,7 @@
 package com.godsky.findlove.main.matchboard.Idealworldcup.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,30 +14,15 @@ public class IWCServiceImpl implements IWCService{
 	@Autowired
 	IWCDao IWCDao;
 	IdealWorldCup IdealWorldCup;
-	
-	public String idealWorldCup() {
-		// 페이지
-		IWCDao.idealWorldCup();
-		return "idealworldcup.do";
+	@Override
+	public List<IdealWorldCup> list(String gender) {
+		// TODO Auto-generated method stub
+		return IWCDao.list(gender);
 	}
-	public String logincheck() {
-		// 로그인
-		IWCDao.logincheck();
-		return IWCController.logincheck();
+	@Override
+	public String selectUserGender(String userId) {
+		// TODO Auto-generated method stub
+		return IWCDao.selectUserGender(userId);
 	}
-	public String gender() {
-		// 성별확인
-		IWCDao.logincheck();
-		return "gender.do";
-	}
-	public String updateiwc() {
-		// 업데이트
-		IWCDao.logincheck();
-		return "updateiwc.do";
-	}
-	public String random() {
-		// 랜덤
-		IWCDao.logincheck();
-		return "random.do";
-	}
+
 }

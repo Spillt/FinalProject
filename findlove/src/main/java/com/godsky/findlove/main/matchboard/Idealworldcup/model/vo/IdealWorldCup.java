@@ -2,65 +2,60 @@ package com.godsky.findlove.main.matchboard.Idealworldcup.model.vo;
 
 import java.util.List;
 
+
 public class IdealWorldCup {
-	private String UserId;	//유저아이디
-	private String Gender;	//성별
-	private String Picture;	//유저사진
-	private String Message; //1등이상형메세지
-	
+	private String userId; // 유저아이디
+	private String gender; // 성별
+	private int level; // 등급
+	private String picturenm; // 사진
+
 	public IdealWorldCup() {
 		super();
 	}
 
-	public IdealWorldCup(String userId, String gender, String picture, String message) {
+	public IdealWorldCup(String userId, String gender, int level, String picturenm) {
 		super();
-		UserId = userId;
-		Gender = gender;
-		Picture = picture;
-		Message = message;
+		this.userId = userId;
+		this.gender = gender;
+		this.level = level;
+		this.picturenm = picturenm;
 	}
 
 	public String getUserId() {
-		return UserId;
+		return userId;
 	}
 
 	public String getGender() {
-		return Gender;
+		return gender;
 	}
 
-	public String getPicture() {
-		return Picture;
+	public int getlevel() {
+		return level;
 	}
 
-	public String getMessage() {
-		return Message;
+	public String getPicturenm() {
+		return picturenm;
 	}
 
 	public void setUserId(String userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
 
 	public void setGender(String gender) {
-		Gender = gender;
+		this.gender = gender;
 	}
 
-	public void setPicture(String picture) {
-		Picture = picture;
+	public void setlevel(int level) {
+		this.level = level;
 	}
 
-	public void setMessage(String message) {
-		Message = message;
+	public void setPicturenm(String picturenm) {
+		this.picturenm = picturenm;
 	}
 
 	@Override
 	public String toString() {
-		
-		return UserId + ", " + Gender + ", " + Picture + ", " + Message; 
+		return "IdealWorldCup [userId=" + userId + ", gender=" + gender + ", level=" + level + ", picturenm=" + picturenm
+				+ "]";
 	}
-
-	public static List<IdealWorldCup> listAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 }

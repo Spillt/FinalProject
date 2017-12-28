@@ -9,7 +9,7 @@ public class Profile {
 	private String area;
 	private String hobby;
 	private String achievement;
-	private char bloodType;
+	private char blood_Type;
 	private String smoking;
 	private String drinking;
 	private String religion;
@@ -20,7 +20,7 @@ public class Profile {
 	}
 
 	public Profile(char gender, int age, int height, int weight, String area, String hobby, String achievement,
-			char bloodType, String smoking, String drinking, String religion, String style) {
+			char blood_Type, String smoking, String drinking, String religion, String style) {
 		super();
 		this.gender = gender;
 		this.age = age;
@@ -29,7 +29,7 @@ public class Profile {
 		this.area = area;
 		this.hobby = hobby;
 		this.achievement = achievement;
-		this.bloodType = bloodType;
+		this.blood_Type = blood_Type;
 		this.smoking = smoking;
 		this.drinking = drinking;
 		this.religion = religion;
@@ -65,7 +65,7 @@ public class Profile {
 	}
 
 	public char getBloodType() {
-		return bloodType;
+		return blood_Type;
 	}
 
 	public String getSmoking() {
@@ -113,7 +113,7 @@ public class Profile {
 	}
 
 	public void setBloodType(char bloodType) {
-		this.bloodType = bloodType;
+		this.blood_Type = blood_Type;
 	}
 
 	public void setSmoking(String smoking) {
@@ -135,7 +135,7 @@ public class Profile {
 	@Override
 	public String toString() {
 		return "Profile [gender=" + gender + ", age=" + age + ", height=" + height + ", weight=" + weight + ", area="
-				+ area + ", hobby=" + hobby + ", achievement=" + achievement + ", bloodType=" + bloodType + ", smoking="
+				+ area + ", hobby=" + hobby + ", achievement=" + achievement + ", blood_Type=" + blood_Type + ", smoking="
 				+ smoking + ", drinking=" + drinking + ", religion=" + religion + ", style=" + style + "]";
 	}
 	
