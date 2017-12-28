@@ -13,8 +13,8 @@ public class KonpeitoServiceImpl implements KonpeitoService{
     private KonpeitoDAO konpeitoDAO;
 	
 	@Override
-	public int checkpoint(String senderId) {
-		return konpeitoDAO.checkpoint(senderId);
+	public int checkpoint(String sender_id) {
+		return konpeitoDAO.checkpoint(sender_id);
 	}
 
 }

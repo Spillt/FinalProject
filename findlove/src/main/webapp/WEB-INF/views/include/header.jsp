@@ -339,8 +339,8 @@
 						</div>
 						<div class="i-a-group">
 							<i class="material-icons">search</i><a
-								href="openSendMessageList.do">나의매칭</a>
-						</div>
+								href="openSendMessageList.do?sender_id=${sessionScope.user_id }">나의매칭</a>
+						</div>						
 						
 					</c:if>
 					<c:if test="${sessionScope.user_id eq 'admin' }">

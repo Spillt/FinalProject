@@ -29,29 +29,31 @@ public class ProfileboardController {
 	
 	//해당 페이지용 프로필 페이지 이동
 	@RequestMapping(value = "/openProfileList.do")
-	public ModelAndView openProfileList(@RequestParam(defaultValue="") String keyword,
+	public ModelAndView openProfileList(@RequestParam(defaultValue="all") String searchOption,
+										@RequestParam(defaultValue="") String keyword,
             							@RequestParam(defaultValue="1") int curPage) throws Exception{
 		
-		int count = profileboardService.countProfileList(keyword);
+		int count = profileboardService.countProfileList(searchOption, keyword);
 		
 		ProfilePager profilePager = new ProfilePager(count, curPage);
 	    int start = profilePager.getPageBegin();
 	    int end = profilePager.getPageEnd();
 		
-		List<Profileboard> list = profileboardService.selectProfileList(start, end, keyword);
+		List<Profileboard> list = profileboardService.selectProfileList(start, end, searchOption, keyword);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("count", count);
+		map.put("searchOption", searchOption);
 		map.put("keyword", keyword);
-	    map.put("profilePager", profilePager);
+		map.put("profilePager", profilePager);
 	
+	    System.out.println(list);
+	    System.out.println(count);
+	    
 		ModelAndView mv = new ModelAndView("main/profileboard/profileboardList");
 		mv.addObject("map", map);
-		System.out.println(list);
-		System.out.println(count);
-		System.out.println(keyword);
-		System.out.println(profilePager);
+		
 		
 		return mv;		
 	}
@@ -60,10 +62,13 @@ public class ProfileboardController {
 	@RequestMapping(value = "/openProfileDetail.do", method = RequestMethod.GET)
 	public ModelAndView openBoardDetail(@RequestParam String user_nicknm) throws Exception {
 		Profileboard profile = profileboardService.selectProfileDetail(user_nicknm);
+		List<String> profileImg = profileboardService.selectProfileImage(user_nicknm);
 		
 		ModelAndView mv = new ModelAndView("main/profileboard/profileboardDetail");
 		mv.addObject("profile", profile);
+		mv.addObject("profileImg", profileImg);
 		System.out.println(profile);
+		System.out.println(profileImg);
 		
 		return mv;
 	}

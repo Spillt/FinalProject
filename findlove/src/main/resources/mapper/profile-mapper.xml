@@ -7,36 +7,33 @@
     <select id="selectProfileList" resultType="Profileboard">
     	<include refid="pagingHeader"></include>
         <![CDATA[
-            SELECT 
-            ROWNUM,
-            USER_ID,
-            USER_NICKNM,
-            GRADE_AVG,
-            PICTURE_NM,
-            GENDER,
-            AGE,
-            HEIGHT,            
-            AREA,
-            HOBBY,
-            ACHIEVEMENT,
-            BLOOD_TYPE,
-            SMOKING,
-            DRINKING,
-            RELIGION,
-            STYLE,
-            BODYFORM
+           SELECT ROWNUM, USER_ID, USER_NICKNM, GRADE_AVG, PICTURE_NM, GENDER, AGE, HEIGHT, 
+            AREA, BODYFORM, ACHIEVEMENT, JOB, BLOOD_TYPE, SMOKING, DRINKING, RELIGION, STYLE
             FROM TB_USER 
-			LEFT JOIN TB_PROFILE USING (USER_ID)
-			LEFT JOIN TB_PROFILE_PICTURE USING (USER_ID)
+			INNER JOIN TB_PROFILE USING (USER_ID)
+			INNER JOIN TB_PROFILE_PICTURE USING (USER_ID)
 			WHERE USER_ID != 'admin'
-			AND THUMNAIL_FL = '0'
+			AND THUMNAIL_FL = '1'
+			AND TARGET_GB = '0'
         ]]>
         <include refid="search"></include>
         <include refid="pagingFooter"></include>
     </select>
     
     <sql id="search">
-			AND USER_NICKNM like '%'||#{keyword}||'%'
+      <choose>
+    	<when test="searchOption == 'all'">
+    		AND USER_NICKNM like '%'||#{keyword}||'%'
+    	</when>
+    	<when test="searchOption == 'M'">
+    		AND GENDER = 'M'
+    		AND USER_NICKNM like '%'||#{keyword}||'%'
+    	</when>
+    	 <otherwise>
+    		AND GENDER = 'F'
+    		AND USER_NICKNM like '%'||#{keyword}||'%'
+    	</otherwise>
+      </choose>	
 	</sql>
 
 	<sql id="pagingHeader">
@@ -52,7 +49,12 @@
     <select id="countProfile" resultType="int">
     	<![CDATA[
     	SELECT COUNT(*) FROM TB_USER
-    	WHERE USER_NICKNM like '%'||#{keyword}||'%'
+    	INNER JOIN TB_PROFILE USING (USER_ID)
+		INNER JOIN TB_PROFILE_PICTURE USING (USER_ID)
+		WHERE USER_ID != 'admin'
+		AND THUMNAIL_FL = '1'
+    	AND TARGET_GB = '0'
+    	AND USER_NICKNM like '%'||#{keyword}||'%'
     	 ]]>
     </select>
     
@@ -62,9 +64,33 @@
 			LEFT JOIN TB_PROFILE USING(USER_ID)
 			LEFT JOIN TB_PROFILE_PICTURE USING (USER_ID)
 			WHERE USER_NICKNM = #{USER_NICKNM}
-			AND THUMNAIL_FL = '0'
+			AND THUMNAIL_FL = '1'
+			AND TARGET_GB = '0'
         ]]>
     </select>
+    
+     <select id="selecProfileImage" parameterType="String" resultType="String">
+		<![CDATA[
+			SELECT picture_nm FROM TB_PROFILE_PICTURE 
+			LEFT JOIN TB_USER USING(USER_ID)
+			WHERE USER_NICKNM = #{USER_NICKNM} AND THUMNAIL_FL = 0
+		]]>
+	</select>
+	
+	<select id="sendGradeList" resultType="Profileboard">
+	<![CDATA[
+	 SELECT USER_ID, USER_NICKNM, GRADE_AVG, PICTURE_NM, GENDER, AGE, HEIGHT 
+            AREA, BODYFORM, ACHIEVEMENT, JOB, BLOOD_TYPE, SMOKING, DRINKING, RELIGION, STYLE
+            FROM TB_USER 
+			INNER JOIN TB_PROFILE USING (USER_ID)
+			INNER JOIN TB_PROFILE_PICTURE USING (USER_ID)
+      INNER JOIN TB_GRADE ON (USER_ID = RECEIVER_ID)
+			WHERE USER_ID != 'admin'
+			AND THUMNAIL_FL = '1'
+      AND SENDER_ID = #{ sender_id }
+      AND GRADE >= 3
+	]]>
+	</select>
     
      <!-- 내프로필 설정 -->
     <select id="myprofile" parameterType="String" resultType="Profile">

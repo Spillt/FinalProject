@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="grade">
+  
+  	 <select id="checkGrade" resultType="Integer">
+  	 <![CDATA[SELECT COUNT(*) FROM TB_GRADE WHERE SENDER_ID = #{sender_id} AND RECEIVER_ID = #{receiver_id} ]]>
+  	 </select>
+  
+      <insert id="sendGrade" parameterType="Grade">
+        <![CDATA[INSERT INTO TB_GRADE VALUES (#{sender_id}, #{receiver_id}, #{grade})]]>
+   	 </insert>
+   	 
+</mapper>

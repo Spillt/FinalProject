@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.godsky.findlove.main.eventboard.poll.model.dao.PollDao;
 import com.godsky.findlove.main.eventboard.poll.model.vo.Poll;
 import com.godsky.findlove.main.eventboard.poll.model.vo.PollAnswer;
+import com.godsky.findlove.main.eventboard.poll.model.vo.PollResult;
 
 @Service("pollService")
 public class PollServiceImpl implements PollService {
@@ -17,16 +18,22 @@ public class PollServiceImpl implements PollService {
 	PollDao pollDao;
 
 	@Override
-	public List<Poll> listAll(){
+	public List<Poll> listAll() {
 		return pollDao.listAll();
+	}
+
+	@Override
+	public List<Poll> listAll(String userId) {
+		return pollDao.listAll(userId);
 	}
 
 	@Override
 	public Poll polldetail(int pollNo) {
 		return pollDao.polldetail(pollNo);
 	}
+
 	@Override
-	public Poll pollResult(int pollNo) {
+	public List<PollResult> pollResult(int pollNo) {
 		return pollDao.pollResult(pollNo);
 	}
 
@@ -34,6 +41,5 @@ public class PollServiceImpl implements PollService {
 	public void pollAnswer(PollAnswer answer) {
 		pollDao.pollAnswer(answer);
 	}
-	
-	
+
 }
