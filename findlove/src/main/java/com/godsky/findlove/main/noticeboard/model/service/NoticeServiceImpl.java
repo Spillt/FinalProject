@@ -31,7 +31,7 @@ public class NoticeServiceImpl implements NoticeService {
 	public void increaseViewcnt(int noticeNo, HttpSession session) {
 		long update_time = 0;
         if(session.getAttribute("update_time_"+noticeNo) != null){
-            update_time = (long)session.getAttribute("update_time_"+noticeNo);
+            update_time = (Long) session.getAttribute("update_time_"+noticeNo);
         }
         long current_time = System.currentTimeMillis();
         if(current_time - update_time > 5*1000){
@@ -40,6 +40,30 @@ public class NoticeServiceImpl implements NoticeService {
             
         }
 		
+	}
+
+	@Override
+	public List<Notice> PNwriteList(int noticeNo) {
+		// TODO Auto-generated method stub
+		return noticeDao.PNwriteList(noticeNo);
+	}
+
+	@Override
+	public int getNoticeCnt() {
+		// TODO Auto-generated method stub
+		return noticeDao.getNoticeCnt();
+	}
+
+	@Override
+	public String prev(int noticeNo) {
+		// TODO Auto-generated method stub
+		return noticeDao.prev(noticeNo);
+	}
+
+	@Override
+	public String next(int noticeNo) {
+		// TODO Auto-generated method stub
+		return noticeDao.next(noticeNo);
 	}
 
 }

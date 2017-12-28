@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class MatchQnA implements Serializable {
 	private String userId;
-	private String question;
+	private int question;
 	private String answer1;
 	private String answer2;
 	private String answer3;
@@ -13,13 +13,13 @@ public class MatchQnA implements Serializable {
 		super();
 	}
 
-	public MatchQnA(String question,String answer1,String answer2,String answer3){
+	public MatchQnA(int question,String answer1,String answer2,String answer3){
 		this.question = question;
 		this.answer1 = answer1;
 		this.answer2 = answer2;
 		this.answer3 = answer3;
 	}
-	public MatchQnA(String userId,String question,String answer1){
+	public MatchQnA(String userId,int question,String answer1){
 		this.userId = userId;
 		this.question = question;
 		this.answer1 = answer1;
@@ -33,11 +33,11 @@ public class MatchQnA implements Serializable {
 		this.userId = userId;
 	}
 
-	public String getQuestion() {
+	public int getQuestion() {
 		return question;
 	}
 
-	public void setQuestion(String question) {
+	public void setQuestion(int question) {
 		this.question = question;
 	}
 

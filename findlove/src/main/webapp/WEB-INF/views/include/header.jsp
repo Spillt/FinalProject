@@ -270,15 +270,15 @@
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="notice.do">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="selectuserlist.do">매칭 게시판</a></li>
+						href="selectuserlist.do?userId=${user_id }">매칭 게시판</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="/findlove/openProfileList.do">프로필 게시판</a></li>
+						href="openProfileList.do">프로필 게시판</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#">자유 게시판</a></li>
+						href="openFreeboardList.do">자유 게시판</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="attendancelist.do"">이벤트 게시판</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#">Q&A</a></li>
+						href="InqList.do">일대일 문의</a></li>
 				</ul>
 			</div>
 		</div>
@@ -306,12 +306,12 @@
 			<c:choose>
 				<c:when test="${sessionScope.user_id ne null }">
 					<div class="nav-text">${sessionScope.user_id }님</div>
-					
+
 				</c:when>
 				<c:otherwise>
 					<div class="nav-text">로그인하세요</div>
 					<hr class="horiz-divide">
-					<form class="form-container" name="form1" method="post">
+					<form class="form-container" name="form1" method="post" id=loginform>
 						<input type="text" id="user_id" name="user_id"
 							class="form-control" placeholder="아이디"> <input
 							type="password" id="user_pwd" name="user_pwd"
@@ -335,13 +335,14 @@
 				<c:when test="${sessionScope.user_id ne null }">
 					<c:if test="${sessionScope.user_id ne 'admin' }">
 						<div class="i-a-group">
-							<i class="material-icons">search</i><a href="myinfo.do?user_id=${sessionScope.user_id }">마이페이지</a>
+							<i class="material-icons">search</i><a
+								href="myinfo.do?user_id=${sessionScope.user_id }">마이페이지</a>
 						</div>
 						<div class="i-a-group">
 							<i class="material-icons">search</i><a
 								href="openSendMessageList.do?sender_id=${sessionScope.user_id }">나의매칭</a>
-						</div>						
-						
+						</div>
+
 					</c:if>
 					<c:if test="${sessionScope.user_id eq 'admin' }">
 						<div class="i-a-group">
@@ -349,16 +350,17 @@
 								href="userlist.do?pageNo=1">회원관리</a>
 						</div>
 						<div class="i-a-group">
-							<i class="material-icons">assignment</i><a href="#">게시판관리</a>
+							<i class="material-icons">assignment</i><a
+								href="boardinsertview.do">게시판관리</a>
 						</div>
 						<div class="i-a-group">
 							<i class="material-icons">show_chart</i><a
 								href="statisticlist.do">통계관리</a>
 						</div>
-						
+
 					</c:if>
 					<hr class="horiz-divide">
-						<form class="form-container">
+					<form class="form-container">
 						<a href="logout.do"><button
 								class="form-control btn logout-btn" type="button">로그아웃</button></a>
 					</form>
@@ -455,6 +457,15 @@
 					document.form1.action = "logincheck.do" //데이터 전송
 					document.form1.submit(); // 제출
 				});
+	</script>
+	<script>
+		$('#loginform .input').keypress(function(e) {
+			if (e.which == 13) {
+				$('form#loginform').submit();
+				return false; //<---- Add this line
+			}
+
+		});
 	</script>
 </body>
 </html>

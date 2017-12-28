@@ -85,12 +85,13 @@ a:visited {
 		</table>
 	</div>
 	
+	
 	<!-- footer -->
+	<hr>
 	<c:import url="../../include/footer.jsp" />
 	
 	<!-- 자바스크립트 -->
-	<script type="text/javascript"
-		src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/findlove/resources/js/paging.js"></script>
@@ -104,7 +105,5 @@ a:visited {
 			});
 		});
 	</script>
-	<script src="js/jquery-3.1.1.js"></script>
-	<script src="js/bootstrap.js"></script>
 </body>
 </html>

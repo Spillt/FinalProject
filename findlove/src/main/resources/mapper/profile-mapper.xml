@@ -167,5 +167,15 @@
     	 ]]>
     	
     </select>
+    
+    <!-- 성별 검색 -->
+    <select id="selectProfileOne" resultType="String" parameterType="String">
+        <![CDATA[
+            SELECT gender FROM TB_PROFILE
+            WHERE USER_ID = #{userId} and target_gb = 0
+			
+			
+        ]]>
+    </select>
    
 </mapper>

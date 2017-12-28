@@ -1,6 +1,5 @@
 package com.godsky.findlove.main.matchboard.score.model.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.godsky.findlove.main.matchboard.score.model.vo.MatchScore;

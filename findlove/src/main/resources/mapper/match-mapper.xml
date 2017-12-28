@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="match">
+
+	<!--  <resultMap id="resultMatch" type="MatchScore">
+		<result property="userId" column="user_id" />
+		<result property="receiveId" column="receive_id" />
+		<result property="sendId" column="send_id" />
+		<result property="score" column="GRADE" />
+	</resultMap>  -->
+	<resultMap id="resultMatchAnswer" type="MatchQnA">
+		<result property="userId" column="user_id" />
+		<result property="question" column="QUESTION_NO" />
+		<result property="answer1" column="ANSWER" />
+	</resultMap>
+   <select id="selectMatchuser3"  parameterType="String" resultType="String">
+   			<![CDATA[
+      		select * from( 
+  			  select user_id from tb_user
+  			  left join TB_PROFILE using(user_id)
+  			  left join TB_PROFILE_PICTURE using(user_id)
+  			  where TB_PROFILE.GENDER = case when #{myGender} = 'M' then 'F' else 'M' end
+  			  and TB_PROFILE_PICTURE.THUMNAIL_FL = '1'
+  			  order by DBMS_RANDOM.RANDOM 
+				)
+			where rownum <= 3 and user_id != 'admin'
+             ]]>
+   
+   </select>
+	<select id="selectQuestion" resultType="MatchingQuestion">
+		select * from tb_matching_question
+	</select>
+	<insert id="insertMyQnA" parameterType="MatchQnA">
+		insert into TB_MATCHING_ANSWER values(#{userId},#{question},#{answer1})
+	</insert> 
+	<update id="updateMyQnA" parameterType="MatchQnA">
+		update TB_MATCHING_ANSWER set ANSWER= #{answer1} where user_id = #{userId} and QUESTION_NO = #{question} 
+	</update>
+	<select id="myQuestionCheck" parameterType="String" resultType="MatchQnA" resultMap="resultMatchAnswer">
+	<![CDATA[
+		select * from TB_MATCHING_ANSWER where user_id = #{userId}
+		]]>
+	</select>
+	<select id="selectMatchQuestionList" resultType="MatchingQuestion">
+		<![CDATA[
+		select * from( 
+  			  select * from TB_MATCHING_QUESTION
+  			  
+  			  order by DBMS_RANDOM.RANDOM 
+				)
+			where rownum <= 3
+			]]>
+	</select>
+	<select id="checkMatchingUserQnA" parameterType="MatchQnA" resultType="MatchQnA" resultMap="resultMatchAnswer">
+	<![CDATA[
+		select * 
+		from TB_MATCHING_ANSWER
+		where user_id = #{userId} and QUESTION_NO = #{question} and ANSWER = #{answer1}
+			]]>
+	
+	</select>
+	<update id="todayMatchCheck" parameterType="String">
+	update tb_match_user set matching = 1 where my_id = #{userId}
+	</update>
+</mapper>

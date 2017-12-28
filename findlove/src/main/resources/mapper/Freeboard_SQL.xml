@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="freeboard">
+
+	<resultMap id="resultFreeboardList" type="Freeboard">
+		<result property="freeNo" column="FREE_NO"/>
+		<result property="freeTitle" column="FREE_TITLE"/>
+		<result property="freeWriter" column="Free_Writer"/>
+		<result property="freeContent" column="FREE_CONTENT"/>
+		<result property="freeOnm" column="FREE_FILE_ONM"/>
+		<result property="freeRnm" column="FREE_FILE_RNM"/>
+		<result property="freeDt" column="FREE_DT"/>
+		<result property="freeReadCnt" column="FREE_READ_CNT"/>
+	</resultMap>
+
+	<!-- list 조회 -->
+	<select id="selectFreeboardList" resultType="Freeboard" resultMap="resultFreeboardList">
+		<![CDATA[
+			SELECT Free_NO, Free_Title, Free_Read_CNT, Free_DT 
+			FROM TB_FREE 
+			ORDER BY Free_NO DESC
+		]]>
+	</select>
+	
+	<!-- 작성하기 -->
+	<insert id="insertFreeboard" parameterType="Freeboard">
+		<![CDATA[
+			INSERT INTO TB_FREE
+			VALUES ((SELECT COUNT(*)+1 FROM TB_FREE), #{freeTitle}, #{freeWriter}, #{freeContent}, NULL, NULL, SYSDATE, 0)
+		]]>
+	</insert>
+	
+	<!-- 상세보기 -->
+	<select id="detailFreeboard" parameterType="int" resultType="Freeboard" resultMap="resultFreeboardList">
+		<![CDATA[
+			SELECT * 
+			FROM TB_FREE
+			WHERE FREE_NO = #{freeNo}
+		]]>
+	</select>
+	
+	<!-- 수정하기 -->
+	<update id="updateFreeboard" parameterType="Freeboard">
+		<![CDATA[
+			UPDATE TB_FREE SET
+			FREE_TITLE = #{freeTitle},
+			FREE_CONTENT = #{freeContent}
+			WHERE FREE_NO = #{freeNo}
+		]]>
+	</update>
+
+	<select id="selectFreeboard" parameterType="int" resultType="Freeboard" resultMap="resultFreeboardList">
+		<![CDATA[
+			SELECT * FROM TB_FREE WHERE free_NO = #{freeNo}
+		]]>
+	</select>
+
+	
+	<!-- 삭제하기 -->
+	<delete id="deleteFreeboard" parameterType="int">
+		<![CDATA[
+			DELETE
+			FROM TB_FREE
+			WHERE Free_NO = #{freeNo}
+		]]>
+	</delete>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateReadCnt" parameterType="int">
+		<![CDATA[
+			UPDATE TB_FREE SET FREE_READ_CNT = FREE_READ_CNT + 1
+			WHERE FREE_NO = #{freeNo}
+		]]>
+	</update>
+	
+
+</mapper>

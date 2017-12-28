@@ -1,5 +1,6 @@
 package com.godsky.findlove.main.noticeboard.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -40,12 +41,23 @@ public class NoticeController {
 		public ModelAndView noticedetail(@RequestParam int noticeNo, HttpSession session) throws Exception{
 	        // 조회수 증가 처리
 	        noticeService.increaseViewcnt(noticeNo, session);
+	        //이전,다음글 처리
+	        
+	        ArrayList<Notice> list= new ArrayList<Notice>();
+	        list = (ArrayList<Notice>)noticeService.PNwriteList(noticeNo);
+	        int cnt = noticeService.getNoticeCnt();
 	        // 모델(데이터)+뷰(화면)를 함께 전달하는 객체
 	        ModelAndView mv = new ModelAndView();
 	        // 뷰의 이름
 	        mv.setViewName("/main/notice/noticedetail");
 	        // 뷰에 전달할 데이터
 	        mv.addObject("dto", noticeService.read(noticeNo));
+	        mv.addObject("next", noticeService.next(noticeNo));
+	        mv.addObject("prev", noticeService.prev(noticeNo));
+	        mv.addObject("cnt", cnt);
+	        /*for(Notice notice : list) {
+	        	System.out.println(notice);
+	        }*/
 	        return mv;
 	    }
 }

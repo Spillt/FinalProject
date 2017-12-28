@@ -27,4 +27,24 @@ public class NoticeDao {
 		return sqlSession.selectOne("notice.view", noticeNo);
 	}
 
+	public List<Notice> PNwriteList(int noticeNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("PNwriterList", noticeNo);
+	}
+
+	public int getNoticeCnt() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getNoticeCnt");
+	}
+
+	public String prev(int noticeNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("notice.prev", noticeNo);
+	}
+
+	public String next(int noticeNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("notice.next", noticeNo);
+	}
+
 }

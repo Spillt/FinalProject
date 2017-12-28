@@ -9,18 +9,20 @@ public class MatchUser implements Serializable {
 	private String userId1;
 	private String userId2;
 	private String userId3;
+	private int matching;
 	
 	public MatchUser() {
 		super();
 	}
 
-	public MatchUser(String myId, Date insertDate, String userId1, String userId2, String userId3) {
+	public MatchUser(String myId, Date insertDate, String userId1, String userId2, String userId3, int matching) {
 		super();
 		this.myId = myId;
 		this.insertDate = insertDate;
 		this.userId1 = userId1;
 		this.userId2 = userId2;
 		this.userId3 = userId3;
+		this.matching = matching;
 	}
 
 	public String getMyId() {
@@ -63,8 +65,16 @@ public class MatchUser implements Serializable {
 		this.userId3 = userId3;
 	}
 
+	public int getMatching() {
+		return matching;
+	}
+
+	public void setMatching(int matching) {
+		this.matching = matching;
+	}
+
 	@Override
 	public String toString(){
-		return this.myId + "," + this.insertDate + "," + this.userId1 + "," + this.userId2 + "," + this.userId3;
+		return this.myId + "," + this.insertDate + "," + this.userId1 + "," + this.userId2 + "," + this.userId3 + "," + this.matching;
 	}
 }
