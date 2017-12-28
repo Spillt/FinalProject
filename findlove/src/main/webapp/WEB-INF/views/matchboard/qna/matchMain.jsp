@@ -82,10 +82,10 @@
 	    
 	    			<tbody>
 	      				<tr>
-	        				<td>${m.height },${m.weight },${m.style }</td>
+	        				<td>${m.height },${m.bodyform },${m.style }</td>
 	      				</tr>
 	      				<tr>
-	 	       				<td  >${m.religion }</td>
+	 	       				<td  >${m.job},${m.religion }</td>
 	      				</tr>
 	      				<tr>
 	        				<td>평점 : ★★★★★</td>

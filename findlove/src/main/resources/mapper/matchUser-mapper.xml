@@ -37,7 +37,7 @@ where my_id = #{userId}
  </select>
  	<select id="selectMatchUserProfileList" parameterType="MatchUser" resultType="MatchUserProfile">
 	<![CDATA[
-	select user_id, user_nm, rank_gb,blood_type,age,height,weight,style,religion,grade_avg,area,picture_nm from tb_user
+	select user_id, user_nm, rank_gb,blood_type,age,height,bodyform,job,style,religion,grade_avg,area,picture_nm from tb_user
     left join TB_PROFILE using(user_id)
     left join TB_PROFILE_PICTURE using(user_id)
     where TB_PROFILE_PICTURE.THUMNAIL_FL = '1' and (user_id = #{userId1} or user_id = #{userId2} or user_id= #{userId3})

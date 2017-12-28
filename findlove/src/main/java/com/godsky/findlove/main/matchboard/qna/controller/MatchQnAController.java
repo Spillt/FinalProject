@@ -49,9 +49,12 @@ public class MatchQnAController {
 		
 		MatchUser muser = (MatchUser)matchQnAService.selectMyQnA(userId);
 		System.out.println(muser);
-		
-		MatchUser newUser = new MatchUser(userId,null,matchUsers.get(0),matchUsers.get(1),matchUsers.get(2),0);
-		
+		MatchUser newUser = null;
+		if(matchUsers.size() >= 3){
+			newUser = new MatchUser(userId,null,matchUsers.get(0),matchUsers.get(1),matchUsers.get(2),0);
+		}else{
+			newUser = new MatchUser(userId,null,matchUsers.get(0),matchUsers.get(1),null,0);
+		}
 		String matchDate = (String)matchQnAService.selectDate(userId);
 		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyMMdd", Locale.KOREA );
 		Date currentTime = new Date ();
