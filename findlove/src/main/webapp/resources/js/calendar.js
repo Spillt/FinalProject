@@ -845,7 +845,7 @@ function Header(calendar, options) {
 		return e;
 	}
 	
-	
+	//연도 월 표기
 	function updateTitle(html) {
 		element.find('h2')
 			.html(html);
@@ -925,7 +925,7 @@ function EventManager(options, _sources) {
 	
 	for (var i=0; i<_sources.length; i++) {
 		_addEventSource(_sources[i]);
-	}
+	}//입력된 글자 표시 관련
 	
 	
 	
@@ -935,7 +935,7 @@ function EventManager(options, _sources) {
 	
 	function isFetchNeeded(start, end) {
 		return !rangeStart || start < rangeStart || end > rangeEnd;
-	}
+	}//입력된 글자 표시 관련
 	
 	
 	function fetchEvents(start, end) {
@@ -947,25 +947,15 @@ function EventManager(options, _sources) {
 		pendingSourceCnt = len;
 		for (var i=0; i<len; i++) {
 			fetchEventSource(sources[i], fetchID);
-		}
+		}//입력된 글자 표시 관련
 	}
 	
 	
 	function fetchEventSource(source, fetchID) {
 		_fetchEventSource(source, function(events) {
 			if (fetchID == currentFetchID) {
-				if (events) {
-
-					if (options.eventDataTransform) {
-						events = $.map(events, options.eventDataTransform);
-					}
-					if (source.eventDataTransform) {
-						events = $.map(events, source.eventDataTransform);
-					}
-					// TODO: this technique is not ideal for static array event sources.
-					//  For arrays, we'll want to process all events right in the beginning, then never again.
-				
-					for (var i=0; i<events.length; i++) {
+				if (events) {										
+					for (var i=0; i<events.length; i++) {//글자 입력 관련
 						events[i].source = source;
 						normalizeEvent(events[i]);
 					}
@@ -974,7 +964,7 @@ function EventManager(options, _sources) {
 				pendingSourceCnt--;
 				if (!pendingSourceCnt) {
 					reportEvents(cache);
-				}
+				}//글자 표시 관련
 			}
 		});
 	}
@@ -984,20 +974,9 @@ function EventManager(options, _sources) {
 		var i;
 		var fetchers = fc.sourceFetchers;
 		var res;
-		for (i=0; i<fetchers.length; i++) {
-			res = fetchers[i](source, rangeStart, rangeEnd, callback);
-			if (res === true) {
-				// the fetcher is in charge. made its own async request
-				return;
-			}
-			else if (typeof res == 'object') {
-				// the fetcher returned a new source. process it
-				_fetchEventSource(res, callback);
-				return;
-			}
-		}
+		
 		var events = source.events;
-		if (events) {
+		if (events) {//글씨 표시 관련
 			if ($.isFunction(events)) {
 				pushLoading();
 				events(cloneDate(rangeStart), cloneDate(rangeEnd), function(events) {
@@ -1011,60 +990,6 @@ function EventManager(options, _sources) {
 			else {
 				callback();
 			}
-		}else{
-			var url = source.url;
-			if (url) {
-				var success = source.success;
-				var error = source.error;
-				var complete = source.complete;
-
-				// retrieve any outbound GET/POST $.ajax data from the options
-				var customData;
-				if ($.isFunction(source.data)) {
-					// supplied as a function that returns a key/value object
-					customData = source.data();
-				}
-				else {
-					// supplied as a straight key/value object
-					customData = source.data;
-				}
-
-				// use a copy of the custom data so we can modify the parameters
-				// and not affect the passed-in object.
-				var data = $.extend({}, customData || {});
-
-				var startParam = firstDefined(source.startParam, options.startParam);
-				var endParam = firstDefined(source.endParam, options.endParam);
-				if (startParam) {
-					data[startParam] = Math.round(+rangeStart / 1000);
-				}
-				if (endParam) {
-					data[endParam] = Math.round(+rangeEnd / 1000);
-				}
-
-				pushLoading();
-				$.ajax($.extend({}, ajaxDefaults, source, {
-					data: data,
-					success: function(events) {
-						events = events || [];
-						var res = applyAll(success, this, arguments);
-						if ($.isArray(res)) {
-							events = res;
-						}
-						callback(events);
-					},
-					error: function() {
-						applyAll(error, this, arguments);
-						callback();
-					},
-					complete: function() {
-						applyAll(complete, this, arguments);
-						popLoading();
-					}
-				}));
-			}else{
-				callback();
-			}
 		}
 	}
 	
@@ -1074,13 +999,7 @@ function EventManager(options, _sources) {
 	-----------------------------------------------------------------------------*/
 	
 
-	function addEventSource(source) {
-		source = _addEventSource(source);
-		if (source) {
-			pendingSourceCnt++;
-			fetchEventSource(source, currentFetchID); // will eventually call reportEvents
-		}
-	}
+	function addEventSource(source) {}
 	
 	
 	function _addEventSource(source) {
@@ -1095,19 +1014,10 @@ function EventManager(options, _sources) {
 			sources.push(source);
 			return source;
 		}
-	}
+	}//글씨 표시 관련
 	
 
-	function removeEventSource(source) {
-		sources = $.grep(sources, function(src) {
-			return !isSourcesEqual(src, source);
-		});
-		// remove all client events from that source
-		cache = $.grep(cache, function(e) {
-			return !isSourcesEqual(e.source, source);
-		});
-		reportEvents(cache);
-	}
+	function removeEventSource(source) {}
 	
 	
 	
@@ -1115,42 +1025,7 @@ function EventManager(options, _sources) {
 	-----------------------------------------------------------------------------*/
 	
 	
-	function updateEvent(event) { // update an existing event
-		var i, len = cache.length, e,
-			defaultEventEnd = getView().defaultEventEnd, // getView???
-			startDelta = event.start - event._start,
-			endDelta = event.end ?
-				(event.end - (event._end || defaultEventEnd(event))) // event._end would be null if event.end
-				: 0;                                                      // was null and event was just resized
-		for (i=0; i<len; i++) {
-			e = cache[i];
-			if (e._id == event._id && e != event) {
-				e.start = new Date(+e.start + startDelta);
-				if (event.end) {
-					if (e.end) {
-						e.end = new Date(+e.end + endDelta);
-					}else{
-						e.end = new Date(+defaultEventEnd(e) + endDelta);
-					}
-				}else{
-					e.end = null;
-				}
-				e.title = event.title;
-				e.url = event.url;
-				e.allDay = event.allDay;
-				e.className = event.className;
-				e.editable = event.editable;
-				e.color = event.color;
-				e.backgroundColor = event.backgroundColor;
-				e.borderColor = event.borderColor;
-				e.textColor = event.textColor;
-				normalizeEvent(e);
-			}
-		}
-		normalizeEvent(event);
-		reportEvents(cache);
-	}
-	
+	function updateEvent(event) {}	
 	
 	function renderEvent(event, stick) {
 		normalizeEvent(event);
@@ -1162,47 +1037,13 @@ function EventManager(options, _sources) {
 			cache.push(event);
 		}
 		reportEvents(cache);
-	}
+	}//캘린더 글씨 입력관련
 	
 	
-	function removeEvents(filter) {
-		if (!filter) { // remove all
-			cache = [];
-			// clear all array sources
-			for (var i=0; i<sources.length; i++) {
-				if ($.isArray(sources[i].events)) {
-					sources[i].events = [];
-				}
-			}
-		}else{
-			if (!$.isFunction(filter)) { // an event ID
-				var id = filter + '';
-				filter = function(e) {
-					return e._id == id;
-				};
-			}
-			cache = $.grep(cache, filter, true);
-			// remove events from array sources
-			for (var i=0; i<sources.length; i++) {
-				if ($.isArray(sources[i].events)) {
-					sources[i].events = $.grep(sources[i].events, filter, true);
-				}
-			}
-		}
-		reportEvents(cache);
-	}
+	function removeEvents(filter) {}
 	
 	
 	function clientEvents(filter) {
-		if ($.isFunction(filter)) {
-			return $.grep(cache, filter);
-		}
-		else if (filter) { // an event ID
-			filter += '';
-			return $.grep(cache, function(e) {
-				return e._id == filter;
-			});
-		}
 		return cache; // else, return all
 	}
 	
@@ -1210,22 +1051,6 @@ function EventManager(options, _sources) {
 	
 	/* Loading State
 	-----------------------------------------------------------------------------*/
-	
-	
-	function pushLoading() {
-		if (!loadingLevel++) {
-			trigger('loading', null, true, getView());
-		}
-	}
-	
-	
-	function popLoading() {
-		if (!--loadingLevel) {
-			trigger('loading', null, false, getView());
-		}
-	}
-	
-	
 	
 	/* Event Normalization
 	-----------------------------------------------------------------------------*/
@@ -1258,6 +1083,7 @@ function EventManager(options, _sources) {
 			event.className = [];
 		}
 		// TODO: if there is no start date, return false to indicate an invalid event
+		//이벤트 캘린터에 클릭시에 글자 뷰 입력이 표시되는것과 관련이있음
 	}
 	
 	
@@ -1266,32 +1092,9 @@ function EventManager(options, _sources) {
 	------------------------------------------------------------------------------*/
 	
 	
-	function normalizeSource(source) {
-		if (source.className) {
-			// TODO: repeat code, same code for event classNames
-			if (typeof source.className == 'string') {
-				source.className = source.className.split(/\s+/);
-			}
-		}else{
-			source.className = [];
-		}
-		var normalizers = fc.sourceNormalizers;
-		for (var i=0; i<normalizers.length; i++) {
-			normalizers[i](source);
-		}
-	}
-	
-	
-	function isSourcesEqual(source1, source2) {
-		return source1 && source2 && getSourcePrimitive(source1) == getSourcePrimitive(source2);
-	}
-	
-	
-	function getSourcePrimitive(source) {
-		return ((typeof source == 'object') ? (source.events || source.url) : '') || source;
-	}
-
-
+	function normalizeSource(source) {}	
+	function isSourcesEqual(source1, source2) {return null;}	
+	function getSourcePrimitive(source) {return null;}
 }
 
 ;;
@@ -1311,22 +1114,11 @@ fc.formatDates = formatDates;
 -----------------------------------------------------------------------------*/
 
 var dayIDs = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
-	DAY_MS = 86400000,
-	HOUR_MS = 3600000,
-	MINUTE_MS = 60000;
-	
-
-function addYears(d, n, keepTime) {
-	d.setFullYear(d.getFullYear() + n);
-	if (!keepTime) {
-		clearTime(d);
-	}
-	return d;
-}
+	DAY_MS = 86400000;
 
 
 function addMonths(d, n, keepTime) { // prevents day overflow/underflow
-	if (+d) { // prevent infinite looping on invalid dates
+	if (+d) { // 월 이동 관련 왼쪽이랑 오른쪽으로 가는 버튼 안눌림 
 		var m = d.getMonth() + n,
 			check = cloneDate(d);
 		check.setDate(1);
@@ -1343,7 +1135,7 @@ function addMonths(d, n, keepTime) { // prevents day overflow/underflow
 }
 
 
-function addDays(d, n, keepTime) { // deals with daylight savings
+function addDays(d, n, keepTime) { ///캘린더 날짜 표기이거 안하면 11111뜸 다 
 	if (+d) {
 		var dd = d.getDate() + n,
 			check = cloneDate(d);
@@ -1359,22 +1151,11 @@ function addDays(d, n, keepTime) { // deals with daylight savings
 }
 
 
-function fixDate(d, check) { // force d to be on check's YMD, for daylight savings purposes
-	if (+d) { // prevent infinite looping on invalid dates
-		while (d.getDate() != check.getDate()) {
-			d.setTime(+d + (d < check ? 1 : -1) * HOUR_MS);
-		}
-	}
+function fixDate(d, check) {
 }
 
 
-function addMinutes(d, n) {
-	d.setMinutes(d.getMinutes() + n);
-	return d;
-}
-
-
-function clearTime(d) {
+function clearTime(d) {//해당 날짜 표기되는것
 	d.setHours(0);
 	d.setMinutes(0);
 	d.setSeconds(0); 
@@ -3532,7 +3313,7 @@ function AgendaView(element, calendar, viewName) {
 						}
 					}else{
 						rect.isStart = true; // conside rect a "seg" now
-						rect.isEnd = true;   //
+						rect.isEnd = true;   //출석체크 입력구간설정
 						selectionHelper = $(slotSegHtml(
 							{
 								title: '',
