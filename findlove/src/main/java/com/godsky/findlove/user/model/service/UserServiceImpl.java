@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService{
 			session.setAttribute("user_nicknm", vo2.getUser_nicknm());
 			session.setAttribute("konpeito_cnt",vo2.getKonpeito_cnt() );
 		}
-		System.out.println("result :" + result);
+		System.out.println("로그인 체크 service result :" + result);
 		
 		return result;
 		

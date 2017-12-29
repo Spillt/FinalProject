@@ -90,7 +90,7 @@ public class UserController {
 	//회원가입 처리
 	@RequestMapping(value = "signup.do", method=RequestMethod.POST)
 	public String signUp(User user) throws Exception{
-		System.out.println(user);
+		System.out.println("회원가입처리 controller : " +user);
 		userService.signUp(user);
 		return "home";
 	}

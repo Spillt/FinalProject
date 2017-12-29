@@ -19,9 +19,8 @@ public class UserDao {
 
 	// 로그인 체크
 	public boolean loginCheck(User vo) {
-		System.out.println(vo);
 		String name = sqlSession.selectOne("user.loginCheck", vo);
-		System.out.println("name : " + name);
+		System.out.println("로그인 체크 dao name : " + name);
 		return (name == null) ? false : true;
 	}
 
