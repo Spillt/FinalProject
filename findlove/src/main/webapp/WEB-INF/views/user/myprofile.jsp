@@ -69,6 +69,12 @@
 #anotherImage {
 	border: 1px solid;
 }
+
+.fileDrop{
+	width:200px;
+	height:300px;
+	border: 1px dotted blue;
+}
 </style>
 
 </head>
@@ -112,7 +118,9 @@
 					</div>
 					<div class="card-body">
 						<section id="plans">
-							<div class="container">
+							<div class="container">							
+										<input type="hidden" name="user_id"
+											value="${sessionScope.user_id }">
 								<div class="row" style="margin-bottom: 20px;">
 
 									<!-- 사용자 이미지 -->
@@ -128,7 +136,7 @@
 										<!-- 닉네임 출력 -->
 										<div class="credit-body text-center">
 											<h2>${user.user_nicknm }</h2>
-										</div>
+										</div>										
 
 										<!-- 이미지 등록 버튼 -->
 										<div>
@@ -264,12 +272,49 @@
 			$('#mainNav').css('background-color', '#faadad');
 		});
 	</script>
+	<!-- <script>
+		$(document).ready(function() {
+			$(".fileDrop").on("dragenter dragover", function(event) {
+				event.preventDefault();
+			});
+
+			$(".fileDrop").on("drop", function(event) {
+				event.preventDefault();
+				//드래그된 파일 정보
+				var files = event.originalEvent.dateTransfer.files;
+				//첫번째 파일
+				var file = files[0];
+				//콘솔에서 파일정보 확인
+				console.log(file);
+
+				var formData = new FormData();
+
+				formData.append("file", file);
+
+				$.ajax({
+					type : "post",
+					url : "${path}/uploadfiles",
+					data : formData,
+					dataType : "text",
+					processData : false,
+					contentType : false,
+					success : function(data) {
+						alert(data);
+					}
+				});
+			});
+		});
+		
+	</script> -->
+
+
 	<script type="text/javascript">
 		$(function() {
 			$('#btn').click(function(e) {
 				e.preventDefault();
-				$('#image').click();
+				 $('#image').click(); 
 			});
+			
 		});
 
 		var InputImage = (function loadImageFile() {

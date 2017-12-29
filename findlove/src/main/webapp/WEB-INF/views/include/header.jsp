@@ -306,11 +306,11 @@
 			<c:choose>
 				<c:when test="${sessionScope.user_id ne null }">
 					<div class="nav-text">${sessionScope.user_id }님</div>
-					<br>
+					<%-- <br>
 					<div class="nav-text">별사탕 : ${profile.konpetio }</div>
 					<div class="nav-text">포인트 : ${profile.point }</div>
-
-				</c:when>
+ --%>
+				</c:when>				
 				<c:otherwise>
 					<div class="nav-text">로그인하세요</div>
 					<hr class="horiz-divide">
