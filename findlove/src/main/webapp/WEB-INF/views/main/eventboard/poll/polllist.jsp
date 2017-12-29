@@ -75,7 +75,7 @@ td {
 	<div class="event">
 		<ul>
 			<li class="nav-item"><a class="btn btn-primary nav-link js-scroll-trigger"
-				href="attendancelist.do">출석체크</a></li>
+				href="attendancelist.do?userId=${sessionScope.user_id}">출석체크</a></li>
 			<li class="nav-item"><a class="btn btn-primary nav-link js-scroll-trigger"
 				href="polllist.do?userId=${user_id}">설문조사</a></li>
 		</ul>
