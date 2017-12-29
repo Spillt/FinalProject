@@ -9,9 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import org.springframework.web.servlet.ModelAndView;
-
-import com.godsky.findlove.main.profileboard.model.dao.KonpeitoDAO;
 import com.godsky.findlove.main.profileboard.model.service.KonpeitoService;
 import com.godsky.findlove.main.profileboard.model.service.MessageService;
 import com.godsky.findlove.main.profileboard.model.vo.Message;
@@ -31,24 +28,30 @@ public class MessageController {
 	private KonpeitoService konpeitoService;
 	
 	/*ajax로 실행될 메소드*/
-	@RequestMapping("/message/sendMessage.do")
-	public void sendMessage(ModelAndView mv, HttpServletResponse response, @RequestParam("sender")String sender, @RequestParam("reciever")String reciever, @RequestParam("message")String content) {
+	@RequestMapping("/sendMessage.do")
+	public void sendMessage(HttpServletResponse response, @RequestParam("sender")String sender, @RequestParam("reciever")String reciever, @RequestParam("message")String content) {
 		Message message = new Message(sender, reciever, content);
 		System.out.println(message);
 		
-		
+		//별사탕이 10보다 많은지 확인 -> 많으면 1출력, 부족하면 0출력
 		int point = konpeitoService.checkpoint(sender);
+		System.out.println(point);
 		
-		if(point == 1) {
+		if(point == 1) { //별사탕이 10보다 많을 때 
 			int result = messageService.sendMessage(message);
 			
 			try {
-		        response.getWriter().print(result);
+		        response.getWriter().print(result); //메세지성공
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    } 
+		}else { //별사탕이 10보다 작을 떄
+			
+			try {
+		        response.getWriter().print(point); //별사탕부족
 		    } catch (IOException e) {
 		        e.printStackTrace();
 		    } 
 		}
-
 	}
-	
 }

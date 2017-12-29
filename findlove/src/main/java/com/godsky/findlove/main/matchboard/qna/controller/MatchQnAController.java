@@ -85,10 +85,10 @@ public class MatchQnAController {
 			mv.addObject("myQnA", myQnA);
 			System.out.println("오늘 매칭했는가?" + todayMatchUser.getMatching());
 			mv.addObject("today_matching", todayMatchUser.getMatching());//오늘 매칭했는가 확인
-			mv.setViewName("matchboard/qna/matchMain");
+			mv.setViewName("main/matchboard/qna/matchMain");
 			
 		}else{
-			mv.setViewName("matchboard/qna/matchError");
+			mv.setViewName("main/matchboard/qna/matchError");
 		}
 		
 		return mv;
@@ -100,7 +100,7 @@ public class MatchQnAController {
 		ArrayList<MatchingQuestion> mQnA = (ArrayList<MatchingQuestion>)matchQnAService.selectQuestion();
 		
 		mv.addObject("list", mQnA);
-		mv.setViewName("matchboard/qna/matchInsertView");
+		mv.setViewName("main/matchboard/qna/matchInsertView");
 		return mv;
 	}
 	@RequestMapping(value="insertMatchqna.do")
@@ -151,7 +151,7 @@ public class MatchQnAController {
 		for(int i=0; i<myQnA.size();i++){
 			System.out.println(myQnA.get(i).toString());
 		}
-		mv.setViewName("matchboard/qna/myMatchQnAView");
+		mv.setViewName("main/matchboard/qna/myMatchQnAView");
 		return mv;
 	}
 	
@@ -178,7 +178,7 @@ public class MatchQnAController {
 		mv.addObject("matchQnA1", matchQnA.get(0));
 		mv.addObject("matchQnA2", matchQnA.get(1));
 		mv.addObject("matchQnA3", matchQnA.get(2));
-		mv.setViewName("matchboard/qna/matchQnAView");
+		mv.setViewName("main/matchboard/qna/matchQnAView");
 		return mv;
 	}
 

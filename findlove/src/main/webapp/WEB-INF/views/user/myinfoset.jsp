@@ -8,6 +8,9 @@
 <meta charset=UTF-8">
 <title>연애의발견::내정보수정</title>
 
+<!-- Page link -->
+
+<!-- CSS 및 스타일 -->
 <style type="text/css">
 .portfolio-item-inner {
 	line-height: 1.42857143;
@@ -50,12 +53,110 @@
 .masthead {
 	margin-bottom: 20px;
 }
+.container.top {
+			margin-top: 150px;
+		}
 </style>
 
-<script type="text/javascript">
+
+
+</head>
+<body id="page-top">
+	
+	<!-- header -->
+	<c:import url="../include/header.jsp" />
+
+	<!-- title -->
+	<div class="container top">
+		<div class="row">
+			<div class="col-lg-12 text-left">
+				<strong style="font-size: 25pt; color: #faadad;">마이페이지</strong>	
+			</div>
+		</div>
+	</div>	
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-lg-3">
+				<br>
+				<!-- <h1 class="my-4">Shop Name</h1> -->
+				<div class="list-group">
+					<a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item active">나의 정보</a> 
+					<a href="myprofile.do?user_id=${sessionScope.user_id }"	class="list-group-item">나의 프로필</a> 
+					<a href="idealprofile.do?user_id=${sessionScope.user_id }"	class="list-group-item">이상형 프로필</a> 
+					<a href="store.do"	class="list-group-item">스토어</a>
+				</div>
+			</div>
+			<!-- /.col-lg-3 -->
+
+			<div class="col-lg-9">
+				<div class="card card-outline-secondary my-4">
+					<div class="card-header">정보 수정은 아이디와 이름은 변경 불가능 합니다.</div>
+					<div class="card-body">
+					<form action="myinfoset.do" class="form-contaioner" name="updatemyinfo" method="post">
+						<input type="hidden" name="user_id" value="${sessionScope.user_id }"/>
+						<table id="tableData" class="table table-bordered">
+							
+								<tr>
+									<td>아이디</td>
+									<td>${sessionScope.user_id }</td>
+								</tr>
+								<tr>
+									<td>이름</td>
+									<td>${sessionScope.user_nm }</td>
+								</tr>
+								<tr>
+									<td>닉네임</td>
+									<td><input type="text" name="user_nicknm" id="nickname" value="${user.user_nicknm }"/></td>
+								</tr>
+								<tr>
+									<td>비밀번호</td>
+									<td><input type="password" name="user_pwd" id="pwd1" /></td>
+								</tr>
+								<tr>
+									<td>비밀번호 확인</td>
+									<td><input type="password" name="pwd2" id="pwd2"/></td>
+								</tr>
+								<tr>
+									<td>이메일</td>
+									<td><input type="text" name="email" id="email" value="${user.email }"/></td>
+								</tr>
+								<tr>
+									<td>휴대폰 번호</td>
+									<td><input type="text" name="phone" id="phone" value="${user.phone }"/></td>
+								</tr>
+							
+						</table>
+						</form>
+						<a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick="checkfield()">수정하기</a> <a
+							class="btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick="history.go(-1)">취소</a>
+					</div>
+					
+				</div>
+				<!-- /.card -->
+
+			</div>
+			<!-- /.col-lg-9 -->
+
+		</div>
+
+	</div>
+	<!-- /.container -->
+
+	
+	<hr>
+	
+	<!-- footer -->
+	<c:import url="../include/footer.jsp" />
+	
+	<!-- 자바스크립트 -->
+	<script type="text/javascript">
 						function checkfield() {
 
-							var form = document.myinfoset;
+							var form = document.updatemyinfo;
 							var pattern1 = /[0-9]/; //숫자
 							var pattern2 = /[a-zA-Z]/; //영문
 							var pattern3 = /[~!@#$%^&*()_+|<>?:{}]/; //특수문자
@@ -108,135 +209,10 @@
 							alert("회원 정보가 수정되었습니다.");
 						}
 					</script>
-
-</head>
-<body id="page-top">
-	<c:import url="../include/header.jsp" />
-
-	<!-- Header -->
-	<header class="masthead">
-		<div class="container">
-			<div class="intro-text">
-				<div class="intro-heading">&nbsp;</div>
-				<!-- <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger"
-					href="#services">시작하기</a> -->
-			</div>
-		</div>
-	</header>
-
-	<!-- Portfolio Grid -->
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 text-center">
-				<!-- <img class="img-fluid" src="/findlove/resources/img/ad/ad-banner.jpg"> -->
-			</div>
-		</div>
-	</div>
-
-	<br>
-	<h1 align="center">마이페이지</h1>
-	<br>
-
-	<!-- Page Content -->
-	<div class="container">
-
-		<div class="row">
-
-			<div class="col-lg-3">
-				<br>
-				<!-- <h1 class="my-4">Shop Name</h1> -->
-				<div class="list-group">
-					<a href="myinfo.do" class="list-group-item active">나의 정보</a> 
-					<a href="myprofile.do"	class="list-group-item">나의 프로필 설정</a> 
-					<a href="idealprofile.do"	class="list-group-item">이상형 프로필 설정</a> 
-					<a href="store.do"	class="list-group-item">스토어</a>
-				</div>
-			</div>
-			<!-- /.col-lg-3 -->
-
-			<div class="col-lg-9">
-				<div class="card card-outline-secondary my-4">
-					<div class="card-header">정보 수정은 아이디와 이름은 변경 불가능 합니다.</div>
-					<div class="card-body">
-					<form class="form-contaioner" name="myinfoset" method="post">
-						<table id="tableData" class="table table-bordered">
-							
-								<tr>
-									<td>아이디</td>
-									<td>${sessionScope.user_id }</td>
-								</tr>
-								<tr>
-									<td>이름</td>
-									<td>${sessionScope.user_nm }</td>
-								</tr>
-								<tr>
-									<td>닉네임</td>
-									<td><input type="text" name="user_nicknm" id="nickname" /></td>
-								</tr>
-								<tr>
-									<td>비밀번호</td>
-									<td><input type="password" name="pwd1" id="pwd1" /></td>
-								</tr>
-								<tr>
-									<td>비밀번호 확인</td>
-									<td><input type="password" name="pwd2" id="pwd2"/></td>
-								</tr>
-								<tr>
-									<td>이메일</td>
-									<td><input type="text" name="email" id="email"/></td>
-								</tr>
-								<tr>
-									<td>휴대폰 번호</td>
-									<td><input type="text" name="phone" id="phone"/></td>
-								</tr>
-							
-						</table>
-						</form>
-						<a class="btn btn-primary" onclick="checkfield()">수정하기</a> <a
-							class="btn btn-primary" onclick="history.go(-1)">취소</a>
-					</div>
-					
-				</div>
-				<!-- /.card -->
-
-			</div>
-			<!-- /.col-lg-9 -->
-
-		</div>
-
-	</div>
-	<!-- /.container -->
-
-	<!-- Clients -->
-	<section class="py-5">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/envato.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/designmodo.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/themeforest.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/creative-market.jpg" alt="">
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
-	<hr>
-
-	<c:import url="../include/footer.jsp" />
+					<script type="text/javascript">$(function() {
+         $('#mainNav').css('background-color', '#faadad');
+      });
+	</script>
 
 
 </body>

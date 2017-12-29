@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.godsky.findlove.user.model.vo.Profile;
+import com.godsky.findlove.common.model.vo.Profile;
 
 @Repository("profileboardDao")
 public class ProfileboardDao {

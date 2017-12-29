@@ -11,7 +11,7 @@ import com.godsky.findlove.main.matchboard.qna.model.vo.MatchQnA;
 import com.godsky.findlove.main.matchboard.qna.model.vo.MatchUser;
 import com.godsky.findlove.main.matchboard.qna.model.vo.MatchUserProfile;
 import com.godsky.findlove.main.matchboard.qna.model.vo.MatchingQuestion;
-import com.godsky.findlove.user.model.vo.Profile;
+import com.godsky.findlove.common.model.vo.Profile;
 import com.godsky.findlove.user.model.vo.User;
 
 @Repository("MatchQnADao")

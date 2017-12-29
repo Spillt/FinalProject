@@ -8,6 +8,9 @@
 <meta charset=UTF-8">
 <title>연애의발견::마이페이지</title>
 
+<!-- Page link -->
+
+<!-- CSS 및 스타일 -->
 <style type="text/css">
 .portfolio-item-inner {
 	line-height: 1.42857143;
@@ -51,31 +54,38 @@
 	margin-bottom: 20px;
 }
 
-.table {
-	width: 50%;
+.container.top {
+	margin-top: 150px;
 }
 
-.container.top {
-	margin-top: 100px;
+#image {
+	display: none;
+}
+
+#imagePreview {
+	border: 1px solid;
+}
+
+#anotherImage {
+	border: 1px solid;
 }
 </style>
 
 </head>
 <body id="page-top">
+	<%-- <c:set var="p" value="${ profile }"></c:set> --%>
+
+	<!-- header -->
 	<c:import url="../include/header.jsp" />
 
-	<!-- Portfolio Grid -->
+	<!-- title -->
 	<div class="container top">
 		<div class="row">
-			<div class="col-lg-12 text-center">
-				<!-- <img class="img-fluid" src="/findlove/resources/img/ad/ad-banner.jpg"> -->
+			<div class="col-lg-12 text-left">
+				<strong style="font-size: 25pt; color: #faadad;">마이페이지</strong>
 			</div>
 		</div>
 	</div>
-
-	<br>
-	<h1 align="center">마이페이지</h1>
-	<br>
 
 	<!-- Page Content -->
 	<div class="container">
@@ -84,166 +94,215 @@
 				<br>
 				<!-- <h1 class="my-4">Shop Name</h1> -->
 				<div class="list-group">
-					<a href="myinfo.do" class="list-group-item">나의 정보</a> <a
-						href="myprofile.do" class="list-group-item active">나의 프로필 설정</a> <a
-						href="idealprofile.do" class="list-group-item">이상형 프로필 설정</a> <a
-						href="store.do" class="list-group-item">스토어</a>
+					<a href="myinfo.do?user_id=${sessionScope.user_id }"
+						class="list-group-item">나의 정보</a> <a
+						href="myprofile.do?user_id=${sessionScope.user_id }"
+						class="list-group-item active">나의 프로필</a> <a
+						href="idealprofile.do?user_id=${sessionScope.user_id }"
+						class="list-group-item">이상형 프로필</a> <a href="store.do"
+						class="list-group-item">스토어</a>
 				</div>
 			</div>
 
 
 			<div class="col-lg-9">
 				<div class="card card-outline-secondary my-4">
-					<div class="card-header"></div>
-					<div class="card-body">
-						<form action="myinfo" name="myinfo" method="post">
-
-							<!-- 사용자 이미지 -->
-							<table class="table table-bordered">
-								<tr>
-									<td>
-										<div class="image1">
-										<a target="_blank" href="img_fjords.jpg"> <img
-										src="/findlove/resources/img/team/1.jpg" alt="" width="180"
-										height="180">
-										</a>
-										<div class="desc"></div>
-										</div>
-									</td>
-									<td>
-										<!-- 이미지 업로드 -->
-										<input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'View_area')">
-										<div id='View_area' style='position:relative; width: 180px; height: 180px; color: black; 
-										border: 1px solid black; dispaly: inline; '></div>
-									</td>
-								</tr>
-							</table>
-
-						</form>
-						
-					<script type="text/javascript">
-					function previewImage(targetObj, View_area) {
-						var preview = document.getElementById(View_area); //div id
-						var ua = window.navigator.userAgent;
-
-					  //ie일때(IE8 이하에서만 작동)
-						if (ua.indexOf("MSIE") > -1) {
-							targetObj.select();
-							try {
-								var src = document.selection.createRange().text; // get file full path(IE9, IE10에서 사용 불가)
-								var ie_preview_error = document.getElementById("ie_preview_error_" + View_area);
-
-
-								if (ie_preview_error) {
-									preview.removeChild(ie_preview_error); //error가 있으면 delete
-								}
-
-								var img = document.getElementById(View_area); //이미지가 뿌려질 곳
-
-								//이미지 로딩, sizingMethod는 div에 맞춰서 사이즈를 자동조절 하는 역할
-								img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+src+"', sizingMethod='scale')";
-							} catch (e) {
-								if (!document.getElementById("ie_preview_error_" + View_area)) {
-									var info = document.createElement("<p>");
-									info.id = "ie_preview_error_" + View_area;
-									info.innerHTML = e.name;
-									preview.insertBefore(info, null);
-								}
-							}
-					  //ie가 아닐때(크롬, 사파리, FF)
-						} else {
-							var files = targetObj.files;
-							for ( var i = 0; i < files.length; i++) {
-								var file = files[i];
-								var imageType = /image.*/; //이미지 파일일경우만.. 뿌려준다.
-								if (!file.type.match(imageType))
-									continue;
-								var prevImg = document.getElementById("prev_" + View_area); //이전에 미리보기가 있다면 삭제
-								if (prevImg) {
-									preview.removeChild(prevImg);
-								}
-								var img = document.createElement("img"); 
-								img.id = "prev_" + View_area;
-								img.classList.add("obj");
-								img.file = file;
-								img.style.width = '180px'; 
-								img.style.height = '180px';
-								preview.appendChild(img);
-								if (window.FileReader) { // FireFox, Chrome, Opera 확인.
-									var reader = new FileReader();
-									reader.onloadend = (function(aImg) {
-										return function(e) {
-											aImg.src = e.target.result;
-										};
-									})(img);
-									reader.readAsDataURL(file);
-								} else { // safari is not supported FileReader
-									//alert('not supported FileReader');
-									if (!document.getElementById("sfr_preview_error_"
-											+ View_area)) {
-										var info = document.createElement("p");
-										info.id = "sfr_preview_error_" + View_area;
-										info.innerHTML = "not supported FileReader";
-										preview.insertBefore(info, null);
-									}
-								}
-							}
-						}
-					}
-					
-					</script>
-
+					<div class="card-header">
+						<strong>${user.user_nicknm }</strong>님의 프로필입니다.
 					</div>
-					<hr>
-
 					<div class="card-body">
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th scope="cols">기본프로필</th>
-									<th scope="cols"></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="row">실명</th>
-									<td>내용.</td>
-								</tr>
-								<tr>
-									<th scope="row">닉네임</th>
-									<td>내용.</td>
-								</tr>
-								<tr>
-									<th scope="row">성별</th>
-									<td>내용.</td>
-								</tr>
-								<tr>
-									<th scope="row">직업/직장</th>
-									<td>내용.</td>
-								</tr>
-								<tr>
-									<th scope="row">휴대폰번호</th>
-									<td>내용.</td>
-								</tr>
-							</tbody>
+						<section id="plans">
+							<div class="container">
+								<div class="row" style="margin-bottom: 20px;">
 
-						</table>
+									<!-- 사용자 이미지 -->
+									<div class="col-md-3.5 text-center" style="padding-left: 15px;">
+										<div class="panel panel-danger panel-pricing">
+											<div id="imagePreview" style="width: 220px; height: 220px;"></div>
+										</div>
+									</div>
 
 
+									<div class="col-md-2.5 text-center"
+										style="padding-left: 0px; padding-right: 0px;">
+										<!-- 닉네임 출력 -->
+										<div class="credit-body text-center">
+											<h2>${user.user_nicknm }</h2>
+										</div>
 
-						<a class="button" onclick="checkfield()">Register</a> <a
-							class="button" onclick="">Cancel</a>
-						</form>
+										<!-- 이미지 등록 버튼 -->
+										<div>
+											<button type="button" id="btn" class="btn img-rounded"
+												style="border: 10px;">대표 사진 등록</button>
+											<input id="image" name="groupimg" type="file"
+												onchange="InputImage();">
+										</div>
+										<!-- 추가 이미지 -->
+										<div class="panel panel-danger panel-pricing">
+											<div id="anotherImage"
+												style="width: 120px; height: 120px; margin-top: 18px; margin-left: 10px; margin-right: 10px;">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2.5 text-center" style="padding-left: 0px;">
+										<div class="panel panel-danger panel-pricing">
+											<div id="anotherImage"
+												style="width: 120px; height: 120px; margin-top: 100px; margin-left: 0px; margin-right: 10px;">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2.5 text-center" style="padding-left: 0px;">
+										<div class="panel panel-danger panel-pricing">
+											<div id="anotherImage"
+												style="width: 120px; height: 120px; margin-top: 100px; margin-left: 0px;">
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-6 mb-6">
+										<div class="card h-80">
+											<div class="card-header">
+												<strong> 기본 프로필</strong><br> <font size=2>상대에게
+													나를 표현하는 기본 프로필 정보입니다.</font>
+											</div>
+											<div class="card-body">
+												<table class="table">
+													<tr>
+														<th>실명</th>
+														<td>${user.user_nm }</td>
+													</tr>
+													<tr>
+														<th>닉네임</th>
+														<td>${user.user_nicknm }</td>
+													</tr>
+													<tr>
+														<th>성별</th>
+														<td>${profile.gender }</td>
+													</tr>
+													<tr>
+														<th>혈액형</th>
+														<td>${profile.blood_type }</td>
+													</tr>
+													<tr>
+														<th>직업/직장</th>
+														<td>${profile.job }</td>
+													</tr>
+
+												</table>
+											</div>
+										</div>
+									</div>
+									<!-- /.col-md-4 -->
+									<div class="col-md-6 mb-6">
+										<div class="card h-80">
+											<div class="card-header">
+												<strong>매칭 프로필</strong><br> <font size=2>매칭에 필요한
+													내 정보입니다.</font>
+											</div>
+											<div class="card-body">
+
+												<table class="table">
+													<tr>
+														<th>나이</th>
+														<td>${profile.age }</td>
+													</tr>
+													<tr>
+														<th>지역</th>
+														<td>${profile.area }</td>
+													</tr>
+													<tr>
+														<th>스타일</th>
+														<td>${profile.style}</td>
+													</tr>
+													<tr>
+														<th>키/체형</th>
+														<td>${ profile.height }cm/${profile.bodyform }</td>
+													</tr>
+													<tr>
+														<th>종교</th>
+														<td>${ profile.religion }</td>
+													</tr>
+													<tr>
+														<th>음주여부</th>
+														<td>${ profile.drinking }</td>
+													</tr>
+													<tr>
+														<th>흡연여부</th>
+														<td>${ profile.smoking }</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+								<a class="btn btn-primary"
+									style="color: #fff; margin-bottom: 20px;"
+									href='myprofilesetview.do?user_id=${user.user_id }'>수정하기</a> <a
+									class="btn btn-primary"
+									style="color: #fff; margin-bottom: 20px;"
+									onclick="history.go(-1)">취소</a>
+							</div>
+						</section>
 					</div>
 				</div>
 			</div>
 		</div>
-
 	</div>
+
+
+
+
+	<!-- footer -->
+	<hr>
+	<c:import url="../include/footer.jsp" />
+
+	<!-- 자바스크립트 -->
 	<script type="text/javascript">
 		$(function() {
 			$('#mainNav').css('background-color', '#faadad');
 		});
+	</script>
+	<script type="text/javascript">
+		$(function() {
+			$('#btn').click(function(e) {
+				e.preventDefault();
+				$('#image').click();
+			});
+		});
+
+		var InputImage = (function loadImageFile() {
+			if (window.FileReader) {
+				var ImagePre;
+				var ImgReader = new window.FileReader();
+				var fileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png|image\/x\-xwindowdump|image\/x\-portable\-bitmap)$/i;
+				ImgReader.onload = function(Event) {
+					if (!ImagePre) {
+						var newPreview = document
+								.getElementById("imagePreview");
+						ImagePre = new Image();
+						ImagePre.style.width = "100%";
+						ImagePre.style.height = "100%";
+						newPreview.appendChild(ImagePre);
+					}
+					ImagePre.src = Event.target.result;
+				};
+
+				return function() {
+					var img = document.getElementById("image").files;
+
+					if (!fileType.test(img[0].type)) {
+						alert("이미지 파일을 업로드 하세요");
+						return;
+					}
+					ImgReader.readAsDataURL(img[0]);
+				}
+			}
+			document.getElementById("imagePreview").src = document
+					.getElementById("image").value;
+
+		})();
 	</script>
 </body>
 </html>

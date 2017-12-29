@@ -81,7 +81,7 @@ public class MailController {
             String password = String.valueOf(ran);
             System.out.println("ran : " + ran);
             
-            userService.myInfoSet(user.getUser_id(), "password", password); // 해당 유저의 DB정보 변경
+            userService.myInfoSet(user.getUser_id(), "user_pwd", password); // 해당 유저의 DB정보 변경
  
             String subject = "임시 비밀번호 발급 안내 입니다.";
             StringBuilder sb = new StringBuilder();

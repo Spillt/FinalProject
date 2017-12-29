@@ -21,11 +21,11 @@
 		<result property="delete_dt" column="Delete_DT"/>
 	</resultMap>
 	
+	<!-- 회원 등록 -->
 	<insert id ="insertUser" parameterType = "User">
 		INSERT INTO TB_USER(USER_ID, USER_PWD, USER_NM, USER_NICKNM, EMAIL, PHONE)
 		VALUES (#{user_id}, #{user_pwd}, #{user_nm}, #{user_nicknm}, #{email}, #{phone})
 	</insert>
-	
 	
 	<select id="loginCheck" resultType="String">
 	<!-- <select id="loginCheck" resultType="integer"> -->
@@ -39,11 +39,20 @@
 	]]>
 	</select>
 	
+	<!-- 내정보 보기 -->
+	<select id="myinfo" resultType="User">
+	<![CDATA[
+	SELECT *
+	From tb_user
+	WHERE User_ID = #{user_id}
+	]]>
+	</select>
 	
 	<!-- <select id="totalAccount" resultType="integer">
 		SELECT Count(*) from tb_user
 	</select> -->
 	
+	<!-- 로그인 정보 보기 -->
 	<select id="viewMember" resultType="com.godsky.findlove.user.model.vo.User">
 	SELECT
 		User_NM AS user_nm,
@@ -61,12 +70,64 @@
 	WHERE User_ID = #{user_id}	
 	</select>
 	
+	<!-- 이메일로 계정 찾기 -->
 	<select id="findAccount" resultType="User" parameterType="string">
+	
 		<![CDATA[
 			select *
 			from tb_user
 			where email = #{ email }
 		]]>
+	</select>
+	
+	<!-- 내정보 수정 -->
+	<update id="myinfoset" parameterType="User">
+	UPDATE TB_USER
+	SET
+		USER_NICKNM = #{user_nicknm},
+		USER_PWD = #{user_pwd},
+		EMAIL = #{email},
+		PHONE = #{phone}
+	WHERE
+		USER_ID = #{user_id} 
+	
+	</update>
+	
+	<!-- 탈퇴 -->
+	<delete id="removeUserById" parameterType="string">
+	delete from tb_user
+	where User_ID = #{user_id}
+	</delete>
+	
+	<insert id="insertSession" parameterType = "hashmap">
+	<![CDATA[
+	insert into tb_session_info values(#{session_key},#{user_id})
+	]]>
+	</insert>
+	
+	<delete id="deleteSession" parameterType="string">
+	<![CDATA[
+	delete from tb_session_info where session_key = #{session_key}
+	]]>
+	</delete>
+	
+	
+	<select id="checkSession" parameterType="string" resultType="int">
+	<![CDATA[
+		select count(*) from tb_session_info where session_key = #{session_key}
+	]]>
+	</select>
+	
+	<select id="loginCount" resultType="int">
+	<![CDATA[
+		select count(*) from tb_session_info
+	]]>
+	</select>
+	
+	<select id="userList" resultType="String">
+	<![CDATA[
+		select user_id from tb_session_info
+	]]>
 	</select>
 	
 </mapper>

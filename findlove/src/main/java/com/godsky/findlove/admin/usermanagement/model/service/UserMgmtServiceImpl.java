@@ -1,12 +1,18 @@
 package com.godsky.findlove.admin.usermanagement.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.godsky.findlove.admin.usermanagement.model.dao.UserMgmtDao;
-import com.godsky.findlove.admin.usermanagement.model.vo.User;
+import com.godsky.findlove.admin.usermanagement.model.vo.UserBasic;
+import com.godsky.findlove.admin.usermanagement.model.vo.UserDetail;
+import com.godsky.findlove.admin.usermanagement.model.vo.UserMgmt;
+import com.godsky.findlove.common.model.vo.Profile;
+import com.godsky.findlove.common.model.vo.Report;
+import com.godsky.findlove.common.model.vo.User;
 
 @Service("userMgmtService")
 public class UserMgmtServiceImpl implements UserMgmtService {
@@ -15,28 +21,60 @@ public class UserMgmtServiceImpl implements UserMgmtService {
 	UserMgmtDao userMgmtDao;
 	
 	@Override
-	public ArrayList<User> getUserList() {
-		return userMgmtDao.getUserList();
+	public int getUserAllCnt() {
+		return userMgmtDao.getUserAllCnt();
 	}
 	@Override
-	public User getUserDetail(User user) {
-		return userMgmtDao.getUserDetail();
+	public List<UserBasic> getUserList(int startIdx, int lastIdx) {
+		return userMgmtDao.getUserList(startIdx, lastIdx);
 	}
 	@Override
-	public ArrayList<User> getSignupUserList() {
-		return userMgmtDao.getSignupUserList();
+	public UserDetail getUserDetail(String userId) {
+		return userMgmtDao.getUserDetail(userId);
 	}
 	@Override
-	public int admitSignupUser(User user) {
-		return userMgmtDao.admitSignupUser();
+	public Profile getUserProfile(String userId) {
+		return userMgmtDao.getUserProfile(userId);
 	}
 	@Override
-	public ArrayList<User> getReportUserList() {
-		return userMgmtDao.getReportUserList();
+	public List<String> getUserPictureList(String userId) {
+		return userMgmtDao.getUserPictureList(userId);
+	}
+	
+	@Override
+	public int getWaitCnt() {
+		return userMgmtDao.getWaitCnt();
 	}
 	@Override
-	public int suspendUser(User user) {
-		return userMgmtDao.suspendUser();
+	public List<UserBasic> getSignupWaitList() {
+		return userMgmtDao.getSignupWaitList();
 	}
+	
+	@Override
+	public int admitSignupUser(String userId) {
+		return userMgmtDao.admitSignupUser(userId);
+	}
+	
+	@Override
+	public int getReportCnt() {
+		return userMgmtDao.getReportCnt();
+	}
+	@Override
+	public List<Report> getReportList() {
+		return userMgmtDao.getReportList();
+	}
+	@Override
+	public int completeReport(int reportNo) {
+		return userMgmtDao.updateReportState(reportNo, true);
+	}
+	@Override
+	public int suspendUser(int reportNo) {
+		return userMgmtDao.suspendUser(reportNo);
+	}
+	@Override
+	public int holdReport(int reportNo) {
+		return userMgmtDao.updateReportState(reportNo, false);
+	}
+	
 	
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="statisticMgmt">
+
+	<select id="getGenderRatio" resultType="StatisticResult">
+		<![CDATA[
+			SELECT DECODE(gender, 'M', '남자', '여자') AS "key",
+					COUNT(GENDER) AS "resultCnt",
+					ROUND((COUNT(GENDER)/(SELECT COUNT(*) FROM TB_PROFILE)),2)*100 AS "resultPct"
+			FROM TB_PROFILE
+			GROUP BY gender
+		]]>
+	</select>
+	
+	<select id="getAgeRatio" resultType="StatisticResult">
+		<![CDATA[
+			SELECT SUBSTR(AGE,0,1) || '0대' AS "key", COUNT(AGE) "resultCnt", ROUND((COUNT(SUBSTR(AGE,0,1))/(SELECT COUNT(*) FROM TB_PROFILE)),2)*100 AS "resultPct"
+			FROM TB_PROFILE
+			WHERE target_GB = '0'
+			GROUP BY SUBSTR(AGE,0,1)
+			ORDER BY 1
+		]]>
+	</select>
+</mapper>

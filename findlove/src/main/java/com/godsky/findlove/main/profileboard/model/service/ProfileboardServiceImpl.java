@@ -15,18 +15,25 @@ public class ProfileboardServiceImpl implements ProfileboardService{
     private ProfileDAO profileDAO;
 
 	@Override
-	public int countProfileList(String keyword) throws Exception {
-		return profileDAO.countProfileList(keyword);
+	public int countProfileList(String searchOption, String keyword) throws Exception {
+		return profileDAO.countProfileList(searchOption, keyword);
 	}
 	
 	@Override
-	public List<Profileboard> selectProfileList(int start, int end, String keyword) throws Exception {
-		return profileDAO.selectProfileList(start, end, keyword);
+	public List<Profileboard> selectProfileList(int start, int end, String searchOption, String keyword) throws Exception {
+		return profileDAO.selectProfileList(start, end, searchOption, keyword);
 	}
 
 	@Override
 	public Profileboard selectProfileDetail(String user_nicknm) throws Exception {
 		return profileDAO.selectProfileDetail(user_nicknm);
 	}
+
+	@Override
+	public List<String> selectProfileImage(String user_nicknm) throws Exception {
+		return profileDAO.selectProfileImage(user_nicknm);
+	}
+
+	
 	
 }

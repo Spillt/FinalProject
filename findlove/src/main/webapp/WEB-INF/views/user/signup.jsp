@@ -1,14 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!Doctype html>
+<html>
 <head>
 <meta charset="UTF-8">
 	<title>연애의발견::회원가입</title>
+	
+	<!-- page link -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/findlove/resources/css/sign.css">
 	
-	<script type="text/javascript">
+	<!-- CSS/STYLE -->
+
+
+</head>
+
+<body>
+<div class="testbox"> 
+
+
+
+  <h1>Registration</h1>
+
+  <form action="signup.do" name="signup" method="post">
+ 
+  <label id="icon" for="name"><i class="icon-user"></i></label>
+  <input type="text" name="user_id" id="id" placeholder="ID" style="width:130px;"required/>
+  <a class="confirmbutton" onclick="idCheck()" style="width: 60px;">confirm</a>
+  <!-- <button id="id" name="id" onclick="idCheck()"></button> -->
+  <hr>
+  
+  <label id="icon" for="name"><i class="icon-shield"></i></label>
+  <input type="password" name="user_pwd" id="pwd1" placeholder="Password" required/>
+  
+  <label id="icon" for="name"><i class="icon-shield"></i></label>
+  <input type="password" name="pwd2" id="pwd2" placeholder="Password Confirm" required/>
+  
+  <label id="icon" for="name"><i class="icon-user"></i></label>
+  <input type="text" name="user_nm" id="name" placeholder="Name" required/>
+  
+  <label id="icon" for="name"><i class="icon-user"></i></label>  
+  <input type="text" name="user_nicknm" id="nickname" placeholder="NickName" style="width:130px;" required/>
+  <a class="confirmbutton" onclick="idCheck()" style="width: 60px;">confirm</a>
+  
+  <label id="icon" for="name"><i class="icon-envelope "></i></label>
+  <input type="text" name="email" id="email" placeholder="Email" required/>
+  
+  <label id="icon" for="name"><i class="icon-phone "></i></label>
+  <input type="text" name="phone" id="phone" placeholder="Phone" required/>
+  <hr>  
+   
+	<a class ="button" onclick="checkfield()">Register</a>
+   <a class="button" onclick="history.go(-1)">Cancel</a>
+  </form>
+</div>
+</body>
+
+<!-- 자바스크립트 -->
+
+<!-- 공란 체크 -->
+<script type="text/javascript">
 	function checkfield(){
 		
 		var form = document.signup;
@@ -85,47 +138,6 @@
 	}	
 	
 	</script>
-	
-
-</head>
-
-<body>
-<div class="testbox"> 
-  <h1>Registration</h1>
-
-  <form action="signup.do" name="signup" method="post">
- 
-  <label id="icon" for="name"><i class="icon-user"></i></label>
-  <input type="id" name="user_id" id="id" placeholder="ID" required/>
-  <a class="confirmbutton" onclick="idCheck()" width="60px;" style="
-    width: 60px;">confirm</a>
-  <!-- <button id="id" name="id" onclick="idCheck()"></button> -->
-  <hr>
-  
-  <label id="icon" for="name"><i class="icon-shield"></i></label>
-  <input type="password" name="user_pwd" id="pwd1" placeholder="Password" required/>
-  
-  <label id="icon" for="name"><i class="icon-shield"></i></label>
-  <input type="password" name="pwd2" id="pwd2" placeholder="Password Confirm" required/>
-  
-  <label id="icon" for="name"><i class="icon-user"></i></label>
-  <input type="text" name="user_nm" id="name" placeholder="Name" required/>
-  
-  <label id="icon" for="name"><i class="icon-user"></i></label>
-  <input type="text" name="user_nicknm" id="nickname" placeholder="NickName" required/>
-  
-  <label id="icon" for="name"><i class="icon-envelope "></i></label>
-  <input type="text" name="email" id="email" placeholder="Email" required/>
-  
-  <label id="icon" for="name"><i class="icon-envelope "></i></label>
-  <input type="text" name="phone" id="phone" placeholder="Phone" required/>
-  <hr>  
-   
-	<a class ="button" onclick="checkfield()">Register</a>
-   <a class="button" onclick="history.go(-1)">Cancel</a>
-  </form>
-</div>
-</body>
 
 <script>
 /* function idCheck(){

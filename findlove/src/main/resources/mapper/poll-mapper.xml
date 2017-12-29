@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poll">
+
+	<resultMap id="resultPoll" type="Poll">
+		<id property="pollNo" column="Poll_NO" />
+		<result property="userId" column="USER_ID" />
+		<result property="pollTitle" column="Poll_Title" />
+		<result property="pollST" column="Poll_ST" />
+		<result property="SDT" column="Start_DT" />
+		<result property="EDT" column="End_DT" />
+		<result property="answer1" column="Answer1" />
+		<result property="answer2" column="Answer2" />
+		<result property="answer3" column="Answer3" />
+		<result property="answer" column="Answer" />
+	</resultMap>
+
+	<select id="listAll" resultType="Poll" resultMap="resultPoll">
+		<![CDATA[
+			SELECT POLL_NO,POLL_TITLE,POLL_ST,START_DT,END_DT,ANSWER1,ANSWER2,ANSWER3
+			FROM TB_POLL
+          	ORDER BY Poll_NO DESC, Start_DT DESC
+			
+		]]>
+	</select>
+	<select id="mylist" resultType="Poll" parameterType="String"
+		resultMap="resultPoll">
+		<![CDATA[
+			SELECT USER_ID,POLL_NO,POLL_TITLE,POLL_ST,START_DT,END_DT,ANSWER1,ANSWER2,ANSWER3
+			FROM TB_POLL
+     		join TB_POLL_ANSWER USING(POLL_NO)
+   			WHERE user_id=#{userId}
+			ORDER BY Poll_NO DESC, Start_DT DESC
+			
+		]]>
+	</select>
+	<select id="detail" parameterType="int" resultType="Poll"
+		resultMap="resultPoll">
+		SELECT
+		POLL_NO,POLL_TITLE,POLL_ST,START_DT,END_DT,ANSWER1,ANSWER2,ANSWER3
+		FROM TB_POLL
+		WHERE POLL_NO = #{pollNo}
+	</select>
+	
+	<select id="result" parameterType="int" resultType="PollResult">
+		SELECT ANSWER, COUNT(*)AS "cnt"
+		FROM TB_POLL_ANSWER
+		WHERE POLL_NO = #{pollNo}
+		GROUP BY ANSWER
+	</select>
+	
+	<insert id="answer" parameterType="PollAnswer">
+		INSERT INTO TB_POLL_ANSWER(USER_ID, Poll_NO, Answer)
+		VALUES(#{user_id}, #{poll_no}, #{answer})
+	</insert>
+
+</mapper>
