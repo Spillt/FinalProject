@@ -15,6 +15,7 @@
 		<typeAlias type="com.godsky.findlove.main.eventboard.poll.model.vo.Poll" alias="Poll" />
 		<typeAlias type="com.godsky.findlove.main.eventboard.poll.model.vo.PollAnswer" alias="PollAnswer" />
 		<typeAlias type="com.godsky.findlove.main.eventboard.poll.model.vo.PollResult" alias="PollResult" />
+		<typeAlias type="com.godsky.findlove.main.eventboard.attendance.model.vo.Attendance" alias="Attendance" />
 	</typeAliases>
 	
 	<!-- 사용할 매퍼 파일 등록 : 필수 -->
@@ -28,7 +29,8 @@
 	 	<mapper resource="mapper/konpeito-mapper.xml" />
 	 	<mapper resource="mapper/notice-mapper.xml" />
 	 	<mapper resource="mapper/user-mgmt-mapper.xml" />
-	 	<mapper resource="mapper/poll-mapper.xml" />		
+	 	<mapper resource="mapper/poll-mapper.xml" />
+	 	<mapper resource="mapper/attendance-mapper.xml" />			
 	 		
 	</mappers>
 </configuration>
