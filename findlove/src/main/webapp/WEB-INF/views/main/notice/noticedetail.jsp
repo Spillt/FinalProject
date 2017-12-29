@@ -1,14 +1,13 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>noticeDetail</title>
+<title>연애의발견::공지사항</title>
 
 </head>
 <style>
@@ -62,24 +61,26 @@ th {
 	position: relative;
 	top: 1px;
 }
-  .my-hr1 {
-    border: 0;
-    height: 3px;
-    background: #ccc;
-  }
+
+.my-hr1 {
+	border: 0;
+	height: 3px;
+	background: #ccc;
+}
 </style>
 <body>
 	<c:import url="../../include/header.jsp" />
 
-	<div class="container" style="margin-top: 200px;">
+	<div class="container" style="margin-top: 150px;">
 
-		<strong style="font-size: 25pt; color: #faadad;">${dto.noticeNo }번게시글 </strong>
+		<strong style="font-size: 25pt; color: #faadad;">공지사항
+		</strong>		
 		<center>
-			<table class="table table-bordered text-center" style="width: 70%">
+			<table class="table table-bordered text-center" style="width: 100%">
 				<tr>
 					<th>제목</th>
-					<td colspan="4" style="height: 100px;">${dto.noticeTitle}</td>
-				
+					<td colspan="4">${dto.noticeTitle}</td>
+
 				</tr>
 				<tr>
 					<th style="width: 25%">조회수</th>
@@ -88,15 +89,42 @@ th {
 					<td style="width: 25%" olspan="2">${dto.noticeDate}</td>
 				</tr>
 				<tr>
-					<th>첨부파일</th>
-					<td colspan="4" style="height: 100px;">${dto.noticeFileOName}</td>
-				</tr>
-				<tr>
 					<th colspan="6">내용</th>
 				</tr>
 				<tr>
 					<td colspan="6" align="left" style="height: 150px;">${dto.noticeContent}</td>
 				</tr>
+
+				<c:choose>
+ 					<c:when	test="${1 == dto.noticeNo}">
+						<tr>
+							<td>다음</td><td colspan="5">이전글이없습니다.</td>
+						</tr>
+						<tr>
+							<td>다음</td>
+								<td colspan="5"><a href="detailnotice.do?noticeNo=${dto.noticeNo + 1}">${next}</a></td>
+						</tr>	
+					</c:when>
+					<c:when test="${1 <  dto.noticeNo and dto.noticeNo < cnt}">
+						<tr>
+							<td>이전</td>
+									<td colspan="5"><a href="detailnotice.do?noticeNo=${dto.noticeNo - 1}">${prev}</a></td>
+						</tr>
+						<tr>
+							<td>다음</td>
+									<td colspan="5"><a href="detailnotice.do?noticeNo=${dto.noticeNo + 1}">${next}</a></td>
+						</tr>
+					</c:when>
+					<c:when	test="${cnt == dto.noticeNo}">
+						<tr>
+							<td>이전</td>
+									<td colspan="5"><a href="detailnotice.do?noticeNo=${dto.noticeNo - 1}">${prev}</a></td>
+						</tr>
+						<tr>
+							<td>다음</td><td colspan="5">다음글이없습니다.</td>
+						</tr>
+					</c:when>
+				</c:choose>
 			</table>
 		</center>
 		<center>
@@ -104,8 +132,12 @@ th {
 		</center>
 	</div>
 
-	<div style="width: 650px; text-align: center;"></div>
+	<!-- <div style="width: 650px; text-align: center;"></div> -->
+	<hr>
 	<c:import url="../../include/footer.jsp" />
+	
+	
+	<!-- 자바스크립트 -->
 	<script type="text/javascript">
 		$(function() {
 			$('#mainNav').css('background-color', '#faadad');

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.godsky.findlove.main.profileboard.model.dao.KonpeitoDAO;
 import com.godsky.findlove.main.profileboard.model.dao.MessageDAO;
-import com.godsky.findlove.main.profileboard.model.dao.PointDAO;
 import com.godsky.findlove.main.profileboard.model.vo.Message;
 
 @Service("messageService")
@@ -20,6 +19,6 @@ public class MessageServiceImpl implements MessageService{
 
 	@Override
 	public int sendMessage(Message message) {
-		return (messageDAO.sendMessage(message) & konpeitoDAO.minusPoint(message.getSenderId(), 10));
+		return (messageDAO.sendMessage(message) & konpeitoDAO.minusPoint(message.getSender_id(), 10));
 	}
 }

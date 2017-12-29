@@ -6,12 +6,12 @@ public class Profileboard {
 	private String grade_AVG;   	//평점
 	private String picture_NM; 		//프로필 사진
 	private String gender;			//성별
-	private int age;				//나이
-	private int height;				//키
-	private int weight;				//몸무게
+	private String age;				//나이
+	private String height;				//키
 	private String area;			//지역
-	private String hobby;			//취미
+	private String bodyform;		//체형
 	private String achievement;		//학력
+	private String job;				//직업
 	private String blood_Type;		//혈액형
 	private String smoking;			//흡연여부
 	private String drinking;		//음주여부
@@ -20,9 +20,9 @@ public class Profileboard {
 	
 	public Profileboard() {}
 	
-	public Profileboard(String user_id, String user_NickNM, String grade_AVG, String picture_NM, String gender, int age,
-			int height, int weight, String area, String hobby, String achievement, String blood_Type, String smoking,
-			String drinking, String religion, String style) {
+	public Profileboard(String user_id, String user_NickNM, String grade_AVG, String picture_NM, String gender,
+			String age, String height, String area, String bodyform, String achievement, String job, String blood_Type,
+			String smoking, String drinking, String religion, String style) {
 		super();
 		this.user_id = user_id;
 		this.user_NickNM = user_NickNM;
@@ -31,10 +31,10 @@ public class Profileboard {
 		this.gender = gender;
 		this.age = age;
 		this.height = height;
-		this.weight = weight;
 		this.area = area;
-		this.hobby = hobby;
+		this.bodyform = bodyform;
 		this.achievement = achievement;
+		this.job = job;
 		this.blood_Type = blood_Type;
 		this.smoking = smoking;
 		this.drinking = drinking;
@@ -82,28 +82,20 @@ public class Profileboard {
 		this.gender = gender;
 	}
 
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 
-	public int getHeight() {
+	public String getHeight() {
 		return height;
 	}
 
-	public void setHeight(int height) {
+	public void setHeight(String height) {
 		this.height = height;
-	}
-
-	public int getWeight() {
-		return weight;
-	}
-
-	public void setWeight(int weight) {
-		this.weight = weight;
 	}
 
 	public String getArea() {
@@ -114,12 +106,12 @@ public class Profileboard {
 		this.area = area;
 	}
 
-	public String getHobby() {
-		return hobby;
+	public String getBodyform() {
+		return bodyform;
 	}
 
-	public void setHobby(String hobby) {
-		this.hobby = hobby;
+	public void setBodyform(String bodyform) {
+		this.bodyform = bodyform;
 	}
 
 	public String getAchievement() {
@@ -128,6 +120,14 @@ public class Profileboard {
 
 	public void setAchievement(String achievement) {
 		this.achievement = achievement;
+	}
+
+	public String getJob() {
+		return job;
+	}
+
+	public void setJob(String job) {
+		this.job = job;
 	}
 
 	public String getBlood_Type() {
@@ -173,8 +173,8 @@ public class Profileboard {
 	@Override
 	public String toString() {
 		return "Profileboard [user_id=" + user_id + ", user_NickNM=" + user_NickNM + ", grade_AVG=" + grade_AVG + ", picture_NM=" + picture_NM
-				+ ", gender=" + gender + ", age=" + age + ", height=" + height + ", weight=" + weight + ", area=" + area
-				+ ", hobby=" + hobby + ", achievement=" + achievement + ", blood_Type=" + blood_Type + ", smoking=" + smoking
+				+ ", gender=" + gender + ", age=" + age + ", height=" + height + ", area=" + area +", bodyform=" + bodyform 
+				+ ", achievement=" + achievement + ", job=" + job + ", blood_Type=" + blood_Type + ", smoking=" + smoking
 				+ ", drinking=" + drinking + ", religion=" + religion + ", style=" + style + "]";
 	}
 	

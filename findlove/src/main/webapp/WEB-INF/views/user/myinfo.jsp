@@ -43,28 +43,26 @@
 			margin-bottom: 20px;
 		}
 		.container.top {
-			margin-top: 100px;
+			margin-top: 150px;
 		}
 		
 	</style>
 	
 </head>
 <body id="page-top">
+
+<!-- header -->
 <c:import url="../include/header.jsp" />
 	
 
-	<!-- Portfolio Grid -->
+	<!-- title -->
 	<div class="container top">
 		<div class="row">
-			<div class="col-lg-12 text-center">
-				<!-- <img class="img-fluid" src="/findlove/resources/img/ad/ad-banner.jpg"> -->
+			<div class="col-lg-12 text-left">
+				<strong style="font-size: 25pt; color: #faadad;">마이페이지</strong>	
 			</div>
 		</div>
-	</div>
-
-	<br>
-	<h1 align="center">마이페이지</h1>
-	<br>
+	</div>	
 	
 	<!-- Page Content -->
     <div class="container">
@@ -75,9 +73,9 @@
           <br>
           <!-- <h1 class="my-4">Shop Name</h1> -->
           <div class="list-group">
-            <a href="myinfo.do" class="list-group-item active">나의 정보</a>
-            <a href="myprofile.do" class="list-group-item">나의 프로필 설정</a>
-            <a href="idealprofile.do" class="list-group-item">이상형 프로필 설정</a>
+            <a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item active">나의 정보</a>
+            <a href="myprofile.do?user_id=${sessionScope.user_id }" class="list-group-item">나의 프로필</a>
+            <a href="idealprofile.do?user_id=${sessionScope.user_id }" class="list-group-item">이상형 프로필</a>
             <a href="store.do" class="list-group-item">스토어</a>
           </div>
         </div>
@@ -88,40 +86,46 @@
             <div class="card-header">
               	정보 수정은 아이디와 이름은 변경 불가능 합니다.
             </div>
+            <section>
             <div class="card-body"> 
-            	  <table id="tableData" class="table table-bordered">
-            	  <form class="form-contaioner" name = "form" method = "post">
+            <form class="form-contaioner" name = "form" method = "post">
+            	  <table id="tableData" class="table table-bordered">            	  
             	  <tr>
-            	  	<td>아이디</td>
-            	  	<td>${sessionScope.user_id }</td>
+            	  	<th>아이디</th>
+            	  	<td>${user.user_id }</td>
             	  </tr>
             	  <tr>
-            	  	<td>이름</td>
-            	  	<td>${sessionScope.user_nm }</td>
+            	  	<th>이름</th>
+            	  	<td>${user.user_nm }</td>
             	  </tr>            	  	
             	  <tr>
-            	  	<td>닉네임</td>
-            	  	<td>${sessionScope.user_nicknm }</td>
+            	  	<th>닉네임</th>
+            	  	<td>${user.user_nicknm } </td>
             	  </tr>
-            	  	<td>별사탕</td>
-            	  	<td>${sessionScope.konpeito_cnt}</td>
+            	  <tr>
+            	  	<th>별사탕</th>
+            	  	<td>${user.konpeito_cnt}</td>
             	  </tr>
-            	  </tr>
-            	  	<td>포인트</td>
-            	  	<td>${sessionScope.point_cnt}</td>
+            	  <tr>
+            	  	<th>포인트</th>
+            	  	<td>${user.point_cnt}</td>
             	  </tr>  
             	  <tr>
-            	  	<td>이메일</td>
-            	  	<td>${sessionScope.email }</td>
+            	  	<th>이메일</th>
+            	  	<td>${user.email }</td>
             	  </tr>
             	  <tr>
-            	  	<td>휴대폰 번호</td>
-            	  	<td>${sessionScope.phone }</td>
+            	  	<th>휴대폰 번호</th>
+            	  	<td>${user.phone }</td>
             	  </tr>
-            	  </form> 
+            	  
              	</table>
-			    <a class="btn btn-primary" onclick="location.href='myinfoset.do'">수정하기</a>
-			    <a class="btn btn-primary" onclick="history.go(-1)">취소</a>
+             	</form>
+             	<!-- <a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick=>회원탈퇴</a>  -->
+             	<a href="/${initParam.context_root }/removeuser.do">회원 탈퇴</a>
+			    <a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" href='myinfosetview.do?user_id=${user.user_id }'>수정하기</a>
+			    <a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick="history.go(-1)">취소</a>
+            </section>
             </div>
           </div>
           <!-- /.card -->
@@ -132,35 +136,8 @@
       </div>
 
     </div>
-    <!-- /.container -->
+    <!-- /.container -->	
 	
-	<!-- Clients -->
-	<section class="py-5">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/envato.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/designmodo.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/themeforest.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/creative-market.jpg" alt="">
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
 	<hr>
 	
 	<c:import url="../include/footer.jsp" /> 

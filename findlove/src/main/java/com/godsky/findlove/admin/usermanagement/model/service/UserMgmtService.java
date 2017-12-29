@@ -1,13 +1,14 @@
 package com.godsky.findlove.admin.usermanagement.model.service;
 
-
+import java.util.ArrayList;
 import java.util.List;
 
 import com.godsky.findlove.common.model.vo.Profile;
 import com.godsky.findlove.common.model.vo.Report;
+import com.godsky.findlove.common.model.vo.User;
 import com.godsky.findlove.admin.usermanagement.model.vo.UserBasic;
 import com.godsky.findlove.admin.usermanagement.model.vo.UserDetail;
-
+import com.godsky.findlove.admin.usermanagement.model.vo.UserMgmt;
 
 public interface UserMgmtService {
 	

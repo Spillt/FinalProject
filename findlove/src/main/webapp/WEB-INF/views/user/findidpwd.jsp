@@ -19,10 +19,10 @@
 	<div class="testbox">
 		<form action="findId.do" name="findId" method="post">
 			<h3>아이디 찾기</h3>
-			<label id="icon" for="name"><i class="icon-user"></i></label> <input
-				type="text" name="user_nm" id="name" placeholder="Name" required /> <label
-				id="icon" for="name"><i class="icon-envelope "></i></label> <input
-				type="text" name="email" id="email" placeholder="Email" required />
+			<label id="icon" for="name"><i class="icon-user"></i></label> 
+			<input type="text" name="user_nm" id="name" placeholder="Name" required /> 
+			<label id="icon" for="email"><i class="icon-envelope "></i></label> 
+			<input type="text" name="email" id="email" placeholder="Email" required />
 
 			<a class="button" onclick="submitfindId()">Submit</a>
 		</form>
@@ -31,10 +31,10 @@
 		<hr>
 		<form action="findPwd.do" name="findPwd" method="post">
 			<h3>비밀번호 찾기</h3>
-			<label id="icon" for="name"><i class="icon-user"></i></label> <input
-				type="text" name="user_id" id="id" placeholder="ID" required /> <label
-				id="icon" for="name"><i class="icon-envelope "></i></label> <input
-				type="text" name="email" id="email" placeholder="Email" required />
+			<label id="icon" for="id"><i class="icon-user"></i></label> 
+			<input type="text" name="user_id" id="id" placeholder="ID" required /> 
+			<label id="icon" for="email"><i class="icon-envelope "></i></label> 
+			<input type="text" name="email" id="email" placeholder="Email" required />
 
 			<a class="button" onclick="submitfindPwd()">Submit</a>
 

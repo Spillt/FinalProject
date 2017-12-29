@@ -109,7 +109,7 @@ td {
 							<td><a href="polldetail.do?pollNo=${list.pollNo }"
 								class="btn btn-primary">시작하기</a></td>
 						</c:if>
-				 		<td><a href="pollresult.do?pollNo=${list.pollNo }"
+						<td><a href="pollresult.do?pollNo=${list.pollNo }"
 							class="btn btn-primary">결과보기</a></td>
 					</tr>
 				</c:forEach>

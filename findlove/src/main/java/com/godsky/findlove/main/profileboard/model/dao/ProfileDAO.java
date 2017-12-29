@@ -15,15 +15,17 @@ public class ProfileDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public int countProfileList(String keyword) {
+	public int countProfileList(String searchOption, String keyword) {
 		// 검색옵션, 키워드 맵에 저장
 	    Map<String, String> map = new HashMap<String, String>();
+	    map.put("searchOption", searchOption);
 	    map.put("keyword", keyword);
 	    return sqlSession.selectOne("profile.countProfile", map);
 	}
 
-	public List<Profileboard> selectProfileList(int start, int end, String keyword) {
+	public List<Profileboard> selectProfileList(int start, int end, String searchOption, String keyword) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchOption", searchOption);
 	    map.put("keyword", keyword);
 	    map.put("start", start);
 	    map.put("end", end);
@@ -32,6 +34,14 @@ public class ProfileDAO {
 
 	public Profileboard selectProfileDetail(String user_nicknm) {
 		return sqlSession.selectOne("profile.selectProfileDetail", user_nicknm);
+	}
+
+	public Profileboard selecProfileImage(String user_nicknm) {
+		return sqlSession.selectOne("profile.selecProfileImage", user_nicknm);
+	}
+
+	public List<String> selectProfileImage(String user_nicknm) {
+		return sqlSession.selectList("profile.selecProfileImage", user_nicknm);
 	}
 
 }

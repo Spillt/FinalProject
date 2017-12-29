@@ -1,5 +1,6 @@
 package com.godsky.findlove.admin.usermanagement.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,10 @@ import org.springframework.stereotype.Service;
 import com.godsky.findlove.admin.usermanagement.model.dao.UserMgmtDao;
 import com.godsky.findlove.admin.usermanagement.model.vo.UserBasic;
 import com.godsky.findlove.admin.usermanagement.model.vo.UserDetail;
+import com.godsky.findlove.admin.usermanagement.model.vo.UserMgmt;
 import com.godsky.findlove.common.model.vo.Profile;
 import com.godsky.findlove.common.model.vo.Report;
+import com.godsky.findlove.common.model.vo.User;
 
 @Service("userMgmtService")
 public class UserMgmtServiceImpl implements UserMgmtService {

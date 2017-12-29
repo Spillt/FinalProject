@@ -10,6 +10,14 @@ public interface NoticeService {
 		List<Notice> listAll();	//목록보기
 
 		Notice read(int noticeNo);
+		
+		String prev(int noticeNo);
+		
+		String next(int noticeNo);
 
 		void increaseViewcnt(int noticeNo, HttpSession session);
+		
+		List<Notice> PNwriteList(int noticeNo);
+
+		int getNoticeCnt();
 }
