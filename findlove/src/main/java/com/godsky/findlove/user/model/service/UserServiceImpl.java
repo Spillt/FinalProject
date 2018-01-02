@@ -1,6 +1,8 @@
 package com.godsky.findlove.user.model.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -25,10 +27,7 @@ public class UserServiceImpl implements UserService{
 		if(result){
 			User vo2 = viewMember(vo);
 			//세션 변수 등록
-			session.setAttribute("user_id", vo2.getUser_id());
-			session.setAttribute("user_nm", vo2.getUser_nm());
-			session.setAttribute("user_nicknm", vo2.getUser_nicknm());
-			session.setAttribute("konpeito_cnt",vo2.getKonpeito_cnt() );
+			session.setAttribute("user_id", vo2.getUser_id());			
 		}
 		System.out.println("로그인 체크 service result :" + result);
 		
@@ -70,8 +69,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	//아이디 중복 체크
-	public int idCheck(String userId) {
-		return userDao.idCheck(userId);
+	public int idDuplicatedCheck(User user) {
+		return userDao.idDuplicatedCheck(user);
 	}
 
 	@Override
@@ -127,6 +126,12 @@ public class UserServiceImpl implements UserService{
 		return userDao.idealProfile(user_id);
 	}
 	
+	//이상형 프로필 수정
+	@Override
+	public void idealProfileSet(Profile profile){
+		userDao.idealProfileSet(profile);
+	}
+	
 	@Override
 	//회원 삭제
 	public void removeUserById(String user_id){
@@ -134,6 +139,51 @@ public class UserServiceImpl implements UserService{
 		System.out.println(cnt + "개의 행이 삭제되었습니다.");
 		
 	}
+
+
+	@Override
+	public void deleteSession(String session_key) {
+		userDao.deleteSession(session_key);
+		
+	}
+
+
+	@Override
+	public int checkSession(String session_key) {		
+		return userDao.checkSession(session_key);
+	}
+
+
+	@Override
+	public void insertSession(String session_key, String userId) {
+		userDao.insertSession(session_key, userId);
+		
+	}
+
+
+	@Override
+	public int loginCount() {		
+		return userDao.loginCount();
+	}
+
+
+	@Override
+	public List<String> userList() {		
+		return userDao.userList();
+	}
+	
+	//로그인 2
+	/*@Override
+	public User findByUserIdAndPwd(String user_id, String pwd) {
+		return userDao.findByUserIdAndPwd(user_id, pwd);
+	}*/
+
+
+	/*@Override
+	//결제 관련
+	public User storeUser(String user_id) {
+		return userDao.storeUser();
+	}*/
 
 
 	

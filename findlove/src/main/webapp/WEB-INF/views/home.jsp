@@ -160,39 +160,14 @@
 						<h5 class="section-heading">Name ♡ Name</h5>
 					</div>
 				</div>
+				<c:import url="./include/loginStatus.jsp"/>
 			</div>
 			</div>
-		</div>
+		</div>	
 	</section>
+	
 
 
-	<!-- Clients -->
-	<section class="py-5">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/envato.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/designmodo.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/themeforest.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<a href="#"> <img class="img-fluid d-block mx-auto"
-						src="/findlove/resources/img/logos/creative-market.jpg" alt="">
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
 	<hr>
 	<c:import url="./include/footer.jsp" />
 

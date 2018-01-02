@@ -124,13 +124,11 @@ ul {
 				<br>
 				<!-- <h1 class="my-4">Shop Name</h1> -->
 				<div class="list-group">
-					<a href="myinfo.do?user_id=${sessionScope.user_id }"
-						class="list-group-item">나의 정보</a> <a
-						href="myprofile.do?user_id=${sessionScope.user_id }"
-						class="list-group-item active">나의 프로필</a> <a
-						href="idealprofile.do?user_id=${sessionScope.user_id }"
-						class="list-group-item">이상형 프로필</a> <a href="store.do"
-						class="list-group-item">스토어</a>
+					<a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item">나의 정보</a> 
+					<a href="myprofile.do?user_id=${sessionScope.user_id }" class="list-group-item active">나의 프로필</a> 
+					<a href="idealprofile.do?user_id=${sessionScope.user_id }" class="list-group-item">이상형 프로필</a> 
+					<a href="#" class="list-group-item">일대일 문의</a>
+					<a href="store.do" class="list-group-item">스토어</a>
 				</div>
 			</div>
 
@@ -215,10 +213,14 @@ ul {
 															</tr>
 															<tr>
 																<th>성별</th>
-																<td><label id="gender"><input type="radio"
-																		name="gender" value="M" checked="checked" />남자 </label> <label
-																	id="gender"><input type="radio" name="gender"
-																		value="F" />여자 </label></td>
+																<td>
+																	<label id="gender">
+																		<input type="radio" name="gender" value="M"<c:if test = "${profile.gender eq 'M' }"> checked="checked"</c:if> />남자 
+																	</label> 
+																	<label id="gender">
+																		<input type="radio" name="gender" value="F" />여자 
+																	</label>
+																</td>
 															</tr>
 															<tr>
 																<th>혈액형</th>
@@ -331,11 +333,12 @@ ul {
 																</th>
 																<td>
 																	<ul style="margin-bottom: 0px;">
-																		<li><label id="style"> <input
-																				class="checkbox" type="checkbox" name="style"
-																				value="섹시"> 섹시
-																		</label> <label id="style"> <input class="checkbox"
-																				type="checkbox" name="style" value="터프"> 터프
+																		<li>
+																		<label id="style"> 
+																			<input class="checkbox" type="checkbox" name="style" value="섹시"> 섹시	
+																		</label> 
+																		<label id="style"> 
+																			<input class="checkbox" type="checkbox" name="style" value="터프"> 터프
 																		</label> <label id="style"> <input class="checkbox"
 																				type="checkbox" name="style" value="귀여운">
 																				귀여운
@@ -464,6 +467,8 @@ ul {
 		});
 	</script>
 	<!-- 이미지 등록 및 미리보기 -->
+	
+	
 	<script type="text/javascript">
 		$(function() {
 			$('#btn').click(function(e) {
@@ -493,7 +498,11 @@ ul {
 					var img = document.getElementById("image").files;
 
 					if (!fileType.test(img[0].type)) {
-						alert("이미지 파일을 업로드 하세요");
+						swal({
+							title:"warning!",
+							text:"이미지 파일을 등록하세요.",
+							icon:"error",			
+						});							
 						return;
 					}
 					ImgReader.readAsDataURL(img[0]);
@@ -537,16 +546,28 @@ ul {
 					.attr("checked", true);
 
 			if ($("input[name=style]:checkbox:checked").length < 3) {
-				alert("스타일 3가지를 체크하여 주세요")
+				swal({
+					title:"warning!",
+					text:"스타일 3가지를 체크하여 주세요.",
+					icon:"error",			
+				});					
 				return false;
 			}
 			if (!form.height.value) {
-				alert("키를 입력하여 주세요.")
+				swal({
+					title:"warning!",
+					text:"키를 입력하여 주세요",
+					icon:"error",				
+				});	
 				form.height.focus();
 				return false;
 			}
 			form.submit();
-			alert("프로필 정보가 수정되었습니다.");
+			swal({
+				title:"Good Job!",
+				text:"회원 정보가 수정되었습니다.",
+				icon:"success",				
+			});	
 
 		}
 	</script>

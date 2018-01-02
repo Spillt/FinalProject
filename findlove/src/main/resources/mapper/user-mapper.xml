@@ -37,7 +37,8 @@
 	From tb_user
 	WHERE User_ID = #{user_id} AND User_PWD = #{user_pwd}	
 	]]>
-	</select>
+	</select>	
+	
 	
 	<!-- 내정보 보기 -->
 	<select id="myinfo" resultType="User">
@@ -63,9 +64,9 @@
 	WHERE User_ID = #{user_id} AND User_PWD = #{user_pwd}	
 	</select>
 	
-	<select id="idCheck" resultType="Integer">
+	<select id="idDuplicatedCheck" parameterType = "User" resultType="Integer">
 	SELECT
-		count(*)
+		NVL (count(*),0)		
 	FROM tb_user
 	WHERE User_ID = #{user_id}	
 	</select>
@@ -98,5 +99,46 @@
 	delete from tb_user
 	where User_ID = #{user_id}
 	</delete>
+	
+	<!-- 세션 관리 -->
+	<insert id="insertSession" parameterType = "hashmap">
+	<![CDATA[
+	insert into tb_session_info values(#{session_key},#{user_id})
+	]]>
+	</insert>	
+	<delete id="deleteSession" parameterType="string">
+	<![CDATA[
+	delete from tb_session_info where session_key = #{session_key}
+	]]>
+	</delete>	
+	<select id="checkSession" parameterType="string" resultType="int">
+	<![CDATA[
+		select count(*) from tb_session_info where session_key = #{session_key}
+	]]>
+	</select>	
+	<select id="loginCount" resultType="int">
+	<![CDATA[
+		select count(*) from tb_session_info
+	]]>
+	</select>	
+	<select id="userList" resultType="String">
+	<![CDATA[
+		select user_id from tb_session_info
+	]]>
+	</select>
+	
+ <!-- 결제 관련 -->
+	<!-- <select id="storeUser" resultType="String">
+	<![CDATA[
+		SELECT
+			USER_ID = {#user_id}
+			USER_NM = {#user_nm}
+			USER_NICKNM = {#user_nicknm}
+			PHONE = {#phone}
+			EMAIL = {#email}
+		FROM TB_USER
+		WHERE USER_ID = #{user_id}
+	]]>
+	</select>  -->
 	
 </mapper>

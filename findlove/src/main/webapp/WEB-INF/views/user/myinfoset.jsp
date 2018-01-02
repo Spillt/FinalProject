@@ -86,7 +86,8 @@
 				<div class="list-group">
 					<a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item active">나의 정보</a> 
 					<a href="myprofile.do?user_id=${sessionScope.user_id }"	class="list-group-item">나의 프로필</a> 
-					<a href="idealprofile.do?user_id=${sessionScope.user_id }"	class="list-group-item">이상형 프로필</a> 
+					<a href="idealprofile.do?user_id=${sessionScope.user_id }"	class="list-group-item">이상형 프로필</a>
+					<a href="#" class="list-group-item">일대일 문의</a> 
 					<a href="store.do"	class="list-group-item">스토어</a>
 				</div>
 			</div>
@@ -163,37 +164,66 @@
 							var pattern4 = /([^가-힣\x20])/i; //한글
 
 							if (!form.nickname.value) {
-								alert("닉네임을 입력하세요.");
+								swal({
+									title:"warning!",
+									text:"닉네임을 입력하세요.",
+									icon:"error",
+									
+								});
 								form.nickname.focus();
 								return false;
 							}
 							if (pattern3.test(form.nickname.value)) {
-								alert("닉네임에는 특수문자가 들어갈 수 없습니다.")
+								swal({
+									title:"warning!",
+									text:"닉네임에는 특수문자가 들어갈 수 없습니다.",
+									icon:"error",									
+								});								
 								form.nickname.focus();
 								return false;
 							}
 							if (!form.pwd1.value) {
-								alert("비밀번호를 입력하세요.")
+								swal({
+									title:"warning!",
+									text:"비밀번호를 입력하세요.",
+									icon:"error",				
+								});
 								form.pwd1.focus();
 								return false;
 							} else if (!form.pwd2.value) {
-								alert("비밀번호를 한번 더 입력하세요.")
+								swal({
+									title:"warning!",
+									text:"비밀번호를 한번 더 입력하세요.",
+									icon:"error",				
+								});
 								form.pwd2.focus();
 								return false;
 							}
 							if (form.pwd1.value != form.pwd2.value) {
-								alert("입력한 2개의 비밀번호가 일치하지 않습니다.")
+								swal({
+									title:"warning!",
+									text:"입력한 2개의 비밀번호가 일치하지 않습니다.",
+									icon:"error",				
+								});	
 								form.pwd1.focus();
 								return false;
 							}
 
 							if (!form.email.value) {
-								alert("이메일을 입력하세요.")
+								swal({
+									title:"warning!",
+									text:"이메일을 입력하세요.",
+									icon:"error",				
+								});	
 								form.email.focus();
 								return false;
 							}
 							if (!form.phone.value) {
-								alert("휴대폰 번호를 입력하세요.")
+								swal({
+									title:"warning!",
+									text:"휴대폰 번호를 입력하세요.",
+									icon:"error",				
+								});	
 								form.phone.focus();
 								return false;
 							}
@@ -206,7 +236,11 @@
 								return false;
 							}
 							form.submit();
-							alert("회원 정보가 수정되었습니다.");
+							swal({
+								title:"Good Job!",
+								text:"회원 정보가 수정되었습니다.",
+								icon:"success",				
+							});								
 						}
 					</script>
 					<script type="text/javascript">$(function() {

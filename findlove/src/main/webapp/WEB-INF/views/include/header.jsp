@@ -22,6 +22,7 @@
 	href="/findlove/resources/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="/findlove/resources/css/agency.min.css">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <style>
 .material-icons, #account-lg-txt a, button {
@@ -278,7 +279,7 @@
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="attendancelist.do"">이벤트 게시판</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="InqList.do">일대일 문의</a></li>
+						href="#">FaQ</a></li>
 				</ul>
 			</div>
 		</div>
@@ -323,14 +324,14 @@
 						<label class="form-check-label"><input type="checkbox"
 							class="form-check-input">아이디 저장</label>
 					</form>
-					<div class="btn-toolbar">
+					<!-- <div class="btn-toolbar">
 						<div class="btn-group mr-2">
 							<button class="btn btn-naver">N</button>
 						</div>
 						<div class="btn-group mr-2">
 							<button class="btn btn-face">f</button>
 						</div>
-					</div>
+					</div> -->
 				</c:otherwise>
 			</c:choose>
 			<hr class="horiz-divide">
@@ -364,8 +365,7 @@
 					</c:if>
 					<hr class="horiz-divide">
 					<form class="form-container">
-						<a href="logout.do"><button
-								class="form-control btn logout-btn" type="button">로그아웃</button></a>
+						<button class="form-control btn logout-btn" type="button">로그아웃</button>
 					</form>
 				</c:when>
 				<c:otherwise>
@@ -416,51 +416,70 @@
 		}
 	</script>
 	<script>
-		$(".login-btn").on(
-				'click',
-				function() {
+		 $(".login-btn").on('click',function() {
 					var userId = $("#user_id").val();
 					var userPwd = $("#user_pwd").val();
 					var param = "user_id" + "=" + user_id + "&" + "user_pwd"
 							+ "=" + user_pwd;
 					if (userId == "") {
-						alert("아이디를 입력하세요.");
+						    swal({
+							title:"warning!",
+							text:"아이디를 입력하세요.",
+							icon:"error",
+							});	 					
 						$("#user_id").focus(); //입력포커스
 						return false;
-					}
-					/* $.ajax({
-						url : "/login.do",
-						type : "GET",
-						data : param,
-						cache : false,
-						async : false,
-						dataType : "text",
+					}			
+					 if(userPwd==""){
+						swal({
+							title:"warning!",
+							text:"비밀번호를 입력하세요.",
+							icon:"error",
+							});		
 						
-						success : function(response){
-							if(response != '1'){
-								alert("아이디 또는 비밀번호가 틀립니다. 확인하여주세요.")
-								return false;						
-							}
-							alert(check);
-							
-						},
-						error : function(request, status, error){
-							if(request.status != '0'){
-								alert("code : " + request.status + "\r\nmessage : "
-										+ request.reponseText + "\r\nerror : " + error);
-
-							}
-						}	 */
-
-					/* if(!userPwd.value){
-						alert("비밀번호를 입력하세요");
-						$("#userPwd").focus();
+						$("#user_pwd").focus();
 						return false;
-					} */
+						
+					}	
+					 
+					 $.ajax({
+							url : "/logincheck.do",
+							type : "GET",
+							data : param,
+							cache : false,
+							async : false,							
+							
+							success : function(response){
+								 if(response != '0'){
+									alert("아이디 또는 비밀번호가 틀립니다. 확인하여주세요.")
+									return false; 
+									console.log(response);
+								}								
+							},
+							error : function(request, status, error){
+								 if(request.status != '0'){
+									alert("code : " + request.status + "\r\nmessage : "
+											+ request.reponseText + "\r\nerror : " + error);
+
+								} 
+							
+							 }
+					 })
+					
 					document.form1.action = "logincheck.do" //데이터 전송
-					document.form1.submit(); // 제출
-				});
+					document.form1.submit(); // 제출					
+				});		 
+				
 	</script>
+	<script>
+	 $(".logout-btn").on('click',function() {
+		if(comfirm("로그아웃 하시겠습니까?")==true){
+			location.href="logout.do";	
+		}else{
+			return;			
+		}				
+	 });	
+	</script>	
 	<script>
 		$('#loginform .input').keypress(function(e) {
 			if (e.which == 13) {
@@ -470,5 +489,36 @@
 
 		});
 	</script>
+	
+	<!-- 세션관련 -->
+	<script>		
+		var inFormOrLink = false;
+		$('a').on('click', function() { inFormOrLink = true; });
+		$('form').on('submit', function() { inFormOrLink = true; });
+
+		$(window).on("beforeunload", function() { 
+		    if(!inFormOrLink){
+		    	$.ajax({
+					url:'deleteSession.do',
+					type:'post'		
+				});
+		    	
+		    }
+		})
+		
+		function session_check(){
+			if(${user_id != null}){
+		     $.ajax({
+					url: "sessionCheck.do",
+					data: {user_id :'${user_id}'},
+					type: "post"
+				});
+			}
+		}
+		
+		$(document).ready(function() {
+		setInterval("session_check()", 3000);
+		});		
+		</script>
 </body>
 </html>

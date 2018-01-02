@@ -9,6 +9,7 @@
 <title>연애의발견::마이페이지</title>
 
 <!-- Page link -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!-- CSS 및 스타일 -->
 <style type="text/css">
@@ -120,7 +121,9 @@ ul{
 					<a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item">나의 정보</a> <a
 						href="myprofile.do?user_id=${sessionScope.user_id }" class="list-group-item">나의 프로필</a> <a
 						href="idealprofile.do?user_id=${sessionScope.user_id }" class="list-group-item active">이상형 프로필
-						</a> <a href="store.do" class="list-group-item">스토어</a>
+						</a> 
+						<a href="#" class="list-group-item">일대일 문의</a>
+						<a href="store.do" class="list-group-item">스토어</a>
 				</div>
 			</div>
 

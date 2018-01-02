@@ -5,7 +5,9 @@
   </welcome-file-list>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>/WEB-INF/spring/root-context.xml</param-value>
+    <param-value>/WEB-INF/spring/root-context.xml    			
+    </param-value>
+    
   </context-param>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -22,7 +24,9 @@
   <servlet-mapping>
     <servlet-name>appServlet</servlet-name>
     <url-pattern>*.do</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping>  
+
+
   
   <!-- 아무 동작 없을때 세션 만료시간 : 30분 -->
   <session-config>

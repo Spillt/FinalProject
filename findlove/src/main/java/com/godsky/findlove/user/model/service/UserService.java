@@ -1,5 +1,9 @@
 package com.godsky.findlove.user.model.service;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import com.godsky.findlove.common.model.vo.Profile;
@@ -24,7 +28,7 @@ public interface UserService {
 
 	int createIdealProfile();
 
-	public int idCheck(String userId);
+	public int idDuplicatedCheck(User user);
 	
 	//회원 계정 찾기
 	public User findAccount(String email);
@@ -45,10 +49,34 @@ public interface UserService {
 	public Profile myProfile(String user_id);
 	
 	//내 프로필 수정 처리
-	public void myProfileSet(Profile profile);
+	public void myProfileSet(Profile profile);	
 	
 	//이성 프로필 보기
 	public Profile idealProfile(String user_id);
+	
+	//이상형 프로필 수정 처리
+	public void idealProfileSet(Profile profile);
+
+	//세션 관리
+	public int checkSession(String id);
+	
+	public void deleteSession(String session_key);
+
+	public void insertSession(String session_key, String userId);
+
+	public int loginCount();
+
+	public List<String> userList();
+
+
+
+	
+	
+	/*//로그인 2
+	public User findByUserIdAndPwd(String user_id, String pwd);
+	*/
+	//결제 관련
+	/*public User storeUser(String user_id);*/
 	
 	
 

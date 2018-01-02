@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset=UTF-8">
 <title>연애의발견::아이디,비밀번호 찾기</title>
+
+<!-- Page link -->
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600'
 	rel='stylesheet' type='text/css'>
@@ -14,6 +16,11 @@
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="/findlove/resources/css/find.css">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+	<!-- CSS/Style -->
+	
+	<!-- Page Content -->
 </head>
 <body>
 	<div class="testbox">
@@ -40,22 +47,38 @@
 
 		</form>
 	</div>
+	
+	<!-- footer -->
+	<hr>
+	<c:import url="../include/footer.jsp" />
+	
+	<!-- 자바스크립트 -->
 	<script>
 	function submitfindId(){
 		var form document.findId;
 		
 		if(!form.name.value){
-			alert("이름을 입력하세요")
+			swal({
+				title:"warning!",
+				text:"이름을 입력하세요.",
+				icon:"error",
+				
+			});			
 			form.name.focus();
 			return;
 		}
 		if(!form.email.value){
-			alert("이메일을 입력하세요");
+			swal({
+				title:"warning!",
+				text:"이메일을 입력하세요.",
+				icon:"error",
+				
+			});			
 			form.email.focus();
 			return;
 		}
-		findId.submit();
-		alert("${resultMsg}")				
+		findId.submit();		
+		swal("${resultMsg}")				
 	}
 	</script>
 	<script>
@@ -63,17 +86,27 @@
 		var form = document.findPwd;
 	
 		if(!form.id.value){
-			alert("아이디를 입력하세요");
+			swal({
+				title:"warning!",
+				text:"아이디를 입력하세요.",
+				icon:"error",				
+			});	
 			form.id.focus();
 			return;
 		}
 		if(!form.email.value){
-			alert("이메일을 입력하세요");
+			swal({
+				title:"warning!",
+				text:"이메일을 입력하세요.",
+				icon:"error",
+				
+			});	
 			form.email.focus();
 			return;
 		}
 		findPwd.submit();
-		alert("${resultMsg}")
+		swal("${resultMsg}")
+	
 	}
 
 	</script>

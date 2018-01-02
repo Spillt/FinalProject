@@ -12,6 +12,9 @@
 <!-- Page link -->
 <link rel="stylesheet" type="text/css"
 	href="/findlove/resources/css/credit.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 <!-- CSS 및 스타일 -->
@@ -74,6 +77,20 @@ a.buy-btn {
 	cursor: pointer;
 	color: #fff !important;
 }
+
+.fee{
+	width: 102px; 
+	height: 130px;
+	cursor:pointer;	
+}
+ .fee:hover{ 
+ opacity:0.6;  
+ color:#ffffff; 
+ 
+ 
+ }
+
+
 </style>
 
 </head>
@@ -114,7 +131,8 @@ a.buy-btn {
 						style="margin-left: 15px; width: 90px; height: 60px;"><font
 						size="6";> 25</font></span>
 				</div>
-				<div class="btn" style="padding-left: 40px;">
+				<%-- <input type="hidden" name="user_id"	value="${sessionScope.user_id }"> --%>
+				<!-- <div class="btn" style="padding-left: 40px;">
 					<button class="btn btn-danger">이전</button>
 					<button class="btn btn-danger">다음</button>
 				</div>
@@ -151,15 +169,14 @@ a.buy-btn {
 							<li class="row"></li>
 						</ul>
 					</div>
-				</div>
+				</div> -->
 
 			</div>
 
 			<div class="col-lg-9">
 				<div class="card card-outline-secondary my-4">
-					<div class="card-header">1. 별사탕 개수 선택</div>
-					<div class="card-body" style="margin-top: 0px; margin-bottom: 0px;">
-						<form action="myinfo" name="myinfo" method="post">
+					<div class="card-header"><strong>1. 별사탕 개수 선택</strong></div>
+					<div class="card-body" style="margin-top: 0px; margin-bottom: 0px;">					
 
 							<section id="plans">
 								<div class="container">
@@ -177,7 +194,7 @@ a.buy-btn {
 												</ul>
 												<div class="panel-footer">
 													<a class="btn btn-lg btn-block btn-danger buy-btn"
-														data-price=1000>BUY NOW!</a>
+														data-price=1000 data-select="10개">BUY NOW!</a>
 												</div>
 											</div>
 										</div>
@@ -194,7 +211,7 @@ a.buy-btn {
 												</ul>
 												<div class="panel-footer">
 													<a class="btn btn-lg btn-block btn-danger buy-btn"
-														data-price=3000>BUY NOW!</a>
+														data-price=3000 data-select="30개">BUY NOW!</a>
 												</div>
 											</div>
 										</div>
@@ -211,7 +228,7 @@ a.buy-btn {
 												</ul>
 												<div class="panel-footer">
 													<a class="btn btn-lg btn-block btn-danger buy-btn"
-														data-price=10000>BUY NOW!</a>
+														data-price=10000 data-select="100개">BUY NOW!</a>
 												</div>
 											</div>
 										</div>
@@ -223,7 +240,7 @@ a.buy-btn {
 				</div>
 				<!-- /item -->
 				<div class="card card-outline-secondary my-4">
-					<div class="card-header">2. 포인트 사용</div>
+					<div class="card-header"><strong>2. 포인트 사용</strong></div>
 					<div class="card-body">
 						<!-- <form action="mypoint" name="mypoint" method="post"> -->
 							<section id="plans" style="padding: 0px;">
@@ -264,7 +281,7 @@ a.buy-btn {
 					</div>
 				</div>
 				<div class="card card-outline-secondary my-4">
-					<div class="card-header">3. 주문 금액</div>
+					<div class="card-header"><strong>3. 주문 금액</strong></div>
 					<!-- <table class="table table-bordered">
 						
 					</table> -->
@@ -291,6 +308,8 @@ a.buy-btn {
 									<div class="credit-body text-center">최종 결제 금액</div>							
 									<div class="price-body text-center" id="total-price">0</div>
 								</div>
+								<div class="hidden" id="current-select" style="display:none"></div>
+								<div class="hidden" id="current-id" style="display:nonoe"></div>
 						</div>
 					</div>
 				</div>
@@ -301,53 +320,50 @@ a.buy-btn {
 
 
 		<div class="card card-outline-secondary my-4">
-			<div class="card-header">4. 결제 수단 선택</div>
-			<form action="credit" name="credit" method="post">
-				<section id="plans">
-					<div class="container">
+			<div class="card-header"><strong>4. 결제 수단 선택</strong><br>
+				<font size=2>해당 아이콘을 클릭하시면 결제페이지로 이동됩니다.</font></div>			
+				<section id="plans" style="padding-top:20px; padding-bottom:20px;">
+					<div class="container" style="padding-left:150px; padding-right:150px;">
 						<div class="row">
 
-							<!-- 신용카드 -->
+							<!-- 신용카드 -->							
 							<div class="col-md-4 text-center">
 								<div class="panel panel-danger panel-pricing">
-									<div class="panel-body text-center">
-										<img src="/findlove/resources/img/credit/card.png" alt=""
-											style="width: 152px; height: 180px;"> <br>
+									<div class="panel-body text-center" data-payment_type ="card">
+										<img class="fee" src="/findlove/resources/img/credit/card.png" onclick="card()"alt=""> <br>
 									</div>
 									<div class="panel-footer"></div>
 								</div>
 							</div>
-							<!-- 모바일 -->
+							
+							<!-- 모바일 -->							
 							<div class="col-md-4 text-center">
 								<div class="panel panel-danger panel-pricing">
-									<div class="panel-body text-center">
-										<img src="/findlove/resources/img/credit/phone.png" alt=""
-											style="width: 152px; height: 180px;"> <br>
+									<div class="panel-body text-center" data-payment_type = "phone">
+										<img class="fee"src="/findlove/resources/img/credit/phone.png" onclick="mobile()" alt=""> <br>
 									</div>
-									<ul class="list-group text-center">
-									</ul>
+									
 									<div class="panel-footer"></div>
 								</div>
 							</div>
-							<!-- 가상계좌 -->
+							
+							<!-- 가상계좌 -->							
 							<div class="col-md-4 text-center">
 								<div class="panel panel-danger panel-pricing">
-									<div class="panel-body text-center">
-										<img src="/findlove/resources/img/credit/virtual account.png"
-											alt="" style="width: 152px; height: 180px;"> <br>
+									<div class="panel-body text-center" data-payment_type = "vbank">
+										<img class="fee"src="/findlove/resources/img/credit/virtual account.png" onclick="vbank()" alt="" > <br>
 									</div>
-									<ul class="list-group text-center">
-									</ul>
+									
 									<div class="panel-footer"></div>
 								</div>
-							</div>
+							</div>							
 						</div>
 					</div>
 				</section>
 
 
 
-			</form>
+			
 			<!-- <ul class="payment_type">
 							<li class="phone active" data-payment_type="phone"></li>
 							<li class="credit" data-payment_type="credit"></li>
@@ -375,10 +391,20 @@ a.buy-btn {
 			$('#default-price').text($(this).data('price'));
 			updateTotalPrice();
 		});
+		
+		$('.buy-btn').on('click', function(){
+			$('#current-select').text($(this).data('select'));
+			
+		});
+		
 
 		$('#discountBtn').on('click', function() {
 			if ($('#myPoint').data('point') < $('#point_cnt').val()) {
-				alert("다시 입력해주세요.");
+				swal({
+					title:"warning!",
+					text:"다시 입력해 주세요.",
+					icon:"error",				
+				});				
 				$('#point_cnt').val('');
 			} else {
 				$('#using-point').text($('#point_cnt').val());
@@ -391,5 +417,162 @@ a.buy-btn {
 					$('#default-price').text() - $('#using-point').text());
 		}
 	</script>
+	<!-- 결제 모듈 관련 -->
+	<script>
+	<!-- 카드 -->
+	function card(){ 
+	var IMP = window.IMP; 
+	IMP.init('imp10949422'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+	
+	
+	IMP.request_pay({
+	    pg : 'inicis', 
+	    pay_method : 'card',
+	    merchant_uid : 'merchant_' + new Date().getTime(),
+	    name : '별사탕 : ' + $('#current-select').text(),
+	    amount : $('#total-price').text(),
+	    buyer_email : 'iamport@siot.do',
+	    buyer_name : '구매자 이름',
+	    buyer_tel : '010-1234-5678',
+	    buyer_addr : '서울특별시 강남구 삼성동',
+	    buyer_postcode : '123-456',
+	    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+	}, function(rsp) {
+	    if ( rsp.success ) {
+	        var msg = '결제가 완료되었습니다.';
+	        msg += '고유ID : ' + rsp.imp_uid;
+	        msg += '상점 거래ID : ' + rsp.merchant_uid;
+	        msg += '결제 금액 : ' + rsp.paid_amount;
+	        msg += '카드 승인번호 : ' + rsp.apply_num;
+	    } else {
+	        var msg = '결제에 실패하였습니다.';
+	        msg += rsp.error_msg;
+	    }
+	    swal({
+			msg		
+		});	
+	    
+	});
+	}
+	<!-- 휴대폰결제-->
+	function mobile(){
+		var IMP = window.IMP;
+		IMP.init('imp10949422');
+		
+		IMP.request_pay({
+		    pg : 'danal', 
+		    pay_method : 'phone', 
+		    merchant_uid : 'merchant_' + new Date().getTime(), 
+		    name : '별사탕 : ' + $('#current-select').text(),
+		    amount :  $('#total-price').text(),
+		    buyer_email : 'iamport@siot.do',
+		    buyer_name : '구매자이름',
+		    buyer_tel : '010-1234-5678', 
+		    buyer_addr : '서울특별시 강남구 삼성동',
+		    buyer_postcode : '123-456'
+		}, function(rsp) {
+		    if ( rsp.success ) {
+		    	
+		    	jQuery.ajax({
+		    		url: "/payments/complete", 
+		    		type: 'POST',
+		    		dataType: 'json',
+		    		data: {
+			    		imp_uid : rsp.imp_uid
+			    		//기타 필요한 데이터가 있으면 추가 전달
+		    		}
+		    	}).done(function(data) {		    		
+		    		if ( everythings_fine ) {
+		    			var msg = '결제가 완료되었습니다.';
+		    			msg += '\n고유ID : ' + rsp.imp_uid;
+		    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+		    			msg += '\결제 금액 : ' + rsp.paid_amount;
+		    			msg += '카드 승인번호 : ' + rsp.apply_num;
+		    			
+		    			swal({
+		    				title:"warning!",
+		    				text:msg,
+		    				icon:"error",				
+		    			});	
+		    		} else {
+		    			//[3] 아직 제대로 결제가 되지 않았습니다.
+		    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+		    		}
+		    	});
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += rsp.error_msg;
+		        
+		        swal({
+					title:"warning!",
+					text:msg,
+					icon:"error",				
+				});	
+		    }
+		});
+		
+	}
+	<!-- 가상계좌 -->
+	function vbank(){
+		var IMP = window.IMP;
+		IMP.init('imp10949422');
+		
+		IMP.request_pay({
+		    pg : 'danal_tpay',
+		    pay_method : 'vbank', 
+		    merchant_uid : 'merchant_' + new Date().getTime(), 
+		    name : '별사탕 : ' + $('#current-select').text(),
+		    amount :  $('#total-price').text(),
+		    buyer_email : 'iamport@siot.do',
+		    buyer_name : '구매자이름',
+		    buyer_tel : '010-1234-5678', 
+		    buyer_addr : '서울특별시 강남구 삼성동',
+		    buyer_postcode : '123-456',
+		    vbank_due : '20170401',
+		    biz_num : '1234567890'   
+		}, function(rsp) {
+		    if ( rsp.success ) {
+		    	
+		    	jQuery.ajax({
+		    		url: "/payments/complete",
+		    		type: 'POST',
+		    		dataType: 'json',
+		    		data: {
+			    		imp_uid : rsp.imp_uid
+			    		
+		    		}
+		    	}).done(function(data) {		    		
+		    		if ( everythings_fine ) {
+		    			var msg = '결제가 완료되었습니다.';
+		    			msg += '\n고유ID : ' + rsp.imp_uid;
+		    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+		    			msg += '\결제 금액 : ' + rsp.paid_amount;
+		    			msg += '카드 승인번호 : ' + rsp.apply_num;
+		    			
+		    			swal({
+		    				title:"Good Job!",
+		    				text:msg,
+		    				icon:"success",				
+		    			});			    			
+		    		} else {
+		    			//[3] 아직 제대로 결제가 되지 않았습니다.
+		    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+		    		}
+		    	});
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += rsp.error_msg;
+		        
+		        swal({
+					title:"warning!",
+					text:msg,
+					icon:"error",				
+				});	
+		    }
+		});
+	}
+	
+	</script>
+
 </body>
 </html>

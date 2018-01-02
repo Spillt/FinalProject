@@ -74,8 +74,9 @@
           <!-- <h1 class="my-4">Shop Name</h1> -->
           <div class="list-group">
             <a href="myinfo.do?user_id=${sessionScope.user_id }" class="list-group-item active">나의 정보</a>
-            <a href="myprofile.do?user_id=${sessionScope.user_id }" class="list-group-item">나의 프로필</a>
+            <a href="myprofile.do?user_id=${sessionScope.user_id }" class="list-group-item">나의 프로필</a>           
             <a href="idealprofile.do?user_id=${sessionScope.user_id }" class="list-group-item">이상형 프로필</a>
+            <a href="#" class="list-group-item">일대일 문의</a>
             <a href="store.do" class="list-group-item">스토어</a>
           </div>
         </div>
@@ -120,9 +121,8 @@
             	  </tr>
             	  
              	</table>
-             	</form>
-             	<!-- <a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick=>회원탈퇴</a>  -->
-             	<a href="/${initParam.context_root }/removeuser.do">회원 탈퇴</a>
+             	</form>             	
+             	<a class= "btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick="remove()">회원 탈퇴</a>
 			    <a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" href='myinfosetview.do?user_id=${user.user_id }'>수정하기</a>
 			    <a class="btn btn-primary" style="color:#fff; margin-bottom:20px;" onclick="history.go(-1)">취소</a>
             </section>
@@ -146,6 +146,16 @@
 	<script type="text/javascript">$(function() {
          $('#mainNav').css('background-color', '#faadad');
       });
+	</script>
+	<script>
+	function remove(){
+		 if(confirm("정말 탈퇴하시겠습니까?")==true){
+			location.href="removeuser.do?user_id=${user.user_id }"; 
+		}else{
+			return;
+		}
+		
+	}	
 	</script>
 
 </body>

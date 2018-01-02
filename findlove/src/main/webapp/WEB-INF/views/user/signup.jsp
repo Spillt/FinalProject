@@ -11,6 +11,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/findlove/resources/css/sign.css">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	
 	<!-- CSS/STYLE -->
 
@@ -28,8 +29,7 @@
  
   <label id="icon" for="name"><i class="icon-user"></i></label>
   <input type="text" name="user_id" id="id" placeholder="ID" style="width:130px;"required/>
-  <a class="confirmbutton" onclick="idCheck()" style="width: 60px;">confirm</a>
-  <!-- <button id="id" name="id" onclick="idCheck()"></button> -->
+  <a class="confirmbutton" onclick="idCheck()" style="width: 60px;">confirm</a> 
   <hr>
   
   <label id="icon" for="name"><i class="icon-shield"></i></label>
@@ -43,7 +43,7 @@
   
   <label id="icon" for="name"><i class="icon-user"></i></label>  
   <input type="text" name="user_nicknm" id="nickname" placeholder="NickName" style="width:130px;" required/>
-  <a class="confirmbutton" onclick="idCheck()" style="width: 60px;">confirm</a>
+  <a class="confirmbutton" onclick="nicknameCheck()" style="width: 60px;">confirm</a>
   
   <label id="icon" for="name"><i class="icon-envelope "></i></label>
   <input type="text" name="email" id="email" placeholder="Email" required/>
@@ -71,57 +71,102 @@
 		var pattern4 = /([^가-힣\x20])/i; //한글
 		
 		if(!form.id.value){
-			alert("아이디를 입력하세요.");
+			swal({
+				title:"warning!",
+				text:"아이디를 입력하세요.",
+				icon:"error",
+				
+			});
 			form.id.focus();
 			return false;		
 		}
-		if(form.id.value.length<6 || form.id.value.length>10){
-			alert("아이디는 6~10자리로 입력하여야 합니다.")
+		if(form.id.value.length<4 || form.id.value.length>10){
+			swal({
+				title:"warning!",
+				text:"아이디는 4~10자리로 입력하여야 합니다.",
+				icon:"error",				
+			});			
 			form.id.focus();
 			return false;
 		}
 		if(!form.pwd1.value){
-			alert("비밀번호를 입력하세요.")
+			swal({
+				title:"warning!",
+				text:"비밀번호를 입력하세요.",
+				icon:"error",				
+			});				
 			form.pwd1.focus();
 			return false;
 		}else if(!form.pwd2.value){
-			alert("비밀번호를 한번 더 입력하세요.")
+			swal({
+				title:"warning!",
+				text:"비밀번호를 한번 더 입력하세요.",
+				icon:"error",				
+			});				
 			form.pwd2.focus();
 			return false;
 		}
 		if(form.pwd1.value != form.pwd2.value){
-			alert("입력한 2개의 비밀번호가 일치하지 않습니다.")
+			swal({
+				title:"warning!",
+				text:"입력한 2개의 비밀번호가 일치하지 않습니다.",
+				icon:"error",				
+			});				
 			form.pwd1.focus();
 			return false;
 		}	
 		if(!form.name.value){
-			alert("이름을 입력하세요.");
+			swal({
+				title:"warning!",
+				text:"이름을 입력하세요.",
+				icon:"error",				
+			});				
 			form.name.focus();
 			return false;
 		}
 		if(pattern4.test(form.name.value)){
-			alert("이름은 한글만 입력 가능합니다.")
+			swal({
+				title:"warning!",
+				text:"이름은 한글만 입력 가능합니다.",
+				icon:"error",				
+			});				
 			form.name.focus();
 			return false;
 		}		
 		if(!form.nickname.value){
-			alert("닉네임을 입력하세요.");
+			swal({
+				title:"warning!",
+				text:"닉네임을 입력하세요.",
+				icon:"error",				
+			});	
 			form.nickname.focus();
 			return false;
 		}
 		if(pattern3.test(form.nickname.value)){
-			alert("닉네임에는 특수문자가 들어갈 수 없습니다.")
+			swal({
+				title:"warning!",
+				text:"닉네임에는 특수문자가 들어갈 수 없습니다.",
+				icon:"error",			
+			});				
 			form.nickname.focus();
 			return false;
 		}
 		
 		if(!form.email.value){
-			alert("이메일을 입력하세요.")
+			swal({
+				title:"warning!",
+				text:"이메일을 입력하세요.",
+				icon:"error",				
+			});				
 			form.email.focus();
 			return false;
 		}
 		if(!form.phone.value){
-			alert("휴대폰 번호를 입력하세요.")
+			swal({
+				title:"warning!",
+				text:"휴대폰 번호를 입력하세요.",
+				icon:"error",				
+			});				
 			form.phone.focus();
 			return false;
 		}
@@ -129,24 +174,30 @@
 		var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 		
 		if(exptext.test(form.email.value)==false){
-			alert("이메일 형식이 올바르지 않습니다.")
+			swal({
+				title:"warning!",
+				text:"이메일 형식이 올바르지 않습니다.",
+				icon:"error",				
+			});			
 			form.email.focus();
 			return false;
 		}
 		form.submit();
-		alert("회원가입이 완료되었습니다.\n아이디와 비밀번호로 로그인 하시기 바랍니다.");
+		swal({
+			title:"Good Job!",
+			text:"회원가입이 완료되었습니다.\n아이디와 비밀번호로 로그인 하시기 바랍니다.",
+			icon:"success",				
+		});			
 	}	
 	
 	</script>
 
 <script>
-/* function idCheck(){
-	var userId = $('#id').val();
-	
+ function idCheck(){	
 	$.ajax({
 		type	: "post",
 		url 	: "/findlove/idCheck.do",
-		data 	: userId,
+		data 	: $(""),
 		
 		sucess : function(data) {
 			if(data == 1)
@@ -158,7 +209,7 @@
 
 	});
 	 
-}  */
+}  
 </script>
   
 </html>
