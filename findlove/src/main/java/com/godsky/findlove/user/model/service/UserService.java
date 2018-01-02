@@ -68,6 +68,8 @@ public interface UserService {
 
 	public List<String> userList();
 
+	public String selectuser(String userId);
+
 
 
 	

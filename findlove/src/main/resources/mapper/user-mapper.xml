@@ -54,12 +54,9 @@
 	</select> -->
 	
 	<!-- 로그인 정보 보기 -->
-	<select id="viewMember" resultType="com.godsky.findlove.user.model.vo.User">
+	<select id="viewMember" parameterType="com.godsky.findlove.user.model.vo.User" resultType="com.godsky.findlove.user.model.vo.User">
 	SELECT
-		User_NM AS user_nm,
-		User_ID AS user_id,
-		Email AS email,
-		Latest_Access_DT AS lastestAccessDT
+		user_id, user_nm, user_nicknm, point_cnt, konpeito_cnt, grade_avg
 	FROM tb_user
 	WHERE User_ID = #{user_id} AND User_PWD = #{user_pwd}	
 	</select>
@@ -126,7 +123,12 @@
 		select user_id from tb_session_info
 	]]>
 	</select>
+	<select id="selectuser" parameterType="String" resultType="String">
+		<![CDATA[
+		select user_NickNM from tb_user where user_id = #{userId}
+		]]>
 	
+	</select>
  <!-- 결제 관련 -->
 	<!-- <select id="storeUser" resultType="String">
 	<![CDATA[

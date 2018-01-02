@@ -289,7 +289,7 @@
 
 
 
-		<span id="account-lg" onclick="openNav()" class="pull-left"><i
+		<span id="account-lg" onclick="openNav()" class="pull-left"><i 
 			class="material-icons md-36">account_circle</i></span>
 		<c:choose>
 			<c:when test="${sessionScope.user_id ne null }">
@@ -306,11 +306,15 @@
 				src="/findlove/resources/img/logos/logo.png" class="logo">
 			<c:choose>
 				<c:when test="${sessionScope.user_id ne null }">
-					<div class="nav-text">${sessionScope.user_id }님</div>
-					<%-- <br>
-					<div class="nav-text">별사탕 : ${profile.konpetio }</div>
-					<div class="nav-text">포인트 : ${profile.point }</div>
- --%>
+					<div class="nav-text">${sessionScope.user_id }님</div>					
+					<br>
+					<div class="nav-text">별사탕 : ${sessionScope.konpeito_cnt }</div>
+					<div class="nav-text">포인트 : ${sessionScope.point_cnt }</div>
+					<c:if test="${seesionScope.point_cnt } ne null">
+						<div class="nav-text">포인트 : ${seesionScope.point_cnt }</div>
+					</c:if>
+					
+ 
 				</c:when>				
 				<c:otherwise>
 					<div class="nav-text">로그인하세요</div>
@@ -454,7 +458,7 @@
 									alert("아이디 또는 비밀번호가 틀립니다. 확인하여주세요.")
 									return false; 
 									console.log(response);
-								}								
+								}
 							},
 							error : function(request, status, error){
 								 if(request.status != '0'){
@@ -472,13 +476,13 @@
 				
 	</script>
 	<script>
-	 $(".logout-btn").on('click',function() {
-		if(comfirm("로그아웃 하시겠습니까?")==true){
+	   $(".logout-btn").on('click',function() {
+		if(confirm("로그아웃 하시겠습니까?")==true){
 			location.href="logout.do";	
 		}else{
 			return;			
 		}				
-	 });	
+	 });  
 	</script>	
 	<script>
 		$('#loginform .input').keypress(function(e) {
@@ -505,14 +509,15 @@
 		    	
 		    }
 		})
-		
+		</script>
+		<script>
 		function session_check(){
 			if(${user_id != null}){
-		     $.ajax({
-					url: "sessionCheck.do",
-					data: {user_id :'${user_id}'},
-					type: "post"
-				});
+			     $.ajax({
+						url: "sessionCheck.do",
+						data: {user_id :'${user_id}'},
+						type: "post"
+					});
 			}
 		}
 		

@@ -66,8 +66,8 @@ public class MatchQnAServiceImpl implements MatchQnAService{
 	}
 
 	@Override
-	public List<String> selectUser3(String myGender) {
-		return matchQnADao.selectUser3(myGender);
+	public List<String> selectUser3(MatchQnA myInfo) {
+		return matchQnADao.selectUser3(myInfo);
 	}
 
 	@Override

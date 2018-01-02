@@ -61,12 +61,9 @@ public class UserController {
 		if(result == true){			
 			mav.setViewName("home");
 			mav.addObject("msg", "success");
-			session.setAttribute("user_nm", vo.getUser_nm());
-			session.setAttribute("user_nicknm", vo.getUser_nicknm());
-			session.setAttribute("konpeito_cnt", vo.getKonpeito_cnt());
-			session.setAttribute("point_cnt", vo.getPoint_cnt());			
 					
 			System.out.println("세션추가됨");
+			userService.insertSession(session.getId(), vo.getUser_id());
 			
 		}else{			
 			mav.setViewName("home");	
@@ -99,6 +96,7 @@ public class UserController {
 	public ModelAndView logout(HttpSession session){
 		userService.logout(session);
 		ModelAndView mav = new ModelAndView();
+		userService.deleteSession(session.getId());
 		mav.setViewName("home");
 		System.out.println("세션종료됨");
 	
@@ -110,6 +108,7 @@ public class UserController {
 	@RequestMapping(value = "deleteSession.do")
 	public void deleteSession(HttpSession session){
 			userService.deleteSession(session.getId());
+			System.out.println(session.getId());
 			System.out.println("UserController deleteSession.do 실행");
 	}
 	
@@ -150,14 +149,21 @@ public class UserController {
 		      Thread.sleep(100);
 
 		} catch (InterruptedException e) { }				
-
+		
+		
 		
 		int count = userService.loginCount();
 		
+		
+		ArrayList<String> userNikList = new ArrayList<String>();
 		if(count != 0){
 			ArrayList<String> userList = (ArrayList<String>)userService.userList();
+			for(int i=0;i < userList.size();i++){
+
+				userNikList.add(userService.selectuser(userList.get(i)));
+			}
 			String count1 = String.valueOf(count);
-			userList.add(count1);
+			userNikList.add(count1);
 
 			// list 나 map 을 json 배열로 내보내는 컨트롤러
 				//json 객체 하나만 내보낼 수 있음
@@ -167,7 +173,7 @@ public class UserController {
 				//list 옮겨담을 json 배열 선언
 				JSONArray jarr = new JSONArray();
 				
-				for(String List : userList){
+				for(String List : userNikList){
 					// user 객체 한 개를 저장할 json 객체 선언
 					JSONObject j = new JSONObject();
 					j.put("list", List);

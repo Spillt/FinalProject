@@ -21,11 +21,12 @@
   			  select user_id from tb_user
   			  left join TB_PROFILE using(user_id)
   			  left join TB_PROFILE_PICTURE using(user_id)
-  			  where TB_PROFILE.GENDER = case when #{myGender} = 'M' then 'F' else 'M' end
+  			  where TB_PROFILE.GENDER = case when #{answer1} = 'M' then 'F' else 'M' end
   			  and TB_PROFILE_PICTURE.THUMNAIL_FL = '1'
+  			  and target_gb = 0
   			  order by DBMS_RANDOM.RANDOM 
 				)
-			where rownum <= 3 and user_id != 'admin'
+			where rownum <= 3 and user_id != 'admin' and user_id != #{userId}
              ]]>
    
    </select>

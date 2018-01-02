@@ -31,7 +31,7 @@ public interface MatchQnAService {
 
 	public String selectUserGender(String userId);
 
-	public List<String> selectUser3(String myGender);
+	public List<String> selectUser3(MatchQnA myInfo);
 
 	public MatchUser selectMyQnA(String userId);
 

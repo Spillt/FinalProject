@@ -24,6 +24,10 @@ public class MatchQnA implements Serializable {
 		this.question = question;
 		this.answer1 = answer1;
 	}
+	public MatchQnA(String userId,String answer1){
+		this.userId = userId;
+		this.answer1 = answer1;
+	}
 
 	public String getUserId() {
 		return userId;

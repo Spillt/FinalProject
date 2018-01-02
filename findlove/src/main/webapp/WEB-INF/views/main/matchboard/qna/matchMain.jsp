@@ -138,17 +138,19 @@
 								<div class="container">
 									<c:if test="${today_matching eq 0 }">
 										<a href="selectmatchqna.do?matchingUserId=${m.user_id }"
-											class="matchQnA" style="font-size:15px; color: black;"></a>
+											class="matchQnA" style="font-size:15px; color: black;">
 									</c:if>
 									<c:if test="${today_matching eq 1 }">
-										<a href="#" class="matchQnA" onclick="selectMacthQnA();"
-											style="color: black;"></a>
+										<a data-toggle="modal" href="#exampleModal" class="matchQnA" 
+											style="color: black;">
 									</c:if>
 									<table class="table"
-										style="width: 200pt; position: relative; left: 170px;">
+										style="width: 220pt; position: relative; left: 220px;">
 										<thead>
 											<tr>
-												<th colspan="3" style="height: 200pt">${m.picture_nm }
+												<th colspan="3" style="height: 200pt">
+												<img src="/findlove/uploadfiles/profile/${ m.picture_nm }"
+													style="width: 285px; height: 285px;">
 													<div><strong>[${m.user_nm}](${m.rank_gb })</strong></div>
 													<div style="font-size: 12pt; color: gray">${m.age }세,${m.blood_type }형,${m.area }</div>
 												</th>
@@ -166,10 +168,71 @@
 												<td>${m.job},${m.religion }</td>
 											</tr>
 											<tr>
-												<td>평점 : ★★★★★</td>
+												<td>평점 :
+												
+												
+												<c:if test="${ m.grade_avg <0.5 }">
+												<span><img
+													src="/findlove/resources/img/starGrade/starGrade0.png"
+													width=100, height=35></span>
+												</c:if>
+												<c:if test="${ m.grade_avg >=0.5 && m.grade_avg<1.0 }">
+												<span><img
+													src="/findlove/resources/img/starGrade/starGrade0.5.png"
+													width=100, height=35></span>
+												</c:if>
+												<c:if test="${ m.grade_avg >=1.0 && m.grade_avg<1.5 }">
+												<span><img
+													src="/findlove/resources/img/starGrade/starGrade1.png"
+													width=100, height=35></span>
+												</c:if>
+												<c:if test="${ m.grade_avg >=1.5 && m.grade_avg<2.0 }">
+												<span><img
+													src="/findlove/resources/img/starGrade/starGrade1.5.png"
+													width=100, height=35></span>
+												</c:if>
+												<c:if test="${ m.grade_avg >=2.0 && m.grade_avg<2.5 }">
+												<span><img
+													src="/findlove/resources/img/starGrade/starGrade2.png"
+													width=100, height=35></span>
+												</c:if>
+												<c:if test="${ m.grade_avg >=2.5 && m.grade_avg<3.0}">
+												<span><img
+													src="/findlove/resources/img/starGrade/starGrade2.5.png"
+													width=100, height=35></span>
+												</c:if>
+												<c:if test="${ m.grade_avg >=3.0 && m.grade_avg<3.5 }">
+												<span><img
+													src="/findlove/resources/img/starGrade/starGrade3.png"
+													width=100, height=35></span>
+												</c:if>
+												<c:if test="${ m.grade_avg >=3.5 && m.grade_avg<4.0 }">
+												<span><img
+													src="/findlove/resources/img/starGrade/starGrade3.5.png"
+													width=100, height=35></span>
+												</c:if>
+												<c:if test="${ m.grade_avg >=4.0 && m.grade_avg<4.5 }">
+												<span><img
+													src="/findlove/resources/img/starGrade/starGrade4.png"
+													width=100, height=35></span>
+												</c:if>
+												<c:if test="${ m.grade_avg >=4.5 && m.grade_avg<5.0 }">
+												<span><img
+													src="/findlove/resources/img/starGrade/starGrade4.5.png"
+													width=100, height=35></span>
+												</c:if>
+												<c:if test="${ m.grade_avg >=5 }">
+												<span><img
+													src="/findlove/resources/img/starGrade/starGrade5.png"
+													width=100, height=35></span>
+												</c:if>
+					
+					
+					
+					</td>
 											</tr>
 										</tbody>
-									</table>									
+									</table></a>									
 								</div>
 								
 						</div>
@@ -205,9 +268,68 @@
 		});
 	</script>
 	<script type="text/javascript">
-		function selectMacthQnA() {
+		/* function selectMacthQnA() {
 			alert("매칭은 하루에 한번 가능합니다.\n계속 하고 싶으신 경우 결제하여주십시오. ");//결제창이동 예정
-		}
+		} */
 	</script>
+	   <script type="text/javascript">
+      $('#exampleModal').on('show.bs.modal', function(event) {
+         var modal = $(this)
+         modal.find('.modal-title').text('')
+         modal.find('.modal-body input').val(recipient)
+      })
+
+      function rematching(userId) {
+            var modal = $('#exampleModal');
+            $.ajax({
+               url : 'rematching.do',
+               type : 'post',
+               data : {
+                  "userId" : userId
+               },
+               success : function(data) {
+                  if (data == 1) {
+                     alert("별사탕 차감됨!");
+                     document.location.href="selectmatchqna.do?matchingUserId=${m.user_id }"; 
+                     modal.modal('hide');
+                  } else {
+                     alert("별사탕 부족합니다.");
+                     modal.modal('hide');
+                  }
+                  $('#message-text').val('');
+               },
+               error : function(data) {
+                  alert("메세지 오류!");
+                  modal.modal('hide');
+               }
+            })
+      }
+   </script>
+   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h4 class="modal-title" id="exampleModalLabel">매칭 안내</h4>
+               <button type="button" class="close" data-dismiss="modal"
+                  aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <form>
+                  <div class="form-group">
+                     <label for="message-text" class="control-label">매칭은 하루에 한번 가능합니다.<br> 한번 더 하실 경우 별사탕이 소모됩니다.</label>
+                  </div>
+               </form>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               <button type="button" class="btn btn-primary"
+                  onclick="rematching('${sessionScope.user_id}')">10 별사탕 차감</button>
+            </div>
+         </div>
+      </div>
+   </div>
 </body>
 </html>

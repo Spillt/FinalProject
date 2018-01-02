@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>연애의발견::QnA매칭</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -30,19 +30,32 @@
   	border: 1px solid pink;
     Opacity : 0.8;
   }
+  .container.top{
+   padding-top:150px;
+  }
   </style>
   
 </head>
-<body>
+<body id= "page-top" style="font-size:1.5rem">
+<!-- header -->
 <c:import url="../../../include/header.jsp"/>
 
-<br><br><br><br><br><br><br><br>
-<%-- <c:forEach var="a" items="${requestScope.matchQnA}"> --%>
+<!-- title -->
+	<div class="container top">
+		<div class="row">
+			<div class="col-lg-12 text-left">
+				<strong style="font-size: 25pt; color: #faadad;">QnA매칭</strong>
+			</div>
+		</div>
+	</div>
+	<br>
+
+	
 <div class="container question-container">
 
-  <h2>첫번째 질문</h2>
+  <h2>Question 1</h2>
   <div class="well">${requestScope.matchQnA1.question }</div>
-  <h2>답변</h2>
+  <h2>Answer</h2>
   <button type="button" class="btn btn-default btn-block" onclick="selectChoise('${requestScope.matchingUserId }','${requestScope.matchQnA1.question_no }','1');">${requestScope.matchQnA1.choice1 }</button>
   <button type="button" class="btn btn-default btn-block" onclick="selectChoise('${requestScope.matchingUserId }','${requestScope.matchQnA1.question_no }','2');">${requestScope.matchQnA1.choice2 }</button>
   <button type="button" class="btn btn-default btn-block" onclick="selectChoise('${requestScope.matchingUserId }','${requestScope.matchQnA1.question_no }','3');">${requestScope.matchQnA1.choice3 }</button>

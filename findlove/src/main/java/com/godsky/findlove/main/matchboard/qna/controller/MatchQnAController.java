@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,6 +21,8 @@ import com.godsky.findlove.main.matchboard.qna.model.vo.MatchQnA;
 import com.godsky.findlove.main.matchboard.qna.model.vo.MatchUser;
 import com.godsky.findlove.main.matchboard.qna.model.vo.MatchUserProfile;
 import com.godsky.findlove.main.matchboard.qna.model.vo.MatchingQuestion;
+import com.godsky.findlove.main.profileboard.model.service.KonpeitoService;
+import com.godsky.findlove.main.profileboard.model.vo.Message;
 @Controller
 public class MatchQnAController {
 	@Autowired
@@ -28,7 +30,8 @@ public class MatchQnAController {
 	
 	public MatchQnAController(){}
 	
-	
+	@Resource(name="konpeitoService")
+	private KonpeitoService konpeitoService;
 	
 	
 	
@@ -39,11 +42,12 @@ public class MatchQnAController {
 	public ModelAndView selectUserList(@RequestParam("userId") String userId,HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		
-		System.out.println("유저 아이디 : " + userId);		
+		System.out.println("유저 아이디 : " + userId);
 		String myGender = (String)matchQnAService.selectUserGender(userId);
+		MatchQnA myInfo = new MatchQnA(userId,myGender);
 		System.out.println("성별 : " + myGender);
 		
-		ArrayList<String> matchUsers = (ArrayList<String>)matchQnAService.selectUser3(myGender);
+		ArrayList<String> matchUsers = (ArrayList<String>)matchQnAService.selectUser3(myInfo);
 		
 		
 		
@@ -221,5 +225,31 @@ public class MatchQnAController {
 		System.out.println("today : " + today);
 		mv = selectUserList(userId,request);
 		return mv;
+	}
+	
+	@RequestMapping(value="rematching.do")
+	public void rematching(HttpServletResponse response, @RequestParam("userId")String userId) {
+		
+		//별사탕이 10보다 많은지 확인 -> 많으면 1출력, 부족하면 0출력
+		int point = konpeitoService.checkpoint(userId);
+		
+		System.out.println(point);
+		
+		if(point == 1) { //별사탕이 10보다 많을 때 
+			int result = 1;
+			
+			try {
+		        response.getWriter().print(result); //메세지성공
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    } 
+		}else { //별사탕이 10보다 작을 떄
+			
+			try {
+		        response.getWriter().print(point); //별사탕부족
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    } 
+		}
 	}
 }

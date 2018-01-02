@@ -37,7 +37,6 @@ public class UserDao {
 
 	// 로그인 정보 보기
 	public User viewMember(User vo) {
-		System.out.println("로그인 정보보기 dao vo : " + vo);
 		return sqlSession.selectOne("user.viewMember", vo);
 	}
 
@@ -134,6 +133,11 @@ public class UserDao {
 	//접속자 리스트 불러오기
 	public List<String> userList() {
 		return sqlSession.selectList("user.userList");
+	}
+
+	public String selectuser(String userId) {
+		
+		return sqlSession.selectOne("user.selectuser",userId);
 	}
 
 	/*public User findByUserIdAndPwd(String user_id, String pwd) {

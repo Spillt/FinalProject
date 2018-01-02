@@ -27,7 +27,13 @@ public class UserServiceImpl implements UserService{
 		if(result){
 			User vo2 = viewMember(vo);
 			//세션 변수 등록
-			session.setAttribute("user_id", vo2.getUser_id());			
+			System.out.println(vo2);
+			session.setAttribute("user_id", vo2.getUser_id());
+			 
+			session.setAttribute("konpeito_cnt", vo2.getKonpeito_cnt());
+			session.setAttribute("point_cnt", vo2.getPoint_cnt());
+			System.out.println(vo2.getPoint_cnt());
+			session.setAttribute("lastest_access_dt", vo2.getLastest_access_dt());
 		}
 		System.out.println("로그인 체크 service result :" + result);
 		
@@ -170,6 +176,12 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<String> userList() {		
 		return userDao.userList();
+	}
+
+
+	@Override
+	public String selectuser(String userId) {
+		return userDao.selectuser(userId);
 	}
 	
 	//로그인 2

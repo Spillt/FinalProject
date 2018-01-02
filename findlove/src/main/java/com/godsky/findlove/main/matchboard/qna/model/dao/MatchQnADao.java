@@ -59,8 +59,8 @@ public class MatchQnADao {
 		return sqlSession.selectOne("profile.selectProfileOne",userId);
 	}
 
-	public List<String> selectUser3(String myGender) {
-		return sqlSession.selectList("match.selectMatchuser3",myGender);
+	public List<String> selectUser3(MatchQnA myInfo) {
+		return sqlSession.selectList("match.selectMatchuser3",myInfo);
 	}
 
 	public MatchUser selectMyQnA(String userId) {
