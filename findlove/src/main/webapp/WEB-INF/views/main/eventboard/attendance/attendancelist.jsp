@@ -119,6 +119,7 @@ body {
 			<li class="nav-item"><a
 				class="btn btn-primary nav-link js-scroll-trigger"
 				href="polllist.do?userId=${user_id}">설문조사</a></li>
+			<li class="nav-item"><button class="btn btn-primary test-btn">테스트</button></li>
 		</ul>
 	</div>
 	<div class="attendance">
@@ -142,7 +143,6 @@ body {
 					var d = date.getDate();
 					var m = date.getMonth();
 					var y = date.getFullYear();
-
 					/*  className colors
 					
 					className: default(transparent), important(red), chill(pink), success(green), info(blue)
@@ -176,6 +176,31 @@ body {
 
 					/* initialize the calendar
 					-----------------------------------------------------------------*/
+					var schedules = [
+		
+					{
+						id : 1,
+						title : '출석체크',
+						start : new Date(y, m, d+1, 16, 0),
+						allDay : true,
+					},
+					{
+						id : 1,
+						title : '출석체크',
+						start : new Date(2018, 0, 7, 16, 0),
+						allDay : true,
+					}];
+					
+					$('.test-btn').on('click', function () {
+						schedules.push(
+								{
+									id : 1,
+									title : '출석체크',
+									start : new Date(y, m, d, 16, 0),
+									allDay : true,
+								}
+						);
+					});
 
 					var calendar = $('#calendar').fullCalendar(
 							{
@@ -245,20 +270,10 @@ body {
 
 								},
 
-								events : [
-
-								{
-									id : 1,
-									title : '출석체크',
-									start : new Date(y, m, d - 3, 16, 0),
-									allDay : true,
-									className : 'info'
-								}
-
-								],
+								events : schedules
 							});
-
-				});
+			});
+		
 	</script>
 </body>
 </html>

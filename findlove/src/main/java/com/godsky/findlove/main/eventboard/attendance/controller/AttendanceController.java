@@ -21,7 +21,6 @@ public class AttendanceController {
 	
 	public AttendanceController() {}
 	
-	// 일대일 문의 목록 전체 보기
 	
 	@RequestMapping(value = "attendancelist.do")
 	public ModelAndView pollAnswer(@RequestParam("userId") String userId) {
@@ -30,7 +29,7 @@ public class AttendanceController {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("main/eventboard/attendance/attendancelist");
-		mv.addObject("mylist", list);
+		mv.addObject("list", list);
 		return mv;
 	}
 	

@@ -44,16 +44,7 @@ var defaults = {
 	endParam: 'end',
 	
 	// time formats
-	titleFormat: {
-		month: 'MMMM yyyy',
-		week: "MMM d[ yyyy]{ '—'[ MMM] d yyyy}",
-		day: 'dddd, MMM d, yyyy'
-	},
-	columnFormat: {
-		month: 'ddd',
-		week: 'ddd M/d',
-		day: 'dddd M/d'
-	},
+	
 	timeFormat: { // for event elements
 		'': 'h(:mm)t' // default
 	},
@@ -147,7 +138,7 @@ $.fn.fullCalendar = function(options) {
 	// would like to have this logic in EventManager, but needs to happen before options are recursively extended
 	var eventSources = options.eventSources || [];
 	delete options.eventSources;
-	if (options.events) {
+	if (options.events) {//입력된 값 표시 관련
 		eventSources.push(options.events);
 		delete options.events;
 	}
@@ -163,7 +154,7 @@ $.fn.fullCalendar = function(options) {
 	this.each(function(i, _element) {
 		var element = $(_element);
 		var calendar = new Calendar(element, options, eventSources);
-		element.data('fullCalendar', calendar); // TODO: look into memory leak implications
+		element.data('fullCalendar', calendar); // 글씨 입력에 관한부분 look into memory leak implications
 		calendar.render();
 	});
 	
@@ -174,12 +165,7 @@ $.fn.fullCalendar = function(options) {
 
 
 // function for adding/overriding defaults
-function setDefaults(d) {
-	$.extend(true, defaults, d);
-}
-
-
-
+function setDefaults(d) {}
 ;;
 
  
@@ -801,76 +787,39 @@ function Header(calendar, options) {
 										) +
 								"</span>"
 								)
-								.click(function() {
+								.click(function() {//달이동 버튼관련
 									if (!button.hasClass(tm + '-state-disabled')) {
 										buttonClick();
 									}
-								})
-								.mousedown(function() {
-									button
-										.not('.' + tm + '-state-active')
-										.not('.' + tm + '-state-disabled')
-										.addClass(tm + '-state-down');
-								})
-								.mouseup(function() {
-									button.removeClass(tm + '-state-down');
-								})
-								.hover(
-									function() {
-										button
-											.not('.' + tm + '-state-active')
-											.not('.' + tm + '-state-disabled')
-											.addClass(tm + '-state-hover');
-									},
-									function() {
-										button
-											.removeClass(tm + '-state-hover')
-											.removeClass(tm + '-state-down');
-									}
-								)
+								})							
+								
 								.appendTo(e);
-							disableTextSelection(button);
-							if (!prevButton) {
-								button.addClass(tm + '-corner-left');
-							}
-							prevButton = button;
 						}
 					}
 				});
-				if (prevButton) {
-					prevButton.addClass(tm + '-corner-right');
-				}
 			});
 		}
 		return e;
 	}
 	
-	//연도 월 표기
-	function updateTitle(html) {
+	
+	function updateTitle(html) {//연도 월 표기
 		element.find('h2')
 			.html(html);
 	}
 	
 	
-	function activateButton(buttonName) {
-		element.find('span.fc-button-' + buttonName)
-			.addClass(tm + '-state-active');
-	}
+	function activateButton(buttonName) {}		
+	function deactivateButton(buttonName) {}
 	
 	
-	function deactivateButton(buttonName) {
-		element.find('span.fc-button-' + buttonName)
-			.removeClass(tm + '-state-active');
-	}
-	
-	
-	function disableButton(buttonName) {
+	function disableButton(buttonName) {//입력된글씨와 입력할 글씨 관련버튼
 		element.find('span.fc-button-' + buttonName)
 			.addClass(tm + '-state-disabled');
 	}
 	
 	
-	function enableButton(buttonName) {
+	function enableButton(buttonName) {//today버튼
 		element.find('span.fc-button-' + buttonName)
 			.removeClass(tm + '-state-disabled');
 	}
@@ -1891,14 +1840,14 @@ function BasicView(element, calendar, viewName) {
 	t.renderBasic = renderBasic;
 	t.setHeight = setHeight;
 	t.setWidth = setWidth;
-	t.renderDayOverlay = renderDayOverlay;
-	t.defaultSelectionEnd = defaultSelectionEnd;
-	t.renderSelection = renderSelection;
-	t.clearSelection = clearSelection;
-	t.reportDayClick = reportDayClick; // for selection (kinda hacky)
-	t.dragStart = dragStart;
-	t.dragStop = dragStop;
-	t.defaultEventEnd = defaultEventEnd;
+	//t.renderDayOverlay = renderDayOverlay;
+	// t.defaultSelectionEnd = defaultSelectionEnd;
+	t.renderSelection = renderSelection; //이놈이 그놈이다 입력하는 액션뜨는놈개색히씹색히 좃같은새끼ㅡㅡ
+	t.clearSelection = clearSelection; //이놈도 포함이다
+	t.reportDayClick = reportDayClick; // for selection (kinda hacky)날짜 클릭시에배경변경만되고 유지 다른 날짜 클릭전까지만 위에 두개 안됨
+	//t.dragStart = dragStart;
+	//t.dragStop = dragStop;
+	//t.defaultEventEnd = defaultEventEnd;
 	t.getHoverListener = function() { return hoverListener };
 	t.colLeft = colLeft;
 	t.colRight = colRight;
@@ -2282,7 +2231,7 @@ function BasicView(element, calendar, viewName) {
 	}
 	
 	
-	function renderSelection(startDate, endDate, allDay) {
+	function renderSelection(startDate, endDate, allDay) {//날짜 클릭시 배경 색 안뜸
 		renderDayOverlay(startDate, addDays(cloneDate(endDate), 1), true); // rebuild every time???
 	}
 	
@@ -2294,7 +2243,7 @@ function BasicView(element, calendar, viewName) {
 	
 	function reportDayClick(date, allDay, ev) {
 		var cell = dateToCell(date);
-		var _element = bodyCells[cell.row*colCnt + cell.col];
+		var _element = bodyCells[cell.row*colCnt + cell.col+1];
 		trigger('dayClick', _element, date, allDay, ev);
 	}
 	
@@ -2579,7 +2528,6 @@ function AgendaView(element, calendar, viewName) {
 	t.getSnapMinutes = function() { return snapMinutes };
 	t.defaultSelectionEnd = defaultSelectionEnd;
 	t.renderDayOverlay = renderDayOverlay;
-	t.renderSelection = renderSelection;
 	t.clearSelection = clearSelection;
 	t.reportDayClick = reportDayClick; // selection mousedown hack
 	t.dragStart = dragStart;
@@ -3278,15 +3226,7 @@ function AgendaView(element, calendar, viewName) {
 	}
 	
 	
-	function renderSelection(startDate, endDate, allDay) { // only for all-day
-		if (allDay) {
-			if (opt('allDaySlot')) {
-				renderDayOverlay(startDate, addDays(cloneDate(endDate), 1), true);
-			}
-		}else{
-			renderSlotSelection(startDate, endDate);
-		}
-	}
+	
 	
 	
 	function renderSlotSelection(startDate, endDate) {
@@ -5384,181 +5324,15 @@ function DayEventRenderer() {
 	// TODO: better documentation!
 
 
-	function attachHandlers(segments, modifiedEventId) {
-		var segmentContainer = getDaySegmentContainer();
-
-		segmentElementEach(segments, function(segment, element, i) {
-			var event = segment.event;
-			if (event._id === modifiedEventId) {
-				bindDaySeg(event, element, segment);
-			}else{
-				element[0]._fci = i; // for lazySegBind
-			}
-		});
-
-		lazySegBind(segmentContainer, segments, bindDaySeg);
-	}
+	function attachHandlers(segments, modifiedEventId) {}
 
 
-	function bindDaySeg(event, eventElement, segment) {
-
-		if (isEventDraggable(event)) {
-			t.draggableDayEvent(event, eventElement, segment); // use `t` so subclasses can override
-		}
-
-		if (
-			segment.isEnd && // only allow resizing on the final segment for an event
-			isEventResizable(event)
-		) {
-			t.resizableDayEvent(event, eventElement, segment); // use `t` so subclasses can override
-		}
-
-		// attach all other handlers.
-		// needs to be after, because resizableDayEvent might stopImmediatePropagation on click
-		eventElementHandlers(event, eventElement);
-	}
+	function bindDaySeg(event, eventElement, segment) {}
 
 	
-	function draggableDayEvent(event, eventElement) {
-		var hoverListener = getHoverListener();
-		var dayDelta;
-		eventElement.draggable({
-			delay: 50,
-			opacity: opt('dragOpacity'),
-			revertDuration: opt('dragRevertDuration'),
-			start: function(ev, ui) {
-				trigger('eventDragStart', eventElement, event, ev, ui);
-				hideEvents(event, eventElement);
-				hoverListener.start(function(cell, origCell, rowDelta, colDelta) {
-					eventElement.draggable('option', 'revert', !cell || !rowDelta && !colDelta);
-					clearOverlays();
-					if (cell) {
-						var origDate = cellToDate(origCell);
-						var date = cellToDate(cell);
-						dayDelta = dayDiff(date, origDate);
-						renderDayOverlay(
-							addDays(cloneDate(event.start), dayDelta),
-							addDays(exclEndDay(event), dayDelta)
-						);
-					}else{
-						dayDelta = 0;
-					}
-				}, ev, 'drag');
-			},
-			stop: function(ev, ui) {
-				hoverListener.stop();
-				clearOverlays();
-				trigger('eventDragStop', eventElement, event, ev, ui);
-				if (dayDelta) {
-					eventDrop(this, event, dayDelta, 0, event.allDay, ev, ui);
-				}else{
-					eventElement.css('filter', ''); // clear IE opacity side-effects
-					showEvents(event, eventElement);
-				}
-			}
-		});
-	}
-
+	function draggableDayEvent(event, eventElement) {}
 	
-	function resizableDayEvent(event, element, segment) {
-		var isRTL = opt('isRTL');
-		var direction = isRTL ? 'w' : 'e';
-		var handle = element.find('.ui-resizable-' + direction); // TODO: stop using this class because we aren't using jqui for this
-		var isResizing = false;
-		
-		// TODO: look into using jquery-ui mouse widget for this stuff
-		disableTextSelection(element); // prevent native <a> selection for IE
-		element
-			.mousedown(function(ev) { // prevent native <a> selection for others
-				ev.preventDefault();
-			})
-			.click(function(ev) {
-				if (isResizing) {
-					ev.preventDefault(); // prevent link from being visited (only method that worked in IE6)
-					ev.stopImmediatePropagation(); // prevent fullcalendar eventClick handler from being called
-					                               // (eventElementHandlers needs to be bound after resizableDayEvent)
-				}
-			});
-		
-		handle.mousedown(function(ev) {
-			if (ev.which != 1) {
-				return; // needs to be left mouse button
-			}
-			isResizing = true;
-			var hoverListener = getHoverListener();
-			var rowCnt = getRowCnt();
-			var colCnt = getColCnt();
-			var elementTop = element.css('top');
-			var dayDelta;
-			var helpers;
-			var eventCopy = $.extend({}, event);
-			var minCellOffset = dayOffsetToCellOffset( dateToDayOffset(event.start) );
-			clearSelection();
-			$('body')
-				.css('cursor', direction + '-resize')
-				.one('mouseup', mouseup);
-			trigger('eventResizeStart', this, event, ev);
-			hoverListener.start(function(cell, origCell) {
-				if (cell) {
-
-					var origCellOffset = cellToCellOffset(origCell);
-					var cellOffset = cellToCellOffset(cell);
-
-					// don't let resizing move earlier than start date cell
-					cellOffset = Math.max(cellOffset, minCellOffset);
-
-					dayDelta =
-						cellOffsetToDayOffset(cellOffset) -
-						cellOffsetToDayOffset(origCellOffset);
-
-					if (dayDelta) {
-						eventCopy.end = addDays(eventEnd(event), dayDelta, true);
-						var oldHelpers = helpers;
-
-						helpers = renderTempDayEvent(eventCopy, segment.row, elementTop);
-						helpers = $(helpers); // turn array into a jQuery object
-
-						helpers.find('*').css('cursor', direction + '-resize');
-						if (oldHelpers) {
-							oldHelpers.remove();
-						}
-
-						hideEvents(event);
-					}
-					else {
-						if (helpers) {
-							showEvents(event);
-							helpers.remove();
-							helpers = null;
-						}
-					}
-					clearOverlays();
-					renderDayOverlay( // coordinate grid already rebuilt with hoverListener.start()
-						event.start,
-						addDays( exclEndDay(event), dayDelta )
-						// TODO: instead of calling renderDayOverlay() with dates,
-						// call _renderDayOverlay (or whatever) with cell offsets.
-					);
-				}
-			}, ev);
-			
-			function mouseup(ev) {
-				trigger('eventResizeStop', this, event, ev);
-				$('body').css('cursor', '');
-				hoverListener.stop();
-				clearOverlays();
-				if (dayDelta) {
-					eventResize(this, event, dayDelta, 0, ev);
-					// event redraw will clear helpers
-				}
-				// otherwise, the drag handler already restored the old events
-				
-				setTimeout(function() { // make this happen after the element's click event
-					isResizing = false;
-				},0);
-			}
-		});
-	}
+	function resizableDayEvent(event, element, segment) {}
 	
 
 }
@@ -5650,7 +5424,7 @@ function SelectionManager() {
 		if (!endDate) {
 			endDate = defaultSelectionEnd(startDate, allDay);
 		}
-		renderSelection(startDate, endDate, allDay);
+		//renderSelection(startDate, endDate, allDay);
 		reportSelection(startDate, endDate, allDay);
 	}
 	
