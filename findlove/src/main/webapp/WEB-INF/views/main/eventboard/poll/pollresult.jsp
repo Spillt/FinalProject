@@ -19,10 +19,7 @@ header.subhead {
 	}
 }
 
-body {
-	background:
-		url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-Abstract-Blurred-Background-Of-92820527.jpg);
-}
+
 
 .event {
 	float: left;
@@ -90,9 +87,9 @@ th, td {
 tr:nth-child(2n), td:nth-child(2n) {
     background-color: #fff;
   }
-  tr:nth-child(2n+1), td:nth-child(2n+1) {
+   tr:nth-child(2n+1), th:nth-child(2n+1) {
     background-color: #faadad;
-  }
+  } 
 
 </style>
 </head>
@@ -112,21 +109,21 @@ tr:nth-child(2n), td:nth-child(2n) {
 				href="polllist.do?userId=${user_id}">설문조사</a></li>
 		</ul>
 	</div>
-	<div class="detail">
+	<div class="detail" style="width:1100px; margin-left:110px;">
 		<table class="table table-striped text-center">
 			<tr>
-				<td>설문내용</td>
+				<th>설문내용</th>
 				<td>${poll.pollTitle}</td>
 			</tr>
 			<tr>
-				<td>기간</td>
+				<th>기간</th>
 				<td>${poll.SDT}~${poll.EDT}</td>
 			</tr>
 			<tr>
-				<td><br>답변</td>
+				<th><br>답변</th>
 				<td>
 					</div>
-					<div id="population_chart" data-sort="false" data-width="500"
+					<div id="population_chart" data-sort="false" data-width="400px;" style="width:600px; margin-left:10px;"
 						class="jChart chart-lg">
 						<c:forEach var="sta" items="${statistics}">
 							<c:choose>

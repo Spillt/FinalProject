@@ -21,4 +21,9 @@
 		VALUES(#{userId}, sysdate)
 	</insert>
 
+<select id="selectatt" parameterType="String" resultType="String">
+		<![CDATA[
+			select user_id from TB_ATTENDANCE where ATTENDANCE_DT like to_char(sysdate,'yy/MM/dd')and USER_ID = #{userId}
+		]]>
+	</select>
 </mapper>

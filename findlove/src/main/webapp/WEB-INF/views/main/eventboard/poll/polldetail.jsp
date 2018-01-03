@@ -16,9 +16,7 @@ header.subhead {
 		height: 103px
 	}
 }
-body{
-background:url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-Abstract-Blurred-Background-Of-92820527.jpg);
-}
+
 .event {
 	float: left;
 	width: 100%;
@@ -41,6 +39,7 @@ background:url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-A
 	font-color: white;
 	display: inline-block;
 	padding-right: 10px;
+	
 }
 
 .detail {
@@ -85,9 +84,19 @@ th, td {
 tr:nth-child(2n), td:nth-child(2n) {
     background-color: #fff;
   }
-  tr:nth-child(2n+1), td:nth-child(2n+1) {
+  tr:nth-child(2n+1), th:nth-child(2n+1) {
     background-color: #faadad;
   }
+  
+  .poll {
+	float: left;
+	width: 100%;
+	padding-right: 20px;
+	padding-left: 25px;
+	padding-top: 10px;
+	margin: 0 auto;
+	text-align: center;
+}
 
 </style>
 </head>
@@ -107,34 +116,36 @@ tr:nth-child(2n), td:nth-child(2n) {
 				href="polllist.do?userId=${user_id}">설문조사</a></li>
 		</ul>
 	</div>
-	<div class="<!-- detail -->">
+	<div class="poll" id="polltitle" style="width:1100px; margin-left:110px;">
 	<form action="pollAnswer.do">
-		<table class="table table-striped">
+		<table class="table table-bordered">
 		
 			<tr>
-				<td style="width:10%; text-align: left">설문내용</td>
-				<td style="width:90%; text-align: left">${poll.pollTitle}</td>
+				<th style="width:15%;">설문내용</th>
+				<td style="width:85%; text-align: left">${poll.pollTitle}</td>
 			</tr>
 			<tr>
-				<td style="text-align: left">기간</td>
+				<th>기간</th>
 				<td style="text-align: left">${poll.SDT}~${poll.EDT}</td>
 			</tr>
 			<tr>
-				<td style="text-align: left"><br>답변
-				</td>
+				<th><br><br>답변
+				</th>
 				<td style="text-align: left">
 					
 					
 						<input type="hidden" name="user_id" value="${sessionScope.user_id}">
 						<input type="hidden" name="poll_no" value="${poll.pollNo}">
 						<div>
-							<input type="radio" name="answer" value=1>${poll.answer1}
+							<input type="radio" name="answer" value=1>${poll.answer1}						
 						</div>
+						<br>
 						<div>
-							<input type="radio" namer="answer" value=2>${poll.answer2}
+							<input type="radio" namer="answer" value=2>${poll.answer2}					
 						</div>
+						<br>
 						<div>
-							<input type="radio" name="answer" value=3>${poll.answer3}
+							<input type="radio" name="answer" value=3>${poll.answer3}						
 						</div>
 						
 					
@@ -146,17 +157,16 @@ tr:nth-child(2n), td:nth-child(2n) {
 
 
 
-
-		<ul>
+		<div class="event">
+		<ul >
 			<li class="nav-item"><a class="btn btn-primary"
 				href="polllist.do?userId=${user_id}">이전으로</a></li>
 			<li class="nav-item"><input class="btn btn-primary" type="submit" value="설문완료"
 			style="border-right: 0px solid; border-left: 
 				0px solid; border-top: 0px solid; 
 				border-bottom: 0px solid; "></li>
-				
-
 		</ul>
+		</div>
 
 	</form>
 	</div>

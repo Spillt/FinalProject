@@ -49,8 +49,6 @@ body {
 	text-align: center;
 	font-size: 14px;
 	font-family: 'Roboto', sans-serif;
-	background:
-		url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-Abstract-Blurred-Background-Of-92820527.jpg);
 }
 
 #wrap {
@@ -116,12 +114,18 @@ body {
 			<li class="nav-item"><a
 				class="btn btn-primary nav-link js-scroll-trigger"
 				href="attendancelist.do?userId=${sessionScope.user_id}">출석체크</a></li>
+				         <li class="nav-item"><a
+            class="btn btn-primary nav-link js-scroll-trigger"
+            href="percent.do?userId=${user_id}">나는 상위 몇 %?</a></li>
 			<li class="nav-item"><a
 				class="btn btn-primary nav-link js-scroll-trigger"
 				href="polllist.do?userId=${user_id}">설문조사</a></li>
+			<div style="position:absolute; margin-left:440px; margin-top:25px">
 			<li class="nav-item"><a
 				class="btn btn-primary nav-link js-scroll-trigger"
-				href="attendancebtn.do?userId=${user_id}">테스트</a></li>
+				href="attendancebtn.do?userId=${user_id}">Today Check</a></li>
+				</div>
+
 		</ul>
 	</div>
 	<div class="attendance">
@@ -157,125 +161,86 @@ body {
 
 			</c:forEach>
 		});
-		$(document).ready(
-				function() {
-					var date = new Date();
-					var d = date.getDate();
-					var m = date.getMonth();
-					var y = date.getFullYear();
-					/*  className colors
-					
-					className: default(transparent), important(red), chill(pink), success(green), info(blue)
-					
-					 */
+		$(document).ready(function() {
+			var date = new Date();
+			var d = date.getDate();
+			var m = date.getMonth();
+			var y = date.getFullYear();
+			/*  className colors
+			
+			className: default(transparent), important(red), chill(pink), success(green), info(blue)
+			
+			 */
 
-					/* initialize the external events
-					-----------------------------------------------------------------*/
+			/* initialize the external events
+			-----------------------------------------------------------------*/
 
-					$('#external-events div.external-event').each(function() {
+			$('#external-events div.external-event').each(function() {
 
-						// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-						// it doesn't need to have a start or end
-						var eventObject = {
-							title : $.trim($(this).text())
-						// use the element's text as the event title
-						};
+				// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+				// it doesn't need to have a start or end
+				var eventObject = {
+					title : $.trim($(this).text())
+				// use the element's text as the event title
+				};
 
-						// store the Event Object in the DOM element so we can get to it later
-						$(this).data('eventObject', eventObject);
+				// store the Event Object in the DOM element so we can get to it later
+				$(this).data('eventObject', eventObject);
 
-						// make the event draggable using jQuery UI
-						$(this).draggable({
-							zIndex : 999,
-							revert : true, // will cause the event to go back to its
-							revertDuration : 0
-						//  original position after the drag
-						});
-
-					});
-
-					/* initialize the calendar
-					-----------------------------------------------------------------*/
-
-					$('.test-btn').on('click', function() {
-						schedule.push({
-							id : 1,
-							title : '출석체크',
-							start : new Date(y, m, d - 1, 16, 0),
-							allDay : true,
-						});
-					});
-
-					var calendar = $('#calendar').fullCalendar(
-							{
-								header : {
-									left : 'title',
-									right : 'prev,next today'
-								},
-								editable : true,
-								firstDay : 0, //  1(Monday) this can be changed to 0(Sunday) for the USA system
-								selectable : true,
-								defaultView : 'month',
-
-								axisFormat : 'h:mm',
-								columnFormat : {
-									month : 'ddd', // Mon
-									week : 'ddd d', // Mon 7
-									day : 'dddd M/d', // Monday 9/7
-									agendaDay : 'dddd d'
-								},
-								titleFormat : {
-									month : 'MMMM yyyy', // September 2009
-									week : "MMMM yyyy", // September 2009
-									day : 'MMMM yyyy' // Tuesday, Sep 8, 2009
-								},
-
-								allDaySlot : false,
-								selectHelper : true,
-								select : function(start, end, allDay) {
-									var title = prompt('Event Title:');
-									if (title) {
-										calendar.fullCalendar('renderEvent', {
-											title : title,
-											start : start,
-											end : end,
-											allDay : allDay
-										}, true // make the event "stick"
-										);
-									}
-									calendar.fullCalendar('unselect');
-								},
-								droppable : true, // this allows things to be dropped onto the calendar !!!
-								drop : function(date, allDay) { // this function is called when something is dropped
-
-									// retrieve the dropped element's stored Event Object
-									var originalEventObject = $(this).data(
-											'eventObject');
-
-									// we need to copy it, so that multiple events don't have a reference to the same object
-									var copiedEventObject = $.extend({},
-											originalEventObject);
-
-									// 보고된 날짜를 지정(assign it the date that was reported)
-									/* copiedEventObject.start = date;
-									copiedEventObject.allDay = allDay; */
-
-									// 달력에서 이벤트를 렌더링
-									// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-									$('#calendar').fullCalendar('renderEvent',
-											copiedEventObject, true);
-
-									// is the "remove after drop" checkbox checked?
-									if ($('#drop-remove').is(':checked')) {
-										// if so, remove the element from the "Draggable Events" list
-										$(this).remove();
-									}
-
-								},
-
-								events : schedule
-							});
+				// make the event draggable using jQuery UI
+				$(this).draggable({
+					zIndex : 999,
+					revert : true, // will cause the event to go back to its
+					revertDuration : 0
+				//  original position after the drag
 				});
+
+			});
+
+			/* initialize the calendar
+			-----------------------------------------------------------------*/
+
+			$('.test-btn').on('click', function() {
+				schedule.push({
+					id : 1,
+					title : '출석체크',
+					start : new Date(y, m, d - 1, 16, 0),
+					allDay : true,
+				});
+			});
+
+			var calendar = $('#calendar').fullCalendar({
+				header : {
+					left : 'title',
+					right : 'prev,next today'
+				},
+				editable : true,
+				firstDay : 0, //  1(Monday) this can be changed to 0(Sunday) for the USA system
+
+				columnFormat : {
+					month : 'ddd', // Mon
+				},
+				titleFormat : {
+					month : 'MMMM yyyy', // September 2009
+				},
+				select : function(start, end, allDay) {
+					var title = prompt('Event Title:');
+					if (title) {
+						calendar.fullCalendar('renderEvent', {
+							title : title,
+							start : start,
+							end : end,
+							allDay : allDay
+						}, true // make the event "stick"
+						);
+					}
+				},
+				drop : function(date, allDay) { // this function is called when something is dropped
+				},
+
+				events : schedule
+			});
+		});
 	</script>
 </body>
 </html>

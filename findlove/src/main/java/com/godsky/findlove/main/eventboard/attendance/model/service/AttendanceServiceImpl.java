@@ -24,6 +24,10 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public void attendancebtn(Attendance abtn) {
 		attendanceDao.attendancebtn(abtn);
 	}
+	@Override
+	public String selectatt(String userId) {
+		return attendanceDao.selectatt(userId);
+	}
 	
 	
 }

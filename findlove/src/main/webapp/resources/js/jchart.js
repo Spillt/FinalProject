@@ -6,7 +6,7 @@
 		var bar_height = 19;
 		
 		var settings = $.extend({
-			width: 750,
+			width: 800,
     		name: null,
     		type: "bar",
     		headers: null,
@@ -70,7 +70,7 @@
 		var max_footer = Math.max.apply(Math,settings.footers);
 		var maxes = [max_data,max_footer];
 		var chart_max = Math.max.apply(Math,maxes);
-		var container_width = chart_width + 250;
+		var container_width = chart_width + 500;
 		
 		var chart_container = 
 			$("<div>", {

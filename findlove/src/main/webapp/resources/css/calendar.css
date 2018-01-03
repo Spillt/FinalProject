@@ -249,8 +249,8 @@ html .fc,
 
 
 .fc-state-default {
-	border-color: #ff3b30;
-	color: #ff3b30;	
+	border-color: #faadad;
+	color: #faadad;	
 }
 .fc-button-month.fc-state-default, .fc-button-agendaWeek.fc-state-default, .fc-button-agendaDay.fc-state-default{
     min-width: 67px;

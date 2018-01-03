@@ -17,10 +17,7 @@ header.subhead {
 	}
 }
 
-body {
-	background:
-		url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-Abstract-Blurred-Background-Of-92820527.jpg);
-}
+
 
 .event {
 	float: left;
@@ -72,7 +69,7 @@ td {
 
 
 
-	<div class="event">
+	<div class="event ">
 		<ul>
 			<li class="nav-item"><a class="btn btn-primary nav-link js-scroll-trigger"
 				href="attendancelist.do?userId=${sessionScope.user_id}">출석체크</a></li>
@@ -81,8 +78,8 @@ td {
 		</ul>
 	</div>
 	<hr>
-	<div class="poll" id="polltitle">
-		<table id="tableData" class="table table-striped text-center">
+	<div class="poll" id="polltitle" style="width:1100px; margin-left:110px;">
+		<table id="tableData" class="table table-bordered text-center">
 			<thead>
 				<tr>
 					<th>설문내용</th>

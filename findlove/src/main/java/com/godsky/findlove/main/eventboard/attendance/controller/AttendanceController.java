@@ -36,9 +36,11 @@ public class AttendanceController {
 	
 	@RequestMapping(value = "attendancebtn.do")
 	public ModelAndView attendancebtn(@ModelAttribute Attendance abtn, Model model) {
-
-		System.out.println(abtn);
+		System.out.println(attendanceService.selectatt(abtn.getUserId()));
+		if(attendanceService.selectatt(abtn.getUserId())==null){
 		attendanceService.attendancebtn(abtn);
+		}
 		return attendancelist(model, abtn.getUserId());
+		
 	}
 }

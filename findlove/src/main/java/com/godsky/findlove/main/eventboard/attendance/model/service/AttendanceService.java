@@ -12,5 +12,7 @@ public interface AttendanceService {
 	
 	public void attendancebtn(Attendance abtn);
 
+	String selectatt(String userId);
+
 
 }

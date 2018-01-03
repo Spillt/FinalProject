@@ -22,4 +22,8 @@ public class AttendanceDao {
 		sqlSession.insert("attendance.abtn", abtn);
 		
 	}
+
+	public String selectatt(String userId) {
+		return sqlSession.selectOne("attendance.selectatt", userId);
+	}
 }
