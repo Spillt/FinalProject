@@ -1842,8 +1842,8 @@ function BasicView(element, calendar, viewName) {
 	t.setWidth = setWidth;
 	//t.renderDayOverlay = renderDayOverlay;
 	// t.defaultSelectionEnd = defaultSelectionEnd;
-	t.renderSelection = renderSelection; //이놈이 그놈이다 입력하는 액션뜨는놈개색히씹색히 좃같은새끼ㅡㅡ
-	t.clearSelection = clearSelection; //이놈도 포함이다
+	t.renderSelection = renderSelection; //alert대신하여 사용된것
+	t.clearSelection = clearSelection; 
 	t.reportDayClick = reportDayClick; // for selection (kinda hacky)날짜 클릭시에배경변경만되고 유지 다른 날짜 클릭전까지만 위에 두개 안됨
 	//t.dragStart = dragStart;
 	//t.dragStop = dragStop;
@@ -5456,10 +5456,10 @@ function SelectionManager() {
 			hoverListener.start(function(cell, origCell) { // TODO: maybe put cellToDate/getIsCellAllDay info in cell
 				clearSelection();
 				if (cell && getIsCellAllDay(cell)) {
-					dates = [ cellToDate(origCell), cellToDate(cell) ].sort(dateCompare);
-					renderSelection(dates[0], dates[1], true);
+					/*dates = [ cellToDate(origCell), cellToDate(cell) ].sort(dateCompare);
+					renderSelection(dates[0], dates[1], true);*/
 				}else{
-					dates = null;
+					//dates = null;
 				}
 			}, ev);
 			$(document).one('mouseup', function(ev) {

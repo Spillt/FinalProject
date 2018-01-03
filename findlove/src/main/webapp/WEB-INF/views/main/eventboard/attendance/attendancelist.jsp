@@ -119,7 +119,9 @@ body {
 			<li class="nav-item"><a
 				class="btn btn-primary nav-link js-scroll-trigger"
 				href="polllist.do?userId=${user_id}">설문조사</a></li>
-			<li class="nav-item"><button class="btn btn-primary test-btn">테스트</button></li>
+			<li class="nav-item"><a
+				class="btn btn-primary nav-link js-scroll-trigger"
+				href="attendancebtn.do?userId=${user_id}">테스트</a></li>
 		</ul>
 	</div>
 	<div class="attendance">
@@ -132,10 +134,28 @@ body {
 	</div>
 
 
+
 	<script type="text/javascript" src="/findlove/resources/js/calendar.js"></script>
 	<script type="text/javascript">
+		var schedule = [];
 		$(function() {
 			$('#mainNav').css('background-color', '#faadad');
+
+			var att;
+			var date = [];
+			<c:forEach var="i" items="${list}">
+
+			att = '${i.attendanceDT}';
+
+			date = [ att.substr(0, 4), att.substr(5, 2), att.substr(8, 2) ];
+			schedule.push({
+				id : 1,
+				title : '출석체크',
+				start : new Date(date[0], date[1] - 1, date[2], 16, 0),
+				allDay : true,
+			});
+
+			</c:forEach>
 		});
 		$(document).ready(
 				function() {
@@ -176,37 +196,20 @@ body {
 
 					/* initialize the calendar
 					-----------------------------------------------------------------*/
-					var schedules = [
-		
-					{
-						id : 1,
-						title : '출석체크',
-						start : new Date(y, m, d+1, 16, 0),
-						allDay : true,
-					},
-					{
-						id : 1,
-						title : '출석체크',
-						start : new Date(2018, 0, 7, 16, 0),
-						allDay : true,
-					}];
-					
-					$('.test-btn').on('click', function () {
-						schedules.push(
-								{
-									id : 1,
-									title : '출석체크',
-									start : new Date(y, m, d, 16, 0),
-									allDay : true,
-								}
-						);
+
+					$('.test-btn').on('click', function() {
+						schedule.push({
+							id : 1,
+							title : '출석체크',
+							start : new Date(y, m, d - 1, 16, 0),
+							allDay : true,
+						});
 					});
 
 					var calendar = $('#calendar').fullCalendar(
 							{
 								header : {
 									left : 'title',
-									center : 'month',
 									right : 'prev,next today'
 								},
 								editable : true,
@@ -270,10 +273,9 @@ body {
 
 								},
 
-								events : schedules
+								events : schedule
 							});
-			});
-		
+				});
 	</script>
 </body>
 </html>

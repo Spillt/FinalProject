@@ -16,5 +16,9 @@
 			WHERE USER_ID=#{userId}
 		]]>
 	</select>
+	<insert id="abtn" parameterType="Attendance">
+		INSERT INTO TB_ATTENDANCE(USER_ID, ATTENDANCE_DT)
+		VALUES(#{userId}, sysdate)
+	</insert>
 
 </mapper>

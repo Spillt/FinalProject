@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.godsky.findlove.main.eventboard.attendance.model.service.AttendanceService;
 import com.godsky.findlove.main.eventboard.attendance.model.vo.Attendance;
+import com.godsky.findlove.main.eventboard.poll.model.vo.PollAnswer;
 
 @Controller
 public class AttendanceController {
@@ -23,7 +24,7 @@ public class AttendanceController {
 	
 	
 	@RequestMapping(value = "attendancelist.do")
-	public ModelAndView pollAnswer(@RequestParam("userId") String userId) {
+	public ModelAndView attendancelist(Model model, @RequestParam("userId") String userId) {
 
 		List<Attendance> list = attendanceService.listAll(userId);
 		
@@ -33,4 +34,11 @@ public class AttendanceController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "attendancebtn.do")
+	public ModelAndView attendancebtn(@ModelAttribute Attendance abtn, Model model) {
+
+		System.out.println(abtn);
+		attendanceService.attendancebtn(abtn);
+		return attendancelist(model, abtn.getUserId());
+	}
 }

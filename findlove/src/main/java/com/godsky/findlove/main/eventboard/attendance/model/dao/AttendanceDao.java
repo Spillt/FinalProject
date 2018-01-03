@@ -17,4 +17,9 @@ public class AttendanceDao {
 	public List<Attendance> listAll(String userId) {
 		return sqlSession.selectList("attendance.listAll", userId);
 	}
+
+	public void attendancebtn(Attendance abtn) {
+		sqlSession.insert("attendance.abtn", abtn);
+		
+	}
 }
