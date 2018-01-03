@@ -120,7 +120,7 @@ body {
 			<li class="nav-item"><a
 				class="btn btn-primary nav-link js-scroll-trigger"
 				href="polllist.do?userId=${user_id}">설문조사</a></li>
-			<div style="position:absolute; margin-left:440px; margin-top:25px">
+			<div style="position:absolute; margin-left:560px; margin-top:25px">
 			<li class="nav-item"><a
 				class="btn btn-primary nav-link js-scroll-trigger"
 				href="attendancebtn.do?userId=${user_id}">Today Check</a></li>

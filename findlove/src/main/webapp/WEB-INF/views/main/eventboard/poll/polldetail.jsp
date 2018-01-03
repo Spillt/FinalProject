@@ -141,7 +141,7 @@ tr:nth-child(2n), td:nth-child(2n) {
 						</div>
 						<br>
 						<div>
-							<input type="radio" namer="answer" value=2>${poll.answer2}					
+							<input type="radio" name="answer" value=2>${poll.answer2}					
 						</div>
 						<br>
 						<div>
