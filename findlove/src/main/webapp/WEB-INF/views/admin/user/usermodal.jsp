@@ -174,6 +174,12 @@ span.badge-favorite {
 	white-space: nowrap;
 	overflow: hidden;
 }
+
+.modal-body.profile-info {
+	padding-top: 20px;
+}
+
+
 </style>
 </head>
 <body>
@@ -277,14 +283,15 @@ span.badge-favorite {
 					<div class="col"></div>
 					<div class="col-3 text-center profile-body-label">나이<h3 id="age"></h3></div>
 					<div class="col-3 text-center profile-body-label">키<h3 id="height"></h3></div>
-					<div class="col-3 text-center profile-body-label">몸무게<h3 id="weight"></h3></div>
+					<div class="col-3 text-center profile-body-label">혈액형<h3 id="blood_type"></h3></div>
 					<div class="col"></div>
 				</div>
 				
 				<div class="row profile-body-info">
 					<div class="col"></div>
 					<div class="col-3 text-center profile-body-label">성별<h5 id="gender"></h5></div>
-					<div class="col-3 text-center profile-body-label">혈액형<h3 id="blood_type"></h3></div>
+					<div class="col-3 text-center profile-body-label">체형<h5 id="bodyform"></h5></div>
+					
 					<div class="col"></div>
 				</div>
 				
@@ -299,7 +306,7 @@ span.badge-favorite {
 				<div class="row profile-body-info">
 					<div class="col"></div>
 					<div class="col-3 text-center profile-body-label"><i class="material-icons">smoking_rooms</i><h5 id="smoking"></h5></div>
-					<div class="col-3 text-center profile-body-label"><i class="material-icons">local_drink</i><h5 id="drinking"></h5></div>
+					<div class="col-6 text-center profile-body-label"><i class="material-icons">local_drink</i><h5 id="drinking"></h5></div>
 					<div class="col"></div>
 				</div>
 				
@@ -311,13 +318,13 @@ span.badge-favorite {
 					</div>
 				</div>
 				
-				<div class="profile-body-info">
+				<!-- <div class="profile-body-info">
 					<div class="text-center profile-body-label">취미</div>
 					<div class="row text-center">
 						<div id="hobby" class="col-12">
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			
 		</div>
@@ -412,7 +419,7 @@ function userDetailModal(thisObj) {
 				$('a.modal-header-tab.tab-2').show();
 				$('#age').text(profile.age);
 				$('#height').html(profile.height+"<span>cm</span>");
-				$('#weight').html(profile.weight+"<span>kg</span>");
+				$('#bodyform').html(profile.bodyform);
 				if(profile.gender == 'M') {
 					$('#gender').text('남자');
 				} else {
@@ -432,18 +439,18 @@ function userDetailModal(thisObj) {
 					stylehtml += "<span class='badge badge-pill badge-style'>"+stylelist[i]+"</span>";
 				}
 				$('#style').html(stylehtml);
-				
+				/* 
 				var hobbylist = profile.hobby.split(",");
 				var hobbyhtml = "";
 				for(var i=0; i<hobbylist.length; i++) {
 					hobbyhtml += "<span class='badge badge-pill badge-hobby'>"+hobbylist[i]+"</span>";
 				}
-				$('#hobby').html(hobbyhtml);
+				$('#hobby').html(hobbyhtml); */
 			} else {
 				$('a.modal-header-tab.tab-2').hide();
 				$('#age').text("");
 				$('#height').text("");
-				$('#weight').text("");
+				$('#bodyform').text("");
 				$('#gender').text("");
 				$('#blood_type').text("");
 				$('#area').text("");
@@ -452,7 +459,6 @@ function userDetailModal(thisObj) {
 				$('#smoking').text("");
 				$('#drinking').text("");
 				$('#style').text("");
-				$('#hobby').text("");
 			}
 			var profilePicture = responseData.userPictureList
 			if(profilePicture != null) {

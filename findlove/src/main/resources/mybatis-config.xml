@@ -4,21 +4,74 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.godsky.findlove.common.model.vo.User" alias="User" />
-		<typeAlias type="com.godsky.findlove.common.model.vo.Profile" alias="Profile" />
-		<typeAlias type="com.godsky.findlove.admin.usermanagement.model.vo.UserMgmt" alias="UserMgmt" />
-		<typeAlias type="com.godsky.findlove.admin.usermanagement.model.vo.UserBasic" alias="UserBasic" />
-		<typeAlias type="com.godsky.findlove.admin.usermanagement.model.vo.UserDetail" alias="UserDetail" />
-		<typeAlias type="com.godsky.findlove.common.model.vo.Profile" alias="Profile" />
+		<typeAlias type="com.godsky.findlove.common.model.vo.Notice" alias="NoticeMgmt" />
 		<typeAlias type="com.godsky.findlove.common.model.vo.ProfilePicture" alias="ProfilePicture" />
+		<typeAlias type="com.godsky.findlove.common.model.vo.Profile" alias="Profile" />
 		<typeAlias type="com.godsky.findlove.common.model.vo.Report" alias="Report" />
+		<typeAlias type="com.godsky.findlove.common.model.vo.Poll" alias="PollMgmt" />
+		<typeAlias type="com.godsky.findlove.common.model.vo.Faq" alias="Faq" />
+		
+		<typeAlias type="com.godsky.findlove.admin.usermanagement.model.vo.UserBasic" alias="UserBasic" />
+		<typeAlias type="com.godsky.findlove.admin.usermanagement.model.vo.UserDetail" alias="UserDetail" />		
+		<typeAlias type="com.godsky.findlove.admin.statisticmanagement.model.vo.StatisticResult" alias="StatisticResult" />
+		<typeAlias type="com.godsky.findlove.admin.boardmanagement.model.vo.Board" alias="Board" />
+		
+		<typeAlias type="com.godsky.findlove.user.model.vo.User" alias="User" />
+		
+		<typeAlias type="com.godsky.findlove.main.profileboard.model.vo.Message" alias="Message" />
+		<typeAlias type="com.godsky.findlove.main.profileboard.model.vo.Profileboard" alias="Profileboard" />
+		<typeAlias type="com.godsky.findlove.main.profileboard.model.vo.Grade" alias="Grade" />	
+		
+		<typeAlias type="com.godsky.findlove.main.matchboard.qna.model.vo.MatchUser" alias="MatchUser" />
+		<typeAlias type="com.godsky.findlove.main.matchboard.qna.model.vo.MatchUserProfile" alias="MatchUserProfile" />
+		<typeAlias type="com.godsky.findlove.main.matchboard.qna.model.vo.MatchingQuestion" alias="MatchingQuestion" />
+		<typeAlias type="com.godsky.findlove.main.matchboard.qna.model.vo.MatchQnA" alias="MatchQnA" />			
+		
+		<typeAlias type="com.godsky.findlove.main.eventboard.poll.model.vo.Poll" alias="Poll" />		
+		<typeAlias type="com.godsky.findlove.main.eventboard.poll.model.vo.PollAnswer" alias="PollAnswer" />
+		<typeAlias type="com.godsky.findlove.main.eventboard.poll.model.vo.PollResult" alias="PollResult" />
+		<typeAlias type="com.godsky.findlove.main.eventboard.attendance.model.vo.Attendance" alias="Attendance" />
+		<typeAlias alias="Percent" type="com.godsky.findlove.main.eventboard.percent.model.vo.Percent"/>
+		
+		<typeAlias type="com.godsky.findlove.main.freeboard.vo.Freeboard" alias="Freeboard" />
+		<typeAlias type="com.godsky.findlove.main.inq.model.vo.Inq" alias="Inq" />
+		<typeAlias type="com.godsky.findlove.main.faq.model.vo.Faq" alias="Faqq" />		
+		<typeAlias type="com.godsky.findlove.main.chatboard.modal.vo.Chat" alias="Chat" />		
+		<typeAlias type="com.godsky.findlove.main.mymatchboard.model.vo.MyMessage" alias="MyMessage" />		
+		<typeAlias type="com.godsky.findlove.main.noticeboard.model.vo.Notice" alias="Notice" />
+		
+		<typeAlias type="com.godsky.findlove.main.matchboard.iwc.model.vo.Iwc" alias="Iwc" />
+		<typeAlias type="com.godsky.findlove.admin.usermanagement.model.vo.MatchCouple" alias="MatchCouple" />
+		
+		<typeAlias type="com.godsky.findlove.user.model.vo.Image" alias="Image" />
 	</typeAliases>
 	
 	<!-- 사용할 매퍼 파일 등록 : 필수 -->
 	<!-- 주의 : 등록된 매퍼 파일중에 오류가 있으면, 다른 매퍼에도 영향을 줌 -->
 	<mappers>
 		<mapper resource="mapper/user-mapper.xml" />
-		<mapper resource="mapper/user-mgmt-mapper.xml" />
+		<mapper resource="mapper/profile-mapper.xml" />
+		<mapper resource="mapper/konpeito-mapper.xml" />	
+	 	<mapper resource="mapper/message-mapper.xml" /> 
+	 	<mapper resource="mapper/chat-mapper.xml" /> 
+	 	<mapper resource="mapper/report-mapper.xml" /> 
+	 	<mapper resource="mapper/point-mapper.xml" />	 	
+	 	<mapper resource="mapper/notice-mapper.xml" />	 	
+	 	<mapper resource="mapper/poll-mapper.xml" />
+	 	<mapper resource="mapper/grade-mapper.xml" /> 
+	 	<mapper resource="mapper/mymessage-mapper.xml" />
+	 	<mapper resource="mapper/user-mgmt-mapper.xml" />
+	 	<mapper resource="mapper/board-mgmt-mapper.xml" />
+	 	<mapper resource="mapper/statistic-mapper.xml" />
+	 	<mapper resource="mapper/match-mapper.xml" />
+	 	<mapper resource="mapper/matchUser-mapper.xml" />
+	 	<mapper resource="mapper/Freeboard_SQL.xml" />
+		<mapper resource="mapper/inq-mapper.xml" />
+		<mapper resource="mapper/faq-mapper.xml" />
+		<mapper resource="mapper/iwc-mapper.xml" />	
+		<mapper resource="mapper/attendance-mapper.xml" />
+		<mapper resource="mapper/percent-mapper.xml"/>
+	 		
 	</mappers>
 </configuration>
 

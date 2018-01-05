@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="statisticMgmt">
+
+	<select id="getGenderRatio" resultType="StatisticResult">
+		<![CDATA[
+			SELECT DECODE(gender, 'M', '남자', '여자') AS "key",
+					COUNT(GENDER) AS "resultCnt",
+					ROUND((COUNT(GENDER)/(SELECT COUNT(*) FROM TB_PROFILE WHERE target_GB=0)),2)*100 AS "resultPct"
+			FROM TB_PROFILE
+     		 WHERE target_GB = 0
+			GROUP BY gender
+		]]>
+	</select>
+	
+	<select id="getAgeRatio" resultType="StatisticResult">
+		<![CDATA[
+			SELECT SUBSTR(AGE,0,1) || '0대' AS "key", COUNT(AGE) "resultCnt", ROUND((COUNT(SUBSTR(AGE,0,1))/(SELECT COUNT(*) FROM TB_PROFILE)),2)*100 AS "resultPct"
+			FROM TB_PROFILE
+			WHERE target_GB = '0'
+			GROUP BY SUBSTR(AGE,0,1)
+			ORDER BY 1
+		]]>
+	</select>
+	<select id="getAgeGenderRatio" parameterType="String" resultType="StatisticResult">
+		<![CDATA[
+			SELECT SUBSTR(AGE,0,1) || '0대' AS "key", COUNT(AGE) "resultCnt", ROUND((COUNT(SUBSTR(AGE,0,1))/(SELECT COUNT(*) FROM TB_PROFILE)),2)*100 AS "resultPct"
+			FROM TB_PROFILE
+			WHERE target_GB = '0' AND gender = #{gender}
+			GROUP BY SUBSTR(AGE,0,1)
+			ORDER BY 1
+		]]>
+	</select>
+	
+	<select id="getAreaRatio" resultType="StatisticResult">
+		<![CDATA[
+			SELECT area AS "key", COUNT(area) AS "resultCnt",  ROUND((COUNT(SUBSTR(AGE,0,1))/(SELECT COUNT(*) FROM TB_PROFILE WHERE target_GB = '0')),2)*100 AS "resultPct"
+			FROM TB_PROFILE
+			WHERE target_GB = '0'
+			GROUP BY area
+		]]>
+	</select>
+	
+	<select id="getMembershipRatio" resultType="StatisticResult">
+		<![CDATA[
+			SELECT KEY AS "key", SUM(NVL("resultCnt", 0)) OVER(ORDER BY KEY) AS "resultCnt"
+			FROM
+			(SELECT SUBSTR(ADD_MONTHS((SELECT MIN(enroll_DT) FROM TB_USER),(LEVEL - 1)),1, 5) AS "KEY" FROM DUAL
+			CONNECT BY ADD_MONTHS((SELECT MIN(enroll_DT) FROM TB_USER),(LEVEL - 1)) <= SYSDATE)
+			LEFT JOIN
+			(SELECT SUBSTR(enroll_DT, 1, 5) AS "KEY", COUNT(SUBSTR(enroll_DT, 1, 5)) AS "resultCnt"
+			FROM TB_USER
+			WHERE rank_GB != 'M'
+			GROUP BY SUBSTR(enroll_DT, 1, 5)) USING (KEY)
+			ORDER BY 1
+		]]>
+	</select>
+	
+	<select id="getTotalMemberCnt" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM TB_USER WHERE rank_GB != 'M'
+		]]>
+	</select>
+	
+	<select id="getTodayMemberCnt" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM TB_USER WHERE latest_access_dt > SYSDATE-1 AND rank_GB != 'M'
+		]]>
+	</select>
+	
+	<select id="getAttendanceCnt" parameterType="int" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM TB_ATTENDANCE WHERE attendance_DT BETWEEN SYSDATE-1-#{i} AND SYSDATE-#{i}
+		]]>
+	</select>
+	
+	<select id="getGradeTopNUser" parameterType="int" resultType="UserDetail">
+		<![CDATA[
+			SELECT picture_NM, user_ID, user_NM, user_nickNM, grade_AVG
+			FROM
+			(SELECT *
+			FROM TB_USER
+			LEFT JOIN TB_PROFILE_PICTURE USING (user_ID)
+			WHERE user_ST = 1
+			AND thumnail_FL = 1
+			ORDER BY grade_AVG DESC, latest_access_DT DESC)
+			WHERE ROWNUM <= #{n}
+		]]>
+	</select>
+	
+	<select id="getFavoriteTopNUser" parameterType="int" resultType="UserDetail">
+		<![CDATA[
+			SELECT *
+			FROM
+			(SELECT picture_NM, user_ID, user_NM, user_nickNM, NVL(favorite_cnt, 0) as favorite_cnt
+			FROM TB_USER
+			LEFT JOIN TB_PROFILE_PICTURE USING (user_ID)
+			LEFT JOIN
+			(SELECT RECEIVER_ID as user_id, COUNT(RECEIVER_ID) as favorite_cnt
+			FROM 
+			(SELECT SENDER_ID, RECEIVER_ID
+			FROM TB_MESSAGE
+			GROUP BY (SENDER_ID, RECEIVER_ID))
+			GROUP BY RECEIVER_ID) USING (user_ID)
+			WHERE user_ST = 1
+			AND thumnail_FL = 1
+			ORDER BY favorite_cnt DESC)
+			WHERE ROWNUM <= #{n}
+		]]>
+	</select>
+	
+	<select id="getMatchCouple" parameterType="int" resultType="MatchCouple">
+		<![CDATA[
+			SELECT *
+			FROM
+			(SELECT sender_ID, sender_NickNM, receiver_ID, receiver_NickNM
+			FROM TB_MESSAGE msgtb
+			LEFT JOIN (SELECT user_ID, user_NickNM AS sender_nicknm FROM TB_USER) usertb ON (msgtb.sender_ID = usertb.user_ID)
+			LEFT JOIN (SELECT user_ID, user_NickNM AS receiver_nicknm FROM TB_USER) usertb2 ON (msgtb.receiver_ID = usertb2.user_ID)
+			WHERE accept_ST = 1
+			ORDER BY send_DT DESC, message_NO DESC)
+			WHERE ROWNUM <=  #{n}
+		]]>
+	</select>
+	
+	<select id="getPopularBoard" parameterType="int" resultType="Freeboard">
+		<![CDATA[
+			SELECT free_no as freeNo, free_title as freeTitle, free_writer as freeWriter, free_content as freeContent, free_dt as freeDt, free_read_cnt as freeReadCnt, free_yn as freeYN
+			FROM (
+			SELECT ROW_NUMBER() OVER (ORDER BY free_read_CNT DESC) rnum, free_no, free_title, free_writer, free_content, free_dt, free_read_cnt, free_yn
+			FROM TB_FREE
+			WHERE free_DT > SYSDATE-7)
+			WHERE rnum <= 3
+		]]>
+	</select>
+</mapper>

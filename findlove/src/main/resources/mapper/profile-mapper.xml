@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="profile">
+     
+    <select id="selectProfileList" resultType="Profileboard">
+    	<include refid="pagingHeader"></include>
+        <![CDATA[
+           SELECT ROWNUM, USER_ID, USER_NICKNM, GRADE_AVG, PICTURE_NM, GENDER, AGE, HEIGHT, 
+            AREA, BODYFORM, ACHIEVEMENT, JOB, BLOOD_TYPE, SMOKING, DRINKING, RELIGION, STYLE
+            FROM TB_USER 
+			INNER JOIN TB_PROFILE USING (USER_ID)
+			INNER JOIN TB_PROFILE_PICTURE USING (USER_ID)
+			WHERE USER_ID != 'admin'
+			AND THUMNAIL_FL = '1'
+			AND TARGET_GB = '0'
+        ]]>
+        <include refid="search"></include>
+        <include refid="pagingFooter"></include>
+    </select>
+    
+    <sql id="search">
+    		AND USER_NICKNM like '%'||#{keyword}||'%'
+	</sql>
+
+	<sql id="pagingHeader">
+   SELECT * FROM (
+        SELECT ROWNUM AS rn, A.* FROM (
+	</sql>
+
+	<sql id="pagingFooter">
+        ) A
+    ) WHERE rn BETWEEN #{start} AND #{end}
+	</sql>
+
+    <select id="countProfile" resultType="int">
+    	<![CDATA[
+    	SELECT COUNT(*) FROM TB_USER
+    	INNER JOIN TB_PROFILE USING (USER_ID)
+		INNER JOIN TB_PROFILE_PICTURE USING (USER_ID)
+		WHERE USER_ID != 'admin'
+		AND THUMNAIL_FL = '1'
+    	AND TARGET_GB = '0'
+    	AND USER_NICKNM like '%'||#{keyword}||'%'
+    	 ]]>
+    </select>
+    
+    <select id="selectProfileDetail" resultType="Profileboard">
+        <![CDATA[
+            SELECT * FROM TB_USER 
+			LEFT JOIN TB_PROFILE USING(USER_ID)
+			LEFT JOIN TB_PROFILE_PICTURE USING (USER_ID)
+			WHERE USER_NICKNM = #{USER_NICKNM}
+			AND THUMNAIL_FL = '1'
+			AND TARGET_GB = '0'
+        ]]>
+    </select>
+    
+     <select id="selecProfileImage" parameterType="String" resultType="String">
+		<![CDATA[
+			SELECT picture_nm FROM TB_PROFILE_PICTURE 
+			LEFT JOIN TB_USER USING(USER_ID)
+			WHERE USER_NICKNM = #{USER_NICKNM} AND THUMNAIL_FL = 0
+		]]>
+	</select>
+	
+	<select id="sendGradeList" resultType="Profileboard">
+	<![CDATA[
+	 SELECT USER_ID, USER_NICKNM, GRADE_AVG, PICTURE_NM, GENDER, AGE, HEIGHT,
+            AREA, BODYFORM, ACHIEVEMENT, JOB, BLOOD_TYPE, SMOKING, DRINKING, RELIGION, STYLE
+            FROM TB_USER 
+			INNER JOIN TB_PROFILE USING (USER_ID)
+			INNER JOIN TB_PROFILE_PICTURE USING (USER_ID)
+      INNER JOIN TB_GRADE ON (USER_ID = RECEIVER_ID)
+			WHERE USER_ID != 'admin'
+			AND THUMNAIL_FL = '1'
+			AND Target_GB = '0'
+      AND SENDER_ID = #{ sender_id }
+      AND GRADE >= 3
+	]]>
+	</select>
+	
+	<select id="receiveGradeList" resultType="Profileboard">
+	<![CDATA[
+	 SELECT USER_ID, USER_NICKNM, GRADE_AVG, PICTURE_NM, GENDER, AGE, HEIGHT, 
+            AREA, BODYFORM, ACHIEVEMENT, JOB, BLOOD_TYPE, SMOKING, DRINKING, RELIGION, STYLE
+            FROM TB_USER 
+			INNER JOIN TB_PROFILE USING (USER_ID)
+			INNER JOIN TB_PROFILE_PICTURE USING (USER_ID)
+      INNER JOIN TB_GRADE ON (USER_ID = SENDER_ID)
+			WHERE USER_ID != 'admin'
+			AND THUMNAIL_FL = '1'
+			AND TARGET_GB = '0'
+      AND RECEIVER_ID = #{ receiver_id }
+      AND GRADE >= 3
+	]]>
+	</select>
+	
+	<update id="updateGrade" parameterType="HashMap">
+	<![CDATA[
+	update tb_user set GRADE_AVG = #{grade_avg}
+	where USER_ID = #{ user_id }
+	]]>
+	</update>
+    
+     <!-- 내프로필 설정 -->
+    <select id="myprofile" parameterType="String" resultType="Profile">
+     <![CDATA[
+    	SELECT    	
+    	USER_ID,
+    	target_gb,    	   	
+    	GENDER,
+    	BLOOD_TYPE,
+    	JOB,
+    	ACHIEVEMENT,
+    	PHONE,
+    	AGE,
+    	AREA,
+    	STYLE,
+    	HEIGHT,
+    	BODYFORM,
+    	RELIGION,
+    	DRINKING,
+    	SMOKING    	
+    	FROM TB_USER
+    	LEFT JOIN TB_PROFILE USING(USER_ID)
+    	WHERE USER_ID = #{user_id} AND target_gb = '0'
+    	 ]]>
+    	
+    </select>
+    
+    <select id="selectSendProfile" resultType="Profileboard">
+	<![CDATA[
+	  SELECT USER_ID, USER_NICKNM, GRADE_AVG, PICTURE_NM, GENDER, AGE, HEIGHT, 
+            AREA, BODYFORM, ACHIEVEMENT, JOB, BLOOD_TYPE, SMOKING, DRINKING, RELIGION, STYLE
+            FROM TB_USER 
+			INNER JOIN TB_PROFILE USING (USER_ID)
+			INNER JOIN TB_PROFILE_PICTURE USING (USER_ID)
+			WHERE USER_ID = #{ sender_id }
+			AND THUMNAIL_FL = '1'
+			AND TARGET_GB = '0'
+	]]>
+	</select>
+    
+    <!-- 내 프로필 수정 -->
+   <update id="myprofileset" parameterType="Profile">
+   <![CDATA[
+    UPDATE TB_PROFILE
+    SET
+    	GENDER = #{gender},
+		BLOOD_TYPE = #{blood_type},
+		JOB = #{job},
+		ACHIEVEMENT = #{achievement},		
+		AGE = #{age},
+		AREA = #{area},
+		STYLE = #{style},
+		HEIGHT = #{height},
+		BODYFORM = #{bodyform},
+		RELIGION = #{religion},
+		DRINKING = #{drinking},
+		SMOKING = #{smoking}
+		
+	WHERE
+		USER_ID = #{user_id} 
+     ]]>
+    </update>
+   
+    
+    <!-- 이상형 프로필 설정 -->
+    <select id="idealprofile" parameterType="String" resultType="Profile">
+    <![CDATA[
+    	SELECT    	
+    	USER_ID,
+    	target_gb,    	   	
+    	GENDER,
+    	BLOOD_TYPE,
+    	JOB,
+    	ACHIEVEMENT,
+    	PHONE,
+    	AGE,
+    	AREA,
+    	STYLE,
+    	HEIGHT,
+    	BODYFORM,
+    	RELIGION,
+    	DRINKING,
+    	SMOKING    	
+    	FROM TB_USER
+    	LEFT JOIN TB_PROFILE USING(USER_ID)
+    	WHERE USER_ID = #{user_id} AND target_gb = '1'
+    	 ]]>
+    	
+    </select>
+    
+    <!-- 성별 검색 -->
+    <select id="selectProfileOne" resultType="String" parameterType="String">
+        <![CDATA[
+            SELECT gender FROM TB_PROFILE
+            WHERE USER_ID = #{userId} and target_gb = 0
+			
+			
+        ]]>
+    </select>
+   
+</mapper>

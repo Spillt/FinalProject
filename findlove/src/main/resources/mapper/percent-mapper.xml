@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="percent">
+	<resultMap id="resultPercent" type="Percent">
+		<result property="userId" column="USER_ID"/>
+		<result property="userNickNm" column="USER_NICKNM"/>
+		<result property="gradeAvg" column="GRADE_AVG"/>
+	</resultMap>
+	<select id="list" resultType="Percent" resultMap="resultPercent"	parameterType="String">
+		<![CDATA[
+		select *
+		from (select user_id, user_nicknm, grade_avg, RANK() OVER(order by grade_avg desc) AS RANK, (SELECT COUNT(*) FROM TB_USER) AS COUNT
+          from tb_user
+          order by grade_avg desc)
+  		  where user_id = #{userId}
+  		  order by grade_avg desc
+		]]>
+	</select>
+<!-- 	 <select id="selectname" resultType="String" parameterType="String">
+        <![CDATA[
+            SELECT USER_ID, GRADE_AVG FROM TB_USER
+            WHERE USER_ID = #{userId}
+        ]]> 
+    </select> -->
+    </mapper>

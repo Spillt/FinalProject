@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="inq">
+	
+	<resultMap type="Inq" id="resultInqList">
+		<result property="inqNo" column="INQ_NO"/>
+		<result property="inqTitle" column="INQ_TITLE"/>
+		<result property="inqContent" column="INQ_CONTENT"/>
+		<result property="inqDate" column="INQ_DATE"/>
+		<result property="inqOFN" column="INQ_ORIGINAL_FILENAME"/>
+		<result property="inqRFN" column="INQ_RENAME_FILENAME"/>
+		<result property="inqWriter" column="INQ_WRITER"/>
+		<result property="inqReciver" column="INQ_RECIVER"/>
+		<result property="inqReplyFL" column="INQ_REPLY_FL"/>
+	</resultMap>
+	
+	<!-- list 조회 -->
+	<select id="selectInqList" parameterType="String" resultType="Inq" resultMap="resultInqList">
+		<![CDATA[
+			SELECT INQ_NO, INQ_TITLE, INQ_WRITER, INQ_DATE
+			FROM TB_INQ
+			WHERE INQ_WRITER = #{inqWriter} or INQ_RECIVER = #{inqWriter}
+			ORDER BY INQ_NO DESC
+		]]>
+	</select>
+	
+	<!-- 문의 작성 -->
+	<insert id="insertInq" parameterType="Inq">
+		<![CDATA[
+			INSERT INTO TB_INQ
+			VALUES (NVL((SELECT MAX(INQ_NO)+1 FROM TB_INQ),1), #{inqTitle}, #{inqContent}, SYSDATE, NULL, NULL, #{inqWriter}, 'admin', '0')
+		]]>
+	</insert>
+	
+	<!-- 상세보기 -->
+	<select id="detailInq" parameterType="int" resultType="Inq" resultMap="resultInqList">
+		<![CDATA[
+			SELECT *
+			FROM TB_INQ
+			WHERE INQ_NO = #{inqNo}
+		]]>
+	</select>
+	
+	<!-- 삭제하기 -->
+	<delete id="deleteInq" parameterType="int">
+		<![CDATA[
+			DELETE
+			FROM TB_INQ
+			WHERE INQ_NO = #{inqNo}
+		]]>
+	</delete>
+	
+	<!-- 답변하기 -->
+	<insert id="resendInq" parameterType="Inq">
+		<![CDATA[
+			INSERT INTO TB_INQ
+			VALUES (NVL((SELECT MAX(INQ_NO)+1 FROM TB_INQ),1), #{inqTitle}, #{inqContent}, SYSDATE, NULL, NULL, #{inqWriter}, #{inqReciver}, #{inqReplyFL})
+		]]>
+	</insert>
+	
+	<select id="selectWaitInqList" resultType="Inq" resultMap="resultInqList">
+		<![CDATA[
+			SELECT INQ_NO, INQ_TITLE, INQ_WRITER
+			FROM TB_INQ
+			WHERE INQ_RECIVER = 'admin'
+			AND INQ_NO NOT IN ((SELECT inq_reply_FL FROM tb_inq WHERE INQ_WRITER = 'admin'))
+			ORDER BY INQ_NO DESC
+		]]>
+	</select>
+	
+</mapper>

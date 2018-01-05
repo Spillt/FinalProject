@@ -10,6 +10,14 @@ public class Report {
 	private String report_st;
 	
 	public Report() {}
+	
+	public Report(String report_type, String sender_id, String receiver_id, String report_content) {
+		super();
+		this.report_type = report_type;
+		this.sender_id = sender_id;
+		this.receiver_id = receiver_id;
+		this.report_content = report_content;
+	}
 
 	public Report(int report_no, String report_type, String sender_id, String receiver_id, String report_content,
 			String report_st) {

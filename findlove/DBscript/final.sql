@@ -43,7 +43,7 @@ CREATE TABLE TB_USER (
   
   CONSTRAINT PK_USER PRIMARY KEY (User_ID),
   CONSTRAINT CHK_UST CHECK (User_ST IN ('0', '1', '2', '3', '4')),
-  CONSTRAINT CHK_RANK CHECK (Rank_GB IN ('M', 'D', 'P', 'G', 'S', 'B'))
+  CONSTRAINT CHK_RANK CHECK (Rank_GB IN ('G', 'D', 'P', 'G', 'S', 'B'))
 );
 COMMENT ON TABLE TB_USER IS '회원 테이블';
 COMMENT ON COLUMN TB_USER.User_ID IS '아이디';
@@ -55,7 +55,7 @@ COMMENT ON COLUMN TB_USER.Email IS '이메일';
 COMMENT ON COLUMN TB_USER.Phone IS '휴대폰번호';
 COMMENT ON COLUMN TB_USER.Point_CNT IS '포인트 수';
 COMMENT ON COLUMN TB_USER.Konpeito_CNT IS '별사탕 수';
-COMMENT ON COLUMN TB_USER.Rank_GB IS '관리자 및 등급 구분(관리자(M),일반회원(D:다이아/P:플래티넘/G:골드/S:실버/B:브론즈))';
+COMMENT ON COLUMN TB_USER.Rank_GB IS '관리자 및 등급 구분(관리자(G),일반회원(D:다이아/P:플래티넘/G:골드/S:실버/B:브론즈))';
 COMMENT ON COLUMN TB_USER.Grade_AVG IS '평점';
 COMMENT ON COLUMN TB_USER.Enroll_DT IS '가입일';
 COMMENT ON COLUMN TB_USER.Latest_Access_DT IS '최근 접속일';
@@ -95,7 +95,7 @@ COMMENT ON COLUMN TB_PROFILE.Achievement IS '학력';
 COMMENT ON COLUMN TB_PROFILE.Blood_Type IS '혈액형';
 COMMENT ON COLUMN TB_PROFILE.Smoking IS '흡연여부';
 COMMENT ON COLUMN TB_PROFILE.Drinking IS '음주여부';
-COMMENT ON COLUMN TB_PROFILE.Religion IS '종교';
+COMMENT ON COLUMN TB_PROFILE.Religion IS '지역';
 COMMENT ON COLUMN TB_PROFILE.Style IS '스타일';
 
 -- 3. 프로필 사진 테이블
@@ -413,17 +413,35 @@ COMMIT;
 ----------------- 샘플데이터 -------------------
 -- 1. 사용자 테이블
 INSERT INTO TB_USER VALUES('admin', 'admin', '관리자', '관리자', '1', 'admin@naver.com', '010-1234-5678', default, default, 'G', default, default, default, null); 
-INSERT INTO TB_USER VALUES('user11', 'pass11', '윤찬호', '너구리', '1', 'raccoon@naver.com', '010-1234-1111', default, default, 'D', 3, default, default, null); 
-INSERT INTO TB_USER VALUES('user22', 'pass22', '손정한', '돼지', '1', 'pig22@naver.com', '010-1234-2222', default, default, 'P', 3.5, default, default, null); 
-INSERT INTO TB_USER VALUES('user33', 'pass33', '김지훈', '사육사', '2', 'keeper@naver.com', '010-1234-3333', default, default, 'G', 3.5, default, default, null); 
+INSERT INTO TB_USER VALUES('user11', 'pass11', '윤찬호', '너구리', '1', 'raccoon@naver.com', '010-1234-1111', default, default, 'D', 1, default, default, null); 
+INSERT INTO TB_USER VALUES('user22', 'pass22', '손정한', '돼지', '1', 'pig22@naver.com', '010-1234-2222', default, default, 'P', 2, default, default, null); 
+INSERT INTO TB_USER VALUES('user33', 'pass33', '김지훈', '사육사', '2', 'keeper@naver.com', '010-1234-3333', default, default, 'G', 3, default, default, null); 
 INSERT INTO TB_USER VALUES('user44', 'pass44', '남찬우', '나무', '2', 'tree@gmail.com', '010-1234-4444', default, default, 'S', 4, default, default, null); 
-INSERT INTO TB_USER VALUES('user55', 'pass55', '조남훈', '곰', '3', 'bear55@naver.com', '010-1234-5555', default, default, 'B', 4, default, default, null); 
-INSERT INTO TB_USER VALUES('user66', 'pass66', '김혜정', '쥐', '3', 'mouse@naver.com', '010-1234-6666', default, default, 'G', 4, default, default, null); 
-INSERT INTO TB_USER VALUES('user77', 'pass77', '김여진', '여우', '4', 'fox77@naver.com', '010-1234-7777', default, default, 'G', 4.5, default, default, null); 
+INSERT INTO TB_USER VALUES('user55', 'pass55', '조남훈', '곰', '3', 'bear55@naver.com', '010-1234-5555', default, default, 'B', 5, default, default, null); 
+INSERT INTO TB_USER VALUES('user66', 'pass66', '김혜정', '쥐', '3', 'mouse@naver.com', '010-1234-6666', default, default, 'G', 6, default, default, null); 
+INSERT INTO TB_USER VALUES('user77', 'pass77', '김여진', '여우', '4', 'fox77@naver.com', '010-1234-7777', default, default, 'G', 7, default, default, null); 
 
+commit;
 -- 2. 사용자(또는 이상형) 프로필
+INSERT INTO TB_PROFILE VALUES('user11', '0', 'M', 31, 170, 80, '서울광역시', '게임하기', '대학 졸업', 'A', '흡연', '즐겨마심', '무교', '대학생'); 
+INSERT INTO TB_PROFILE VALUES('user22', '0', 'M', 30, 171, 81, '서울광역시', '모마하기', '대학 졸업', 'A', '흡연', '즐겨마심', '무교', '양아치'); 
+INSERT INTO TB_PROFILE VALUES('user33', '0', 'M', 29, 172, 82, '인천광역시', '게임하기', '대학 졸업', 'B', '금연', '안마심', '기독교', '공대'); 
+INSERT INTO TB_PROFILE VALUES('user44', '0', 'M', 28, 173, 83, '인천광역시', '개발하기', '대학 졸업', 'B', '금연', '안마심', '기독교', '키다리'); 
+INSERT INTO TB_PROFILE VALUES('user55', '0', 'M', 27, 174, 84, '경기도', '술먹기', '대학 졸업', 'O', '금연', '적당히마심', '기독교', '공대'); 
+INSERT INTO TB_PROFILE VALUES('user66', '0', 'F', 26, 175, 85, '경기도', '집가기', '대학 졸업', 'O', '금연', '적당히마심', '불교', '직장인'); 
+INSERT INTO TB_PROFILE VALUES('user77', '0', 'F', 25, 176, 86, '경기도', '볼링', '대학 졸업', 'O', '금연', '적당히마심', '불교', '학생'); 
 
+COMMIT;
 -- 3. 프로필 사진 테이블
+INSERT INTO TB_PROFILE_PICTURE VALUES('user11_1','user11', '0');
+INSERT INTO TB_PROFILE_PICTURE VALUES('user22_1','user22', '0');
+INSERT INTO TB_PROFILE_PICTURE VALUES('user33_1','user33', '0');
+INSERT INTO TB_PROFILE_PICTURE VALUES('user44_1','user44', '0');
+INSERT INTO TB_PROFILE_PICTURE VALUES('user55_1','user55', '0');
+INSERT INTO TB_PROFILE_PICTURE VALUES('user66_1','user66', '0');
+INSERT INTO TB_PROFILE_PICTURE VALUES('user77_1','user77', '0');
+
+COMMIT;
 
 -- 4. 매칭 질문 테이블
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="attendance">
+
+	<resultMap id="att" type="Attendance">
+		<id property="userId" column="USER_ID" />
+		<result property="attendanceDT" column="ATTENDANCE_DT" />
+	</resultMap>
+
+	<select id="listAll" parameterType="String" resultType="Attendance" resultMap="att">
+		<![CDATA[
+			SELECT USER_ID, ATTENDANCE_DT
+			FROM TB_ATTENDANCE
+			WHERE USER_ID=#{userId}
+		]]>
+	</select>
+	<insert id="abtn" parameterType="Attendance">
+		INSERT INTO TB_ATTENDANCE(USER_ID, ATTENDANCE_DT)
+		VALUES(#{userId}, sysdate)
+	</insert>
+
+<select id="selectatt" parameterType="String" resultType="String">
+		<![CDATA[
+			select user_id from TB_ATTENDANCE where ATTENDANCE_DT like to_char(sysdate,'yy/MM/dd')and USER_ID = #{userId}
+		]]>
+	</select>
+</mapper>

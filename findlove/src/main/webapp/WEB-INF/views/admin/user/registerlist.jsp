@@ -20,6 +20,7 @@ td img {
 	cursor: pointer;
 }
 
+
 tbody tr:hover {
 	background-color: rgba(249, 205, 204, .5) !important;
 }

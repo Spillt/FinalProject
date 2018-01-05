@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="report">
+   
+      <select id="checkReport" resultType="Integer">
+        <![CDATA[SELECT COUNT(*) FROM TB_REPORT WHERE SENDER_ID = #{ sender_id } AND RECEIVER_ID = #{ receiver_id }]]>
+   	 	</select>
+   
+      	<insert id="sendReport" parameterType="Report">
+        <![CDATA[INSERT INTO TB_REPORT VALUES ((SELECT MAX(REPORT_NO)+1 FROM TB_REPORT), #{report_type}, #{sender_id}, #{receiver_id}, #{report_content}, default)]]>
+   	 	</insert>
+   	 
+</mapper>

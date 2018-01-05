@@ -5,32 +5,183 @@
 <mapper namespace="user">
 
 	<resultMap id="resultUser" type="User">
-		<id property="userId" column="User_ID"/>
-		<result property="userPwd" column="User_PWD"/>
-		<result property="userName" column="User_NM"/>
-		<result property="userNickName" column="User_NickNM"/>
-		<result property="userState" column="User_ST"/>
+		<id property="user_id" column="User_ID"/>
+		<result property="user_pwd" column="User_PWD"/>
+		<result property="user_nm" column="User_NM"/>
+		<result property="user_nicknm" column="User_NickNM"/>
+		<result property="user_st" column="User_ST"/>
 		<result property="email" column="Email"/>
 		<result property="phone" column="Phone"/>
-		<result property="pointCNT" column="Point_CNT"/>
-		<result property="konpeitoCNT" column="Konpeito_CNT"/>
-		<result property="rankGB" column="Rank_GB"/>
-		<result property="gradeAVG" column="Grade_AVG"/>
-		<result property="enrollDT" column="Enroll_DT"/>
-		<result property="lastestAccessDT" column="Latest_Access_DT"/>
-		<result property="deleteDT" column="Delete_DT"/>
+		<result property="point_cnt" column="Point_CNT"/>
+		<result property="konpeito_cnt" column="Konpeito_CNT"/>
+		<result property="rank_gb" column="Rank_GB"/>
+		<result property="grade_avg" column="Grade_AVG"/>
+		<result property="enroll_dt" column="Enroll_DT"/>
+		<result property="lastest_access_dt" column="Latest_Access_DT"/>
+		<result property="delete_dt" column="Delete_DT"/>
 	</resultMap>
 	
-	<select id="selectUser" parameterType="User" resultType="User" resultMap="resultUser">
+	<!-- 회원 등록 -->
+	<insert id ="insertUser" parameterType = "User">
+		INSERT INTO TB_USER(USER_ID, USER_PWD, USER_NM, USER_NICKNM, EMAIL, PHONE)
+		VALUES (#{user_id}, #{user_pwd}, #{user_nm}, #{user_nicknm}, #{email}, #{phone})
+	</insert>
+	<select id="checkId" parameterType="User" resultType="java.lang.Integer">
+    SELECT NVL(COUNT(*),0)
+    FROM TB_USER WHERE USER_ID=#{user_id}
+	</select>
+	<select id="checkNicknm" parameterType="User" resultType="java.lang.Integer">
+    SELECT NVL(COUNT(*),0)
+    FROM TB_USER WHERE USER_NICKNM =#{user_nicknm}
+	</select>
+	<select id="loginCheck" resultType="String">
+	<!-- <select id="loginCheck" resultType="integer"> -->
+	<![CDATA[
+	SELECT 
+	User_ID AS user_id,
+	User_NM AS user_nm,
+	User_NickNM AS user_nicknm	
+	From tb_user
+	WHERE User_ID = #{user_id} AND User_PWD = #{user_pwd}	
+	]]>
+	</select>	
+	
+	
+	<!-- 내정보 보기 -->
+	<select id="myinfo" resultType="User">
+	<![CDATA[
+	SELECT *
+	From tb_user
+	WHERE User_ID = #{user_id}
+	]]>
+	</select>
+	
+	<!-- <select id="totalAccount" resultType="integer">
+		SELECT Count(*) from tb_user
+	</select> -->
+	
+	<!-- 로그인 정보 보기 -->
+	<select id="viewMember" parameterType="com.godsky.findlove.user.model.vo.User" resultType="com.godsky.findlove.user.model.vo.User">
+	SELECT
+		user_id, user_nm, user_nicknm, point_cnt, konpeito_cnt, grade_avg, phone, email
+	FROM tb_user
+	WHERE User_ID = #{user_id} AND User_PWD = #{user_pwd}	
+	</select>
+	
+	<select id="idDuplicatedCheck" parameterType = "User" resultType="Integer">
+	SELECT
+		NVL (count(*),0)		
+	FROM tb_user
+	WHERE User_ID = #{user_id}	
+	</select>
+	
+	<!-- 이메일로 계정 찾기 -->
+	<select id="findAccount" resultType="User" parameterType="string">
+	
 		<![CDATA[
-			SELECT * FROM TB_USER WHERE User_ID = #{userId}
+			select *
+			from tb_user
+			where email = #{ email }
 		]]>
 	</select>
 	
-	<select id="selectUserList" resultType="User" resultMap="resultUser">
+	<!-- 내정보 수정 -->
+	<update id="myinfoset" parameterType="User">
+	UPDATE TB_USER
+	SET
+		USER_NICKNM = #{user_nicknm},
+		USER_PWD = #{user_pwd},
+		EMAIL = #{email},
+		PHONE = #{phone}
+	WHERE
+		USER_ID = #{user_id} 
+	
+	</update>
+	
+	<!-- 탈퇴 -->
+	<delete id="removeUserById" parameterType="string">
+	delete from tb_user
+	where User_ID = #{user_id}
+	</delete>
+	
+	<!-- 세션 관리 -->
+	<insert id="insertSession" parameterType = "hashmap">
+	<![CDATA[
+	insert into tb_session_info values(#{session_key},#{user_id})
+	]]>
+	</insert>	
+	<delete id="deleteSession" parameterType="string">
+	<![CDATA[
+	delete from tb_session_info where session_key = #{session_key}
+	]]>
+	</delete>	
+	<select id="checkSession" parameterType="string" resultType="int">
+	<![CDATA[
+		select count(*) from tb_session_info where session_key = #{session_key}
+	]]>
+	</select>	
+	<select id="loginCount" resultType="int">
+	<![CDATA[
+		select count(*) from tb_session_info
+	]]>
+	</select>	
+	<select id="userList" resultType="String">
+	<![CDATA[
+		select user_id from tb_session_info
+	]]>
+	</select>
+	<select id="selectuser" parameterType="String" resultType="String">
 		<![CDATA[
-			SELECT * FROM TB_USER
+		select user_NickNM from tb_user where user_id = #{userId}
 		]]>
+	
+	</select>
+	<select id="loginUserCheck" parameterType="String" resultType="String">
+	<![CDATA[
+		select user_id from tb_session_info where user_id = #{userId}
+		]]>
+	</select>
+	<select id="selectId" parameterType="String" resultType="String">
+	<![CDATA[
+		select user_id from tb_user where user_NickNM = #{user_nicknm}
+		]]>
+	</select>
+ <!-- 결제 관련 -->
+	<!-- <select id="storeUser" resultType="String">
+	<![CDATA[
+		SELECT
+			USER_ID = {#user_id}
+			USER_NM = {#user_nm}
+			USER_NICKNM = {#user_nicknm}
+			PHONE = {#phone}
+			EMAIL = {#email}
+		FROM TB_USER
+		WHERE USER_ID = #{user_id}
+	]]>
+	</select>  -->
+	
+	
+	<select id="getPointCnt" parameterType="String" resultType="int">
+		<![CDATA[
+			SELECT point_CNT FROM TB_USER WHERE user_id = #{userId}
+		]]>
+	</select>
+	
+	<select id="getKonpeitoCnt" parameterType="String" resultType="int">
+		<![CDATA[
+			SELECT konpeito_CNT FROM TB_USER WHERE user_id = #{userId}
+		]]>
+	</select>
+	<select id="loginChecked" parameterType="string" resultType="int">
+	<![CDATA[
+		select count(*) from tb_session_info where user_id = #{user_id}
+	]]>
+	</select>
+	
+	<select id="getImageList" parameterType="String" resultType="Image">
+		select *
+		from tb_profile_picture
+		where user_id = #{userId}
 	</select>
 	
 </mapper>

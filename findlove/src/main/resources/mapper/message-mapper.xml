@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="message">
-	<resultMap type="Message" id="resultMessage">
-		<result column="Message_NO" property="message_no" />
-		<result column="Sender_ID" property="sender_id" />
-		<result column="Receiver_ID" property="receiver_id" />
-		<result column="Message_Content" property="message_content" />
-		<result column="Send_DT" property="send_dt" />
-		<result column="Read_FL" property="read_fl" />
-		<result column="Accept_ST " property="accept_st" />
-	</resultMap>
-	<select id="selectAll" resultMap="resultList">
-		<![CDATA[ select * from member ]]>
-	</select>
+ 
+ 	 <select id="checkMessage" resultType="Integer">
+   	  <![CDATA[select count(*) from TB_MESSAGE WHERE SENDER_ID = #{sender_id} AND RECEIVER_ID = #{receiver_id}]]>
+   	 </select>
+  
+     <insert id="sendMessage" parameterType="Message">
+        <![CDATA[INSERT INTO TB_MESSAGE(MESSAGE_NO, SENDER_ID, RECEIVER_ID, MESSAGE_CONTENT) VALUES (MESSAGE_SEQ.NEXTVAL, #{sender_id}, #{receiver_id}, #{message_content})]]>
+   	 </insert>
+   	 
+ 
+   	 
 </mapper>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="freeboard">
+
+	<resultMap id="resultFreeboardList" type="Freeboard">
+		<result property="freeNo" column="FREE_NO"/>
+		<result property="freeTitle" column="FREE_TITLE"/>
+		<result property="freeWriter" column="Free_Writer"/>
+		<result property="freeContent" column="FREE_CONTENT"/>
+		<result property="freeDt" column="FREE_DT"/>
+		<result property="freeReadCnt" column="FREE_READ_CNT"/>
+		<result property="freeYN" column="Free_YN"/>
+	</resultMap>
+
+	<!-- list 조회 -->
+	<select id="selectFreeboardList" resultType="Freeboard" resultMap="resultFreeboardList">
+		<![CDATA[
+			SELECT Free_NO, Free_Title, Free_Writer, Free_Read_CNT, Free_DT, Free_YN
+			FROM TB_FREE 
+			ORDER BY Free_NO DESC
+		]]>
+	</select>
+	
+	<!-- 내 글 list 조회 -->
+	<select id="selectMyFreeboardList" parameterType="String" resultType="Freeboard" resultMap="resultFreeboardList">
+		<![CDATA[
+			SELECT Free_NO, Free_Title, Free_Writer, Free_Read_CNT, Free_DT, Free_YN
+			FROM TB_FREE
+			WHERE Free_Writer = #{freeWriter}
+			ORDER BY Free_NO DESC
+		]]>
+	</select>
+	
+	<!-- 작성하기 -->
+	<insert id="insertFreeboard" parameterType="Freeboard">
+		<![CDATA[
+			INSERT INTO TB_FREE
+			VALUES (NVL((SELECT MAX(FREE_NO)+1 FROM TB_FREE), 1), #{freeTitle}, #{freeWriter}, #{freeContent}, SYSDATE, 0, #{freeYN})
+		]]>
+	</insert>
+	
+	<!-- 상세보기 -->
+	<select id="detailFreeboard" parameterType="int" resultType="Freeboard" resultMap="resultFreeboardList">
+		<![CDATA[
+			SELECT * 
+			FROM TB_FREE
+			WHERE FREE_NO = #{freeNo}
+		]]>
+	</select>
+	
+	<!-- 수정하기 -->
+	<update id="updateFreeboard" parameterType="Freeboard">
+		<![CDATA[
+			UPDATE TB_FREE SET
+			FREE_TITLE = #{freeTitle},
+			FREE_CONTENT = #{freeContent},
+			Free_YN = #{freeYN}
+			WHERE FREE_NO = #{freeNo}
+		]]>
+	</update>
+
+	<select id="selectFreeboard" parameterType="HashMap" resultType="Freeboard" resultMap="resultFreeboardList">
+		<![CDATA[
+			SELECT * FROM TB_FREE WHERE free_NO = #{freeNo}
+		]]>
+	</select>
+
+	
+	<!-- 삭제하기 -->
+	<delete id="deleteFreeboard" parameterType="int">
+		<![CDATA[
+			DELETE
+			FROM TB_FREE
+			WHERE Free_NO = #{freeNo}
+		]]>
+	</delete>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateReadCnt" parameterType="int">
+		<![CDATA[
+			UPDATE TB_FREE SET FREE_READ_CNT = FREE_READ_CNT + 1
+			WHERE FREE_NO = #{freeNo}
+		]]>
+	</update>
+	
+
+</mapper>

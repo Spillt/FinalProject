@@ -1,6 +1,5 @@
 package com.godsky.findlove.admin.usermanagement.model.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,10 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.godsky.findlove.admin.usermanagement.model.vo.UserBasic;
 import com.godsky.findlove.admin.usermanagement.model.vo.UserDetail;
-import com.godsky.findlove.admin.usermanagement.model.vo.UserMgmt;
 import com.godsky.findlove.common.model.vo.Profile;
 import com.godsky.findlove.common.model.vo.Report;
-import com.godsky.findlove.common.model.vo.User;
 
 @Repository("userMgmtDao")
 public class UserMgmtDao {

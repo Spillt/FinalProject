@@ -25,15 +25,15 @@
 	<select id="selectUserDetail" parameterType="String" resultType="UserDetail">
 		<![CDATA[
 			SELECT picture_nm, user_id, user_nm, user_nicknm, email, phone, TO_CHAR(enroll_dt, 'YYYY-MM-DD') as enroll_dt, TO_CHAR(latest_access_dt, 'YYYY-MM-DD') as latest_access_dt, TO_CHAR(delete_dt, 'YYYY-MM-DD') as delete_dt, rank_gb, user_st, grade_avg,
-			(SELECT COUNT(DISTINCT SENDER_ID) FROM TB_MESSAGE WHERE receiver_id = #{userId}) AS favorite_cnt
-			FROM (SELECT * FROM TB_USER WHERE user_id = #{userId})
+			(SELECT COUNT(DISTINCT SENDER_ID) FROM TB_MESSAGE WHERE receiver_id = #{user33}) AS favorite_cnt
+			FROM (SELECT * FROM TB_USER WHERE user_id = #{user33})
 			LEFT JOIN (SELECT * FROM TB_PROFILE_PICTURE WHERE thumnail_fl = 1) USING (user_id)
 		]]>
 	</select>
 	
 	<select id="selectUserProfile" parameterType="String" resultType="Profile">
 		<![CDATA[
-			SELECT * FROM TB_PROFILE WHERE user_id = #{userId}
+			SELECT * FROM TB_PROFILE WHERE user_id = #{userId} AND target_GB = 0
 		]]>
 	</select>
 	

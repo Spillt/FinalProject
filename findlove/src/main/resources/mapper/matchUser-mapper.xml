@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="matchUser">
+
+ <resultMap id="resultMatchUser" type="MatchUser">
+ 		<result property="myId" column="my_id" />
+		<result property="insertDate" column="insert_date" />
+		<result property="userId1" column="user_id1" />
+		<result property="userId2" column="user_id2" />
+		<result property="userId3" column="user_id3" />
+ </resultMap>
+ <select id="getUserCheck" parameterType="String" resultType="MatchUser" resultMap="resultMatchUser">
+ 	<![CDATA[
+ 	select * from tb_match_user where my_id = #{userId}
+ 	]]> 
+ </select>
+ 
+ <insert id="insertMatchUser" parameterType="MatchUser" >
+ 	insert into tb_match_user values (#{myId},default,#{userId1},#{userId2},#{userId3},#{matching})
+ </insert>
+ 
+ 
+ 
+  <update id="updateMatchUser" parameterType="MatchUser">
+ 	<![CDATA[
+		update tb_match_user
+		 set user_id1 = #{userId1}, user_id2 = #{userId2}, user_id3= #{userId3}, matching = #{matching},insert_date = sysdate
+		 where my_id = #{myId}
+		 ]]>
+	</update> 
+ <select id="dateCheck" parameterType="String" resultType="String">
+ select to_char(insert_date,'yyMMdd') from tb_match_user
+where my_id = #{userId}
+ 
+ </select>
+ 	<select id="selectMatchUserProfileList" parameterType="MatchUser" resultType="MatchUserProfile">
+	<![CDATA[
+	select user_id, user_nm, rank_gb,blood_type,age,height,bodyform,job,style,religion,grade_avg,area,picture_nm from tb_user
+    left join TB_PROFILE using(user_id)
+    left join TB_PROFILE_PICTURE using(user_id)
+    where TB_PROFILE_PICTURE.THUMNAIL_FL = '1' and (user_id = #{userId1} or user_id = #{userId2} or user_id= #{userId3}) and TB_PROFILE.TARGET_GB = '0'
+	]]>
+	</select>
+ </mapper>

@@ -9,7 +9,7 @@
 	
 footer {
 	padding: 25px 0;
-	text-align: center;
+	text-align: center
 }
 
 footer span.copyright {
@@ -34,33 +34,31 @@ footer ul.quicklinks {
 	text-transform: none;
 	font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif
 }
-
-@media ( min-width :768px) {
-	.rights {
-		text-align: left;
-	}
-	.info {
-		text-align: right;
-	}
-}
 </style>
 </head>
 <body>
-	<hr>
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 col-md-8 rights">
-					<span class="copyright">Copyright &copy; 2018 <a class="teamnm">GOD SKY</a> All Rights Reserved.</span>
-				</div>
-				<div class="col-sm-12 col-md-4 info">
-					<ul class="list-inline quicklinks">
-						<li class="list-inline-item"><a href="#">개인정보보호정책</a></li>
-						<li class="list-inline-item"><a href="#">이용안내</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</footer>
+   <footer>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-4 col-sm1 float-left">
+               <img src = "/findlove/resources/img/logos/findlove_logo.png" style="padding-top:20px;">
+            </div>
+            <div class="col-md-5 col-sm1 text-left">
+               <span class="copyright"><h3 style="margin-bottom:0px;">Developers</h3>
+               team.God SKY<br> <b>윤찬호</b>, 손정한, 김지훈, 남찬우, 김혜정, 조남훈, 김여진<br></span>
+                     
+               
+            </div>
+            <div class="col-md-3 col-sm1">
+               <ul class="list-inline quicklinks text-right">
+                  <li class="list-inline-item"><a href="#">개인정보보호정책</a></li><br>
+                  <li class="list-inline-item"><a href="#">이용안내</a></li>
+               </ul>
+            </div>
+            <div class="col-md-8 text-left">
+            <span class="copyright">Copyright &copy; 2018 <a class="teamnm">GOD SKY</a> All Rights Reserved.</span>
+            </div>
+         </div>
+      </div>
+   </footer>
 </body>
-</html>

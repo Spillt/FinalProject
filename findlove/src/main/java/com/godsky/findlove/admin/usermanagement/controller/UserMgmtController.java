@@ -1,7 +1,5 @@
 package com.godsky.findlove.admin.usermanagement.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,12 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.godsky.findlove.admin.usermanagement.model.service.UserMgmtService;
-import com.godsky.findlove.common.model.vo.Profile;
-import com.godsky.findlove.common.model.vo.Report;
-import com.godsky.findlove.common.model.vo.User;
-import com.godsky.findlove.admin.usermanagement.model.vo.UserBasic;
-import com.godsky.findlove.admin.usermanagement.model.vo.UserDetail;
-import com.godsky.findlove.admin.usermanagement.model.vo.UserMgmt;
 
 @Controller
 public class UserMgmtController {

@@ -12,7 +12,6 @@ th, .material-icons.icons-detail {
 	color: #faadad
 }
 
-
 td img {
 	width: 50px;
 }
@@ -162,6 +161,7 @@ tbody tr:hover {
 			</div>
 		</div>
 	</div>
+	<hr>
 	<c:import url="./usermodal.jsp" />
 	
 	<c:import url="../../include/footer.jsp" />

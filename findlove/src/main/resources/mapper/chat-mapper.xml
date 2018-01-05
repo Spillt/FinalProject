@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chat">
+     
+    <select id="selectChatList" resultType="Chat">
+        <![CDATA[
+          select user_id, user_NickNM, PICTURE_NM 
+from tb_user
+left join TB_PROFILE_PICTURE using (user_id)
+where user_id = (select sender_id 
+from tb_message
+where sender_id =
+(select receiver_id from tb_message
+where sender_id = #{user_id}
+and accept_st = 1)
+and accept_st = 1)
+and THUMNAIL_FL = 1
+        ]]>
+    </select>
+    <insert id="insertChat" parameterType = "hashmap">
+	<![CDATA[
+	insert into tb_chat values(#{userId},#{matchingId})
+	]]>
+	</insert>
+	<select id="checkChatStatus" parameterType = "User" resultType="int">
+        <![CDATA[
+          select count(*) from tb_chat where (RECEIVE_USER = #{user_pwd} or SEND_USER = #{user_pwd})and RECEIVE_USER != #{user_id}
+        ]]>
+    </select>
+    
+    <delete id="deleteChat" parameterType = "String">
+    <![CDATA[
+		delete from tb_chat where SEND_USER = #{userId}
+	]]>
+    </delete>
+</mapper>
